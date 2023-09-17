@@ -42,7 +42,6 @@ class es5:
                     ok = False
                     break
                 last = digit
-            nums.append(n)
             if not ok:
                 continue
             nums.append(n)
