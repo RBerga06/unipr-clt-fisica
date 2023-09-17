@@ -77,6 +77,8 @@ class es5:
     def f() -> int:
         nums: list[str] = []
         for n in map(str, range(10_000)):
+            if len(n) < 4:
+                n = f"{n:0>4}"  # prefix with the correct amount of '0's
             if len(set(n)) != 4:
                 continue  # not all digits are distinct
             if n[0] == "0":
