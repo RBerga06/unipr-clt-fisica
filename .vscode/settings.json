@@ -1,0 +1,5 @@
+{
+    "mathover.matchRegex": "\\$(.*)\\$",
+    "mathover.forwardSkip": 1,
+    "mathover.backwardSkip": 1,
+}

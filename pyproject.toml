@@ -1,0 +1,19 @@
+[project]
+name = "rberga06-unipr-cltfis"
+version = "1.0.0"
+description = ""
+authors = [
+    {name = "RBerga06", email = "78449715+RBerga06@users.noreply.github.com"},
+]
+dependencies = []
+requires-python = ">3.11"
+readme = "README.md"
+license = {text = "AGPL"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+package-dir = "src"
+includes = ["src/rberga06/"]
