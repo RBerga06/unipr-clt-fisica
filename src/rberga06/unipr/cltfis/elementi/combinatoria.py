@@ -74,8 +74,19 @@ class es5:
             nums.append(n)
         return len(nums)
 
+    @staticmethod
+    def f() -> int:
+        nums: list[str] = []
+        for n in map(str, range(10_000)):
+            if len(set(n)) != 4:
+                continue  # not all digits are distinct
+            if n[0] == "0":
+                continue
+            nums.append(n)
+        return len(nums)
+
     def __iter__(self, /) -> Iterator[Callable[[], int]]:
-        yield from (self.a, self.b, self.c, self.d, self.e)
+        yield from (self.a, self.b, self.c, self.d, self.e, self.f)
 
 
 def main() -> None:
