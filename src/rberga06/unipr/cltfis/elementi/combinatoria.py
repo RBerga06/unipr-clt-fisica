@@ -56,7 +56,7 @@ class es5:
             for digit in n:
                 if int(digit) % 2:
                     odd += 1
-            if odd > 2:
+            if odd != 2:
                 continue
             nums.append(n)
         return len(nums)
