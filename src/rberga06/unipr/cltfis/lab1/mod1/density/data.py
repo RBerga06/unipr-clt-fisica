@@ -1,9 +1,9 @@
 # pyright: reportIncompatibleVariableOverride=false
 from dataclasses import dataclass
-from typing import Protocol
 from math import pi as π
+from typing import Protocol
 from typing_extensions import override
-from ...core import DataPoint, Measure, PickBestPointDataSet
+from ...core import Measure, PickBestPointDataSet
 
 
 class RealObject(Protocol):
@@ -13,7 +13,7 @@ class RealObject(Protocol):
     @property
     def d(self, /) -> Measure:
         """The density!"""
-        return DataPoint.from_const(1_000) * self.m / self.V
+        return 1_000 * self.m / self.V
 
 
 @dataclass
@@ -52,7 +52,7 @@ class Sphere(RealObject):
         return (π/6) * self.ø ** 3
 
 
-### Object 01 ###
+### Data ###
 
 o1 = Parallelepiped(
     m = PickBestPointDataSet.from_raw([
@@ -78,9 +78,6 @@ o1 = Parallelepiped(
 )
 print(o1.d)
 
-
-### Object 02 ("Cilindro") ###
-
 o2 = Cylinder(
     m = PickBestPointDataSet.from_raw([(41.21, 0.01)]),
     h = PickBestPointDataSet.from_raw([
@@ -96,43 +93,30 @@ o2 = Cylinder(
 )
 print(o2.d)
 
-
-### Object 03 ("Sphere") ###
-
 o3 = Sphere(
-    m = DataPoint(35.81, 0.01),
-    ø = DataPoint(20.63, 0.01),
+    m = PickBestPointDataSet.from_raw([
+        (35.81, 0.01),
+        (35.81, 0.01),
+    ]),
+    ø = PickBestPointDataSet.from_raw([
+        (20.63, 0.01),
+        (20.63, 0.01),
+        (20.64, 0.01),
+    ]),
 )
 print(o3.d)
 
-# m (g)
-# 35.81,0.01
-# 35.81,0.01
-#
-# ø (mm)
-# 20.63,0.01
-# 20.63,0.01
-# 20.64,0.01
-
-
-### Object 4 ("Little Cylinder") ###
-
 o4 = Cylinder(
-    m = DataPoint( 8.00, 0.01),
-    h = DataPoint(77.80, 0.05),
-    ø = DataPoint( 6.97, 0.01),
+    m = PickBestPointDataSet.from_raw([( 8.00, 0.01)]),
+    h = PickBestPointDataSet.from_raw([
+        (77.75, 0.05),
+        (77.80, 0.05),
+        (77.80, 0.05),
+    ]),
+    ø = PickBestPointDataSet.from_raw([
+        (6.97, 0.01),
+        (6.97, 0.01),
+        (6.98, 0.01),
+    ]),
 )
 print(o4.d)
-
-# m (g)
-# 8.00,0.01
-# 
-# h (mm)
-# 77.75,0.05
-# 77.80,0.05
-# 77.80,0.05
-# 
-# ø (mm)
-# 6.97,0.01
-# 6.97,0.01
-# 6.98,0.01
