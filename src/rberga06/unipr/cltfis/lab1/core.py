@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Core data."""
 from dataclasses import dataclass
-from typing import Callable, Protocol, Self, overload
+from typing import Callable, Protocol, Self, final, overload
 from typing_extensions import override
+import math
 
 
 class Measure(Protocol):
@@ -46,6 +47,7 @@ class Measure(Protocol):
         return DataPoint.from_delta_rel(self.best ** other, self.delta_rel * other)
 
 
+@final
 @dataclass(slots=True, frozen=True)
 class Function:
     f: Callable[[float], float]
@@ -60,7 +62,14 @@ class Function:
             return self.f(x)
         return DataPoint(self.f(x.best), abs(self.f1(x.best)) * x.delta)
 
+    def __rmul__(self, k: float, /) -> "Function":
+        return Function(lambda x: k*self.f(x), lambda x: k*self.f1(x))
 
+    def __neg__(self, /) -> "Function":
+        return self.__rmul__(-1)
+
+
+@final
 @dataclass(slots=True, frozen=True)
 class DataPoint(Measure):
     best: float
@@ -123,3 +132,12 @@ class PickBestPointDataSet(DataSet):
     @override
     def delta(self) -> float:
         return self.best_point.delta
+
+
+π = math.pi
+sin = Function(math.sin, math.cos)
+cos = Function(math.cos, lambda x: -math.sin(x))
+tan = Function(math.tan, lambda x: 1 + (math.tan(x))**2)
+sinh = Function(math.sinh, math.cosh)
+cosh = Function(math.cosh, math.sinh)
+exp = Function(math.exp, math.exp)
