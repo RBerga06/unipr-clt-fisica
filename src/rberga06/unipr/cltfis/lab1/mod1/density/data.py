@@ -78,7 +78,9 @@ o1 = Parallelepiped(
 print(o1.d)
 
 o2 = Cylinder(
-    m = PickBestPoint.from_raw([(41.21, 0.01)]),
+    m = PickBestPoint.from_raw([
+        (41.21, 0.01),
+    ]),
     h = PickBestPoint.from_raw([
         (24.83, 0.01),
         (24.82, 0.01),
@@ -106,7 +108,9 @@ o3 = Sphere(
 print(o3.d)
 
 o4 = Cylinder(
-    m = PickBestPoint.from_raw([( 8.00, 0.01)]),
+    m = PickBestPoint.from_raw([
+        ( 8.00, 0.01),
+    ]),
     h = PickBestPoint.from_raw([
         (77.75, 0.05),
         (77.80, 0.05),
