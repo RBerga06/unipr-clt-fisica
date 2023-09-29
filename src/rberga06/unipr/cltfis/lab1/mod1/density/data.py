@@ -1,9 +1,8 @@
 # pyright: reportIncompatibleVariableOverride=false
 from dataclasses import dataclass
-from math import pi as π
 from typing import Protocol
 from typing_extensions import override
-from ...core import Measure, PickBestPointDataSet
+from ...core import Measure, PickBestPointDataSet, π
 
 
 class RealObject(Protocol):
