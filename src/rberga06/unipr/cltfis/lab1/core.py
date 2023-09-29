@@ -52,11 +52,11 @@ class Function:
     f1: Callable[[float], float]
 
     @overload
-    def __call__(self, argument: float, /) -> float: ...
+    def __call__(self, x: float, /) -> float: ...
     @overload
-    def __call__(self, argument: "Measure", /) -> "Measure": ...
+    def __call__(self, x: "Measure", /) -> "Measure": ...
     def __call__(self, x: "float | Measure", /) -> "float | Measure":
-        if isinstance(x, float):
+        if isinstance(x, float | int):
             return self.f(x)
         return DataPoint(self.f(x.best), abs(self.f1(x.best)) * x.delta)
 
