@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 """Core data."""
 from dataclasses import dataclass
-from typing import Protocol, Self, TypeVar
+from typing import Callable, Protocol, Self, overload
 from typing_extensions import override
-
-
-_M = TypeVar("_M", "Measure", float)
-
-class Function(Protocol):
-    def __call__(self, argument: _M, /) -> _M: ...
 
 
 class Measure(Protocol):
@@ -50,6 +44,21 @@ class Measure(Protocol):
 
     def __pow__(self, other: int, /) -> "Measure":
         return DataPoint.from_delta_rel(self.best ** other, self.delta_rel * other)
+
+
+@dataclass(slots=True, frozen=True)
+class Function:
+    f: Callable[[float], float]
+    f1: Callable[[float], float]
+
+    @overload
+    def __call__(self, argument: float, /) -> float: ...
+    @overload
+    def __call__(self, argument: "Measure", /) -> "Measure": ...
+    def __call__(self, x: "float | Measure", /) -> "float | Measure":
+        if isinstance(x, float):
+            return self.f(x)
+        return DataPoint(self.f(x.best), abs(self.f1(x.best)) * x.delta)
 
 
 @dataclass(slots=True, frozen=True)
