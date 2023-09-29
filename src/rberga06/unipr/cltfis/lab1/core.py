@@ -121,7 +121,7 @@ class PickBestPoint(DataSet):
     @property
     def best_point(self, /) -> Measure:
         avg = self.average
-        return min(self.data, key=lambda m: m.best - avg)
+        return min(self.data, key=lambda m: abs(m.best - avg))
 
     @property
     @override
