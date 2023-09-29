@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 from typing import Protocol
 from typing_extensions import override
-from ...core import Measure, PickBestPointDataSet, π
+from ...core import Measure, PickBestPoint, π
 
 
 class RealObject(Protocol):
@@ -54,20 +54,20 @@ class Sphere(RealObject):
 ### Data ###
 
 o1 = Parallelepiped(
-    m = PickBestPointDataSet.from_raw([
+    m = PickBestPoint.from_raw([
         (107.40, 0.01),
     ]),
-    x = PickBestPointDataSet.from_raw([
+    x = PickBestPoint.from_raw([
         (39.90,0.05),
         (39.90,0.05),
         (39.90,0.05),
     ]),
-    y = PickBestPointDataSet.from_raw([
+    y = PickBestPoint.from_raw([
         (64.60, 0.05),
         (64.40, 0.05),
         (64.40, 0.05),
     ]),
-    z = PickBestPointDataSet.from_raw([
+    z = PickBestPoint.from_raw([
         (5.00,0.05),
         (5.01,0.01),
         (5.18,0.01),
@@ -78,13 +78,13 @@ o1 = Parallelepiped(
 print(o1.d)
 
 o2 = Cylinder(
-    m = PickBestPointDataSet.from_raw([(41.21, 0.01)]),
-    h = PickBestPointDataSet.from_raw([
+    m = PickBestPoint.from_raw([(41.21, 0.01)]),
+    h = PickBestPoint.from_raw([
         (24.83, 0.01),
         (24.82, 0.01),
         (24.83, 0.01),
     ]),
-    ø = PickBestPointDataSet.from_raw([
+    ø = PickBestPoint.from_raw([
         (27.95, 0.05),
         (28.05, 0.05),
         (28.00, 0.05),
@@ -93,11 +93,11 @@ o2 = Cylinder(
 print(o2.d)
 
 o3 = Sphere(
-    m = PickBestPointDataSet.from_raw([
+    m = PickBestPoint.from_raw([
         (35.81, 0.01),
         (35.81, 0.01),
     ]),
-    ø = PickBestPointDataSet.from_raw([
+    ø = PickBestPoint.from_raw([
         (20.63, 0.01),
         (20.63, 0.01),
         (20.64, 0.01),
@@ -106,13 +106,13 @@ o3 = Sphere(
 print(o3.d)
 
 o4 = Cylinder(
-    m = PickBestPointDataSet.from_raw([( 8.00, 0.01)]),
-    h = PickBestPointDataSet.from_raw([
+    m = PickBestPoint.from_raw([( 8.00, 0.01)]),
+    h = PickBestPoint.from_raw([
         (77.75, 0.05),
         (77.80, 0.05),
         (77.80, 0.05),
     ]),
-    ø = PickBestPointDataSet.from_raw([
+    ø = PickBestPoint.from_raw([
         (6.97, 0.01),
         (6.97, 0.01),
         (6.98, 0.01),

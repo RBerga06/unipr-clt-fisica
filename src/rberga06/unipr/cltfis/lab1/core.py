@@ -117,7 +117,7 @@ class DataSet(Measure):
 
 
 @dataclass(slots=True)
-class PickBestPointDataSet(DataSet):
+class PickBestPoint(DataSet):
     @property
     def best_point(self, /) -> Measure:
         avg = self.average
