@@ -15,7 +15,7 @@ class RealObject(Protocol):
         return 1_000 * self.m / self.V
 
 
-@dataclass
+@dataclass(slots=True, frozen=True)
 class Parallelepiped(RealObject):
     m: Measure
     x: Measure
@@ -28,7 +28,7 @@ class Parallelepiped(RealObject):
         return self.x * self.y * self.z
 
 
-@dataclass
+@dataclass(slots=True, frozen=True)
 class Cylinder(RealObject):
     m: Measure
     h: Measure
@@ -40,7 +40,7 @@ class Cylinder(RealObject):
         return (π/4) * self.ø ** 2 * self.h
 
 
-@dataclass
+@dataclass(slots=True, frozen=True)
 class Sphere(RealObject):
     m: Measure
     ø: Measure
