@@ -111,9 +111,19 @@ class DataSet(Measure):
     def delta(self, /) -> float:  # type: ignore
         return max(self.semidispersion, self.delta_data_max)
 
+    def plot(self, bins: int | None = None, /) -> None:
+        if bins is None:
+            bins = math.floor(math.sqrt(len(self.data)))
+        from matplotlib import pyplot as plt
+        plt.hist([x.best for x in self.data], bins=bins)  # type: ignore
+
     @classmethod
     def from_raw(cls, data: list[tuple[float, float]], /) -> Self:
         return cls([DataPoint(best, delta) for best, delta in data])
+
+    @classmethod
+    def from_dataset(cls, dataset: "DataSet", /) -> Self:
+        return cls(dataset.data)
 
 
 @dataclass(slots=True)
@@ -132,6 +142,19 @@ class PickBestPoint(DataSet):
     @override
     def delta(self) -> float:
         return self.best_point.delta
+
+
+@dataclass(slots=True)
+class NormalDistribution(DataSet):
+    @property
+    @override
+    def best(self, /) -> float:
+        return self.average
+
+    @property
+    @override
+    def delta(self, /) -> float:
+        raise NotImplementedError   # TODO
 
 
 π = math.pi
