@@ -151,7 +151,46 @@ class DataSet(Measure):
     def delta(self, /) -> float:  # type: ignore
         return max(self.semidispersion, self.delta_data_max)
 
-    def plot(self, bins: int | None = None, /) -> None:
+
+@dataclass(slots=True, frozen=True)
+class Distribution(DataSet):
+    bins_min: float = 0.
+    bins_max: float = 1.
+    bin_sep_down: bool = True  # if x == sep, x in the lower bin
+    nbins_manual: int | None = None
+
+    @property
+    def nbins(self, /) -> int:
+        """Actual number of bins."""
+        if self.nbins_manual is None:
+            return math.floor(math.sqrt(len(self.data)))
+        return self.nbins_manual
+
+    @property
+    def bins(self, /) -> tuple[DataSet, ...]:
+        m = self.bins_min
+        dx = (self.bins_max - m)/self.nbins
+        bins = {
+            (m+n*dx, m+(n+1)*dx): list[Measure]()
+            for n in range(self.nbins)
+        }
+        for x in self.data:
+            for (bin_m, bin_M), bin in bins.items():
+                if self.bin_sep_down:
+                    if bin_m < x.best <= bin_M:
+                        bin.append(x)
+                else:
+                    if bin_m <= x.best < bin_M:
+                        bin.append(x)
+        return tuple([DataSet(tuple(bin)) for bin in bins.values()])
+
+    @property
+    @cache
+    @override
+    def average(self, /) -> float:
+        return sum(len(bin.data) * bin.average for bin in self.bins)/len(self.data)
+
+    def histogram(self, /, *, bins: int | None = None) -> None:
         if bins is None:
             bins = math.floor(math.sqrt(len(self.data)))
         from matplotlib import pyplot as plt
@@ -178,16 +217,21 @@ class PickBestPoint(DataSet):
         return self.best_point.delta
 
 
-@dataclass(slots=True)
-class NormalDistribution(DataSet):
+@dataclass(slots=True, frozen=True)
+class NormalDistribution(Distribution):
     @property
+    @cache
     @override
     def best(self, /) -> float:
         return self.average
 
     @property
+    @cache
     @override
     def delta(self, /) -> float:
+        return self.std_dev / math.sqrt(len(self.data))
+
+
 
 
 # Constants & standard functions
