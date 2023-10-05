@@ -7,6 +7,13 @@ from typing_extensions import override
 import math
 
 
+def round2sig(x: float, sig: int) -> float:
+    """Round the given number to the given significant figure."""
+    if x == 0:
+        return x
+    return round(x, sig - 1 - int(math.floor(math.log10(abs(x)))))
+
+
 class Measure(Protocol):
     best: float
     delta: float
@@ -46,6 +53,13 @@ class Measure(Protocol):
 
     def __pow__(self, other: int, /) -> "Measure":
         return DataPoint.from_delta_rel(self.best ** other, self.delta_rel * other)
+
+    # def __repr__(self, /) -> str:
+    #     best, delta = self.best, self.delta
+    #     delta_factor = 10 ** math.floor(math.log10(delta))
+    #     delta_digits = delta / delta_factor
+    #     new_delta = delta_factor * (round(delta_digits, 1) if delta_digits < 2 else round(delta_digits))
+    #     return f"{best} ± {new_delta}"
 
 
 @final
@@ -116,12 +130,14 @@ class DataSet(Measure):
     @property
     @cache
     def average(self, /) -> float:
-        return sum([m.best for m in self.data])/len(self.data)
+        """The (weighted) average of all data."""
+        # $w_i = \frac{1}{(\delta x_i)^2}$
+        return sum([m.best * m.delta**-2 for m in self.data])/sum([m.delta**-2 for m in self.data])
 
     @property
     @cache
     def variance(self, /) -> float:
-        return (sum([x.best**2 for x in self.data]) - len(self.data) * self.average**2)/(len(self.data) - 1)
+        return (sum([x.best**2 for x in self.data]) - self.len * self.average**2)/(self.len - 1)
 
     @property
     @cache
