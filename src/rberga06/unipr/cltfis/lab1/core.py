@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Core data."""
 from dataclasses import dataclass
-from typing import Callable, Protocol, Self, final, overload
+from functools import cache
+from typing import Callable, Protocol, Self, cast, final, overload
 from typing_extensions import override
 import math
 
@@ -48,7 +49,7 @@ class Measure(Protocol):
 
 
 @final
-@dataclass(slots=True, frozen=True)
+@dataclass(slots=True, frozen=True, repr=False)
 class Function:
     f: Callable[[float], float]
     f1: Callable[[float], float]
@@ -84,29 +85,68 @@ class DataPoint(Measure):
         return cls(best, delta_rel * best)
 
 
-@dataclass(slots=True)
+@overload
+def data_points(raw: list[tuple[float, float]], delta: None = None, /) -> tuple[DataPoint, ...]: ...
+@overload
+def data_points(raw: list[float], delta: list[float] | float, /) -> tuple[DataPoint, ...]: ...
+def data_points(
+    raw: list[tuple[float, float]] | list[float],
+    delta: list[float] | float | None = None,
+    /,
+) -> tuple[DataPoint, ...]:
+    match delta:
+        case None:
+            data = cast(list[tuple[float, float]], raw)
+        case float() | int():
+            data = zip(cast(list[float], raw), [delta]*len(raw))
+        case _:
+            data = zip(cast(list[float], raw), delta)
+    return tuple([DataPoint(x, d) for x, d in data])
+
+
+@dataclass(slots=True, frozen=True)
 class DataSet(Measure):
-    data: list["Measure"]
+    data: tuple["Measure", ...]
 
     @property
+    @cache
+    def len(self, /) -> int:
+        return len(self.data)
+
+    @property
+    @cache
     def average(self, /) -> float:
         return sum([m.best for m in self.data])/len(self.data)
 
     @property
+    @cache
+    def variance(self, /) -> float:
+        return (sum([x.best**2 for x in self.data]) - len(self.data) * self.average**2)/(len(self.data) - 1)
+
+    @property
+    @cache
+    def std_dev(self, /) -> float:
+        return math.sqrt(self.variance)
+
+    @property
+    @cache
     @override
     def best(self, /) -> float:  # type: ignore
         return self.average
 
     @property
+    @cache
     def delta_data_max(self, /) -> float:
         return max([m.delta for m in self.data])
 
     @property
+    @cache
     def semidispersion(self, /) -> float:
         xs = [m.best for m in self.data]
         return (max(xs) - min(xs))/2
 
     @property
+    @cache
     @override
     def delta(self, /) -> float:  # type: ignore
         return max(self.semidispersion, self.delta_data_max)
@@ -117,16 +157,8 @@ class DataSet(Measure):
         from matplotlib import pyplot as plt
         plt.hist([x.best for x in self.data], bins=bins)  # type: ignore
 
-    @classmethod
-    def from_raw(cls, data: list[tuple[float, float]], /) -> Self:
-        return cls([DataPoint(best, delta) for best, delta in data])
 
-    @classmethod
-    def from_dataset(cls, dataset: "DataSet", /) -> Self:
-        return cls(dataset.data)
-
-
-@dataclass(slots=True)
+@dataclass(slots=True, frozen=True)
 class PickBestPoint(DataSet):
     @property
     def best_point(self, /) -> Measure:
@@ -134,11 +166,13 @@ class PickBestPoint(DataSet):
         return min(self.data, key=lambda m: abs(m.best - avg))
 
     @property
+    @cache
     @override
     def best(self) -> float:
         return self.best_point.best
 
     @property
+    @cache
     @override
     def delta(self) -> float:
         return self.best_point.delta
@@ -154,13 +188,15 @@ class NormalDistribution(DataSet):
     @property
     @override
     def delta(self, /) -> float:
-        raise NotImplementedError   # TODO
 
 
+# Constants & standard functions
+g = DataPoint(9.806, 0.001)
 π = math.pi
+ln = Function(math.log, lambda x: 1/x)
+exp = Function(math.exp, math.exp)
 sin = Function(math.sin, math.cos)
 cos = Function(math.cos, lambda x: -math.sin(x))
 tan = Function(math.tan, lambda x: 1 + (math.tan(x))**2)
 sinh = Function(math.sinh, math.cosh)
 cosh = Function(math.cosh, math.sinh)
-exp = Function(math.exp, math.exp)
