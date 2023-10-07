@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+# pyright: reportConstantRedefinition=false
 """Core data."""
 from dataclasses import dataclass
 from functools import cache
-from typing import Callable, Protocol, Self, cast, final, overload
-from typing_extensions import override
 import math
+from typing import Callable, Iterator, Literal, Protocol, Self, cast, final, overload
+from typing_extensions import override
+from matplotlib import pyplot as plt
 
 
 def round2sig(x: float, sig: int) -> float:
@@ -91,6 +93,12 @@ class DataPoint(Measure):
     delta: float
 
     @classmethod
+    def from_measure(cls, x: Measure, /) -> Self:
+        if isinstance(x, cls):
+            return x
+        return cls(x.best, x.delta)
+
+    @classmethod
     def from_const(cls, const: float, /) -> Self:
         return cls(const, 0)
 
@@ -120,12 +128,22 @@ def data_points(
 
 @dataclass(slots=True, frozen=True)
 class DataSet(Measure):
-    data: tuple["Measure", ...]
+    data: tuple[Measure, ...]
 
     @property
     @cache
     def len(self, /) -> int:
         return len(self.data)
+
+    @property
+    @cache
+    def bests(self, /) -> tuple[float, ...]:
+        return tuple([x.best for x in self.data])
+
+    @property
+    @cache
+    def deltas(self, /) -> tuple[float, ...]:
+        return tuple([x.delta for x in self.data])
 
     @property
     @cache
@@ -153,12 +171,12 @@ class DataSet(Measure):
     @property
     @cache
     def delta_data_max(self, /) -> float:
-        return max([m.delta for m in self.data])
+        return max(self.deltas)
 
     @property
     @cache
     def semidispersion(self, /) -> float:
-        xs = [m.best for m in self.data]
+        xs = self.bests
         return (max(xs) - min(xs))/2
 
     @property
@@ -167,50 +185,97 @@ class DataSet(Measure):
     def delta(self, /) -> float:  # type: ignore
         return max(self.semidispersion, self.delta_data_max)
 
+    def __iter__(self, /) -> Iterator[Measure]:
+        return iter(self.data)
+
+    def __len__(self, /) -> int:
+        return self.len
+
+
+@dataclass(slots=True, frozen=True)
+class DistBin(Measure):
+    data: tuple[DataPoint, ...]
+    min: float
+    max: float
+
+    @property
+    @cache
+    def len(self, /) -> int:  # type: ignore
+        return len(self.data)
+
+    @property
+    @cache
+    @override
+    def best(self, /) -> float:  # type: ignore
+        return (self.max + self.min)/2
+
+    @property
+    @cache
+    @override
+    def delta(self, /) -> float:  # type: ignore
+        return self.width / 2
+
+    @property
+    @cache
+    def width(self, /) -> float:
+        return self.max - self.min
+
 
 @dataclass(slots=True, frozen=True)
 class Distribution(DataSet):
-    bins_min: float = 0.
-    bins_max: float = 1.
-    bin_sep_down: bool = True  # if x == sep, x in the lower bin
-    nbins_manual: int | None = None
+    bins: tuple[DistBin, ...]
 
     @property
-    def nbins(self, /) -> int:
-        """Actual number of bins."""
-        if self.nbins_manual is None:
-            return math.floor(math.sqrt(len(self.data)))
-        return self.nbins_manual
-
-    @property
-    def bins(self, /) -> tuple[DataSet, ...]:
-        m = self.bins_min
-        dx = (self.bins_max - m)/self.nbins
-        bins = {
-            (m+n*dx, m+(n+1)*dx): list[Measure]()
-            for n in range(self.nbins)
-        }
-        for x in self.data:
-            for (bin_m, bin_M), bin in bins.items():
-                if self.bin_sep_down:
-                    if bin_m < x.best <= bin_M:
-                        bin.append(x)
-                else:
-                    if bin_m <= x.best < bin_M:
-                        bin.append(x)
-        return tuple([DataSet(tuple(bin)) for bin in bins.values()])
+    @cache
+    @override
+    def len(self, /) -> int:
+        return sum([bin.len for bin in self.bins])
 
     @property
     @cache
     @override
     def average(self, /) -> float:
-        return sum(len(bin.data) * bin.average for bin in self.bins)/len(self.data)
+        return sum(len(bin.data) * bin.best for bin in self.bins)/len(self.bins)
 
-    def histogram(self, /, *, bins: int | None = None) -> None:
-        if bins is None:
-            bins = math.floor(math.sqrt(len(self.data)))
-        from matplotlib import pyplot as plt
-        plt.hist([x.best for x in self.data], bins=bins)  # type: ignore
+    def histogram(self, /) -> None:
+        for bin in self.bins:
+            print(f"  - {[x.best for x in bin.data]}")
+        plt.bar(  # type: ignore
+            [bin.best for bin in self.bins],
+            [bin.len for bin in self.bins],
+            [bin.width for bin in self.bins],
+        )
+
+    @classmethod
+    def from_dataset(
+        cls,
+        data: DataSet,
+        /, *,
+        m: float | None = None,
+        M: float | None = None,
+        n: int   | None = None,
+        sep: Literal["lower", "upper"] = "lower",
+    ) -> Self:
+        data_m = min(data.data, key=lambda x: x.best)
+        data_M = max(data.data, key=lambda x: x.best)
+        if m is None: m = data_m.best - data_m.delta
+        if M is None: M = data_M.best + data_M.delta
+        if n is None: n = math.floor(math.sqrt(data.len))
+        dx = (M - m)/n
+        bins: dict[tuple[float, float], list[DataPoint]] = {
+            (m+k*dx, m+(k+1)*dx): list() for k in range(n)
+        }
+        for x in data:
+            for (bin_m, bin_M), bin in bins.items():
+                if bin_m < x.best < bin_M:
+                    bin.append(DataPoint.from_measure(x))
+                    continue
+                if x.best == (bin_M if sep == "lower" else bin_m):
+                    bin.append(DataPoint.from_measure(x))
+        return cls(data.data, tuple([
+            DistBin(tuple(bin), bin_m, bin_M)
+            for (bin_m, bin_M), bin in bins.items()
+        ]))
 
 
 @dataclass(slots=True, frozen=True)
