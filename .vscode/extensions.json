@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "remisa.mathover",
-        "ms-python.python"
+        "ms-python.python",
+        "charliermarsh.ruff"
     ]
 }
