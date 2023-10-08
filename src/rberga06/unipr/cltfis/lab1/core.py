@@ -258,9 +258,9 @@ class Distribution(DataSet):
     ) -> Self:
         data_m = min(data.data, key=lambda x: x.best)
         data_M = max(data.data, key=lambda x: x.best)
-        if m is None: m = data_m.best - data_m.delta
-        if M is None: M = data_M.best + data_M.delta
-        if n is None: n = math.floor(math.sqrt(data.len))
+        if m is None:  m = data_m.best - data_m.delta
+        if M is None:  M = data_M.best + data_M.delta
+        if n is None:  n = math.floor(math.sqrt(data.len))
         dx = (M - m)/n
         bins: dict[tuple[float, float], list[DataPoint]] = {
             (m+k*dx, m+(k+1)*dx): list() for k in range(n)

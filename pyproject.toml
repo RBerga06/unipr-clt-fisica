@@ -20,3 +20,6 @@ build-backend = "pdm.backend"
 [tool.pdm.build]
 package-dir = "src"
 includes = ["src/rberga06/"]
+
+[tool.ruff]
+line-length = 120
