@@ -54,24 +54,30 @@ utilizzati a causa della loro elevata sensiblità.
     \item Per ogni campione, ne calcoliamo il volume $V$ (e la sua incertezza), in base alla forma:
     \begin{itemize}
         \item Parallelepipedo:
-            \[V_\text{best} = x_\text{best} y_\text{best} z_\text{best}\]
             \[
+                V_\text{best} = x_\text{best} y_\text{best} z_\text{best}
+                \qquad\qquad
                 \frac{\delta V}{V_\text{best}} = \frac{\delta x}{x_\text{best}} + \frac{\delta y}{y_\text{best}} + \frac{\delta z}{z_\text{best}}
             \]
         \item Cilindri:
-            \[V_\text{best} = \pi \left(\frac{d_\text{best}}{2}\right)^2 h_\text{best}\]
             \[
+                V_\text{best} = \pi \left(\frac{d_\text{best}}{2}\right)^2 h_\text{best}
+                \qquad\qquad
                 \frac{\delta V}{V_\text{best}} = 2 \cdot \frac{\delta d}{d_\text{best}} + \frac{\delta h}{h_\text{best}}
             \]
         \item Sfera:
-            \[V_\text{best} = \frac{4 \pi}{3} \left(\frac{d_\text{best}}{2}\right)^3\]
             \[
+                V_\text{best} = \frac{4 \pi}{3} \left(\frac{d_\text{best}}{2}\right)^3
+                \qquad\qquad
                 \frac{\delta V}{V_\text{best}} = 3 \cdot \frac{\delta d}{d_\text{best}}
             \]
     \end{itemize}
     \item Sempre tenendo conto delle incertezze, troviamo la densità $\rho$ (e il relativo errore) del campione:
-        \[\rho = \frac{m}{V}\]
-        \[\frac{\delta \rho}{\rho_\text{best}} = \frac{\delta m}{m_\text{best}} + \frac{\delta V}{V_\text{best}}\]
+        \[
+            \rho = \frac{m}{V}
+            \qquad\qquad
+            \frac{\delta \rho}{\rho_\text{best}} = \frac{\delta m}{m_\text{best}} + \frac{\delta V}{V_\text{best}}
+        \]
     \item Infine, cerchiamo di capire di che materiale siano composti i vari campioni, confrontando
     i valori di $rho$ misurati con quelli indicati in letteratura ($\rho_\text{lett.}$).
 \end{enumerate}
