@@ -167,7 +167,7 @@ cython_debug/
 *.aux
 *.fdb_latexmk
 *.fls
-*.pdf
+# *.pdf
 *.synctex.gz
 *.ind
 *.ilg
