@@ -29,7 +29,129 @@ Di seguito gli strumenti di misura utilizzati:
         \hline
         Micrometro ad asta filettata & 0.01 mm & 25.00 mm & 0.01 mm \\
         \hline
+        Calibro ventesimale & 0.05 mm & 150.00 mm & 0.05 mm \\
+        \hline
+        Bilancia di precisione & 0.01 g & 2000.00 g & 0.01 g \\
+        \hline
+        Metro a nastro* & 0.1 cm & 300 cm & 0.1 cm \\
+        \hline
+        Cilindro graduato* & 1 mL & ??? & 1 mL \\
+        \hline
     \end{tabular}
 \end{center}
+
+*questi strumenti di misura, seppur disponibili, non sono stati
+utilizzati a causa della loro elevata sensiblità.
+
+\section{Desrizione dell'esperimento e del procedimento di misura}
+\begin{enumerate}
+    \item Misuriamo per ogni campione la sua massa $m$ con la bilancia di precisione.
+    \item Misuriamo tre volte per ogni campione le distanze necessarie al calcolo
+          del suo volume, tenendo come valore migliore quello più vicino alla media
+          delle misure e come incertezza la sensibilità degli strumenti utilizzati.
+          Quando possibile, utilizziamo il micrometro; altrimenti, il calibro ventesimale.
+    \item Per ogni campione, ne calcoliamo il volume $V$ (e la sua incertezza), in base alla forma:
+    \begin{itemize}
+        \item Parallelepipedo:
+            \[V_{best} = x_{best} y_{best} z_{best}\]
+            \[
+                \frac{\delta V}{V_{best}} = \frac{\delta x}{x_{best}} + \frac{\delta y}{y_{best}} + \frac{\delta z}{z_{best}}
+            \]
+        \item Cilindri:
+            \[V_{best} = \pi \left(\frac{d_{best}}{2}\right)^2 h_{best}\]
+            \[
+                \frac{\delta V}{V_{best}} = 2 \cdot \frac{\delta d}{d_{best}} + \frac{\delta h}{h_{best}}
+            \]
+        \item Sfera:
+            \[V_{best} = \frac{4 \pi}{3} \left(\frac{d_{best}}{2}\right)^3\]
+            \[
+                \frac{\delta V}{V_{best}} = 3 \cdot \frac{\delta d}{d_{best}}
+            \]
+    \end{itemize}
+    \item Sempre tenendo conto delle incertezze, troviamo la densità $\rho$ (e il relativo errore) del campione:
+        \[\rho = \frac{m}{V}\]
+        \[\frac{\delta \rho}{\rho_{best}} = \frac{\delta m}{m_{best}} + \frac{\delta V}{V_{best}}\]
+    \item Infine, cerchiamo di capire di che materiale siano composti i vari campioni, confrontando
+    i valori di $rho$ misurati con quelli indicati in letteratura ($\rho_{lett.}$).
+\end{enumerate}
+
+Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
+
+\begin{center}
+    \begin{tabular}{ |c|c|c|c| }
+        \hline
+        Parallelepipedo & x (mm) & y (mm) & z (mm) \\
+        \hline
+        Misura 1 & 39.90 ± 0.05 & 64.60 ± 0.05 & 5.01 ± 0.01 \\
+        Misura 2 & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.99 ± 0.01 \\
+        Misura 3 & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.98 ± 0.01 \\
+        \hline
+        Misura tenuta & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.99 ± 0.01 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{ |c|c|c| }
+        \hline
+        Cilindro 1 & h (mm) & d (mm) \\
+        \hline
+        Misura 1 & 24.83 ± 0.01 & 27.95 ± 0.05 \\
+        Misura 2 & 24.82 ± 0.01 & 28.05 ± 0.05 \\
+        Misura 3 & 24.83 ± 0.01 & 28.00 ± 0.05 \\
+        \hline
+        Misura tenuta & 24.83 ± 0.01 & 28.00 ± 0.05 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{ |c|c| }
+        \hline
+        Sfera & d (mm) \\
+        \hline
+        Misura 1 & 20.63 ± 0.01 \\
+        Misura 2 & 20.63 ± 0.01 \\
+        Misura 3 & 20.64 ± 0.01 \\
+        \hline
+        Misura tenuta & 20.63 ± 0.01 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{ |c|c|c| }
+        \hline
+        Cilindro 2 & h (mm) & d (mm) \\
+        \hline
+        Misura 1 & 77.75 ± 0.05 & 6.97 ± 0.01 \\
+        Misura 2 & 77.80 ± 0.05 & 6.97 ± 0.01 \\
+        Misura 3 & 77.80 ± 0.05 & 6.98 ± 0.01 \\
+        \hline
+        Misura tenuta & 77.80 ± 0.05 & 6.97 ± 0.01 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{ |c|c|c|c| }
+        \hline
+        Campione & m (g) & V ($cm^3$) & $\rho \left(\frac{g}{cm^3}\right)$ \\
+        \hline
+        Parallelepipedo & 107.40 ± 0.01 & 12.87 ± 0.05 & 8.34 ± 0.03 \\
+        Cilindro 1 & 41.21 ± 0.01 & 15.29 ± 0.06 & 2.695 ± 0.011 \\
+        Sfera & 35.81 ± 0.01 & 4.597 ± 0.007 & 7.789 ± 0.014 \\
+        Cilindro 2 & 8.00 ± 0.01 & 2.97 ± 0.01 & 2.695 ± 0.013 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{ |c|c|c|c|c| }
+        \hline
+        Campione & $\rho \left(\frac{g}{cm^3}\right)$ & Materiale & $\rho_{lett.} \left(\frac{g}{cm^3}\right)$ & $\frac{\left|\rho_{best} - \left(\rho_{lett.}\right)_{best}\right|}{\delta \rho + \delta \rho_{lett.}}$ \\
+        \hline
+        Parallelepipedo & 8.34 ± 0.03 & Ottone giallo (high brass) & 8.47 ± 0.01 & 2.5 \\
+        \hline
+        Cilindro 1 & 2.695 ± 0.011 & Lega di Al laminato 3003 & 2.73 ± 0.01 & 1.7 \\
+        \hline
+        Sfera & 7.789 ± 0.014 & Acciaio & 7.8 ± 0.1 & 0.1 \\
+        \hline
+        Cilindro 2 & 2.695 ± 0.013 & Lega di Al laminato 3003 & 2.73 ± 0.01 & 1.5 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+L'inconsistenza non trascurabile tra $\rho$ (le nostre misure) e $\rho_{lett}$ (i rispettivi valori riportati in letteratura) è dovuta principalmente al fatto che si tratta di leghe; probabilmente, i nostri campioni presentavano concentrazioni diverse dei vari elementi.
 
 \end{document}
