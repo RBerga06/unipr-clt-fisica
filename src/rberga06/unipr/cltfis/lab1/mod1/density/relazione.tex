@@ -51,7 +51,8 @@ utilizzati a causa della loro elevata sensiblità.
           del suo volume, tenendo come valore migliore quello più vicino alla media
           delle misure e come incertezza la sensibilità degli strumenti utilizzati.
           Quando possibile, utilizziamo il micrometro; altrimenti, il calibro ventesimale.
-    \item Per ogni campione, ne calcoliamo il volume $V$ (e la sua incertezza), in base alla forma:
+
+    \item Per ogni campione, ne calcoliamo il volume $V$ (e la sua incertezza):
     \begin{itemize}
         \item Parallelepipedo:
             \[
@@ -80,14 +81,18 @@ utilizzati a causa della loro elevata sensiblità.
         \]
     \item Infine, cerchiamo di capire di che materiale siano composti i vari campioni, confrontando
     i valori di $rho$ misurati con quelli indicati in letteratura ($\rho_\text{lett.}$).
+    \item Per valutare numericamente la consistenza dei risultati ottenuti con i valori indicati in letteratura,
+    abbiamo calcolato il seguente valore (numero puro):
+    \[\varepsilon = \frac{\left|\rho_\text{best} - \left(\rho_\text{lett.}\right)_\text{best}\right|}{\delta \rho + \delta \rho_\text{lett.}}\]
+    Allora $\rho$ è consistente con $\rho_\text{lett.}$ se e solo se $\varepsilon \le 1$.
 \end{enumerate}
 
-Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
+Di seguito sono riportate tutte le misure effettuate direttamente, così come quelle calcolate come descritto.
 
 \begin{center}
     \begin{tabular}{ |c|c|c|c| }
         \hline
-        Parallelepipedo & x (mm) & y (mm) & z (mm) \\
+        \emph{Parallelepipedo} & $x$ (mm) & $y$ (mm) & $z$ (mm) \\
         \hline
         Misura 1 & 39.90 ± 0.05 & 64.60 ± 0.05 & 5.01 ± 0.01 \\
         Misura 2 & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.99 ± 0.01 \\
@@ -96,10 +101,12 @@ Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
         Misura tenuta & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.99 ± 0.01 \\
         \hline
     \end{tabular}
-
+    \newline
+    \vspace*{0.4 cm}
+    \newline
     \begin{tabular}{ |c|c|c| }
         \hline
-        Cilindro 1 & h (mm) & d (mm) \\
+        \emph{Cilindro} 1 & $h$ (mm) & $d$ (mm) \\
         \hline
         Misura 1 & 24.83 ± 0.01 & 27.95 ± 0.05 \\
         Misura 2 & 24.82 ± 0.01 & 28.05 ± 0.05 \\
@@ -108,10 +115,12 @@ Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
         Misura tenuta & 24.83 ± 0.01 & 28.00 ± 0.05 \\
         \hline
     \end{tabular}
-
+    \newline
+    \vspace*{0.4 cm}
+    \newline
     \begin{tabular}{ |c|c| }
         \hline
-        Sfera & d (mm) \\
+        \emph{Sfera} & $d$ (mm) \\
         \hline
         Misura 1 & 20.63 ± 0.01 \\
         Misura 2 & 20.63 ± 0.01 \\
@@ -120,10 +129,12 @@ Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
         Misura tenuta & 20.63 ± 0.01 \\
         \hline
     \end{tabular}
-
+    \newline
+    \vspace*{0.4 cm}
+    \newline
     \begin{tabular}{ |c|c|c| }
         \hline
-        Cilindro 2 & h (mm) & d (mm) \\
+        \emph{Cilindro 2} & $h$ (mm) & $d$ (mm) \\
         \hline
         Misura 1 & 77.75 ± 0.05 & 6.97 ± 0.01 \\
         Misura 2 & 77.80 ± 0.05 & 6.97 ± 0.01 \\
@@ -132,10 +143,12 @@ Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
         Misura tenuta & 77.80 ± 0.05 & 6.97 ± 0.01 \\
         \hline
     \end{tabular}
-
+    \newline
+    \vspace*{0.4 cm}
+    \newline
     \begin{tabular}{ |c|c|c|c| }
         \hline
-        Campione & m (g) & V ($cm^3$) & $\rho \left(\frac{g}{cm^3}\right)$ \\
+        \emph{Campione} & $m$ (g) & $V$ ($\text{cm}^3$) & $\rho\enspace(\text{g} / \text{cm}^3)$\\
         \hline
         Parallelepipedo & 107.40 ± 0.01 & 12.87 ± 0.05 & 8.34 ± 0.03 \\
         Cilindro 1 & 41.21 ± 0.01 & 15.29 ± 0.06 & 2.695 ± 0.011 \\
@@ -143,17 +156,16 @@ Di seguito sono riportate tutte le misure, dirette e indirette, effettuate.
         Cilindro 2 & 8.00 ± 0.01 & 2.97 ± 0.01 & 2.695 ± 0.013 \\
         \hline
     \end{tabular}
-
+    \newline
+    \vspace*{0.4 cm}
+    \newline
     \begin{tabular}{ |c|c|c|c|c| }
         \hline
-        Campione & $\rho \left(\frac{g}{cm^3}\right)$ & Materiale & $\rho_\text{lett.} \left(\frac{g}{cm^3}\right)$ & $\frac{\left|\rho_\text{best} - \left(\rho_{lett.}\right)_\text{best}\right|}{\delta \rho + \delta \rho_\text{lett.}}$ \\
+        \emph{Campione} & $\rho\enspace(\text{g} / \text{cm}^3)$ & Materiale & $\rho_\text{lett.}\enspace(\text{g} / \text{cm}^3)$ & $\varepsilon$ \\
         \hline
-        Parallelepipedo & 8.34 ± 0.03 & Ottone giallo (high brass) & 8.47 ± 0.01 & 2.5 \\
-        \hline
+        Parallelepipedo & 8.34 ± 0.03 & Ottone giallo (\emph{high brass}) & 8.47 ± 0.01 & 2.5 \\
         Cilindro 1 & 2.695 ± 0.011 & Lega di Al laminato 3003 & 2.73 ± 0.01 & 1.7 \\
-        \hline
         Sfera & 7.789 ± 0.014 & Acciaio & 7.8 ± 0.1 & 0.1 \\
-        \hline
         Cilindro 2 & 2.695 ± 0.013 & Lega di Al laminato 3003 & 2.73 ± 0.01 & 1.5 \\
         \hline
     \end{tabular}
