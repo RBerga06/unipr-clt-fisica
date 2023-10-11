@@ -180,7 +180,8 @@ class DataSet(Measure):
     @property
     @cache
     def variance(self, /) -> float:
-        return (sum([x.best**2 for x in self.data]) - self.len * self.avg**2)/(self.len - 1)
+        avg = self.avg
+        return sum([(x.best - avg)**2 for x in self.data])/(self.len - 1)
 
     @property
     @cache
