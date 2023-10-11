@@ -42,7 +42,7 @@ class Measure(Protocol):
 
     def __mul__(self, other: "Measure | float", /) -> "Measure":
         if isinstance(other, float | int):
-            other = DataPoint.from_const(other)
+            return DataPoint(self.best * other, self.delta * abs(other))
         return DataPoint.from_delta_rel(self.best * other.best, self.delta_rel + other.delta_rel)
 
     def __rmul__(self, other: "Measure | float", /) -> "Measure":
@@ -50,8 +50,13 @@ class Measure(Protocol):
 
     def __truediv__(self, other: "Measure | float", /) -> "Measure":
         if isinstance(other, float | int):
-            other = DataPoint.from_const(other)
+            return DataPoint(self.best / other, self.delta / abs(other))
         return DataPoint.from_delta_rel(self.best / other.best, self.delta_rel + other.delta_rel)
+
+    def __rtruediv__(self, other: "Measure | float", /) -> "Measure":
+        if isinstance(other, float | int):
+            other = DataPoint.from_const(other)
+        return other.__truediv__(self)
 
     def __pow__(self, other: int, /) -> "Measure":
         return DataPoint.from_delta_rel(self.best ** other, self.delta_rel * other)
@@ -322,8 +327,8 @@ def linear_regression(X: DataSet, Y: DataSet) -> tuple[DataPoint, DataPoint]:
     delta = N*sx2 - sx**2
     a = (sx2*sy - sx*sxy)/delta
     b = (N*sxy - sx*sy)/delta
-    da = math.sqrt(Y.delta**2 * sx2/delta)
-    db = math.sqrt(Y.delta**2 * N/delta)
+    da = math.sqrt((Y.delta**2 * sx2)/delta)
+    db = Y.delta * math.sqrt(N/delta)
     return DataPoint(a, da), DataPoint(b, db)
 
 
