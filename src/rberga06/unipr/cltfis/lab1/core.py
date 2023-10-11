@@ -204,7 +204,7 @@ class DataSet(Measure):
     @cache
     @override
     def delta(self, /) -> float:  # type: ignore
-        return max(self.std_dev, self.avg_delta)
+        return max(self.std_dev/math.sqrt(len(self.data)), self.avg_delta)
 
     @overload
     def __getitem__(self, i: int, /) -> Measure: ...
