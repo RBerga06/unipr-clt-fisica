@@ -205,6 +205,13 @@ class DataSet(Measure):
     def delta(self, /) -> float:  # type: ignore
         return max(self.std_dev, self.avg_delta)
 
+    @overload
+    def __index__(self, i: int, /) -> Measure: ...
+    @overload
+    def __index__(self, i: slice, /) -> tuple[Measure, ...]: ...
+    def __index__(self, i: int | slice, /) -> Measure | tuple[Measure, ...]:
+        return self.data[i]
+
     def __iter__(self, /) -> Iterator[Measure]:
         return iter(self.data)
 
