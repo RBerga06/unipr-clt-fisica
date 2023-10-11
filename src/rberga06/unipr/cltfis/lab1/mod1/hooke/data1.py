@@ -84,28 +84,27 @@ s = Spring(
     ],
 )
 
-a, b = linear_regression(
-    DataSet(tuple([o.m for o in s.objs])),
-    DataSet(tuple([o.x for o in s.objs])),
-)
+
+X = DataSet(tuple([o.m/1000 for o in s.objs]))
+Y = DataSet(tuple([o.x for o in s.objs]))
+
+a, b = linear_regression(X, Y)
 
 
 
-y0 = s.objs[0].x.best
-Xs = [o.m.best for o in s.objs]
-Ys = [o.x.best - y0 for o in s.objs]
+# y0 = s.objs[0].x.best
+# Ys = [y - y0 for y in Y.bests]
 
-# plt.scatter(Xs, Ys)  # type: ignore
 plt.errorbar(  # type: ignore
-    Xs, Ys,
-    xerr=[o.m.delta for o in s.objs],
-    yerr=[o.x.delta for o in s.objs],
+    X.bests, Y.bests,
+    xerr=X.deltas,
+    yerr=Y.deltas,
     fmt=".",
 )
-plt.plot(  # type: ignore
-    [s.objs[0].m.best, s.objs[-1].m.best],
-    [a.best+b.best*s.objs[0].m.best - y0, a.best+b.best*s.objs[-1].m.best - y0],
-)
+# plt.plot(  # type: ignore
+#     [s.objs[0].m.best, s.objs[-1].m.best],
+#     [a.best+b.best*s.objs[0].m.best - y0, a.best+b.best*s.objs[-1].m.best - y0],
+# )
 plt.show()  # type: ignore
 
 print(a)

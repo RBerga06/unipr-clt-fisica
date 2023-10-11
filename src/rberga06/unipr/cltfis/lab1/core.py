@@ -161,15 +161,26 @@ class DataSet(Measure):
 
     @property
     @cache
-    def average(self, /) -> float:
-        """The (weighted) average of all data."""
+    def weights(self, /) -> tuple[float, ...]:
         # $w_i = \frac{1}{(\delta x_i)^2}$
-        return sum([m.best * m.delta**-2 for m in self.data])/sum([m.delta**-2 for m in self.data])
+        return tuple([d**-2 for d in self.deltas])
+
+    @property
+    @cache
+    def avg(self, /) -> float:
+        """The (weighted) average of all data."""
+        return sum([w * x for x, w in zip(self.bests, self.weights)])/sum(self.weights)
+
+    @property
+    @cache
+    def avg_delta(self, /) -> float:
+        """The average delta."""
+        return sum(self.weights)**-.5
 
     @property
     @cache
     def variance(self, /) -> float:
-        return (sum([x.best**2 for x in self.data]) - self.len * self.average**2)/(self.len - 1)
+        return (sum([x.best**2 for x in self.data]) - self.len * self.avg**2)/(self.len - 1)
 
     @property
     @cache
@@ -180,12 +191,7 @@ class DataSet(Measure):
     @cache
     @override
     def best(self, /) -> float:  # type: ignore
-        return self.average
-
-    @property
-    @cache
-    def delta_data_max(self, /) -> float:
-        return max(self.deltas)
+        return self.avg
 
     @property
     @cache
@@ -197,7 +203,7 @@ class DataSet(Measure):
     @cache
     @override
     def delta(self, /) -> float:  # type: ignore
-        return max(self.semidispersion, self.delta_data_max)
+        return max(self.std_dev, self.avg_delta)
 
     def __iter__(self, /) -> Iterator[Measure]:
         return iter(self.data)
@@ -248,7 +254,7 @@ class Distribution(DataSet):
     @property
     @cache
     @override
-    def average(self, /) -> float:
+    def avg(self, /) -> float:
         return sum(len(bin.data) * bin.best for bin in self.bins)/len(self.bins)
 
     def histogram(self, /) -> None:
@@ -296,7 +302,7 @@ class Distribution(DataSet):
 class PickBestPoint(DataSet):
     @property
     def best_point(self, /) -> Measure:
-        avg = self.average
+        avg = self.avg
         return min(self.data, key=lambda m: abs(m.best - avg))
 
     @property
@@ -318,7 +324,7 @@ class NormalDistribution(Distribution):
     @cache
     @override
     def best(self, /) -> float:
-        return self.average
+        return self.avg
 
     @property
     @cache
