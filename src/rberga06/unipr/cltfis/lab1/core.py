@@ -94,6 +94,7 @@ class Function:
 @final
 @dataclass(slots=True, frozen=True)
 class DataPoint(Measure):
+    """A minimal `Measure` implementaion."""
     best: float
     delta: float
 
@@ -149,6 +150,14 @@ class DataSet(Measure):
     @cache
     def deltas(self, /) -> tuple[float, ...]:
         return tuple([x.delta for x in self.data])
+
+    def chdata(self, new_data: tuple[Measure, ...], /) -> Self:
+        """To be overridden by subclasses that implement configuration parameters."""
+        return type(self)(new_data)
+
+    def map(self, f: Callable[[Measure], Measure], /) -> Self:
+        """Apply the given operation to all measures."""
+        return self.chdata(tuple([f(x) for x in self.data]))
 
     @property
     @cache
@@ -319,6 +328,8 @@ class NormalDistribution(Distribution):
 
 
 def linear_regression(X: DataSet, Y: DataSet) -> tuple[DataPoint, DataPoint]:
+    if len(X) != len(Y):
+        raise ValueError("X and Y need the same ding.")
     N = len(X.data)
     sx2 = sum([x.best**2 for x in X.data])
     sxy = sum([x.best * y.best for x, y in zip(X.data, Y.data)])
