@@ -11,16 +11,17 @@ class Spring:
 
 
 s = Spring(
-    Ms=DataSet((
-        DataPoint(0, 0.01),
-        DataPoint(407.73, 0.01),
-        DataPoint(542.47, 0.01),
-        DataPoint(667.82, 0.01),
-        DataPoint(950.22, 0.01),
-        DataPoint(1085.56, 0.01),
-        DataPoint(1220.28, 0.01),
-        DataPoint(1628.02, 0.01),
-    )),
+    Ms=DataSet(data_points([
+            0.0,
+            407.73,
+            542.47,
+            667.82,
+            950.22,
+            1085.56,
+            1220.28,
+            1628.02,
+        ], 0.01)
+    ),
     Xs=DataSet((
         PickBestPoint(data_points([
             (3.3, 0.1),

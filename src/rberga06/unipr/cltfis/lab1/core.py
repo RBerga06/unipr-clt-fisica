@@ -41,7 +41,7 @@ class Measure(Protocol):
     def __sub__(self, other: "Measure | float", /) -> "Measure":
         if isinstance(other, float | int):
             return DataPoint(self.best - other, self.delta)
-        return DataPoint(self.best + other.best, self.delta + other.delta)
+        return DataPoint(self.best - other.best, self.delta + other.delta)
 
     def __rsub__(self, other: "Measure | float", /) -> "Measure":
         return self.__sub__(other)
