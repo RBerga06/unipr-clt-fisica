@@ -72,12 +72,13 @@ s = Spring(
     )),
 )
 
-# NormalDistribution.from_dataset(s.Ts.data[4], n=7).histogram()
+dist = NormalDistribution.from_dataset(s.Ts[0], n=7)
+# dist.histogram()
 
 Y = s.Ts.map(lambda t: (t/20)**2)   # convert 20T -> T^2
 X = s.Ms.map(lambda m: m/1000)      # convert g -> kg
 
-a, b = linear_regression(X, Y)
+a, b = linear_regression_plot(X, Y)
 
 print(b)
 print((4 * π**2) / b)
@@ -87,21 +88,5 @@ print((4 * π**2) / b)
 # $\frac{4\pi^2}{k} m = T^2$
 # $\frac{4\pi^2}{k} = b$
 
-# y0 = s.ms[0].x.best
-Xs = X.bests
-Ys = Y.bests
-x0 = Xs[0]
-x1 = Xs[-1]
-
-plt.errorbar(  # type: ignore
-    X.bests, Y.bests,
-    xerr=X.deltas,
-    yerr=Y.deltas,
-    fmt=".",
-)
-plt.plot(  # type: ignore
-    [0, x1],
-    [a.best, a.best+b.best*x1],
-)
 plt.show()  # type: ignore
 #
