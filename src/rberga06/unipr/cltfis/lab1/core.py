@@ -15,6 +15,12 @@ def round2sig(x: float, sig: int) -> float:
         return x
     return round(x, sig - 1 - int(math.floor(math.log10(abs(x)))))
 
+def plotf(f: Callable[[float], float], min: float, max: float, /, *, n: int = 1000) -> None:
+    dx = (max - min)/n
+    xs = [min + i*dx for i in range(n)]
+    ys = [f(x) for x in xs]
+    plt.plot(xs, ys, "")  # type: ignore
+
 
 class Measure(Protocol):
     best: float
@@ -257,19 +263,20 @@ class Distribution(DataSet):
     @cache
     @override
     def len(self, /) -> int:
-        return sum([bin.len for bin in self.bins])
+        return sum(bin.len for bin in self.bins)
 
     @property
     @cache
     @override
     def avg(self, /) -> float:
-        return sum(len(bin.data) * bin.best for bin in self.bins)/len(self.bins)
+        return sum(len(bin.data) * bin.best for bin in self.bins)/self.len
 
     def histogram(self, /) -> None:
         for bin in self.bins:
             print(f"  - {[x.best for x in bin.data]}")
         plt.bar(  # type: ignore
             [bin.best for bin in self.bins],
+            # [bin.len/(self.len*bin.width) for bin in self.bins],
             [bin.len for bin in self.bins],
             [bin.width for bin in self.bins],
         )
@@ -286,9 +293,12 @@ class Distribution(DataSet):
     ) -> Self:
         data_m = min(data.data, key=lambda x: x.best)
         data_M = max(data.data, key=lambda x: x.best)
-        if m is None:  m = data_m.best - data_m.delta
-        if M is None:  M = data_M.best + data_M.delta
-        if n is None:  n = math.floor(math.sqrt(data.len))
+        if m is None:
+            m = data_m.best - data_m.delta
+        if M is None:
+            M = data_M.best + data_M.delta
+        if n is None:
+            n = math.floor(math.sqrt(data.len))
         dx = (M - m)/n
         bins: dict[tuple[float, float], list[DataPoint]] = {
             (m+k*dx, m+(k+1)*dx): list() for k in range(n)
@@ -328,6 +338,15 @@ class PickBestPoint(DataSet):
 
 @dataclass(slots=True, frozen=True)
 class NormalDistribution(Distribution):
+    # @override
+    # def histogram(self, /) -> None:
+    #     super(NormalDistribution, self).histogram()
+    #     m, s = self.avg, self.delta
+    #     plotf(
+    #         lambda x: exp(-(((x-m)/s)**2)/2)/(math.sqrt(2*math.pi)*s),
+    #         min(self.bests), max(self.bests),
+    #     )
+
     @property
     @cache
     @override
