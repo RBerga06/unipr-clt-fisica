@@ -360,7 +360,7 @@ class NormalDistribution(Distribution):
         return self.std_dev / math.sqrt(len(self.data))
 
 
-def linear_regression(X: DataSet, Y: DataSet) -> tuple[DataPoint, DataPoint]:
+def linear_regression(X: DataSet, Y: DataSet, /) -> tuple[DataPoint, DataPoint]:
     if len(X) != len(Y):
         raise ValueError("X and Y need the same ding.")
     N = len(X.data)
@@ -374,6 +374,27 @@ def linear_regression(X: DataSet, Y: DataSet) -> tuple[DataPoint, DataPoint]:
     da = math.sqrt((Y.delta**2 * sx2)/delta)
     db = Y.delta * math.sqrt(N/delta)
     return DataPoint(a, da), DataPoint(b, db)
+
+def linear_regression_plot(
+    X: DataSet, Y: DataSet,
+    ab: tuple[DataPoint, DataPoint] | None = None,
+    /, *,
+    yshift: bool = False,
+) -> tuple[DataPoint, DataPoint]:
+    a, b = linear_regression(X, Y) if ab is None else ab
+    x0, x1 = X[0].best, X[-1].best
+    y0 = Y[0].best if yshift else 0
+    plt.errorbar(  # type: ignore
+        X.bests, Y.map(lambda y: (y - y0)).bests,
+        xerr=X.deltas,
+        yerr=Y.deltas,
+        fmt=".",
+    )
+    plt.plot(  # type: ignore
+        [x0, x1],
+        [a.best+b.best*x0 - y0, a.best+b.best*x1 - y0],
+    )
+    return a, b
 
 
 # Constants & standard functions
