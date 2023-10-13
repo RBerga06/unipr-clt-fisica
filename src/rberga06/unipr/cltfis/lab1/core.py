@@ -366,8 +366,8 @@ def linear_regression(X: DataSet, Y: DataSet, /) -> tuple[DataPoint, DataPoint]:
     N = len(X.data)
     sx2 = sum([x.best**2 for x in X.data])
     sxy = sum([x.best * y.best for x, y in zip(X.data, Y.data)])
-    sx = sum([x.best for x in X.data])
-    sy = sum([y.best for y in Y.data])
+    sx = sum(X.bests)
+    sy = sum(Y.bests)
     delta = N*sx2 - sx**2
     a = (sx2*sy - sx*sxy)/delta
     b = (N*sxy - sx*sy)/delta
