@@ -7,6 +7,7 @@ import math
 from typing import Callable, Iterator, Literal, Protocol, Self, cast, final, overload
 from typing_extensions import override
 from matplotlib import pyplot as plt
+from .datum import Measure, Datum as DataPoint
 
 
 def round2sig(x: float, sig: int) -> float:
@@ -21,51 +22,6 @@ def plotf(f: Callable[[float], float], min: float, max: float, /, *, n: int = 10
     ys = [f(x) for x in xs]
     plt.plot(xs, ys, "")  # type: ignore
 
-
-class Measure(Protocol):
-    best: float
-    delta: float
-
-    @property
-    def delta_rel(self, /) -> float:
-        return self.delta / self.best
-
-    def __add__(self, other: "Measure | float", /) -> "Measure":
-        if isinstance(other, float | int):
-            return DataPoint(self.best + other, self.delta)
-        return DataPoint(self.best + other.best, self.delta + other.delta)
-
-    def __radd__(self, other: "Measure | float", /) -> "Measure":
-        return self.__add__(other)
-
-    def __sub__(self, other: "Measure | float", /) -> "Measure":
-        if isinstance(other, float | int):
-            return DataPoint(self.best - other, self.delta)
-        return DataPoint(self.best - other.best, self.delta + other.delta)
-
-    def __rsub__(self, other: "Measure | float", /) -> "Measure":
-        return self.__sub__(other)
-
-    def __mul__(self, other: "Measure | float", /) -> "Measure":
-        if isinstance(other, float | int):
-            return DataPoint(self.best * other, self.delta * abs(other))
-        return DataPoint.from_delta_rel(self.best * other.best, self.delta_rel + other.delta_rel)
-
-    def __rmul__(self, other: "Measure | float", /) -> "Measure":
-        return self.__mul__(other)
-
-    def __truediv__(self, other: "Measure | float", /) -> "Measure":
-        if isinstance(other, float | int):
-            return DataPoint(self.best / other, self.delta / abs(other))
-        return DataPoint.from_delta_rel(self.best / other.best, self.delta_rel + other.delta_rel)
-
-    def __rtruediv__(self, other: "Measure | float", /) -> "Measure":
-        if isinstance(other, float | int):
-            other = DataPoint.from_const(other)
-        return other.__truediv__(self)
-
-    def __pow__(self, other: int, /) -> "Measure":
-        return DataPoint.from_delta_rel(self.best ** other, self.delta_rel * other)
 
     # def __repr__(self, /) -> str:
     #     best, delta = self.best, self.delta
@@ -95,28 +51,6 @@ class Function:
 
     def __neg__(self, /) -> "Function":
         return self.__rmul__(-1)
-
-
-@final
-@dataclass(slots=True, frozen=True)
-class DataPoint(Measure):
-    """A minimal `Measure` implementaion."""
-    best: float
-    delta: float
-
-    @classmethod
-    def from_measure(cls, x: Measure, /) -> Self:
-        if isinstance(x, cls):
-            return x
-        return cls(x.best, x.delta)
-
-    @classmethod
-    def from_const(cls, const: float, /) -> Self:
-        return cls(const, 0)
-
-    @classmethod
-    def from_delta_rel(cls, best: float, delta_rel: float, /) -> Self:
-        return cls(best, delta_rel * best)
 
 
 @overload
