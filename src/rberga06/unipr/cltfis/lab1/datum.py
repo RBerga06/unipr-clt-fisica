@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Measures and basic Data."""
 from dataclasses import dataclass
+import math
 from typing import Protocol, Self, final
 
 
@@ -75,6 +76,11 @@ class Datum(Measure):
     @classmethod
     def from_delta_rel(cls, best: float, delta_rel: float, /) -> Self:
         return cls(best, delta_rel * best)
+
+
+### Constants ###
+π = Datum(math.pi, 0)
+g = Datum(9.81, 0.01)
 
 
 __all__ = ["Measure", "Datum"]
