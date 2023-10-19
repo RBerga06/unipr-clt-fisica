@@ -11,7 +11,7 @@ from .datum import Datum, Measure
 
 class DataSetProto(Protocol):
     data: Sequence[Measure]
-    avg: Measure
+    _: Measure
 
     @overload
     def __getitem__(self, i: int, /) -> Measure: ...
@@ -34,6 +34,12 @@ class DataSet(DataSetProto):
 
     @property
     @cache
+    @override
+    def _(self, /) -> Measure:
+        return self.avg
+
+    @property
+    @cache
     def bests(self, /) -> tuple[float, ...]:
         return tuple([x.best for x in self.data])
 
@@ -51,7 +57,7 @@ class DataSet(DataSetProto):
     @property
     @cache
     @override
-    def avg(self, /) -> Measure:  # type: ignore[reportIncompatibleVariableOverride]
+    def avg(self, /) -> Measure:
         """The (weighted) average of all data."""
         return Datum(
             sum(w * x for x, w in zip(self.bests, self.weights))/sum(self.weights),
