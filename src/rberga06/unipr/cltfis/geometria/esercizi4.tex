@@ -19,20 +19,20 @@
 \section*{Esercizio 1}
 \begin{enumerate}
     \item $AB=\begin{bmatrix}
-        2 & 1 & -1 & 9 \\
+        4 & 7 & -1 & 11 \\
         1 & 3 & -2 & 0 \\
     \end{bmatrix}$, $BA$ non definito
     \item $AB=\begin{bmatrix}
         0 & 0 \\
         0 & 0 \\
     \end{bmatrix}$, $BA=\begin{bmatrix}
-        26 & -28 \\
+        26 & -52 \\
         13 & -26 \\
     \end{bmatrix}$
-    \item $AB=\begin{bmatrix}14\end{bmatrix}$, $BA=\begin{bmatrix}
+    \item $AB=\begin{bmatrix}3\end{bmatrix}$, $BA=\begin{bmatrix}
         15 & -3 & 9 & 33 & -6 \\
         -10 & 2 & -6 & -22 & 4 \\
-        -20 & 4 & -12 & 44 & 8 \\
+        -20 & 4 & -12 & -44 & 8 \\
         0 & 0 & 0 & 0 & 0 \\
         5 & -1 & 3 & 11 & -2 \\
     \end{bmatrix}$
@@ -350,5 +350,89 @@ $A^* = \overline{\T{A}} = \overline{A} = A$.
 Di conseguenza, $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ è
 Hermitiana (in quanto simmetrica) e invertibile
 (poiché $\det\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = -1$).
+
+
+\[\begin{aligned}
+    \det{A} &= \det{\begin{bmatrix}
+        1 & -2 &  3 & -2 & -2 \\
+        2 & -1 &  1 &  3 &  2 \\
+        1 &  1 &  2 &  1 &  1 \\
+        1 & -4 & -3 & -2 & -5 \\
+        3 & -2 &  2 &  2 & -2 \\
+    \end{bmatrix}} = \frac{1}{2}\det{\begin{bmatrix}
+         -4 &  0 &  1 & -4 & -2 \\
+         10 & -3 &  3 &  5 &  2 \\
+          5 &  0 &  3 &  2 &  1 \\
+        -13 &  1 & -8 & -7 & -5 \\
+          0 &  0 &  0 &  0 & -2 \\
+    \end{bmatrix}} \\ &= -\frac{1}{2}\det{\begin{bmatrix}
+        -13 &  1 & -8 & -7 & -5 \\
+         10 & -3 &  3 &  5 &  2 \\
+          5 &  0 &  3 &  2 &  1 \\
+         -4 &  0 &  1 & -4 & -2 \\
+          0 &  0 &  0 &  0 & -2 \\
+    \end{bmatrix}} = -\frac{1}{2}\det{\begin{bmatrix}
+        -45 &  1 & -8 & -39 & -5 \\
+         22 & -3 &  3 &  17 &  2 \\
+         17 &  0 &  3 &  14 &  1 \\
+          0 &  0 &  1 &   0 & -2 \\
+          0 &  0 &  0 &   0 & -2 \\
+    \end{bmatrix}} \\ &= \frac{1}{2}\det{\begin{bmatrix}
+        -45 &  1 & -39 & -8 & -5 \\
+         22 & -3 &  17 &  3 &  2 \\
+         17 &  0 &  14 &  3 &  1 \\
+          0 &  0 &   0 &  1 & -2 \\
+          0 &  0 &   0 &  0 & -2 \\
+    \end{bmatrix}} = \frac{1}{2}\det{\begin{bmatrix}
+        -6 &  1 & -39 & -8 & -5 \\
+         5 & -3 &  17 &  3 &  2 \\
+         3 &  0 &  14 &  3 &  1 \\
+         0 &  0 &   0 &  1 & -2 \\
+         0 &  0 &   0 &  0 & -2 \\
+    \end{bmatrix}} \\ &= \frac{1}{2}\det{\begin{bmatrix}
+        -6 &  1 & -15 & -8 & -5 \\
+         5 & -3 &  -3 &  3 &  2 \\
+         3 &  0 &   2 &  3 &  1 \\
+         0 &  0 &   0 &  1 & -2 \\
+         0 &  0 &   0 &  0 & -2 \\
+    \end{bmatrix}} = \frac{1}{2}\det{\begin{bmatrix}
+        9 &  1 & -15 & -8 & -5 \\
+        8 & -3 &  -3 &  3 &  2 \\
+        1 &  0 &   2 &  3 &  1 \\
+        0 &  0 &   0 &  1 & -2 \\
+        0 &  0 &   0 &  0 & -2 \\
+    \end{bmatrix}} \\ &= \frac{1}{2}\det{\begin{bmatrix}
+        9 &  1 & -33 & -8 & -5 \\
+        8 & -3 & -19 &  3 &  2 \\
+        1 &  0 &   0 &  3 &  1 \\
+        0 &  0 &   0 &  1 & -2 \\
+        0 &  0 &   0 &  0 & -2 \\
+    \end{bmatrix}} = - \frac{1}{2}\det{\begin{bmatrix}
+        -33 &  1 & 9 & -8 & -5 \\
+        -19 & -3 & 8 &  3 &  2 \\
+          0 &  0 & 1 &  3 &  1 \\
+          0 &  0 & 0 &  1 & -2 \\
+          0 &  0 & 0 &  0 & -2 \\
+    \end{bmatrix}} \\ &= - \frac{1}{2}\det{\begin{bmatrix}
+        -27 &  1 & 9 & -8 & -5 \\
+         -1 & -3 & 8 &  3 &  2 \\
+          0 &  0 & 1 &  3 &  1 \\
+          0 &  0 & 0 &  1 & -2 \\
+          0 &  0 & 0 &  0 & -2 \\
+    \end{bmatrix}} = - \frac{1}{2}\det{\begin{bmatrix}
+        -27 & 28 & 9 & -8 & -5 \\
+         -1 &  0 & 8 &  3 &  2 \\
+          0 &  0 & 1 &  3 &  1 \\
+          0 &  0 & 0 &  1 & -2 \\
+          0 &  0 & 0 &  0 & -2 \\
+    \end{bmatrix}} \\ &= \frac{1}{2}\det{\begin{bmatrix}
+        28 & -27 & 9 & -8 & -5 \\
+         0 &  -1 & 8 &  3 &  2 \\
+         0 &   0 & 1 &  3 &  1 \\
+         0 &   0 & 0 &  1 & -2 \\
+         0 &   0 & 0 &  0 & -2 \\
+    \end{bmatrix}}
+\end{aligned}\]
+
 
 \end{document}
