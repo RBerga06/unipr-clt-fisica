@@ -1,0 +1,354 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\newcommand*{\qed}{\blacksquare}
+\newcommand*{\M}[3]{\mathcal{M}_{#1\times#2} \left(#3\right)}
+\newcommand*{\MR}[2]{\M{#1}{#2}{\mathbb{R}}}
+\newcommand*{\MC}[2]{\M{#1}{#2}{\mathbb{C}}}
+\newcommand*{\MK}[2]{\M{#1}{#2}{\mathbb{K}}}
+\newcommand*{\T}[1]{{#1}^\text{T}}  % Trasposta di una matrice
+\DeclareMathOperator{\Tr}{Tr}  % Traccia di una matrice
+\title{Geometria - Esercizi 4}
+\author{Riccardo Bergamaschi}
+\date{19/10/2023}
+\begin{document}
+\maketitle
+\section*{Esercizio 1}
+\begin{enumerate}
+    \item $AB=\begin{bmatrix}
+        2 & 1 & -1 & 9 \\
+        1 & 3 & -2 & 0 \\
+    \end{bmatrix}$, $BA$ non definito
+    \item $AB=\begin{bmatrix}
+        0 & 0 \\
+        0 & 0 \\
+    \end{bmatrix}$, $BA=\begin{bmatrix}
+        26 & -28 \\
+        13 & -26 \\
+    \end{bmatrix}$
+    \item $AB=\begin{bmatrix}14\end{bmatrix}$, $BA=\begin{bmatrix}
+        15 & -3 & 9 & 33 & -6 \\
+        -10 & 2 & -6 & -22 & 4 \\
+        -20 & 4 & -12 & 44 & 8 \\
+        0 & 0 & 0 & 0 & 0 \\
+        5 & -1 & 3 & 11 & -2 \\
+    \end{bmatrix}$
+    \item $AB=\begin{bmatrix}
+        11 & 2 & 12 \\
+        8 & -2 & 6 \\
+        -8 & 5 & -3 \\
+    \end{bmatrix}$, $BA=\begin{bmatrix}
+        -2 & 8 & -2 \\
+        0 & 3 & 0 \\
+        1 & 17 & 5 \\
+    \end{bmatrix}$
+    \item $AB=\begin{bmatrix}
+        -2i+4 & 1+5i & 6-4i \\
+        4i & i-2 & 1+2i \\
+        4-6i & 1+4i & 4-i \\
+    \end{bmatrix}$, $BA=\begin{bmatrix}
+        i-1 & 6-i & -1+3i \\
+        0 & 4-4i & 2-4i \\
+        2i & 5-6i & 1-i \\
+    \end{bmatrix}$
+\end{enumerate}
+
+\section*{Esercizio 3}
+\begin{enumerate}
+    \item Poiché $A$ e $B$ sono ortogonali,
+    $\left(A^\text{T}\right)^{-1}=A$ e $\left(B^\text{T}\right)^{-1}=B$.
+
+    Allora $
+        \left(\left(AB\right)^\text{T}\right)^{-1} =
+        \left(A^\text{T}B^\text{T}\right)^{-1} =
+        \left(A^\text{T}\right)^{-1}\left(B^\text{T}\right)^{-1} =
+        AB
+    $, e quindi $AB$ è anch'essa ortogonale. $\qed$
+    \item $A$ è invertibile se e solo se esiste $B\in\MR{n}{n}$
+    inversa di A, ovvero tale che $AB=BA=\text{Id}_n$.
+    Essendo A ortogonale, per definizione $A^\text{T}$ è tale per cui
+    $A A^\text{T} = A^\text{T} A = \text{Id}_n$. Di conseguenza,
+    $A^\text{T}$ è l'inversa di $A$, ovvero $A^\text{T} = A^{-1}$.
+    In particolare, $A$ è invertibile. $\qed$
+    \item $A^{-1}=A^\text{T}$ è ortogonale, poiché
+    $\left(\left(A^\text{T}\right)^\text{T}\right)^{-1}=A^{-1}=A^\text{T}$.
+    $\qed$
+\end{enumerate}
+
+\section*{Esercizio 4}
+\begin{enumerate}
+    \item Poiché $A$ e $B$ sono unitarie,
+    $\left(A^*\right)^{-1}=A$ e $\left(B^*\right)^{-1}=B$.
+
+    Allora $
+        \left(\left(AB\right)^*\right)^{-1} =
+        \left(A^*B^*\right)^{-1} =
+        \left(A^*\right)^{-1}\left(B^*\right)^{-1} =
+        AB
+    $, e quindi $AB$ è anch'essa unitaria. $\qed$
+    \item $A$ è invertibile se e solo se esiste $B\in\MC{n}{n}$
+    inversa di A, ovvero tale che $AB=BA=\text{Id}_n$.
+    Essendo A unitaria, per definizione $A^*$ è tale per cui
+    $A A^* = A^* A = \text{Id}_n$. Di conseguenza,
+    $A^*$ è l'inversa di $A$, ovvero $A^* = A^{-1}$.
+    In particolare, $A$ è invertibile. $\qed$
+    \item $A^{-1}=A^*$ è ortogonale, poiché
+    $\left(\left(A^*\right)^*\right)^{-1}=A^{-1}=A^*$.
+    $\qed$
+\end{enumerate}
+
+\section*{Esercizio 5}
+\begin{enumerate}
+    \item $AA^\text{T}=
+        \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}
+        \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}^\text{T} =
+        \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}
+        \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix} =
+        \begin{bmatrix} 1 & -1 \\ -1 & 2 \end{bmatrix} \ne \text{Id}_2
+    $, quindi $A$ non è ortogonale.
+    \item $BB^\text{T}=
+        \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}
+        \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}^\text{T} =
+        \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}
+        \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} =
+        \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = \text{Id}_2
+    $, quindi $B$ è ortogonale.
+    \item \begin{equation*}\begin{aligned}
+        C\,C^\text{T} &=
+        \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0 \\
+            0 & 0 & 1 \\
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0 \\
+            0 & 0 & 1 \\
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+        \end{bmatrix}^\text{T} \\ &=
+        \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0 \\
+            0 & 0 & 1 \\
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
+            -\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
+            0 & 1 & 0 \\
+        \end{bmatrix} \\ &=
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1 \\
+        \end{bmatrix} = \text{Id}_3
+    \end{aligned}\end{equation*}
+    Quindi $C$ è ortogonale.
+    \item \begin{equation*}\begin{aligned}
+        DD^\text{T} &=
+        \begin{bmatrix}
+            0 & -1 & 0 & 0 \\
+            1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & -1 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 & -1 & 0 & 0 \\
+            1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & -1 \\
+        \end{bmatrix}^\text{T} \\ &=
+        \begin{bmatrix}
+            0 & -1 & 0 & 0 \\
+            1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & -1 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 & 1 & 0 & 0 \\
+            -1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & -1 \\
+        \end{bmatrix} \\ &=
+        \begin{bmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1 \\
+        \end{bmatrix} = \text{Id}_4
+    \end{aligned}\end{equation*}
+    Quindi $D$ è ortogonale.
+\end{enumerate}
+
+\section*{Esercizio 6}
+$W$ è un sottospazio vettoriale di $\MK{n}{q}$ su $\mathbb{K}$ solo se
+è chiuso rispetto alla somma e alla moltiplicazione per scalare.
+\begin{itemize}
+    \item $W$ è chiuso rispetto alla somma. Siano $A_1,A_2\in W$; allora:
+    \[BA_1=0_{\MK{m}{q}} \wedge BA_2=0_{\MK{m}{q}}\]
+    \[B(A_1 + A_2) = BA_1 + BA_2 = 0_{\MK{m}{q}} + 0_{\MK{m}{q}} = 0_{\MK{m}{q}}\]
+    Quindi $A_1 + A_2 \in W$.
+    \item $W$ è chiuso rispetto alla moltiplicazione per scalare.
+    Siano $A\in W$ e $\lambda\in\mathbb{K}$; allora $BA=0_{\MK{m}{q}}$ e:
+    \[B(\lambda A)=\lambda BA = \lambda 0_{\MK{m}{q}} = 0_{\MK{m}{q}}\]
+    Quindi $\lambda A \in W$.
+\end{itemize}
+Da queste due considerazioni, segue, per definizione, la tesi. $\qed$
+
+\section*{Esercizio 7}
+\[\begin{aligned}
+    \Tr(B^{-1} A B) &=
+    \Tr(B^{-1})\Tr(A)\Tr(B) =
+    \Tr(B^{-1})\Tr(B)\Tr(A) \\ &=
+    \Tr(B^{-1} B)\Tr(A) =
+    \Tr(\text{Id}_n)\Tr(A) =
+    \Tr(A)\hspace{10pt}\qed
+\end{aligned}\]
+
+\section*{Esercizio 8}
+Essendo $A$ e $B$ ortogonali, valgono:
+\[
+    \left(A^\text{T}\right)^{-1}=A
+    \hspace{10pt}\wedge\hspace{10pt}
+    \left(B^\text{T}\right)^{-1}=B
+    \hspace{10pt}\wedge\hspace{10pt}
+    B^{-1}=B^\text{T}
+\]
+Allora:
+\[\begin{aligned}
+    \left(\T{\left(BA\T{B}\right)}\right)^{-1} &=
+    \left(\T{\left(\T{B}\right)}\T{A}\T{B}\right)^{-1} =
+    \left(B\T{A}\T{B}\right)^{-1} \\ &=
+    \left(\T{B}\right)^{-1}\left(\T{A}\right)^{-1}B^{-1} =
+    BA\T{B}
+\end{aligned}\]
+Quindi anche $BA\T{B}$ è ortogonale. $\qed$
+
+\section*{Esercizio 9}
+\[\begin{aligned}
+    \det(\lambda A) &=
+    \det\begin{bmatrix}
+        \lambda A^1,\lambda A^2,\dots,\lambda A^n
+    \end{bmatrix} \\ &=
+    \lambda \det\begin{bmatrix}
+        A^1,\lambda A^2,\dots,\lambda A^n
+    \end{bmatrix} \\ &=
+    \lambda^2 \det\begin{bmatrix}
+        A^1, A^2,\dots,\lambda A^n
+    \end{bmatrix} \\ &= \dots \\ &=
+    \lambda^n\det\begin{bmatrix}
+        A^1,A^2,\dots,A^n
+    \end{bmatrix} \\ &=
+    \lambda^n\det(A) \\
+    &&\qed
+\end{aligned}\]
+
+\section*{Esercizio 10}
+$A$ è antisimmetrica se e solo se $\T{A}=-A$. Allora:
+\[
+    \det(A) =
+    \det\left(\T{A}\right) =
+    \det(-A) =
+    \det\left((-1)A\right) =
+    (-1)^n \det(A)
+\]
+Essendo $n$ dispari, $(-1)^n = -1$. Otteniamo dunque l'equazione:
+\[\begin{aligned}
+    \det(A) &= -\det(A) \\
+    2 \det(A) &= 0 \\
+    \det(A) &= 0 \\
+\end{aligned}\]
+Da cui la tesi. $\qed$
+
+\section*{Esercizio 11}
+\begin{enumerate}
+    \item $
+        \det\begin{bmatrix}2 & -3 \\ 1 & 4\end{bmatrix} =
+        2 \cdot 4 - (-3) \cdot 1 = 8 + 3 = 11
+    $
+    \item $
+        \det\begin{bmatrix}
+            3 & -1 & 0 \\
+            0 & -4 & 1 \\
+            2 & 1 & 1 \\
+        \end{bmatrix} = \det\begin{bmatrix}
+            3 & -1 & 0 \\
+            0 & -4 & 1 \\
+            2 & 5 & 0 \\
+        \end{bmatrix} = 1 \cdot \det\begin{bmatrix}
+            3 & -1 \\
+            2 &  5 \\
+        \end{bmatrix} = 17
+    $
+    \item \[\begin{aligned}
+        \det\begin{bmatrix}
+            1 & 1 & 0 & 0 \\
+            -1 & -2 & 0 & 0 \\
+            0 & 0 & 1 & -7 \\
+            0 & 0 & 0 & 3 \\
+        \end{bmatrix} &= \det\begin{bmatrix}
+            1 & 1 & 0 & 0 \\
+            0 & -1 & 0 & 0 \\
+            0 & 0 & 1 & -7 \\
+            0 & 0 & 0 & 3 \\
+        \end{bmatrix} \\ &= \det\begin{bmatrix}
+            -2 & 0 & 0 \\
+            0 & 1 & -7 \\
+            0 & 0 & 3 \\
+        \end{bmatrix} = \det\begin{bmatrix}
+            1 & -7 \\
+            0 & 3 \\
+        \end{bmatrix} = 3
+    \end{aligned}\]
+\end{enumerate}
+
+\section*{Esercizio 12}
+Una matrice quadrata è singolare se e solo se ha determinante $0$.
+\[\begin{aligned}
+    \det\begin{bmatrix}
+        2a & 1 & 3 \\
+        -a & 5 & 1 \\
+        2 & 6 & 4 \\
+    \end{bmatrix} &= \det\begin{bmatrix}
+        5a & -14 & 0 \\
+        -a & 5 & 1 \\
+        4a+2 & -14 & 0 \\
+    \end{bmatrix} = \det\begin{bmatrix}
+        5a & -14 \\
+        4a+2 & -14 \\
+    \end{bmatrix} \\ &= -14(5a) - (-14)(4a+2) = -14(a-2)
+\end{aligned}\]
+Allora, la matrice è quadrata se e solo se $-14(a-2) = 0$, ovvero $a = 2$.
+
+\section*{Esercizio 13}
+$0_{\MR{2}{2}}$ è una matrice diagonale ma non invertibile; infatti:
+\[\forall A\in\MR{2}{2}\hspace{15pt}0_{\MR{2}{2}}A=0_{\MR{2}{2}}\ne\text{Id}_2\]
+
+\section*{Esercizio 14}
+$\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$ è antisimmetrica e invertibile; infatti:
+\[
+    \det\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} =
+    0\cdot0 - 1\cdot(-1) = 1 \ne 0
+\]
+
+\section*{Esercizio 15}
+In quanto diagonale, $0_{\MR{2}{2}}$ è anche simmetrica.
+Inoltre, abbiamo già dimostrato che essa non è invertibile.
+
+\section*{Esercizio 16}
+Identico all'esercizio 13
+
+\section*{Esercizio 17}
+Identico all'esercizio 15
+
+\section*{Esercizio 18}
+Ogni matrice reale simmetrica è anche, vista come matrice complessa, Hermitiana.
+Infatti, $\MR{n}{n}\subset\MC{n}{n}$ e,
+fissata $A\in\MR{n}{n}$ simmetrica, vale
+$A^* = \overline{\T{A}} = \overline{A} = A$.
+Di conseguenza, $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ è
+Hermitiana (in quanto simmetrica) e invertibile
+(poiché $\det\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = -1$).
+
+\end{document}
