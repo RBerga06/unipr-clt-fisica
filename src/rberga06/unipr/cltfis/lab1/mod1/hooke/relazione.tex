@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{amsmath}
+\usepackage{siunitx}
 \title{
     Laboratorio di Fisica 1\\
     R2: Misura costante elastica di una molla
@@ -28,13 +29,9 @@
         \hline
         \emph{Nome} & \emph{Soglia} & \emph{Portata} & \emph{Sensibilità} \\
         \hline
-        Fototraguardo con contatore di impulsi & 1 $\mu s$ & 99'999'999 $\mu s$  & 1 $\mu s$ \\
-        Righello & 0.1 cm & 60.0 cm & 0.1 cm \\
-        Bilancia di precisione & 0.01 g & 6200.00 g & 0.01 g \\
-        % \hline
-        % Metro a nastro* & 0.1 cm & 300 cm & 0.1 cm \\
-        % \hline
-        % Cilindro graduato* & 1 mL & ??? & 1 mL \\
+        Fototraguardo con contatore di impulsi & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
+        Righello & \qty{0.1}{cm} & \qty{60.0}{cm} & \qty{0.1}{cm} \\
+        Bilancia di precisione & \qty{0.01}{g} & \qty{6200.00}{g} & \qty{0.01}{g} \\
         \hline
     \end{tabular}
 \end{center}
@@ -43,22 +40,22 @@
 % utilizzati a causa della loro elevata sensiblità.
 
 \section{Esperimento e procedimento di misura}
-PARTE PRIMA. Misurazione della costante elastica nel caso statico
+\subsection{Misurazione della costante elastica nel caso statico}
 \begin{enumerate}
     \item Fissiamo il righello davanti allo specchio, parallelo alla direzione del campo gravitazionale locale e solidale all’estremo fisso della molla. Individuiamo un punto del sistema, solidale all’estremo libero della molla, che terremo come riferimento per misurare l’allungamento della molla: ne misuriamo allora la posizione $x_\text{0}$
     \item Consideriamo i tre campioni (e tutte le combinazioni possibili):
     \begin{itemize}
         \item Ne misuriamo la massa $m_\text{i}$ con la bilancia di precisione;
-        \item Appeso il grave alla molla, ne misuriamo l'allungamento $(\Delta x)_\text{i}$, sottraendo $x_\text{0}$ alla misura $x_\text{i}$ della sua posizione ($\delta (\Delta x)_\text{i} = \delta  x_\text{0} + \delta  x_\text{i}$). Per ridurre ulteriormente la probabilità di commettere un errore di parallasse, ripetiamo il procedimento tre volte, tenendo solamente la misura più vicina alla media. 
+        \item Appeso il grave alla molla, ne misuriamo l'allungamento $(\Delta x)_\text{i}$, sottraendo $x_\text{0}$ alla misura $x_\text{i}$ della sua posizione ($\delta (\Delta x)_\text{i} = \delta  x_\text{0} + \delta  x_\text{i}$). Per ridurre ulteriormente la probabilità di commettere un errore di parallasse, ripetiamo il procedimento tre volte, tenendo solamente la misura più vicina alla media.
     \end{itemize}
 \end{enumerate}
-PARTE SECONDA. Misurazione della costante elastica nel caso dinamico
+\subsection{Misurazione della costante elastica nel caso dinamico}
 \begin{enumerate}
-    \item Accendiamo il contatore di impulsi e lo impostiamo su $Universal$ $Counter$ e su 20 oscillazioni; 
+    \item Accendiamo il contatore di impulsi e lo impostiamo su $Universal$ $Counter$ e su 20 oscillazioni;
     \item Consideriamo, nel caso dinamico, il campione $A, B, C$ e $A+B$:
     \begin{itemize}
-        \item Appeso il campione alla molla, allineiamo i due fototraguardi aiutandoci con la livella, in modo tale che possano rilevare le oscillazioni; 
-        \item Tiriamo il campione verso il basso e poi lo rilasciamo, in modo che il sistema molla inizi a oscillare con direzione parallela al campo gravitazionale locale; 
+        \item Appeso il campione alla molla, allineiamo i due fototraguardi aiutandoci con la livella, in modo tale che possano rilevare le oscillazioni;
+        \item Tiriamo il campione verso il basso e poi lo rilasciamo, in modo che il sistema molla inizi a oscillare con direzione parallela al campo gravitazionale locale;
         \item Una volta verificato che l’oscillazione sia stabile, facciamo partire il contatore di impulsi, che misurerà il tempo impiegato per compiere 20 oscillazioni;
     \end{itemize}
 \end{enumerate}
