@@ -20,15 +20,17 @@
 \section{Materiali utilizzati e strumenti di misura}
 \begin{itemize}
     \item 3 campioni solidi $A,B,C$ (con forme approssimabili a parallelepipedi) con masse $m_\text{A}, m_\text{B}, m_\text{C}$ distinte;
+    \item Uno specchio, per evitare errori di parallasse;
+    \item Una livella.
 \end{itemize}
 \begin{center}
     \begin{tabular}{ |c|c|c|c| }
         \hline
         \emph{Nome} & \emph{Soglia} & \emph{Portata} & \emph{Sensibilità} \\
         \hline
-        Micrometro ad asta filettata & 0.01 mm & 25.00 mm & 0.01 mm \\
-        Calibro ventesimale & 0.05 mm & 150.00 mm & 0.05 mm \\
-        Bilancia di precisione & 0.01 g & 2000.00 g & 0.01 g \\
+        Fototraguardo con contatore di impulsi & 1 $\mu s$ & 99'999'999 $\mu s$  & 1 $\mu s$ \\
+        Righello & 0.1 cm & 60.0 cm & 0.1 cm \\
+        Bilancia di precisione & 0.01 g & 6200.00 g & 0.01 g \\
         % \hline
         % Metro a nastro* & 0.1 cm & 300 cm & 0.1 cm \\
         % \hline
@@ -41,46 +43,24 @@
 % utilizzati a causa della loro elevata sensiblità.
 
 \section{Esperimento e procedimento di misura}
-Per ogni campione:
+PARTE PRIMA. Misurazione della costante elastica nel caso statico
 \begin{enumerate}
-    \item Abbiamo misurato la massa $m$ con la bilancia di precisione.
-    \item Abbiamo misurato tre volte le distanze necessarie al calcolo
-          del suo volume, tenendo come valore migliore quello più vicino alla media
-          delle misure e come incertezza la sensibilità degli strumenti utilizzati.
-          Quando possibile, abbiamo utilizzato il micrometro; altrimenti, il calibro ventesimale.
-    \item Abbiamo calcolato il volume $V$ (e la sua incertezza) con la formula adeguata:
+    \item Fissiamo il righello davanti allo specchio, parallelo alla direzione del campo gravitazionale locale e solidale all’estremo fisso della molla. Individuiamo un punto del sistema, solidale all’estremo libero della molla, che terremo come riferimento per misurare l’allungamento della molla: ne misuriamo allora la posizione $x_\text{0}$
+    \item Consideriamo i tre campioni (e tutte le combinazioni possibili):
     \begin{itemize}
-        \item Parallelepipedo:
-            \[
-                V_\text{best} = x_\text{best} y_\text{best} z_\text{best}
-                \qquad\qquad
-                \frac{\delta V}{V_\text{best}} = \frac{\delta x}{x_\text{best}} + \frac{\delta y}{y_\text{best}} + \frac{\delta z}{z_\text{best}}
-            \]
-        \item Cilindri:
-            \[
-                V_\text{best} = \pi \left(\frac{d_\text{best}}{2}\right)^2 h_\text{best}
-                \qquad\qquad
-                \frac{\delta V}{V_\text{best}} = 2 \cdot \frac{\delta d}{d_\text{best}} + \frac{\delta h}{h_\text{best}}
-            \]
-        \item Sfera:
-            \[
-                V_\text{best} = \frac{4 \pi}{3} \left(\frac{d_\text{best}}{2}\right)^3
-                \qquad\qquad
-                \frac{\delta V}{V_\text{best}} = 3 \cdot \frac{\delta d}{d_\text{best}}
-            \]
+        \item Ne misuriamo la massa $m_\text{i}$ con la bilancia di precisione;
+        \item Appeso il grave alla molla, ne misuriamo l'allungamento $(\Delta x)_\text{i}$, sottraendo $x_\text{0}$ alla misura $x_\text{i}$ della sua posizione ($\delta (\Delta x)_\text{i} = \delta  x_\text{0} + \delta  x_\text{i}$). Per ridurre ulteriormente la probabilità di commettere un errore di parallasse, ripetiamo il procedimento tre volte, tenendo solamente la misura più vicina alla media. 
     \end{itemize}
-    \item Sempre tenendo conto delle incertezze, troviamo la densità $\rho$ (e il relativo errore) del campione:
-        \[
-            \rho = \frac{m}{V}
-            \qquad\qquad
-            \frac{\delta \rho}{\rho_\text{best}} = \frac{\delta m}{m_\text{best}} + \frac{\delta V}{V_\text{best}}
-        \]
-    \item Infine, abbiamo cercato di capire di che materiale fosse composto il campione, confrontando
-    il valore di $\rho$ misurato con le misure indicate in letteratura ($\rho_\text{lett.}$).
-    Per valutare numericamente la consistenza del risultato ottenuto con il valore atteso,
-    abbiamo calcolato il seguente valore (numero puro):
-    \[\varepsilon = \frac{\left|\rho_\text{best} - \left(\rho_\text{lett.}\right)_\text{best}\right|}{\delta \rho + \delta \rho_\text{lett.}}\]
-    Allora $\rho$ è consistente con $\rho_\text{lett.}$ se e solo se $\varepsilon \le 1$.
+\end{enumerate}
+PARTE SECONDA. Misurazione della costante elastica nel caso dinamico
+\begin{enumerate}
+    \item Accendiamo il contatore di impulsi e lo impostiamo su $Universal$ $Counter$ e su 20 oscillazioni; 
+    \item Consideriamo, nel caso dinamico, il campione $A, B, C$ e $A+B$:
+    \begin{itemize}
+        \item Appeso il campione alla molla, allineiamo i due fototraguardi aiutandoci con la livella, in modo tale che possano rilevare le oscillazioni; 
+        \item Tiriamo il campione verso il basso e poi lo rilasciamo, in modo che il sistema molla inizi a oscillare con direzione parallela al campo gravitazionale locale; 
+        \item Una volta verificato che l’oscillazione sia stabile, facciamo partire il contatore di impulsi, che misurerà il tempo impiegato per compiere 20 oscillazioni;
+    \end{itemize}
 \end{enumerate}
 
 \section{Dati raccolti e conclusioni}
