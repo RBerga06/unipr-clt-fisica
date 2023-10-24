@@ -3,6 +3,7 @@
 \usepackage[italian]{babel}
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage{tabularray}
 \title{
     Laboratorio di Fisica 1\\
     R2: Misura costante elastica di una molla
@@ -18,22 +19,35 @@
     Il gruppo di lavoro ha misurato la costante elastica di una molla con due metodi distinti.
 \end{abstract}
 
-\section{Materiali utilizzati e strumenti di misura}
-\begin{itemize}
-    \item 3 campioni solidi $A,B,C$ (con forme approssimabili a parallelepipedi) con masse $m_\text{A}, m_\text{B}, m_\text{C}$ distinte;
-    \item Uno specchio, per evitare errori di parallasse;
-    \item Una livella.
-\end{itemize}
+\section{Materiali e strumenti di misura utilizzati}
 \begin{center}
-    \begin{tabular}{ |c|c|c|c| }
+    \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
-        \emph{Nome} & \emph{Soglia} & \emph{Portata} & \emph{Sensibilità} \\
+        \textbf{Strumento di misura} & \textbf{\:\:\:\:Soglia\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        Fototraguardo con contatore di impulsi & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
+        {Fototraguardo con \\ contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
+        \hline[dashed]
         Righello & \qty{0.1}{cm} & \qty{60.0}{cm} & \qty{0.1}{cm} \\
+        \hline[dashed]
         Bilancia di precisione & \qty{0.01}{g} & \qty{6200.00}{g} & \qty{0.01}{g} \\
         \hline
-    \end{tabular}
+        \hline
+        \textbf{Altro} & \SetCell[c=3]{l} \textbf{Note} \\
+        \hline
+        3 campioni solidi & \SetCell[c=3]{l} con masse distinte \\
+        \hline[dashed]
+        Specchio & \SetCell[c=3]{l} {
+            Posizionato dietro al righello, permette di \\
+            ridurre eventuali errori di lettura dovuti \\
+            all'effetto di parallasse
+        } \\
+        \hline[dashed]
+        Livella & \SetCell[c=3]{l} {
+            Utile per assicurarsi che il fototraguardo \\
+            sia orizzontale
+        } \\
+        \hline
+    \end{tblr}
 \end{center}
 
 % *questi strumenti di misura, seppur disponibili, non sono stati
