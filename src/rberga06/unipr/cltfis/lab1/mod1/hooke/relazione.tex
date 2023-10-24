@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{tabularray}
+\usepackage{graphicx}
 \title{
     Laboratorio di Fisica 1\\
     R2: Misura costante elastica di una molla
@@ -35,17 +36,23 @@
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
         Molla e gancio & \SetCell[c=3]{l} {
-            Un estremo della molla è vincolato ad un supporto \\
-            fisso, mentre all'altro è appeso un gancio per \\
-            agevolare il caricamento dei campioni
+            Un estremo della molla è vincolato ad un \\
+            supporto fisso, mentre all'altro è appeso \\
+            un gancio per agevolare il caricamento dei \\
+            campioni
         } \\
         \hline[dashed]
-        3 campioni solidi & \SetCell[c=3]{l} Con masse distinte \\
+        {Tre campioni solidi \\ (con masse distinte)} & \SetCell[c=3]{l} {
+            Indicheremo con $A,B,C$ i tre campioni \\
+            e con $A+B$, $A+C$, $B+C$ e $A+B+C$ \\
+            le loro combinazioni. Tutti questi saranno \\
+            qui chiamati “gravi”.
+        } \\
         \hline[dashed]
         Specchio & \SetCell[c=3]{l} {
-            Posizionato dietro al righello, permette di \\
-            ridurre eventuali errori di lettura dovuti \\
-            all'effetto di parallasse
+            Posizionato verticalmente dietro al righello, \\
+            permette di ridurre eventuali errori di let- \\
+            tura dovuti all'effetto di parallasse
         } \\
         \hline[dashed]
         Livella & \SetCell[c=3]{l} {
@@ -62,14 +69,81 @@
 \section{Esperienza e procedimento di misura}
 \subsection{Misurazione della costante elastica nel caso statico}
 \begin{enumerate}
-    \item Fissiamo il righello davanti allo specchio, parallelo alla direzione del campo gravitazionale locale e solidale all’estremo fisso della molla. Individuiamo un punto del sistema, solidale all’estremo libero della molla, che terremo come riferimento per misurare l’allungamento della molla: ne misuriamo allora la posizione $x_\text{0}$
-    \item Consideriamo i tre campioni singolarmente, e poi tutte le loro combinazioni:
-    \begin{itemize}
-        \item Ne misuriamo la massa $m_\text{i}$ con la bilancia di precisione
-        (nel caso di combinazioni di più campioni, ne misuriamo la massa complessiva);
-        \item Appeso il grave alla molla, ne misuriamo l'allungamento $(\Delta x)_\text{i}$, sottraendo $x_\text{0}$ alla misura $x_\text{i}$ della sua posizione ($\delta (\Delta x)_\text{i} = \delta  x_\text{0} + \delta  x_\text{i}$). Per ridurre ulteriormente la probabilità di commettere un errore di parallasse, ripetiamo il procedimento tre volte, tenendo solamente la misura più vicina alla media.
-    \end{itemize}
+    \item Fissiamo il righello parallelo a $\vec{g}$ e solidale
+          all’estremo fisso della molla.
+          Individuiamo allora un punto $P$ del sistema, solidale all’estremo
+          libero della molla, che terremo come riferimento per misurare
+          (indirettamente) gli allungamenti.
+    \item Misuriamo allora la posizione $x_0$ di $P$
+          (rispetto allo 0 del righello) senza caricare
+          alcuna massa sui ganci: possiamo considerare questa la
+          lunghezza a riposo della molla, in quanto il contributo
+          della massa della molla e del gancio, nel caso statico, si annulla.
+    \item Per ogni grave $i$:
+    \begin{enumerate}
+        \item Ne misuriamo la massa $m_i$ con la bilancia di precisione
+              (nel caso di combinazioni di più campioni, ne misuriamo
+              direttamente la massa complessiva);
+        \item Appeso il grave alla molla, ne misuriamo indirettamente l'allungamento
+        $\left(\Delta x\right)_i$, sottraendo $x_0$ alla misura $x_i$
+        della sua posizione (e allora $\delta (\Delta x)_i = \delta x_0 + \delta x_i$).
+        Per ridurre ulteriormente la probabilità di commettere errori di parallasse,
+        ripetiamo il procedimento tre volte, tenendo solamente la misura più vicina alla media.
+    \end{enumerate}
 \end{enumerate}
+
+
+Di seguito sono riportate le misure così ottenute:
+\[x_0 = \left(3.3\pm 0.1\right)\unit{cm}\]
+
+\begin{center}\begin{tblr}{ |c|c|c|c| }
+    \hline
+        {\textbf{Grave} \\ $i$} &
+        {\textbf{Massa} \\ $m_i$ (\unit{g})} &
+        {\textbf{Posizione} \\ $x_i$ (\unit{cm})} &
+        {\textbf{Allungamento} \\ $\left(\Delta x\right)_i$ (\unit{cm})} \\
+    \hline
+    $A$     & $  407,73\:\pm\:0.01$ & $ 7,9\:\pm\:0.1$ & $ 4,6\:\pm\:0.2$ \\
+    $B$     & $  542,47\:\pm\:0.01$ & $ 9,6\:\pm\:0.1$ & $ 6,3\:\pm\:0.2$ \\
+    $C$     & $  667,82\:\pm\:0.01$ & $11,3\:\pm\:0.1$ & $ 8,0\:\pm\:0.2$ \\
+    $A+B$   & $  950,22\:\pm\:0.01$ & $14,4\:\pm\:0.1$ & $11,1\:\pm\:0.2$ \\
+    $A+C$   & $ 1085,56\:\pm\:0.01$ & $15,9\:\pm\:0.1$ & $12,6\:\pm\:0.2$ \\
+    $B+C$   & $ 1220,28\:\pm\:0.01$ & $17,5\:\pm\:0.1$ & $14,2\:\pm\:0.2$ \\
+    $A+B+C$ & $ 1628,02\:\pm\:0.01$ & $22,2\:\pm\:0.1$ & $18,9\:\pm\:0.2$ \\
+    \hline
+\end{tblr}\end{center}
+
+Per determinare la costante elastica $k$ della molla, abbiamo effettuato
+una regressione lineare (non pesata) dei dati così ottenuti, facendo
+riferimento alla seguente formula (che segue direttamente dalla legge
+di Hooke, ponendo $F_\text{elastica}$ = $F_\text{peso}$):
+\[\Delta x = \frac{g}{k} m\]
+Detto $b=b_\text{best}\pm\delta b$ il coefficiente angolare della retta di regressione, vale allora:
+\[
+    k = \frac{g_\text{best}}{b_\text{best}}\qquad\wedge\qquad
+    \frac{\delta k}{k_\text{best}} = \frac{\delta g}{g_\text{best}} + \frac{\delta b}{b_\text{best}}
+\]
+Si noti che l'intercetta della retta di regressione dev'essere compatibile con $0$.
+\emph{
+    \textbf{Osservazione}.
+    $g$ non può essere considerata una costante nota con certezza,
+    poiché, secondo la legge di gravitazione universale, $g$ dipende
+    dalla distanza dal centro di massa della Terra: che $g$ sia costante
+    lungo la traiettoria del sistema molla-grave è soltanto
+    un'approssimazione. Pertanto, abbiamo considerato
+    $g=\left(9.81\pm0.01\right)\unit{m\per s^2}$
+}
+
+Ecco la retta di regressione (in rosa è indicata la fascia di confidenza) e i relativi risultati:
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{SaticoReg.jpg}
+\end{figure}
+\begin{itemize}
+    \item $a = \left(???\pm???\right)$ (compatibile con 0)
+    \item $b = \left(???\pm???\right)\unit{cm\per g}=\left(???\pm???\right)\unit{m\per kg}$
+    \item $k = \left(???\pm???\right)\unit{N\per m}$
+\end{itemize}
+
 \subsection{Misurazione della costante elastica nel caso dinamico}
 \begin{enumerate}
     \item Accendiamo il contatore di impulsi e lo impostiamo su \emph{Universal Counter} e su 20 oscillazioni;
@@ -81,90 +155,9 @@
     \end{itemize}
 \end{enumerate}
 
-\section{Dati raccolti e conclusioni}
-Di seguito sono riportate tutte le misure effettuate direttamente, così come quelle calcolate come descritto.
 
-\begin{center}
-    \begin{tabular}{ |c|c|c|c| }
-        \hline
-        \emph{Parallelepipedo} & $x$ (mm) & $y$ (mm) & $z$ (mm) \\
-        \hline
-        Misura 1 & 39.90 ± 0.05 & 64.60 ± 0.05 & 5.01 ± 0.01 \\
-        Misura 2 & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.99 ± 0.01 \\
-        Misura 3 & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.98 ± 0.01 \\
-        \hline
-        Misura tenuta & 39.90 ± 0.05 & 64.40 ± 0.05 & 4.99 ± 0.01 \\
-        \hline
-    \end{tabular}
-    \newline
-    \vspace*{0.4 cm}
-    \newline
-    \begin{tabular}{ |c|c|c| }
-        \hline
-        \emph{Cilindro} 1 & $h$ (mm) & $d$ (mm) \\
-        \hline
-        Misura 1 & 24.83 ± 0.01 & 27.95 ± 0.05 \\
-        Misura 2 & 24.82 ± 0.01 & 28.05 ± 0.05 \\
-        Misura 3 & 24.83 ± 0.01 & 28.00 ± 0.05 \\
-        \hline
-        Misura tenuta & 24.83 ± 0.01 & 28.00 ± 0.05 \\
-        \hline
-    \end{tabular}
-    \newline
-    \vspace*{0.4 cm}
-    \newline
-    \begin{tabular}{ |c|c| }
-        \hline
-        \emph{Sfera} & $d$ (mm) \\
-        \hline
-        Misura 1 & 20.63 ± 0.01 \\
-        Misura 2 & 20.63 ± 0.01 \\
-        Misura 3 & 20.64 ± 0.01 \\
-        \hline
-        Misura tenuta & 20.63 ± 0.01 \\
-        \hline
-    \end{tabular}
-    \newline
-    \vspace*{0.4 cm}
-    \newline
-    \begin{tabular}{ |c|c|c| }
-        \hline
-        \emph{Cilindro 2} & $h$ (mm) & $d$ (mm) \\
-        \hline
-        Misura 1 & 77.75 ± 0.05 & 6.97 ± 0.01 \\
-        Misura 2 & 77.80 ± 0.05 & 6.97 ± 0.01 \\
-        Misura 3 & 77.80 ± 0.05 & 6.98 ± 0.01 \\
-        \hline
-        Misura tenuta & 77.80 ± 0.05 & 6.97 ± 0.01 \\
-        \hline
-    \end{tabular}
-    \newline
-    \vspace*{0.4 cm}
-    \newline
-    \begin{tabular}{ |c|c|c|c| }
-        \hline
-        \emph{Campione} & $m$ (g) & $V$ ($\text{cm}^3$) & $\rho\enspace(\text{g} / \text{cm}^3)$\\
-        \hline
-        Parallelepipedo & 107.40 ± 0.01 & 12.87 ± 0.05 & 8.34 ± 0.03 \\
-        Cilindro 1 & 41.21 ± 0.01 & 15.29 ± 0.06 & 2.695 ± 0.011 \\
-        Sfera & 35.81 ± 0.01 & 4.597 ± 0.007 & 7.789 ± 0.014 \\
-        Cilindro 2 & 8.00 ± 0.01 & 2.97 ± 0.01 & 2.695 ± 0.013 \\
-        \hline
-    \end{tabular}
-    \newline
-    \vspace*{0.4 cm}
-    \newline
-    \begin{tabular}{ |c|c|c|c|c| }
-        \hline
-        \emph{Campione} & $\rho\enspace(\text{g} / \text{cm}^3)$ & Materiale & $\rho_\text{lett.}\enspace(\text{g} / \text{cm}^3)$ & $\varepsilon$ \\
-        \hline
-        Parallelepipedo & 8.34 ± 0.03 & Ottone giallo (\emph{high brass}) & 8.47 ± 0.01 & 2.5 \\
-        Cilindro 1 & 2.695 ± 0.011 & Lega di Al laminato 3003 & 2.73 ± 0.01 & 1.7 \\
-        Sfera & 7.789 ± 0.014 & Acciaio & 7.8 ± 0.1 & 0.1 \\
-        Cilindro 2 & 2.695 ± 0.013 & Lega di Al laminato 3003 & 2.73 ± 0.01 & 1.5 \\
-        \hline
-    \end{tabular}
-\end{center}
+
+\section{Conclusioni}
 
 L'inconsistenza non trascurabile tra $\rho$ (le nostre misure) e $\rho_\text{lett.}$ è dovuta principalmente al fatto che si tratta di leghe; probabilmente, i nostri campioni presentavano concentrazioni diverse dei vari elementi.
 
