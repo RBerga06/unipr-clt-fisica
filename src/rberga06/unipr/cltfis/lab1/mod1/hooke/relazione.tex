@@ -5,6 +5,7 @@
 \usepackage{siunitx}
 \usepackage{tabularray}
 \usepackage{graphicx}
+\usepackage{float}
 \title{
     Laboratorio di Fisica 1\\
     R2: Misura costante elastica di una molla
@@ -135,16 +136,16 @@ Si noti che l'intercetta della retta di regressione dev'essere compatibile con $
     $g=\left(9.81\pm0.01\right)\unit{m\per s^2}$
 }
 
-Ecco la retta di regressione (in rosa è indicata la fascia di confidenza) e i relativi risultati:
-\begin{figure}[ht]
+Ecco la retta di regressione e i relativi risultati:
+\begin{figure}[H]
     \includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{SaticoReg.jpg}
     \caption{Retta di regressione (in rosso) e la sua regione di incertezza (in rosa).}
 \end{figure}
 \begin{itemize}
     \item $a = \left(0.02\pm0.12\right)\unit{cm}$ (compatibile con 0)
     \item $
-        b = \left(11.62\pm0.12\right)\cdot10^{-3}\unit{cm\per g}
-          = \left(11.62\pm0.12\right)\cdot10^{-2}\unit{m\per kg}
+        b = \left(11.62\pm0.12\right)\cdot10^{-3}\;\unit{cm\per g}
+          = \left(11.62\pm0.12\right)\cdot10^{-2}\;\unit{m\per kg}
     $
     \item $k = \left(84.4\pm0.8\right)\unit{N\per m}$
 \end{itemize}
@@ -180,31 +181,62 @@ sarà allora:
 
 Di seguito sono riportate le distribuzioni dei dati raccolti:
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \includegraphics[trim={2cm 1.8cm .7cm 1.5cm},width=.5\textwidth]{Dinamico1.jpg}
     \includegraphics[trim={.7cm 1.8cm 2cm 1.5cm},width=.5\textwidth]{Dinamico2.jpg}
     \caption{Istogrammi dei periodi delle oscillazioni di $A$ e $B$}
-\end{figure}\begin{figure}[ht]
+\end{figure}\begin{figure}[H]
     \includegraphics[trim={2cm 1.8cm .7cm 1.5cm},width=.5\textwidth]{Dinamico3.jpg}
     \includegraphics[trim={.7cm 1.8cm 2cm 1.5cm},width=.5\textwidth]{Dinamico4.jpg}
-    \caption{Istogramma dei periodi delle oscillazioni di $C$ e $A+B$}
+    \caption{Istogrammi dei periodi delle oscillazioni di $C$ e $A+B$}
 \end{figure}
 
-Some more text
+Per determinare anche in questo caso la costante elastica della molla,
+abbiamo effettuato una regressione lineare sui quadrati dei valori medi
+delle distribuzioni di cui sopra rispetto alla massa, facendo riferimento
+alla formula $T^2 = \frac{4\pi^2}{k} m$. Allora, detto $b$ il
+coefficiente angolare della retta di regressione, varrà:
+\[
+    k_\text{best}=\frac{4\pi^2}{b_\text{best}}
+    \qquad\wedge\qquad
+    \frac{\delta k}{k_\text{best}}=\frac{\delta b}{b_\text{best}}
+\]
+Si noti che, anche in questo caso, l'intercetta $a$ della retta dev'essere
+compatibile con $0$. Ecco la retta di regressione e i relativi risultati:
 
-\begin{figure}[ht]
-    \includegraphics[trim={0 1.8cm 0 2cm},width=\textwidth]{DinamicoReg.jpg}
+\begin{figure}[H]
+    \includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{DinamicoReg.jpg}
     \caption{Retta di regressione (in rosso) e la sua regione di incertezza (in rosa).}
 \end{figure}
 
-$a = ???$
-$b = $
+\begin{itemize}
+    \item $a = \left(0.02\pm0.19\right)\unit{cm}$ (compatibile con 0)
+    \item $
+        b = \left(4.604\pm0.002\right)\cdot10^{-4}\;\unit{s^2\per g}
+          = \left(46.04\pm0.02\right)\cdot10^{-2}\;\unit{s^2\per kg}
+    $
+    \item $k = \left(85.74\pm0.04\right)\unit{N\per m}$
+\end{itemize}
+
 
 \section{Conclusioni}
+Per valutare numericamente la consistenza tra i due valori di $k$ ottenuti,
+abbiamo calcolato il seguente valore (numero puro):
+\[
+    \varepsilon =
+    \frac{
+        \left|\left(k_\text{statica}\right)_\text{best} - \left(k_\text{dinamica}\right)_\text{best}\right|
+    }{
+        \delta k_\text{statica} + \delta k_\text{dinamica}
+    }
+\]
+Allora $k_\text{statica}$ e $k_\text{dinamica}$ sono consistenti se e solo se $\varepsilon \le 1$.
 
-L'inconsistenza non trascurabile tra $\rho$ (le nostre misure) e $\rho_\text{lett.}$ è dovuta principalmente al fatto che si tratta di leghe; probabilmente, i nostri campioni presentavano concentrazioni diverse dei vari elementi.
+Nel nostro caso, $\varepsilon = 1.33$.
 
-
-\footnotetext[1]{Text}
+\footnotetext[1]{
+    Nel caso dinamico non abbiamo usato tutte le combinazioni di campioni,
+    per evitare di stressare eccessivamente la molla.
+}
 
 \end{document}
