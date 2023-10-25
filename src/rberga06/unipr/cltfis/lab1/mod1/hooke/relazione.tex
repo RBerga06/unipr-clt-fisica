@@ -64,9 +64,6 @@
     \end{tblr}
 \end{center}
 
-% *questi strumenti di misura, seppur disponibili, non sono stati
-% utilizzati a causa della loro elevata sensiblità.
-
 \section{Esperienza e procedimento di misura}
 \subsection{Misurazione della costante elastica nel caso statico}
 \begin{enumerate}
@@ -74,12 +71,13 @@
           all’estremo fisso della molla.
           Individuiamo allora un punto $P$ del sistema, solidale all’estremo
           libero della molla, che terremo come riferimento per misurare
-          (indirettamente) gli allungamenti.
+          (indirettamente) tutti gli allungamenti.
     \item Misuriamo allora la posizione $x_0$ di $P$
           (rispetto allo 0 del righello) senza caricare
-          alcuna massa sui ganci: possiamo considerare questa la
-          lunghezza a riposo della molla, in quanto il contributo
-          della massa della molla e del gancio, nel caso statico, si annulla.
+          alcuna massa sul gancio: possiamo considerare questa la
+          lunghezza a riposo della molla, in quanto le masse di molla
+          e gancio non contribuiscono all'allungamento causato
+          dall'aggiunta di un grave.
     \item Per ogni grave\footnotemark[1] $i$:
     \begin{enumerate}
         \item Ne misuriamo la massa $m_i$ con la bilancia di precisione
@@ -116,7 +114,7 @@ Di seguito sono riportate le misure così ottenute:
 
 Per determinare la costante elastica $k$ della molla, abbiamo effettuato
 una regressione lineare (non pesata) dei dati così ottenuti, facendo
-riferimento alla seguente formula (che segue direttamente dalla legge
+riferimento alla seguente relazione (che segue direttamente dalla legge
 di Hooke, ponendo $F_\text{elastica}$ = $F_\text{peso}$):
 \[\Delta x = \frac{g}{k} m\]
 Detto $b=b_\text{best}\pm\delta b$ il coefficiente angolare della retta di regressione, vale allora:
@@ -131,15 +129,18 @@ Si noti che l'intercetta della retta di regressione dev'essere compatibile con $
     $g$ non può essere considerata una costante nota con certezza,
     poiché, secondo la legge di gravitazione universale, $g$ dipende
     dalla distanza dal centro di massa della Terra: che $g$ sia costante
-    lungo la traiettoria del sistema molla-grave è soltanto
-    un'approssimazione. Pertanto, abbiamo considerato
-    $g=\left(9.81\pm0.01\right)\unit{m\per s^2}$
+    al variare della posizione del grave è solo un'approssimazione.
+    Pertanto, abbiamo considerato
+    $g=\left(9.81\pm0.01\right)\unit{m\per s^2}$.
 }
 
 Ecco la retta di regressione e i relativi risultati:
 \begin{figure}[H]
     \includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{SaticoReg.jpg}
-    \caption{Retta di regressione (in rosso) e la sua regione di incertezza (in rosa).}
+    \caption{
+        La retta di regressione (in rosso)
+        e la sua regione di incertezza (in rosa).
+    }
 \end{figure}
 \begin{itemize}
     \item $a = \left(0.02\pm0.12\right)\unit{cm}$ (compatibile con 0)
@@ -155,7 +156,10 @@ Ecco la retta di regressione e i relativi risultati:
     \item Acceso il contatore di impulsi, lo impostiamo in modo tale che,
           dopo aver avviato l'acquisizione dati, esso misuri venti periodi
           dell'oscillazione.
-    \item Per ogni grave $i$ fra i quattro più leggeri\footnotemark[1] ($A, B, C$ e $A+B$):
+    \item Per ogni grave $i$ fra i quattro più leggeri\footnote[1]{
+        Nel caso dinamico non abbiamo usato tutte le combinazioni di campioni,
+        per evitare di stressare eccessivamente la molla.
+    } ($A, B, C$ e $A+B$):
     \begin{enumerate}
         \item Appeso il campione alla molla, allineiamo i due fototraguardi
               aiutandoci con la livella, in modo tale che possano rilevare
@@ -164,7 +168,11 @@ Ecco la retta di regressione e i relativi risultati:
               in modo che il sistema molla inizi a oscillare con direzione
               il più possibile parallela a $\vec{g}$;
         \item Attesa la stabilizzazione dell’oscillazione, avviamo
-              l'acquisizione della misura di 20 periodi $20T_i$.
+              l'acquisizione della misura di un tempo (20 periodi)
+              $20T_i$.
+        \item Ripetiamo molte volte (in tutto $N_{20T_i}$) i punti
+              (b) e (c). In particolare, $N_{20T_A} = N_{20T_B} = 25$
+              e $N_{20T_C} = N_{20T_{A+B}} = 30$.
     \end{enumerate}
     \item Infine, misuriamo con la bilancia, separatamente,
           la massa della molla $m_m$ e la massa del gancio $m_g$.
@@ -191,10 +199,40 @@ Di seguito sono riportate le distribuzioni dei dati raccolti:
     \caption{Istogrammi dei periodi delle oscillazioni di $C$ e $A+B$}
 \end{figure}
 
-Per determinare anche in questo caso la costante elastica della molla,
-abbiamo effettuato una regressione lineare sui quadrati dei valori medi
-delle distribuzioni di cui sopra rispetto alla massa, facendo riferimento
-alla formula $T^2 = \frac{4\pi^2}{k} m$. Allora, detto $b$ il
+Poiché i nostri dati hanno assunto distribuzioni grossolanamente
+approssimabili a gaussiane, possiamo procedere al calcolo di $k$,
+utilizzando, per ogni grave $i$, i seguenti valori:
+\[
+    \left(20T_i\right)_\text{best} = \overline{20T_i}
+    \qquad\wedge\qquad
+    \delta\left(20T_i\right) =
+    \sigma_{\overline{20T_i}} =
+    \frac{\sigma_{20T_i}}{\sqrt{N_{20T_i}}}
+\]
+dove $\overline{20T_i}$ e $\sigma_{20T_i}$ indicano rispettivamente
+media e deviazione standard dei tempi.
+
+Per determinare la costante elastica della molla, abbiamo effettuato
+una regressione lineare (stavolta pesata) sui quadrati dei valori medi
+dei tempi ($T_i^2$, con
+$\delta T_i^2 = 5 \cdot 10^{-3} (20 T_i)_\text{best} \delta(20 T_i)$
+)\footnote[2]{
+    La formula per l'errore su $T_i^2$ segue direttamente dalla
+    propagazione degli errori:
+    \[
+        \frac{\delta T_i^2}{\left(T_i^2\right)_\text{best}} = 2\frac{\delta T_i}{{\left(T_i\right)}_\text{best}}
+        \qquad
+        \delta T_i^2 = 2\left(T_i\right)_\text{best}\delta T_i
+        \qquad
+        \delta T_i^2 = \frac{\left(20T_i\right)_\text{best}(\delta 20T_i)}{200}
+    \]
+    da cui quanto riportato sopra.
+    Si osservi che $\delta T_i^2$ dipende da
+    $\left(20T_i\right)_\text{best}$:
+    proprio questo è il motivo dietro alla scelta del metodo pesato
+    per la regressione lineare.
+} rispetto alla massa $\left(m_\text{eff}\right)_i$, facendo riferimento
+alla relazione $T_i^2 = \frac{4\pi^2}{k} \left(m_\text{eff}\right)_i$. Allora, detto $b$ il
 coefficiente angolare della retta di regressione, varrà:
 \[
     k_\text{best}=\frac{4\pi^2}{b_\text{best}}
@@ -202,11 +240,16 @@ coefficiente angolare della retta di regressione, varrà:
     \frac{\delta k}{k_\text{best}}=\frac{\delta b}{b_\text{best}}
 \]
 Si noti che, anche in questo caso, l'intercetta $a$ della retta dev'essere
-compatibile con $0$. Ecco la retta di regressione e i relativi risultati:
+compatibile con $0$.
+
+Di seguito è riportata la retta di regressione, assieme ai risultati ottenuti:
 
 \begin{figure}[H]
     \includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{DinamicoReg.jpg}
-    \caption{Retta di regressione (in rosso) e la sua regione di incertezza (in rosa).}
+    \caption{
+        La retta di regressione (in rosso)
+        e la sua regione di incertezza (in rosa).
+    }
 \end{figure}
 
 \begin{itemize}
@@ -232,11 +275,15 @@ abbiamo calcolato il seguente valore (numero puro):
 \]
 Allora $k_\text{statica}$ e $k_\text{dinamica}$ sono consistenti se e solo se $\varepsilon \le 1$.
 
-Nel nostro caso, $\varepsilon = 1.33$.
-
-\footnotetext[1]{
-    Nel caso dinamico non abbiamo usato tutte le combinazioni di campioni,
-    per evitare di stressare eccessivamente la molla.
-}
+Nel nostro caso, $\varepsilon = 1.33$. Il gruppo di lavoro ha ipotizzato che
+questa inconsistenza (comunque contenuta, seppur non trascurabile) fra le due
+misure possa essere ragionevolmente giustificata dalla difficoltà incontrata
+nel ridurre al minimo le oscillazioni in direzione perpendicolare a $\vec{g}$;
+considerato inoltre che la posizione dei fototraguardi non era ottimale, ciò
+potrebbe avere ulteriormente influenzato la distribuzione dei tempi. È in
+effetti possibile osservare che le distribuzioni da noi ottenute non sono,
+il più delle volte, del tutto simmetriche: la moda sembra essersi spostata
+leggermente a sinistra, e ciò potrebbe essere sintomo dell'influenza di un
+errore sistematico sulle misure.
 
 \end{document}
