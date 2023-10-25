@@ -6,6 +6,8 @@
 \usepackage{tabularray}
 \usepackage{graphicx}
 \usepackage{float}
+\newcommand*{\best}[1]{{#1}_\text{best}}
+\newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
     Laboratorio di Fisica 1\\
     R2: Misura costante elastica di una molla
@@ -117,11 +119,8 @@ una regressione lineare (non pesata) dei dati così ottenuti, facendo
 riferimento alla seguente relazione (che segue direttamente dalla legge
 di Hooke, ponendo $F_\text{elastica}$ = $F_\text{peso}$):
 \[\Delta x = \frac{g}{k} m\]
-Detto $b=b_\text{best}\pm\delta b$ il coefficiente angolare della retta di regressione, vale allora:
-\[
-    k = \frac{g_\text{best}}{b_\text{best}}\qquad\wedge\qquad
-    \frac{\delta k}{k_\text{best}} = \frac{\delta g}{g_\text{best}} + \frac{\delta b}{b_\text{best}}
-\]
+Detto $b=\best{b}\pm\delta b$ il coefficiente angolare della retta di regressione, vale allora:
+\[k = \errrel{g} \qquad\wedge\qquad \errrel{k} = \errrel{g} + \errrel{b}\]
 Si noti che l'intercetta della retta di regressione dev'essere compatibile con $0$.
 
 \emph{
@@ -184,7 +183,7 @@ contribuisce appieno (in quanto è solidale col grave),
 mentre la massa della molla contribuisce per circa
 $\frac{1}{3}$. La massa effettiva da considerare per ogni grave
 sarà allora:
-\[\left(\left(m_\text{eff}\right)_i\right)_\text{best} = \left(m_i\right)_\text{best} + \left(m_g\right)_\text{best} + \frac{1}{3}\left(m_m\right)_\text{best}\]
+\[\best{\left(\left(m_\text{eff}\right)_i\right)} = \best{\left(m_i\right)} + \best{\left(m_g\right)} + \frac{1}{3}\best{\left(m_m\right)}\]
 \[\delta \left(m_\text{eff}\right)_i = \delta m_i + \delta m_g + \frac{1}{3}\delta m_m\]
 
 Di seguito sono riportate le distribuzioni dei dati raccolti:
@@ -283,7 +282,7 @@ considerato inoltre che la posizione dei fototraguardi non era ottimale, ciò
 potrebbe avere ulteriormente influenzato la distribuzione dei tempi. È in
 effetti possibile osservare che le distribuzioni da noi ottenute non sono,
 il più delle volte, del tutto simmetriche: la moda sembra essersi spostata
-leggermente a sinistra, e ciò potrebbe essere sintomo dell'influenza di un
+leggermente a sinistra – un possibile sintomo dell'influenza di un
 errore sistematico sulle misure.
 
 \end{document}
