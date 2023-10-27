@@ -276,30 +276,30 @@ Da cui la tesi. $\qed$
             3 & -1 & 0 \\
             0 & -4 & 1 \\
             2 & 5 & 0 \\
-        \end{bmatrix} = 1 \cdot \det\begin{bmatrix}
+        \end{bmatrix} = -1 \cdot \det\begin{bmatrix}
             3 & -1 \\
             2 &  5 \\
-        \end{bmatrix} = 17
+        \end{bmatrix} = -17
     $
     \item \[\begin{aligned}
         \det\begin{bmatrix}
             1 & 1 & 0 & 0 \\
-            -1 & -2 & 0 & 0 \\
+            -1 & 2 & 0 & 0 \\
             0 & 0 & 1 & -7 \\
             0 & 0 & 0 & 3 \\
         \end{bmatrix} &= \det\begin{bmatrix}
             1 & 1 & 0 & 0 \\
-            0 & -1 & 0 & 0 \\
+            0 & 3 & 0 & 0 \\
             0 & 0 & 1 & -7 \\
             0 & 0 & 0 & 3 \\
         \end{bmatrix} \\ &= \det\begin{bmatrix}
-            -2 & 0 & 0 \\
+            3 & 0 & 0 \\
             0 & 1 & -7 \\
             0 & 0 & 3 \\
-        \end{bmatrix} = \det\begin{bmatrix}
+        \end{bmatrix} = 3 \det\begin{bmatrix}
             1 & -7 \\
             0 & 3 \\
-        \end{bmatrix} = 3
+        \end{bmatrix} = 9
     \end{aligned}\]
 \end{enumerate}
 
@@ -314,12 +314,12 @@ Una matrice quadrata è singolare se e solo se ha determinante $0$.
         5a & -14 & 0 \\
         -a & 5 & 1 \\
         4a+2 & -14 & 0 \\
-    \end{bmatrix} = \det\begin{bmatrix}
+    \end{bmatrix} = -\det\begin{bmatrix}
         5a & -14 \\
         4a+2 & -14 \\
-    \end{bmatrix} \\ &= -14(5a) - (-14)(4a+2) = -14(a-2)
+    \end{bmatrix} \\ &= 14(5a) - 14(4a+2) = 14(a-2)
 \end{aligned}\]
-Allora, la matrice è quadrata se e solo se $-14(a-2) = 0$, ovvero $a = 2$.
+Allora, la matrice non è singolare se e solo se $-14(a-2) \ne 0$, ovvero $a \ne 2$.
 
 \section*{Esercizio 13}
 $0_{\MR{2}{2}}$ è una matrice diagonale ma non invertibile; infatti:
@@ -433,6 +433,5 @@ Hermitiana (in quanto simmetrica) e invertibile
          0 &   0 & 0 &  0 & -2 \\
     \end{bmatrix}}
 \end{aligned}\]
-
 
 \end{document}
