@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xfrac}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcommand*{\qed}{\blacksquare}
+\newcommand*{\M}[3]{\mathcal{M}_{#1\times#2} \left(#3\right)}
+\newcommand*{\MR}[2]{\M{#1}{#2}{\mathbb{R}}}
+\newcommand*{\MC}[2]{\M{#1}{#2}{\mathbb{C}}}
+\newcommand*{\MK}[2]{\M{#1}{#2}{\mathbb{K}}}
+\newcommand*{\T}[1]{{#1}^\text{T}}  % Trasposta di una matrice
+\DeclareMathOperator{\Tr}{Tr}  % Traccia di una matrice
+\title{Metodo di risoluzione dei sistemi lineari}
+\author{Riccardo Bergamaschi}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Soluzioni all'indietro, direttamente sulla matrice completa}
+
+È possibile riscrivere l'algoritmo delle soluzioni all'indietro
+in termini di operazioni elementari di riga e di colonna.
+
+\subsection*{Osservazione}
+Sia $M$ una matrice ridotta a scala.
+Allora, se sommiamo un multiplo di una qualche riga $M_i$
+a una qualche altra riga $M_j$ con $j<i$, la matrice che ne
+risulta è ancora ridotta a scala.
+
+\subsection*{Caso semplice: una e una sola soluzione}
+Sia $SX=b$ un sistema lineare ridotto a scala,
+compatibile e con $S$ matrice quadrata ($n$ equazioni, $n$ incognite).
+Allora, $S|b$ è della forma:
+\[\begin{bmatrix}[cccc|c]
+    s_{11} & s_{21} & \dots & s_{1n} & b_0 \\
+    0      & s_{22} & \dots & s_{2n} & b_1 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0      & 0      & \dots & s_{nn} & b_n \\
+\end{bmatrix}\]
+Ovvero, $S$ è triangolare superiore.
+L'idea è quella di arrivare ad $S = \text{Id}_n$ tramite operazioni
+elementari di riga: in questo modo, il vettore dei coefficienti sarà
+esattamente il vettore soluzione.
+
+Possiamo per prima cosa rendere tutti gli elementi della diagonale
+principale pari ad $1$, dividendo ogni riga per il relativo perno
+(che è sempre $\ne 0$). La matrice sarà allora della forma:
+
+\[\begin{bmatrix}[cccc|c]
+    1      & s_{21} & \dots & s_{1n} & b_0 \\
+    0      & 1      & \dots & s_{2n} & b_1 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0      & 0      & \dots & 1      & b_n \\
+\end{bmatrix}\]
+
+Ora, vogliamo mandare $s_{21}$ a $0$. Per fare questo,
+sottraiamo alla prima riga $s_{21}$ volte la seconda.
+Analogamente, per mandare a $0$ $s_{31}$ ed $s_{32}$ sottrarremo
+alla seconda e alla terza riga gli adeguati multipli di $S_3$.
+Questo procedimento permette di ridurre la matrice dei coefficienti
+alla matrice identità:
+
+\[\begin{bmatrix}[cccc|c]
+    1      & 0      & \dots  & 0      & b_0 \\
+    0      & 1      & \dots  & 0      & b_1 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0      & 0      & \dots  & 1      & b_n \\
+\end{bmatrix}\]
+
+A questo punto, l'unica soluzione del sistema sarà evidente.
+
+\subsubsection*{Esempio}
+Risolviamo il seguente sistema lineare:
+\[\left\{\begin{array}{@{}l@{}}
+    x - y + 2z = 1 \\
+    3x + y + 3z = 6 \\
+    x + 3y + z = -1 \\
+\end{array}\right.\,\]
+Per prima cosa, scriviamo e riduciamo a scala la matrice completa:
+\[
+    \begin{bmatrix}[ccc|c]
+        1 & -1 & 2 & 1 \\
+        3 & 1 & 3 & 6 \\
+        1 & 3 & 1 & -1 \\
+    \end{bmatrix} \leadsto \begin{bmatrix}[ccc|c]
+        1 & -1 & 2 & 1 \\
+        0 & 4 & -3 & 3 \\
+        0 & 4 & -1 & -2 \\
+    \end{bmatrix} \leadsto \begin{bmatrix}[ccc|c]
+        1 & -1 & 2 & 1 \\
+        0 & 4 & -3 & 3 \\
+        0 & 0 & 2 & -5 \\
+    \end{bmatrix}
+\]
+Possiamo osservare che il sistema è compatibile
+e ammette una e una sola soluzione.
+
+Ora applichiamo l'algoritmo sopra descritto:
+\[\begin{aligned}
+    \begin{bmatrix}[ccc|c]
+        1 & -1 & 2 & 1 \\
+        0 & 4 & -3 & 3 \\
+        0 & 0 & 2 & -5 \\
+    \end{bmatrix} &\leadsto \begin{bmatrix}[ccc|c]
+        1 & -1 & 2 & 1 \\
+        0 & 1 & -\sfrac{3}{4} & \sfrac{3}{4} \\
+        0 & 0 & 1 & -\sfrac{5}{2} \\
+    \end{bmatrix} \\ &\leadsto \begin{bmatrix}[ccc|c]
+        1 & 0 & \sfrac{5}{4} & \sfrac{7}{4} \\
+        0 & 1 & -\sfrac{3}{4} & \sfrac{3}{4} \\
+        0 & 0 & 1 & -\sfrac{5}{2} \\
+    \end{bmatrix} \\ &\leadsto \begin{bmatrix}[ccc|c]
+        1 & 0 & \sfrac{5}{4} & \sfrac{7}{4} \\
+        0 & 1 & 0 & -\sfrac{9}{8} \\
+        0 & 0 & 1 & -\sfrac{5}{2} \\
+    \end{bmatrix} \\ &\leadsto \begin{bmatrix}[ccc|c]
+        1 & 0 & 0 & \sfrac{39}{8} \\
+        0 & 1 & 0 & -\sfrac{9}{8} \\
+        0 & 0 & 1 & -\sfrac{5}{2} \\
+    \end{bmatrix}
+\end{aligned}\]
+
+Allora l'unica soluzione del sistema è $\begin{bmatrix}
+    \sfrac{39}{8} \\ -\sfrac{9}{8} \\ -\sfrac{5}{2}
+\end{bmatrix}$.
+
+\end{document}
