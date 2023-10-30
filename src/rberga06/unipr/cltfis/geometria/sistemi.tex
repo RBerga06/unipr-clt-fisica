@@ -18,6 +18,7 @@
 \newcommand*{\MK}[2]{\M{#1}{#2}{\mathbb{K}}}
 \newcommand*{\T}[1]{{#1}^\text{T}}  % Trasposta di una matrice
 \DeclareMathOperator{\Tr}{Tr}  % Traccia di una matrice
+\DeclareMathOperator{\rg}{rg}  % Rango di una matrice
 \title{Metodo di risoluzione dei sistemi lineari}
 \author{Riccardo Bergamaschi}
 \date{\today}
@@ -130,5 +131,95 @@ Ora applichiamo l'algoritmo sopra descritto:
 Allora l'unica soluzione del sistema è $\begin{bmatrix}
     \sfrac{39}{8} \\ -\sfrac{9}{8} \\ -\sfrac{5}{2}
 \end{bmatrix}$.
+
+
+\[\begin{aligned}
+    \begin{bmatrix}[cccc|c]
+        2 & -1 & 1 & -1 & 3 \\
+        0 & 5 & 5 & 3 & -1 \\
+        0 & 0 & 6 & -2 & 2 \\
+    \end{bmatrix} &\leadsto \begin{bmatrix}[cccc|c]
+        2 & -1 & 1 & -1 & 3 \\
+        0 & 5 & 5 & 3 & -1 \\
+        0 & 0 & 3 & -1 & 1 \\
+    \end{bmatrix} \\&\leadsto \begin{bmatrix}[cccc|c]
+        2 & 4 & 6 & 2 & 2 \\
+        0 & 5 & 5 & 3 & -1 \\
+        0 & 0 & 3 & -1 & 1 \\
+    \end{bmatrix} \\&\leadsto \begin{bmatrix}[cccc|c]
+        1 & 2 & 3 & 1 & 1 \\
+        0 & 5 & 5 & 3 & -1 \\
+        0 & 0 & 3 & -1 & 1 \\
+    \end{bmatrix} \\&\leadsto \begin{bmatrix}[cccc|c]
+        1 & 2 & 3 & 1 & 1 \\
+        0 & 1 & -1 & 1 & -3 \\
+        0 & 0 & 3 & -1 & 1 \\
+    \end{bmatrix} \\&\leadsto \begin{bmatrix}[cccc|c]
+        1 & 0 & 5 & -1 & 7 \\
+        0 & 1 & -1 & 1 & -3 \\
+        0 & 0 & 3 & -1 & 1 \\
+    \end{bmatrix}
+\end{aligned}\]
+
+\pagebreak
+
+\subsection*{Esercizio 5.4}
+
+\[A = \begin{bmatrix}
+    1 & t & 1 \\
+    t & t & t \\
+    1 & t & t \\
+\end{bmatrix}
+\overset{A_2-tA_1}{\underset{A_3-A_1}{\longrightarrow}}
+\begin{bmatrix}
+    1 & t & 1 \\
+    0 & t(1-t) & 0 \\
+    0 & 0 & t-1 \\
+\end{bmatrix}
+\]
+
+Se $a_{22} = t(1-t) \ne 0$, anche $a_{33} = t-1 \ne 0$,
+e quindi la matrice è ridotta a scala. In tal caso, ha rango 3.
+
+Se invece $a_{22} = t(1-t) = 0$, allora $t=0\vee t=1$.
+
+Se $t=0$:
+\[\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 0 & 0 \\
+    0 & 0 & -1 \\
+\end{bmatrix}
+\overset{A_2\leftrightarrow A_3}{\longrightarrow}
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 0 & -1 \\
+    0 & 0 & 0 \\
+\end{bmatrix}\]
+
+In questo caso, la matrice ha rango 2.
+
+Infine, se $t = 1$:
+\[\begin{bmatrix}
+    1 & 1 & 1 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0 \\
+\end{bmatrix}\]
+
+In questo caso, la matrice ha rango 1.
+
+In conclusione:
+
+\[\rg{A} = \begin{cases}
+    1 & t = 1 \\
+    2 & t = 0 \\
+    3 & t \notin \left\{ 0; 1 \right\} \\
+\end{cases}\]
+
+
+
+\subsection*{Esercizio 5.6}
+
+
+\subsection*{Esercizio 5.7}
 
 \end{document}
