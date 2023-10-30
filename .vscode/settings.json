@@ -2,4 +2,7 @@
     "mathover.matchRegex": "\\$(.*)\\$",
     "mathover.forwardSkip": 1,
     "mathover.backwardSkip": 1,
+    "files.associations": {
+        "*.spec": "python",
+    },
 }
