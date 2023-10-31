@@ -4,5 +4,22 @@
     "mathover.backwardSkip": 1,
     "files.associations": {
         "*.spec": "python",
+        "iostream": "cpp",
+        "array": "cpp",
+        "__tuple": "cpp",
+        "__config": "cpp",
+        "__locale": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "new": "cpp",
+        "optional": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "variant": "cpp",
+        "version": "cpp",
+        "concepts": "cpp"
     },
 }
