@@ -17,6 +17,8 @@
 \newcommand*{\MC}[2]{\M{#1}{#2}{\mathbb{C}}}
 \newcommand*{\MK}[2]{\M{#1}{#2}{\mathbb{K}}}
 \newcommand*{\T}[1]{{#1}^\text{T}}  % Trasposta di una matrice
+\newcommand*{\sys}[1]{\left\{\begin{array}{@{}l@{}}#1\end{array}\right.}
+\newcommand*{\m}[1]{\begin{bmatrix}#1\end{bmatrix}}
 \DeclareMathOperator{\Tr}{Tr}  % Traccia di una matrice
 \DeclareMathOperator{\rg}{rg}  % Rango di una matrice
 \title{Metodo di risoluzione dei sistemi lineari}
@@ -221,5 +223,50 @@ In conclusione:
 
 
 \subsection*{Esercizio 5.7}
+
+\pagebreak
+\subsection*{Esercizio 9}
+\[\sys{
+    x_1 + kx_2 - x_3 = 0\\
+    x_2 - h = 0\\
+    x_1 - x_2 - kx_3 = h\\
+    3x_1 - kx_2 = 0\\
+}\]
+\[\begin{aligned}
+\m{[ccc|c]
+    1 & k & -1 & 0 \\
+    0 & 1 & 0 & h \\
+    1 & -1 & -k & h \\
+    3 & -k & 0 & 0 \\
+}&\leadsto\m{[ccc|c]
+    1 & k & -1 & 0 \\
+    0 & 1 & 0 & h \\
+    0 & -k-1 & -k+1 & h \\
+    0 & -2k & -1 & 0 \\
+}\\&\leadsto\m{[ccc|c]
+    1 & k & -1 & 0 \\
+    0 & 1 & 0 & h \\
+    0 & -k-1 & -k+1 & h \\
+    0 & -2k & -1 & 0 \\
+}\\&\leadsto\m{[ccc|c]
+    1 & k & -1 & 0 \\
+    0 & 1 & 0 & h \\
+    0 & 0 & -k+1 & (k+2)h \\
+    0 & 0 & -1 & 2kh \\
+}\\&\leadsto\m{[ccc|c]
+    1 & k & -1 & 0 \\
+    0 & 1 & 0 & h \\
+    0 & 0 & -1 & 2kh \\
+    0 & 0 & -k+1 & (k+2)h \\
+}\\&\leadsto\m{[ccc|c]
+    1 & k & -1 & 0 \\
+    0 & 1 & 0 & h \\
+    0 & 0 & -1 & 2kh \\
+    0 & 0 & 0 & (-2k^2+3k+2)h \\
+}
+\end{aligned}\]
+
+Se $(-2k^2+3k+2)h = 0$, le due rette sono incidenti.
+Altrimenti, sono sghembe.
 
 \end{document}
