@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{siunitx}
 \usepackage{tabularray}
 \usepackage{graphicx}
@@ -45,8 +46,8 @@
         \hline[dashed]
         {Due sferette \\ (con diametri distinti)} & \SetCell[c=3]{l} {
             Indicheremo con $A,B$ le due sferette; il diametro \\
-            di $A$ è $24,63\:\pm\:0.1 mm$, mentre quello \\
-            di $b$ è $22,23\:\pm\:0.1 mm$.
+            di $A$ è $\left(24.63\:\pm\:0.01\right)\unit{mm}$, mentre quello \\
+            di $B$ è $\left(22.23\:\pm\:0.01\right)\unit{mm}$.
         } \\
         \hline[dashed]
         Livella & \SetCell[c=3]{l} {
@@ -58,31 +59,19 @@
 \end{center}
 
 \section{Esperienza e procedimento di misura}
-\subsection{Misurazione della costante elastica nel caso statico}
+\subsection{Misurazione di $\vec{g}$ con $v_0=0$}
 \begin{enumerate}
-    \item Misuriamo il diametro delle due sferette con il micrometro
-    \item Misuriamo allora la posizione $x_0$ di $P$
-          (rispetto allo 0 del righello) senza caricare
-          alcuna massa sul gancio: possiamo considerare questa la
-          lunghezza a riposo della molla, in quanto le masse di molla
-          e gancio non contribuiscono all'allungamento causato
-          dall'aggiunta di un grave.
-    \item Per ogni grave\footnotemark[1] $i$:
-    \begin{enumerate}
-        \item Ne misuriamo la massa $m_i$ con la bilancia di precisione
-              (nel caso di combinazioni di più campioni, ne misuriamo
-              direttamente la massa complessiva);
-        \item Appeso il grave alla molla, ne misuriamo indirettamente l'allungamento
-        $\left(\Delta x\right)_i$, sottraendo $x_0$ alla misura $x_i$
-        della sua posizione (e allora $\delta (\Delta x)_i = \delta x_0 + \delta x_i$).
-        Per ridurre ulteriormente la probabilità di commettere errori di parallasse,
-        ripetiamo il procedimento tre volte, tenendo solamente la misura più vicina alla media.
-    \end{enumerate}
+    \item Misuriamo con il metro a nastro la distanza $d_0$ tra il sistema di sgancio e il fototraguardo.
+          Detto $\varnothing_i$ il diametro dell'$i$-esima pallina, la distanza percorsa dalla pallina
+          nel tempo che misureremo sarà allora $d_0 - \frac{1}{2}\varnothing_i$.
+    \item Dopo aver acceso e impostato il contatore di impulsi adeguatamente facciamo cadere la sferetta
+          attraverso il sistema di sgancio, ottenendo così il suo tempo di caduta: eseguiamo questa misura
+          100 volte per ognuna delle due sferette.
 \end{enumerate}
 
 
 Di seguito sono riportate le misure così ottenute:
-\[x_0 = \left(3.3\pm 0.1\right)\unit{cm}\]
+\[d_0 = \left(125.9\pm 0.1\right)\unit{cm}\]
 
 \begin{center}\begin{tblr}{ |c|c|c|c| }
     \hline
@@ -137,15 +126,11 @@ Ecco la retta di regressione e i relativi risultati:
     \item $k = \left(84.4\pm0.8\right)\unit{N\per m}$
 \end{itemize}
 
-\subsection{Misurazione della costante elastica nel caso dinamico}
+\subsection{Misurazione del campo gravitazionale con $v_0\ne0$}
 \begin{enumerate}
-    \item Acceso il contatore di impulsi, lo impostiamo in modo tale che,
-          dopo aver avviato l'acquisizione dati, esso misuri venti periodi
-          dell'oscillazione.
-    \item Per ogni grave $i$ fra i quattro più leggeri\footnote[1]{
-        Nel caso dinamico non abbiamo usato tutte le combinazioni di campioni,
-        per evitare di stressare eccessivamente la molla.
-    } ($A, B, C$ e $A+B$):
+    \item Consideriamo la distanza tra i due fototraguardi e impostiamo i fotodiodi
+          del contatore su A+B.
+    \item Usando solo
     \begin{enumerate}
         \item Appeso il campione alla molla, allineiamo i due fototraguardi
               aiutandoci con la livella, in modo tale che possano rilevare
