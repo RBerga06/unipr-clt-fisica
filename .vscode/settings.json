@@ -20,6 +20,9 @@
         "type_traits": "cpp",
         "variant": "cpp",
         "version": "cpp",
-        "concepts": "cpp"
+        "concepts": "cpp",
+        "fstream": "cpp",
+        "locale": "cpp",
+        "iosfwd": "cpp"
     },
 }
