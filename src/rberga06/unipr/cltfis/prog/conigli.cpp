@@ -15,7 +15,7 @@ Nat n_babies(int t, Nat n) {
 // Decide how many bunnies of age t die
 //   (all bunnies of age N_GENERATIONS-2 die)
 Nat n_die(int t, Nat n) {
-    return 0;
+    return n * pow(2, (t-N_GENERATIONS)/2);
 }
 
 
@@ -24,12 +24,12 @@ class Population {
         Nat babies() { return generations[0]; }
         Nat adult() {
             Nat total = 0;
-            for (int i=1; i<N_GENERATIONS-1; i++) {
+            for (int i=1; i<N_GENERATIONS; i++) {
                 total += generations[i];
             }
             return total;
         }
-        Nat dead() { return generations[generations.size()-1]; }
+        Nat dead() { return _dead; }
         Nat alive() { return babies() + adult(); }
         Nat ever_existed() { return alive() + dead(); }
         Nat operator[](int age) { return generations[age]; }
@@ -37,23 +37,22 @@ class Population {
         void inject(Nat n) { inject(n, 0); }
         void next() {
             Nat tot_babies = 0;
-            Nat tot_dead = 0;
             // Shift all bunnies by 1 month, starting from the oldest ones
             for (int t=N_GENERATIONS-2; t>=0; t--) {
                 Nat bunnies = generations[t];
                 Nat dead = n_die(t, bunnies);
                 tot_babies += n_babies(t, bunnies);
-                tot_dead += dead;
                 generations[t+1] += (bunnies - dead);
                 generations[t] = 0;
+                this->_dead += dead;
             }
             generations[0] = tot_babies;
-            generations[N_GENERATIONS-1] += tot_dead;
         }
     private:
-        // index:   0    1    2   ...    N_GENERATIONS-2    N_GENERATIONS-1
-        // array: [#0m, #1m, #2m, ..., #(N_GENERATIONS-1)m,      #dead     ]
+        // index:   0    1    2   ...    N_GENERATIONS-2,   N_GENERATIONS-1
+        // array: [#0m, #1m, #2m, ..., #(N_GENERATIONS-2)m, "infinitely old"]
         std::array<Nat, N_GENERATIONS> generations;
+        Nat _dead = 0;
 };
 
 
@@ -69,7 +68,7 @@ void printPop(int t, Population *p) {
 
 
 int main() {
-    const int T = 10;
+    const int T = 1000;
     std::cout << "months\tbabies\tadult\talive\tdead\ttotal" << std::endl;
     auto *p = new Population;
     p->inject(1);
