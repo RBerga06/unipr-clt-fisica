@@ -7,6 +7,7 @@
 \usepackage{tabularray}
 \usepackage{graphicx}
 \usepackage{float}
+\newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
@@ -21,7 +22,7 @@
 \maketitle
 
 \begin{abstract}
-    Il gruppo di lavoro ha misurato indirettamente il modulo del campo gravitazionale locale con due metodi distinti:
+    Il gruppo di lavoro ha misurato indirettamente il modulo del campo gravitazionale locale ($\vec{g}$) con due metodi distinti:
     dapprima facendo cadere due palline da ferme, successivamente tenendo conto di distanze diverse e velocità iniziali diverse.
 \end{abstract}
 
@@ -29,9 +30,9 @@
 \begin{center}
     \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
-        \textbf{Strumento di misura} & \textbf{\:\:\:\:Soglia\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
+        \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        {Fototraguardi con \\ contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
+        {Due fototraguardi con \\ contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
         \hline[dashed]
         Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
         \hline[dashed]
@@ -39,20 +40,21 @@
         \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
-        Sistema di sgancio elettropneumatico & \SetCell[c=3]{l} {
-            Usato, tramite comando manuale, per rilasciare \\
-            le sferette in modo riproducibile.
-        } \\
-        \hline[dashed]
-        {Due sferette \\ (con diametri distinti)} & \SetCell[c=3]{l} {
-            Indicheremo con $A,B$ le due sferette; il diametro \\
-            di $A$ è $\left(24.63\:\pm\:0.01\right)\unit{mm}$, mentre quello \\
-            di $B$ è $\left(22.23\:\pm\:0.01\right)\unit{mm}$.
+        {Sistema di sgancio \\ elettropneumatico} & \SetCell[c=3]{l} {
+            Usato, tramite comando manuale, per \\
+            rilasciare le sferette in modo riproducibile.
         } \\
         \hline[dashed]
         Livella & \SetCell[c=3]{l} {
             Utile per assicurarsi che i fototraguardi \\
             siano orizzontali.
+        } \\
+        \hline[dashed]
+        {Due sferette \\ (con diametri distinti)} & \SetCell[c=3]{l} {
+            Indicheremo con $A,B$ le due sferette \\
+            e con $\diam_A,\diam_B$ i rispettivi diametri: \\
+            $\diam_A = \left(24.63\:\pm\:0.01\right)\unit{mm}$ \\
+            $\diam_B = \left(22.23\:\pm\:0.01\right)\unit{mm}$ \\
         } \\
         \hline
     \end{tblr}
