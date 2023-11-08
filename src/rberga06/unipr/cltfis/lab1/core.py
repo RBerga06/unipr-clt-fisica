@@ -4,31 +4,18 @@
 from dataclasses import dataclass
 from functools import cache
 import math
-from typing import Callable, Iterator, Literal, Protocol, Self, cast, final, overload
+from typing import Callable, Literal, Self, final, overload
 from typing_extensions import override
 from matplotlib import pyplot as plt
-from .datum import Measure, Datum as DataPoint
+from .datum import Measure, Datum as DataPoint, π, g
+from .dataset import DataSet
 
-
-def round2sig(x: float, sig: int) -> float:
-    """Round the given number to the given significant figure."""
-    if x == 0:
-        return x
-    return round(x, sig - 1 - int(math.floor(math.log10(abs(x)))))
 
 def plotf(f: Callable[[float], float], min: float, max: float, /, *, n: int = 1000) -> None:
     dx = (max - min)/n
     xs = [min + i*dx for i in range(n)]
     ys = [f(x) for x in xs]
     plt.plot(xs, ys, "")  # type: ignore
-
-
-    # def __repr__(self, /) -> str:
-    #     best, delta = self.best, self.delta
-    #     delta_factor = 10 ** math.floor(math.log10(delta))
-    #     delta_digits = delta / delta_factor
-    #     new_delta = delta_factor * (round(delta_digits, 1) if delta_digits < 2 else round(delta_digits))
-    #     return f"{best} ± {new_delta}"
 
 
 @final
@@ -51,113 +38,6 @@ class Function:
 
     def __neg__(self, /) -> "Function":
         return self.__rmul__(-1)
-
-
-@overload
-def data_points(raw: list[tuple[float, float]], delta: None = None, /) -> tuple[DataPoint, ...]: ...
-@overload
-def data_points(raw: list[float], delta: list[float] | float, /) -> tuple[DataPoint, ...]: ...
-def data_points(
-    raw: list[tuple[float, float]] | list[float],
-    delta: list[float] | float | None = None,
-    /,
-) -> tuple[DataPoint, ...]:
-    match delta:
-        case None:
-            data = cast(list[tuple[float, float]], raw)
-        case float() | int():
-            data = zip(cast(list[float], raw), [delta]*len(raw))
-        case _:
-            data = zip(cast(list[float], raw), delta)
-    return tuple([DataPoint(x, d) for x, d in data])
-
-
-@dataclass(slots=True, frozen=True)
-class DataSet(Measure):
-    data: tuple[Measure, ...]
-
-    @property
-    @cache
-    def len(self, /) -> int:
-        return len(self.data)
-
-    @property
-    @cache
-    def bests(self, /) -> tuple[float, ...]:
-        return tuple([x.best for x in self.data])
-
-    @property
-    @cache
-    def deltas(self, /) -> tuple[float, ...]:
-        return tuple([x.delta for x in self.data])
-
-    def chdata(self, new_data: tuple[Measure, ...], /) -> Self:
-        """To be overridden by subclasses that implement configuration parameters."""
-        return type(self)(new_data)
-
-    def map(self, f: Callable[[Measure], Measure], /) -> Self:
-        """Apply the given operation to all measures."""
-        return self.chdata(tuple([f(x) for x in self.data]))
-
-    @property
-    @cache
-    def weights(self, /) -> tuple[float, ...]:
-        # $w_i = \frac{1}{(\delta x_i)^2}$
-        return tuple([d**-2 for d in self.deltas])
-
-    @property
-    @cache
-    def avg(self, /) -> float:
-        """The (weighted) average of all data."""
-        return sum([w * x for x, w in zip(self.bests, self.weights)])/sum(self.weights)
-
-    @property
-    @cache
-    def avg_delta(self, /) -> float:
-        """The average delta."""
-        return sum(self.weights)**-.5
-
-    @property
-    @cache
-    def variance(self, /) -> float:
-        avg = self.avg
-        return sum([(x.best - avg)**2 for x in self.data])/(self.len - 1)
-
-    @property
-    @cache
-    def std_dev(self, /) -> float:
-        return math.sqrt(self.variance)
-
-    @property
-    @cache
-    @override
-    def best(self, /) -> float:  # type: ignore
-        return self.avg
-
-    @property
-    @cache
-    def semidispersion(self, /) -> float:
-        xs = self.bests
-        return (max(xs) - min(xs))/2
-
-    @property
-    @cache
-    @override
-    def delta(self, /) -> float:  # type: ignore
-        return max(self.std_dev/math.sqrt(len(self.data)), self.avg_delta)
-
-    @overload
-    def __getitem__(self, i: int, /) -> Measure: ...
-    @overload
-    def __getitem__(self, i: slice, /) -> tuple[Measure, ...]: ...
-    def __getitem__(self, i: int | slice, /) -> Measure | tuple[Measure, ...]:
-        return self.data[i]
-
-    def __iter__(self, /) -> Iterator[Measure]:
-        return iter(self.data)
-
-    def __len__(self, /) -> int:
-        return self.len
 
 
 @dataclass(slots=True, frozen=True)
@@ -232,7 +112,7 @@ class Distribution(DataSet):
         if M is None:
             M = data_M.best + data_M.delta
         if n is None:
-            n = math.floor(math.sqrt(data.len))
+            n = math.floor(math.sqrt(len(data)))
         dx = (M - m)/n
         bins: dict[tuple[float, float], list[DataPoint]] = {
             (m+k*dx, m+(k+1)*dx): list() for k in range(n)
@@ -240,10 +120,10 @@ class Distribution(DataSet):
         for x in data:
             for (bin_m, bin_M), bin in bins.items():
                 if bin_m < x.best < bin_M:
-                    bin.append(DataPoint.from_measure(x))
+                    bin.append(DataPoint.new(x))
                     continue
                 if x.best == (bin_M if sep == "lower" else bin_m):
-                    bin.append(DataPoint.from_measure(x))
+                    bin.append(DataPoint.new(x))
         return cls(data.data, tuple([
             DistBin(tuple(bin), bin_m, bin_M)
             for (bin_m, bin_M), bin in bins.items()
@@ -332,8 +212,6 @@ def linear_regression_plot(
 
 
 # Constants & standard functions
-g = DataPoint(9.806, 0.001)
-π = math.pi
 ln = Function(math.log, lambda x: 1/x)
 exp = Function(math.exp, math.exp)
 sin = Function(math.sin, math.cos)
