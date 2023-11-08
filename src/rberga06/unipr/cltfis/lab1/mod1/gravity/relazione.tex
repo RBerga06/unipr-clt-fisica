@@ -9,6 +9,9 @@
 \usepackage{float}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
+\newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
+\newcommand*{\pbest}[1]{\left({#1}_\text{best}\right)}
+\newcommand*{\pbestp}[1]{\left({\left(#1\right)}_\text{best}\right)}
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
     Laboratorio di Fisica 1\\
@@ -53,8 +56,8 @@
         {Due sferette \\ (con diametri distinti)} & \SetCell[c=3]{l} {
             Indicheremo con $A,B$ le due sferette \\
             e con $\diam_A,\diam_B$ i rispettivi diametri: \\
-            $\diam_A = \left(24.63\:\pm\:0.01\right)\unit{mm}$ \\
-            $\diam_B = \left(22.23\:\pm\:0.01\right)\unit{mm}$ \\
+            $\diam_A = \left(24.63\pm0.01\right)\unit{mm}$ \\
+            $\diam_B = \left(22.23\pm0.01\right)\unit{mm}$ \\
         } \\
         \hline
     \end{tblr}
@@ -63,70 +66,63 @@
 \section{Esperienza e procedimento di misura}
 \subsection{Misurazione di $\vec{g}$ con $v_0=0$}
 \begin{enumerate}
-    \item Misuriamo con il metro a nastro la distanza $d_0$ tra il sistema di sgancio e il fototraguardo.
-          Detto $\varnothing_i$ il diametro dell'$i$-esima pallina, la distanza percorsa dalla pallina
-          nel tempo che misureremo sarà allora $d_0 - \frac{1}{2}\varnothing_i$.
-    \item Dopo aver acceso e impostato il contatore di impulsi adeguatamente facciamo cadere la sferetta
-          attraverso il sistema di sgancio, ottenendo così il suo tempo di caduta: eseguiamo questa misura
-          100 volte per ognuna delle due sferette.
+    \item Misuriamo con il metro a nastro la distanza $d_0$ tra il centro
+          del pistone del sistema di sgancio e un fototraguardo.\\
+          Nel nostro caso, $d_0 = \left(125.9\pm 0.1\right)\unit{cm}$
+    \item Acceso e impostato adeguatamente il contatore di impulsi,
+          misuriamo 100 volte il tempo di caduta $t_i$
+          di ogni sferetta $i$ dal il sistema di sgancio fino al fototraguardo.
+          La distanza percorsa dalla sferetta in questo intervallo di tempo
+          sarà allora $d_0 - \frac{1}{2}\diam_i$.
 \end{enumerate}
 
+Fissato un sistema di riferimento solidale all'apparato di misura, con origine
+nella posizione di partenza delle sferette e $\hat{x} = \hat{g}$, possiamo
+scrivere la seguente legge del moto:
+\[x(t) = \frac{1}{2}g t^2\]
+Per ogni sferetta $i$, posto $x\left(\overline{t_i}\right) = d_0 - \frac{1}{2}\diam_i$,
+la norma di $\vec{g}$ è ricavabile da:
+\[
+    g = \frac{2d_0 - \diam_i}{\left(\overline{t_i}\right)^2}
+    % \best{g} = \frac{2\best{\left(d_0\right)} - \bestp{\diam_i}}
+    %                 {\bestp{\overline{t_i}}^2}
+    % \qquad\wedge\qquad
+    % \errrel{g} = \frac{2\left(\delta d_0\right) - \delta \diam_i}
+    %                   {2\best{\left(d_0\right)} - \bestp{\diam_i}}
+    %            + 2\frac{\sigma_{\overline{t_i}}}{\overline{t_i}}
+\]
+dove determiniamo l'errore su $g$ propagando gli errori su $d_0,\diam_i$ e
+$\overline{t_i}$, avendo posto
+\[
+    \delta\overline{t_i} =
+    \sigma_{\overline{t_i}} =
+    \frac{\sigma_{t_i}}{\sqrt{100}} =
+    \frac{\sigma_{t_i}}{10}.
+\]
+\\
 
-Di seguito sono riportate le misure così ottenute:
-\[d_0 = \left(125.9\pm 0.1\right)\unit{cm}\]
+Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
 
-\begin{center}\begin{tblr}{ |c|c|c|c| }
-    \hline
-        {\textbf{Grave} \\ $i$} &
-        {\textbf{Massa} \\ $m_i$ (\unit{g})} &
-        {\textbf{Posizione} \\ $x_i$ (\unit{cm})} &
-        {\textbf{Allungamento} \\ $\left(\Delta x\right)_i$ (\unit{cm})} \\
-    \hline
-    $A$     & $  407,73\:\pm\:0.01$ & $ 7,9\:\pm\:0.1$ & $ 4,6\:\pm\:0.2$ \\
-    $B$     & $  542,47\:\pm\:0.01$ & $ 9,6\:\pm\:0.1$ & $ 6,3\:\pm\:0.2$ \\
-    $C$     & $  667,82\:\pm\:0.01$ & $11,3\:\pm\:0.1$ & $ 8,0\:\pm\:0.2$ \\
-    $A+B$   & $  950,22\:\pm\:0.01$ & $14,4\:\pm\:0.1$ & $11,1\:\pm\:0.2$ \\
-    $A+C$   & $ 1085,56\:\pm\:0.01$ & $15,9\:\pm\:0.1$ & $12,6\:\pm\:0.2$ \\
-    $B+C$   & $ 1220,28\:\pm\:0.01$ & $17,5\:\pm\:0.1$ & $14,2\:\pm\:0.2$ \\
-    $A+B+C$ & $ 1628,02\:\pm\:0.01$ & $22,2\:\pm\:0.1$ & $18,9\:\pm\:0.2$ \\
-    \hline
-\end{tblr}\end{center}
 
-Per determinare la costante elastica $k$ della molla, abbiamo effettuato
-una regressione lineare (non pesata) dei dati così ottenuti, facendo
-riferimento alla seguente relazione (che segue direttamente dalla legge
-di Hooke, ponendo $F_\text{elastica}$ = $F_\text{peso}$):
-\[\Delta x = \frac{g}{k} m\]
-Detto $b=\best{b}\pm\delta b$ il coefficiente angolare della retta di regressione, vale allora:
-\[k = \errrel{g} \qquad\wedge\qquad \errrel{k} = \errrel{g} + \errrel{b}\]
-Si noti che l'intercetta della retta di regressione dev'essere compatibile con $0$.
-
-\emph{
-    \textbf{Osservazione}.
-    $g$ non può essere considerata una costante nota con certezza,
-    poiché, secondo la legge di gravitazione universale, $g$ dipende
-    dalla distanza dal centro di massa della Terra: che $g$ sia costante
-    al variare della posizione del grave è solo un'approssimazione.
-    Pertanto, abbiamo considerato
-    $g=\left(9.81\pm0.01\right)\unit{m\per s^2}$.
-}
-
-Ecco la retta di regressione e i relativi risultati:
 \begin{figure}[H]
     %\includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{SaticoReg.jpg}
-    \caption{
-        La retta di regressione (in rosso)
-        e la sua regione di incertezza (in rosa).
-    }
+    \caption{Istogrammi dei dati $t_1$ e $t_2$ raccolti}
 \end{figure}
-\begin{itemize}
-    \item $a = \left(0.02\pm0.12\right)\unit{cm}$ (compatibile con 0)
-    \item $
-        b = \left(11.62\pm0.12\right)\cdot10^{-3}\;\unit{cm\per g}
-          = \left(11.62\pm0.12\right)\cdot10^{-2}\;\unit{m\per kg}
-    $
-    \item $k = \left(84.4\pm0.8\right)\unit{N\per m}$
-\end{itemize}
+\begin{center}
+    \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+        \hline
+            $i$ &
+            $\diam_i\:(\unit{mm})$ &
+            $\overline{t_i}\:(\unit{s})$ &
+            $g\:(\unit{m\per s^2})$ &
+            $\varepsilon$ \\
+        \hline
+        A & $24.63\pm0.01$ & $???\pm???$ & $???\pm???$ & $???$ \\
+        \hline[dashed]
+        B & $22.23\pm0.01$ & $???\pm???$ & $???\pm???$ & $???$ \\
+        \hline
+    \end{tblr}
+\end{center}
 
 \subsection{Misurazione del campo gravitazionale con $v_0\ne0$}
 \begin{enumerate}
