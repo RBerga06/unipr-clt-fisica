@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xfrac}
+\newcommand*{\qed}{\blacksquare}
+\newcommand*{\oo}{\infty}
+\newcommand*{\limit}[2]{\lim_{#1\rightarrow#2}}
+\title{Geometria - Esercizio 4.24}
+\author{Riccardo Bergamaschi}
+\date{19/10/2023}
+\begin{document}
+%\maketitle
+\[\begin{aligned}
+    \sum_{k=0}^{+\oo}\frac{k}{3^k}
+    &= \limit{n}{+\oo}\sum_{k=0}^{n}\frac{k}{3^k}\\
+    &= \limit{n}{+\oo}\left(\frac{0}{3^0} + \sum_{k=1}^{n}\frac{k}{3^k}\right)\\
+    &= \limit{n}{+\oo}\sum_{k=1}^{n}\frac{k}{3^k}\\
+    &\ge \limit{n}{+\oo}\sum_{k=1}^{n}\frac{1}{3^k}\\
+    &= \limit{n}{+\oo}\left(-1 +\frac{1}{3^0} + \sum_{k=1}^{n}\frac{1}{3^k}\right)\\
+    &= \limit{n}{+\oo}\left(-1+\sum_{k=0}^{n}\frac{1}{3^k}\right)\\
+    &= \limit{n}{+\oo}\left(-1+\frac{1-\left(\frac{1}{3}\right)^{n+1}}{1-\frac{1}{3}}\right)\\
+    &= \limit{n}{+\oo}\left(-1+\frac{3}{2}\left(1-\left(\frac{1}{3}\right)^{n+1}\right)\right)\\
+    &= \limit{n}{+\oo}\left(-1+\frac{3}{2}-\frac{3}{2}\left(\frac{1}{3}\right)^{n+1}\right)\\
+    &= \limit{n}{+\oo}\left(\frac{1}{2}-\frac{1}{2}\left(\frac{1}{3}\right)^n\right)\\
+    &= \frac{1}{2}\limit{n}{+\oo}\left(1-\left(\frac{1}{3}\right)^n\right)\\
+    &= \frac{1}{2}\left(1-0\right)\\
+    &= \frac{1}{2}\\
+\end{aligned}\]
+\pagebreak
+\[\begin{aligned}
+    \sum_{k=0}^{n}\frac{k}{3^k}
+    &= \sum_{k=1}^{n}\frac{k}{3^k} \\
+    &= \sum_{k=1}^{n}\frac{k-1+1}{3^k} \\
+    &= \sum_{k=1}^{n}\frac{k-1}{3^k} + \sum_{k=1}^{n}\frac{1}{3^k} \\
+\end{aligned}\]
+
+
+Ma:
+
+
+\[\begin{aligned}
+    \sum_{k=1}^{n}\frac{k-1}{3^k}
+    &= \sum_{k=0}^{n-1}\frac{k}{3^{k+1}} \\
+    &= \frac{1}{3}\sum_{k=0}^{n-1}\frac{k}{3^k} \\
+    &= \frac{1}{3}\left(\sum_{k=0}^{n}\frac{k}{3^k} - \frac{n}{3^n}\right) \\
+    &= \frac{1}{3}\sum_{k=0}^{n}\frac{k}{3^k} - \frac{n}{3^{n+1}} \\
+\end{aligned}\]
+
+
+Allora:
+
+
+\[\begin{aligned}
+    \sum_{k=0}^{n}\frac{k}{3^k}
+    &= \sum_{k=1}^{n}\frac{k-1}{3^k} + \sum_{k=1}^{n}\frac{1}{3^k} \\
+    &= \frac{1}{3}\sum_{k=0}^{n}\frac{k}{3^k} - \frac{n}{3^{n+1}} + \sum_{k=1}^{n}\frac{1}{3^k} \\
+\end{aligned}\]
+
+Ovvero:
+
+\[\begin{aligned}
+    \sum_{k=0}^{n}\frac{k}{3^k}
+    &= \frac{1}{3}\sum_{k=0}^{n}\frac{k}{3^k} - \frac{n}{3^{n+1}} + \sum_{k=1}^{n}\frac{1}{3^k} \\
+    - \frac{1}{3}\sum_{k=0}^{n}\frac{k}{3^k} + \sum_{k=0}^{n}\frac{k}{3^k}
+    &= \sum_{k=1}^{n}\frac{1}{3^k} - \frac{n}{3^{n+1}} \\
+    \frac{2}{3}\sum_{k=0}^{n}\frac{k}{3^k}
+    &= \sum_{k=1}^{n}\frac{1}{3^k} - \frac{n}{3^{n+1}} \\
+    \sum_{k=0}^{n}\frac{k}{3^k}
+    &= \frac{3}{2}\sum_{k=1}^{n}\frac{1}{3^k} - \frac{n}{2\cdot3^{n}} \\
+    &= \frac{3}{2}\left(\sum_{k=0}^{n}\frac{1}{3^k} - 1\right) - \frac{n}{2\cdot3^{n}} \\
+    &= \frac{3}{2}\sum_{k=0}^{n}\frac{1}{3^k} - \frac{3}{2} - \frac{n}{2\cdot3^{n}} \\
+    &= \frac{3}{2}\cdot\frac{1-\left(\frac{1}{3}\right)^{n+1}}{1-\frac{1}{3}} - \frac{3}{2} - \frac{n}{2\cdot3^{n}} \\
+    &= \frac{9}{4}\left(1-\left(\frac{1}{3}\right)^{n+1}\right) - \frac{3}{2} - \frac{n}{2\cdot3^{n}} \\
+    &= \frac{9}{4} - \frac{3}{2} - \frac{9}{4\cdot3^{n+1}} - \frac{n}{2\cdot3^{n}} \\
+    &= \frac{9-6}{4} - \frac{3}{4\cdot3^n} - \frac{n}{2\cdot3^n} \\
+    &= \frac{3}{4} - \frac{2n+3}{4\cdot3^n} \\
+\end{aligned}\]
+
+Passando al limite:
+
+\[\begin{aligned}
+    \limit{n}{+\oo}\sum_{k=0}^{n}\frac{k}{3^k}
+    = \limit{n}{+\oo}\left(\frac{3}{4} - \frac{2n+3}{4\cdot3^n}\right)
+    = \frac{3}{4} - 0
+    = \frac{3}{4}
+\end{aligned}\]
+
+\pagebreak
+Fissiamo $\alpha\in\mathbb{R}\setminus\left\{1\right\}$.
+
+\[\begin{aligned}
+S &= \sum_{k=0}^n \alpha^k \\
+\alpha S &= \sum_{k=0}^n \alpha^{k+1}\\
+    &= \sum_{k=1}^{n+1} \alpha^k\\
+    &= \sum_{k=1}^{n}\alpha^k + \alpha^{n+1}\\
+    &= \sum_{k=0}^{n}\alpha^k + \alpha^{n+1} - \alpha^0\\
+    &= S + \alpha^{n+1} - \alpha^0 \\
+\alpha S - S &= \alpha^{n+1} - 1 \\
+\left(\alpha - 1\right)S &= \alpha^{n+1} - 1 \\
+S &= \frac{\alpha^{n+1} - 1}{\alpha - 1} \\
+S &= \frac{1 - \alpha^{n+1}}{1 - \alpha} \\
+\sum_{k=0}^n \alpha^k &= \frac{1 - \alpha^{n+1}}{1 - \alpha} \\
+\end{aligned}\]
+
+\end{document}
