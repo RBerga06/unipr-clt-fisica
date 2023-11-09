@@ -1,5 +1,5 @@
 /*** Constants ***/
-const N_THREADS: usize = 50;
+const N_THREADS: u8 = 50;
 const N_MILESTONES: u32 = 1_000_000;
 const N_THROWS: u32 = 20_000;
 const N_ROLLS: u8 = 5;
@@ -72,9 +72,11 @@ fn main() {
             bins[i] += bin[i];
         }
         count += 1;  // another thread has finished!
+        if (count % (N_THREADS as u128)) == 0 {
+            print_bins(count, bins);
+        }
         if count == N_COUNT_TOTAL {
             break;
         }
-        print_bins(count, bins);
     }
 }
