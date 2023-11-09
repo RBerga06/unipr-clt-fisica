@@ -40,7 +40,7 @@ fn print_info() {
     println!("#lanci:  {N_THROWS}");
     println!("#volte:  {N_MILESTONES}");
     println!("#thread: {N_THREADS}");
-    let total: u128 = (N_ROLLS as u128)*(N_THROWS as u128)*N_COUNT_TOTAL;
+    let total: u128 = (N_THROWS as u128)*N_COUNT_TOTAL;
     println!("#totale: {total}");
 }
 
