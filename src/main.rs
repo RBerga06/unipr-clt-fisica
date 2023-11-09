@@ -5,11 +5,11 @@ const N_ROLLS: u8 = 5;
 const N_BINS: usize = (N_ROLLS + 1) as usize;
 
 /*** Imports ***/
-use std::{sync::mpsc, thread::{self, JoinHandle}};
+use std::{sync::mpsc::{self, Sender}, thread};
 use rand::prelude::Distribution;
 
 
-fn work() -> [u128; N_BINS] {
+fn work(tx: Sender<[u128; N_BINS]>) {
     /*** Setup ***/
     println!("work: start");
     let mut rng = rand::thread_rng();
@@ -28,7 +28,7 @@ fn work() -> [u128; N_BINS] {
         bins[counter as usize] += 1;
     }
     println!("work: done");
-    return bins;
+    tx.send(bins).unwrap();
 }
 
 
@@ -37,12 +37,9 @@ fn main() {
     println!("[i] Lancio {N_ROLLS} dadi {N_THROWS} volte su ognuno dei {N_THREADS} thread.");
     let (tx, rx) = mpsc::channel::<[u128;N_BINS]>();
     /*** Threads ***/
-    let mut threads: Vec<JoinHandle<()>> = Vec::new();
     for _i in 0..N_THREADS {
         let txi = tx.clone();
-        threads.push(thread::spawn(move || {
-            txi.send(work()).unwrap();
-        }));
+        thread::spawn(move ||{ work(txi); });
     }
     /*** Combine all outputs ***/
     let mut answers: usize = 0;
