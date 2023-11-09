@@ -1,7 +1,7 @@
 /*** Constants ***/
 const N_THREADS: u8 = 50;
-const N_MILESTONES: u32 = 1_000_000;
-const N_THROWS: u32 = 20_000;
+const N_MILESTONES: u32 = 10_000;
+const N_THROWS: u32 = 2_000_000;
 const N_ROLLS: u8 = 5;
 const N_BINS: usize = (N_ROLLS + 1) as usize;
 const N_COUNT_TOTAL: u128 = (N_MILESTONES as u128) * (N_THREADS as u128);
