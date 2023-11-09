@@ -1,6 +1,7 @@
 /*** Constants ***/
 const N_THREADS: usize = 50;
-const N_THROWS: u64 = 20_000_000_000;
+const N_MILESTONES: u16 = 1000;
+const N_THROWS: u64 = 20_000_000;
 const N_ROLLS: u8 = 5;
 const N_BINS: usize = (N_ROLLS + 1) as usize;
 
@@ -32,11 +33,20 @@ fn work(tx: Sender<[u128; N_BINS]>) {
 }
 
 
+fn print_info() {
+    println!("#dadi:   {N_ROLLS}");
+    println!("#lanci:  {N_THROWS}");
+    println!("#volte:  {N_MILESTONES}");
+    println!("#thread: {N_THREADS}");
+    let total: u128 = (N_ROLLS as u128)*(N_THROWS as u128)*(N_MILESTONES as u128)*(N_THREADS as u128);
+    println!("#totale: {total}");
+}
+
+
 fn main() {
-    /*** Setup ***/
-    println!("[i] Lancio {N_ROLLS} dadi {N_THROWS} volte su ognuno dei {N_THREADS} thread.");
+    print_info();
+    /*** Spawn threads ***/
     let (tx, rx) = mpsc::channel::<[u128;N_BINS]>();
-    /*** Threads ***/
     for _i in 0..N_THREADS {
         let txi = tx.clone();
         thread::spawn(move ||{ work(txi); });
@@ -53,10 +63,6 @@ fn main() {
             break;
         }
     }
-    // /*** Join all threads ***/
-    // for thread in threads {
-    //     thread.join().unwrap();
-    // }
     /*** Output ***/
     for m in 0..N_BINS {
         let bin = bins[m];
