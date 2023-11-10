@@ -7,6 +7,7 @@
 \usepackage{tabularray}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{xfrac}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -188,96 +189,83 @@ Le misure di $g$ ottenute sono pertanto ampiamente consistenti con il valore att
 }
 
 \section{Caduta libera con velocità iniziale}
+\subsection{Esperienza e procedimento di misura}
+Ripetiamo 5 volte i seguenti passaggi (con $i\in\left[1;5\right]\cap\mathbb{N}$):
 \begin{enumerate}
-    \item Consideriamo la distanza tra i due fototraguardi e impostiamo i fotodiodi
-          del contatore su A+B.
-    \item Usando solo
-    \begin{enumerate}
-        \item Appeso il campione alla molla, allineiamo i due fototraguardi
-              aiutandoci con la livella, in modo tale che possano rilevare
-              le oscillazioni nel modo più accurato possibile;
-        \item Tiriamo leggermente il campione verso il basso e poi lo rilasciamo,
-              in modo che il sistema molla inizi a oscillare con direzione
-              il più possibile parallela a $\vec{g}$;
-        \item Attesa la stabilizzazione dell’oscillazione, avviamo
-              l'acquisizione della misura di un tempo (20 periodi)
-              $20T_i$.
-        \item Ripetiamo molte volte (in tutto $N_{20T_i}$) i punti
-              (b) e (c). In particolare, $N_{20T_A} = N_{20T_B} = 25$
-              e $N_{20T_C} = N_{20T_{A+B}} = 30$.
-    \end{enumerate}
-    \item Infine, misuriamo con la bilancia, separatamente,
-          la massa della molla $m_m$ e la massa del gancio $m_g$.
+    \item
+        Spostiamo il secondo fototraguardo ad una distanza dal primo a piacere;
+        misuriamo poi con il metro a nastro tale distanza $d_i$.\\
+        \emph{
+            \textbf{Nota.} A differenza di prima, stavolta non ci sono state
+            particolari difficoltà relativi alla misura di $d_i$; di conseguenza,
+            il gruppo di lavoro ha utilizzato $\delta d_i = \qty{1}{mm}$, ovvero
+            la sensibilità dello strumento.
+        }
+    \item
+        Acceso e impostato adeguatamente il contatore di impulsi, sganciamo la
+        sferetta $A$ e ne misuriamo 50 volte il tempo di caduta fra i due
+        fototraguardi.
 \end{enumerate}
 
-Infatti, nel caso dinamico, il contributo di queste masse
-\emph{non} si annulla; in particolare, la massa del gancio
-contribuisce appieno (in quanto è solidale col grave),
-mentre la massa della molla contribuisce per circa
-$\frac{1}{3}$. La massa effettiva da considerare per ogni grave
-sarà allora:
-\[\best{\left(\left(m_\text{eff}\right)_i\right)} = \best{\left(m_i\right)} + \best{\left(m_g\right)} + \frac{1}{3}\best{\left(m_m\right)}\]
-\[\delta \left(m_\text{eff}\right)_i = \delta m_i + \delta m_g + \frac{1}{3}\delta m_m\]
+\emph{
+    \textbf{Notazione.} Indicheremo con $\left(t_i\right)_j$
+    ogni $j$-esima misura del tempo di caduta lungo l'$i$-esima distanza
+    $\left(j\in\left[0;50\right)\cap\mathbb{N}\right)$,
+    mentre con $\overline{t_i}$ il tempo di caduta medio.
+    In particolare:\[
+        \delta\!\left(\overline{t_i}\right) = \sigma_{\overline{t_i}} =
+        \frac{\sigma_{t_i}}{\sqrt{50}} = \frac{\sigma_{t_i}}{5\sqrt{2}}.
+    \]
+}
 
-Di seguito sono riportate le distribuzioni dei dati raccolti:
+
+\emph{
+    \textbf{Osservazione.} Poiché i due fototraguardi registrano l'evento
+    del passaggio della pallina allo stesso modo, la distanza percorsa dalla
+    pallina nel tempo $\overline{t_i}$ è semplicemente $d_i$.\\
+    Inoltre, poiché il primo fototraguardo rimane fisso, la velocità iniziale
+    $v_0$ della pallina resta costante durante tutto l'esperimento.
+}
+
+\subsection{Analisi dei dati raccolti e conclusioni}
+Fissato un sistema di riferimento solidale all'apparato di misura, con origine
+nella posizione del primo fototraguardo e $\hat{x}=\hat{g}$, possiamo scrivere
+la seguente legge del moto:
+\[x(t) = \frac{1}{2} g t^2 + v_0 t\]
+Possiamo linearizzare questa equazione dividendo ambo i membri per $t$:
+\[\frac{x(t)}{t} = \frac{1}{2} g t + v_0\]
+Nei termini delle nostre misure:
+\begin{equation}\label{eq:2}
+    \frac{d_i}{t_i} = \frac{1}{2} g t_i + v_0
+\end{equation}
+
+\emph{
+    \textbf{Osservazione.} $d_i/t_i$ è, per definizione, la velocità
+    media della sferetta nell'intervallo di tempo $t_i$.
+}
+
+Per determinare $g$ e $v_0$, possiamo semplicemente effettuare una regressione
+lineare (pesata\footnote{
+    \emph{Vedi} \emph{Osservazione} successiva.
+}) con equazione (\ref{eq:2}).
+
+Qui riportiamo gli istogrammi dei tempi misurati, seguiti da una tabella
+riassuntiva e dal grafico della regressione lineare, assieme ai relativi risultati:
 
 \begin{figure}[H]
-    %\includegraphics[trim={2cm 1.8cm .7cm 1.5cm},width=.5\textwidth]{Dinamico1.jpg}
-    %\includegraphics[trim={.7cm 1.8cm 2cm 1.5cm},width=.5\textwidth]{Dinamico2.jpg}
-    \caption{Istogrammi dei periodi delle oscillazioni di $A$ e $B$}
-\end{figure}\begin{figure}[H]
-    %\includegraphics[trim={2cm 1.8cm .7cm 1.5cm},width=.5\textwidth]{Dinamico3.jpg}
-    %\includegraphics[trim={.7cm 1.8cm 2cm 1.5cm},width=.5\textwidth]{Dinamico4.jpg}
-    \caption{Istogrammi dei periodi delle oscillazioni di $C$ e $A+B$}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{t1.jpg}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{t2.jpg}
+    \\
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{t3.jpg}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{t4.jpg}
+    \\
+    \hspace{.5\textwidth}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{t5.jpg}
+    \caption{Istogrammi dei tempi misurati ($t_1,t_2,t_3,t_4,t_5$)}
 \end{figure}
 
-Poiché i nostri dati hanno assunto distribuzioni grossolanamente
-approssimabili a gaussiane, possiamo procedere al calcolo di $k$,
-utilizzando, per ogni grave $i$, i seguenti valori:
-\[
-    \left(20T_i\right)_\text{best} = \overline{20T_i}
-    \qquad\wedge\qquad
-    \delta\left(20T_i\right) =
-    \sigma_{\overline{20T_i}} =
-    \frac{\sigma_{20T_i}}{\sqrt{N_{20T_i}}}
-\]
-dove $\overline{20T_i}$ e $\sigma_{20T_i}$ indicano rispettivamente
-media e deviazione standard dei tempi.
-
-Per determinare la costante elastica della molla, abbiamo effettuato
-una regressione lineare (stavolta pesata) sui quadrati dei valori medi
-dei tempi ($T_i^2$, con
-$\delta T_i^2 = 5 \cdot 10^{-3} (20 T_i)_\text{best} \delta(20 T_i)$
-)\footnote[2]{
-    La formula per l'errore su $T_i^2$ segue direttamente dalla
-    propagazione degli errori:
-    \[
-        \frac{\delta T_i^2}{\left(T_i^2\right)_\text{best}} = 2\frac{\delta T_i}{{\left(T_i\right)}_\text{best}}
-        \qquad
-        \delta T_i^2 = 2\left(T_i\right)_\text{best}\delta T_i
-        \qquad
-        \delta T_i^2 = \frac{\left(20T_i\right)_\text{best}(\delta 20T_i)}{200}
-    \]
-    da cui quanto riportato sopra.
-    Si osservi che $\delta T_i^2$ dipende da
-    $\left(20T_i\right)_\text{best}$:
-    proprio questo è il motivo dietro alla scelta del metodo pesato
-    per la regressione lineare.
-} rispetto alla massa $\left(m_\text{eff}\right)_i$, facendo riferimento
-alla relazione $T_i^2 = \frac{4\pi^2}{k} \left(m_\text{eff}\right)_i$. Allora, detto $b$ il
-coefficiente angolare della retta di regressione, varrà:
-\[
-    k_\text{best}=\frac{4\pi^2}{b_\text{best}}
-    \qquad\wedge\qquad
-    \frac{\delta k}{k_\text{best}}=\frac{\delta b}{b_\text{best}}
-\]
-Si noti che, anche in questo caso, l'intercetta $a$ della retta dev'essere
-compatibile con $0$.
-
-Di seguito è riportata la retta di regressione, assieme ai risultati ottenuti:
-
 \begin{figure}[H]
-    %\includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{DinamicoReg.jpg}
+    \includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{Regressione.jpg}
     \caption{
         La retta di regressione (in rosso)
         e la sua regione di incertezza (in rosa).
