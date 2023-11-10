@@ -24,6 +24,7 @@ print(f"{ø2=}")
 print(f"{t2=}")
 print(f"{g2=}")
 print(f"{e2=}")
+print("---")
 
 d2 = 30.5
 d3 = 53.3
@@ -47,3 +48,13 @@ print(chauvenet(100, 503908.47, 270.92, 503250))
 print(chauvenet(100, 503908.47, 270.92, 503178))
 print(chauvenet(100, 503908.47, 270.92, 503248))
 # ----------- #
+
+# --- t AB --- #
+print(f"Chauvenet tab1: {chauvenet(50, 215424.04, 10.61, 215468)}")
+print(f"Chauvenet tab3#1: {chauvenet(50, 149764.84, 8.30, 149788)}")
+print(f"Chauvenet tab3#2: {chauvenet(50, 149764.84, 8.30, 149789)}")
+print(f"Chauvenet tab3#2: {chauvenet(50, 149764.84, 8.30, 149780)}")
+print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183688)}")
+print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183686)}")
+print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183731)}")
+print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183733)}")
