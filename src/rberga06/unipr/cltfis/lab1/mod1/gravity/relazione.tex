@@ -13,6 +13,21 @@
 \newcommand*{\pbest}[1]{\left({#1}_\text{best}\right)}
 \newcommand*{\pbestp}[1]{\left({\left(#1\right)}_\text{best}\right)}
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
+%% <custom footnotes/>
+%\newcounter{savefootnote}
+%\newcounter{symfootnote}
+%\newcommand{\symfootnote}[1]{%
+%   \setcounter{savefootnote}{\value{footnote}}%
+%   \setcounter{footnote}{\value{symfootnote}}%
+%   \ifnum\value{footnote}>8\setcounter{footnote}{0}\fi%
+%   \let\oldthefootnote=\thefootnote%
+%   \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+%   \footnote{#1}%
+%   \let\thefootnote=\oldthefootnote%
+%   \setcounter{symfootnote}{\value{footnote}}%
+%   \setcounter{footnote}{\value{savefootnote}}%
+%}
+%% </custom footnotes>
 \title{
     Laboratorio di Fisica 1\\
     R3: Misura del modulo del campo gravitazionale locale
@@ -29,6 +44,7 @@
     dapprima facendo cadere due palline da ferme, successivamente tenendo conto di distanze diverse e velocità iniziali diverse.
 \end{abstract}
 
+\setcounter{section}{-1}  % Count sections starting from 0
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
     \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
@@ -40,6 +56,7 @@
         Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
         \hline[dashed]
         Micrometro ad asta filettata & \qty{0.01}{mm} & \qty{25.00}{mm} & \qty{0.01}{mm} \\
+        \hline
         \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
@@ -55,35 +72,55 @@
         \hline[dashed]
         {Due sferette \\ (con diametri distinti)} & \SetCell[c=3]{l} {
             Indicheremo con $A,B$ le due sferette \\
-            e con $\diam_A,\diam_B$ i rispettivi diametri: \\
-            $\diam_A = \left(24.63\pm0.01\right)\unit{mm}$ \\
-            $\diam_B = \left(22.23\pm0.01\right)\unit{mm}$ \\
+            e con $\diam_A,\diam_B$ i rispettivi diametri. \\
         } \\
         \hline
     \end{tblr}
 \end{center}
 
-\section{Esperienza e procedimento di misura}
-\subsection{Misurazione di $\vec{g}$ con $v_0=0$}
+\section{Caduta libera dallo stato di quiete}
+\subsection{Esperienza e procedimento di misura}
 \begin{enumerate}
-    \item Misuriamo con il metro a nastro la distanza $d_0$ tra il centro
-          del pistone del sistema di sgancio e un fototraguardo.\\
-          Nel nostro caso, $d_0 = \left(125.9\pm 0.1\right)\unit{cm}$
-    \item Acceso e impostato adeguatamente il contatore di impulsi,
-          misuriamo 100 volte il tempo di caduta $t_i$
-          di ogni sferetta $i$ dal il sistema di sgancio fino al fototraguardo.
-          La distanza percorsa dalla sferetta in questo intervallo di tempo
-          sarà allora $d_0 - \frac{1}{2}\diam_i$.
+    \item
+        Misuriamo con il metro a nastro la distanza $d_0$ tra il centro
+        del pistone del sistema di sgancio e un fototraguardo.\\
+        Nel nostro caso, $d_0 = \left(125.9\pm 0.1\right)\unit{cm}$.
+    \item
+        Acceso e impostato adeguatamente il contatore di impulsi,
+        misuriamo 100 volte il tempo di caduta di ogni sferetta
+        $s\in\left\{A;B\right\}$
+        fra il sistema di sgancio e il fototraguardo.
 \end{enumerate}
 
+\emph{
+    \textbf{Notazione.} Indicheremo con $\left(t_s\right)_i$
+    ogni $i$-esima misura del tempo di caduta
+    $\left(i\in\left[0;100\right)\cap\mathbb{N}\right)$,
+    mentre con $\overline{t_s}$ il tempo di caduta medio.
+    In particolare:\[
+        \delta\!\left(\overline{t_s}\right) = \sigma_{\overline{t_s}} =
+        \frac{\sigma_{t_s}}{\sqrt{100}}   = \frac{\sigma_{t_s}}{10}.
+    \]
+}
+
+
+\emph{
+    \textbf{Osservazione.} Poiché il pistone tiene ferma la sferetta
+    per la parte centrale, mentre il fototraguardo rileva il passaggio
+    della pallina nel momento in cui il suo punto più basso interrompe il
+    fascio di luce (infrarossa), la distanza percorsa dalla sferetta $s$
+    nel tempo misurato non sarà semplicemente $d_0$, bensì
+    $d_0 - \frac{1}{2}\diam_s$.
+}
+
+\subsection{Analisi dei dati raccolti e conclusioni}
 Fissato un sistema di riferimento solidale all'apparato di misura, con origine
 nella posizione di partenza delle sferette e $\hat{x} = \hat{g}$, possiamo
 scrivere la seguente legge del moto:
 \[x(t) = \frac{1}{2}g t^2\]
-Per ogni sferetta $i$, posto $x\left(\overline{t_i}\right) = d_0 - \frac{1}{2}\diam_i$,
-la norma di $\vec{g}$ è ricavabile da:
+La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
 \[
-    g = \frac{2d_0 - \diam_i}{\left(\overline{t_i}\right)^2}
+    g_s = \frac{2d_0 - \diam_i}{\left(\overline{t_s}\right)^2}
     % \best{g} = \frac{2\best{\left(d_0\right)} - \bestp{\diam_i}}
     %                 {\bestp{\overline{t_i}}^2}
     % \qquad\wedge\qquad
@@ -91,40 +128,44 @@ la norma di $\vec{g}$ è ricavabile da:
     %                   {2\best{\left(d_0\right)} - \bestp{\diam_i}}
     %            + 2\frac{\sigma_{\overline{t_i}}}{\overline{t_i}}
 \]
-dove determiniamo l'errore su $g$ propagando gli errori su $d_0,\diam_i$ e
-$\overline{t_i}$, avendo posto
-\[
-    \delta\overline{t_i} =
-    \sigma_{\overline{t_i}} =
-    \frac{\sigma_{t_i}}{\sqrt{100}} =
-    \frac{\sigma_{t_i}}{10}.
-\]
-\\
+dove l'errore su $g_s$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
+$\overline{t_s}$.
 
 Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
-
+Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso, ovvero
+\[g=\left(9.806\pm0.001\right)\unit{m\per s^2},\]valutiamo, per ogni
+sferetta $s$, la seguente quantità:\[
+    \varepsilon_s = \frac{ \left|\bestp{g_s}-\best{g}\right| }
+                         { \delta g_s + \delta g }
+\] Allora la misura $g_s$ da noi ottenuta è compatibile con $g$ se e solo se
+$\varepsilon_s\le1$.
 
 \begin{figure}[H]
-    %\includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{SaticoReg.jpg}
-    \caption{Istogrammi dei dati $t_1$ e $t_2$ raccolti}
+    % trim={< v > ^}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{TempiA.jpg}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{TempiB.jpg}
+    \caption{Istogrammi dei dati raccolti ($t_A$ e $t_B$)}
 \end{figure}
+\vspace{.5cm}
 \begin{center}
     \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
-            $i$ &
-            $\diam_i\:(\unit{mm})$ &
-            $\overline{t_i}\:(\unit{ms})$ &
-            $g\:(\unit{m\per s^2})$ &
-            $\varepsilon$ \\
+            $s$ &
+            $\diam_s\:(\unit{mm})$ &
+            $\overline{t_s}\:(\unit{ms})$ &
+            $g_s\:(\unit{m\per s^2})$ &
+            $\varepsilon_s$ \\
         \hline
-        A & $24.63\pm0.01$ & $503.62\pm0.03$ & $9.83\pm0.02$ & $1.00$ \\
+        A & $24.62\pm0.01$ & $503.62\pm0.03$ & $9.83\pm0.02$ & $1.00$ \\
         \hline[dashed]
         B & $22.23\pm0.01$ & $503.91\pm0.03$ & $9.82\pm0.02$ & $0.93$ \\
         \hline
     \end{tblr}
 \end{center}
 
-\subsection{Misurazione del campo gravitazionale con $v_0\ne0$}
+\emph{\textbf{Osservazione.} ... [TODO]}
+
+\section{Caduta libera con velocità iniziale}
 \begin{enumerate}
     \item Consideriamo la distanza tra i due fototraguardi e impostiamo i fotodiodi
           del contatore su A+B.
