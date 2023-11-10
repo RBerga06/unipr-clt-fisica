@@ -70,10 +70,7 @@
             siano orizzontali.
         } \\
         \hline[dashed]
-        {Due sferette \\ (con diametri distinti)} & \SetCell[c=3]{l} {
-            Indicheremo con $A,B$ le due sferette \\
-            e con $\diam_A,\diam_B$ i rispettivi diametri. \\
-        } \\
+        Due sferette & \SetCell[c=3]{l} {Indicheremo con $A,B$ le due sferette.} \\
         \hline
     \end{tblr}
 \end{center}
@@ -83,8 +80,17 @@
 \begin{enumerate}
     \item
         Misuriamo con il metro a nastro la distanza $d_0$ tra il centro
-        del pistone del sistema di sgancio e un fototraguardo.\\
-        Nel nostro caso, $d_0 = \left(125.9\pm 0.1\right)\unit{cm}$.
+        del pistone del sistema di sgancio e un fototraguardo e con il
+        micrometro ad asta filettata i diametri $\diam_A,\diam_B$ delle
+        due sferette.\\
+        Nel nostro caso, $d_0 = \left(125.8\pm 0.3\right)\unit{cm}$.\\
+        \emph{
+            \textbf{Nota.} Il gruppo di lavoro ha stimato
+            $\delta d_0 = \qty{0.3}{cm}$ nonostante la sensibilità
+            del metro sia notevolmente inferiore, a causa della difficoltà
+            nel determinare il centro del pistone e la posizione precisa del
+            fascio a infrarossi del fototraguardo.
+        }
     \item
         Acceso e impostato adeguatamente il contatore di impulsi,
         misuriamo 100 volte il tempo di caduta di ogni sferetta
@@ -119,7 +125,7 @@ nella posizione di partenza delle sferette e $\hat{x} = \hat{g}$, possiamo
 scrivere la seguente legge del moto:
 \[x(t) = \frac{1}{2}g t^2\]
 La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
-\[
+\begin{equation}\label{eq:1}
     g_s = \frac{2d_0 - \diam_i}{\left(\overline{t_s}\right)^2}
     % \best{g} = \frac{2\best{\left(d_0\right)} - \bestp{\diam_i}}
     %                 {\bestp{\overline{t_i}}^2}
@@ -127,7 +133,7 @@ La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
     % \errrel{g} = \frac{2\left(\delta d_0\right) - \delta \diam_i}
     %                   {2\best{\left(d_0\right)} - \bestp{\diam_i}}
     %            + 2\frac{\sigma_{\overline{t_i}}}{\overline{t_i}}
-\]
+\end{equation}
 dove l'errore su $g_s$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
 $\overline{t_s}$.
 
@@ -135,10 +141,12 @@ Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
 Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso, ovvero
 \[g=\left(9.806\pm0.001\right)\unit{m\per s^2},\]valutiamo, per ogni
 sferetta $s$, la seguente quantità:\[
-    \varepsilon_s = \frac{ \left|\bestp{g_s}-\best{g}\right| }
+    \varepsilon_s = \frac{ \bestp{g_s}-\best{g} }
                          { \delta g_s + \delta g }
 \] Allora la misura $g_s$ da noi ottenuta è compatibile con $g$ se e solo se
-$\varepsilon_s\le1$.
+$\left|\varepsilon_s\right|\le1$; inoltre, dal segno di $\varepsilon_s$ è possibile
+sapere se $g_s$ misurata è una sovrastima ($\varepsilon_s>0$) o una sottostima
+($\varepsilon_s<0$).
 
 \begin{figure}[H]
     % trim={< v > ^}
@@ -156,14 +164,28 @@ $\varepsilon_s\le1$.
             $g_s\:(\unit{m\per s^2})$ &
             $\varepsilon_s$ \\
         \hline
-        A & $24.62\pm0.01$ & $503.62\pm0.03$ & $9.83\pm0.02$ & $1.00$ \\
+        A & $24.62\pm0.01$ & $503.63\pm0.02$ & $9.82\pm0.02$ & $+0.68$ \\
         \hline[dashed]
-        B & $22.23\pm0.01$ & $503.91\pm0.03$ & $9.82\pm0.02$ & $0.93$ \\
+        B & $22.23\pm0.01$ & $503.93\pm0.02$ & $9.82\pm0.02$ & $+0.59$ \\
         \hline
     \end{tblr}
 \end{center}
 
-\emph{\textbf{Osservazione.} ... [TODO]}
+Le misure di $g$ ottenute sono pertanto ampiamente consistenti con il valore atteso.
+
+\emph{
+    \textbf{Osservazione.} Dai valori di $\varepsilon$ non emerge una differenza
+    significativa fra le due sferette. In particolare, sembra che l'attrito viscoso
+    dell'aria abbia agito in maniera trascurabile (come ci aspettavamo).\\
+    Tuttavia, dopo una più attenta analisi, è comunque possibile notare una tendenza:
+    in media, la sferetta con raggio maggiore ha percorso la stessa distanza in un
+    tempo leggermente minore.
+    Pertanto, ciò potrebbe suggerire un effetto molto ridotto dell'attrito dell'aria;
+    questa tendenza però non è rispecchiata dai valore di $\varepsilon$,
+    probabilmente a causa di una sovrastima della distanza $d_0$. Si noti infatti che
+    dal segno degli $\varepsilon$, entrambe le misure di $g$ sono risultate sovrastime,
+    mentre, nell'equazione (\ref{eq:1}), $d_0$ è al numeratore.
+}
 
 \section{Caduta libera con velocità iniziale}
 \begin{enumerate}
