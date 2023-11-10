@@ -8,7 +8,7 @@ t2 = Datum(503929.60, 246.21/10)/1_000_000
 ø2 = Datum(22.23, 0.01)/1_000
 x = Datum(125.8, 0.3)/100
 
-g  = Datum(9.805, 0.001)
+g  = Datum(9.806, 0.001)
 g1 = (2*x-ø1)/(t1**2)
 g2 = (2*x-ø2)/(t2**2)
 
@@ -58,3 +58,7 @@ print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183688)}")
 print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183686)}")
 print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183731)}")
 print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183733)}")
+
+# ----------- #
+gm = Datum(9.86, 0.12)
+print((gm.best - g.best)/(gm.delta + g.delta))
