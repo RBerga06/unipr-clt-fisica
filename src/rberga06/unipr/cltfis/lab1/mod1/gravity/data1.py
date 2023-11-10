@@ -1,3 +1,4 @@
+from math import erf
 from ...datum import Datum
 
 t1 = Datum(503619.48, 256.71/10)/1_000_000
@@ -29,3 +30,20 @@ d3 = 53.3
 d4 = 68.4
 d1 = 83.6
 d5 = 106.5
+
+### Chauvenet ###
+def chauvenet(N: int, µ: float, s: float, sosp: float) -> bool:
+    t = abs(sosp - µ)/s
+    p = 1 - erf(t)
+    n = N * p
+    return n < .5
+
+# --- t1 --- #
+print(chauvenet(100, 503619.48, 256.71, 502791))
+print(chauvenet(100, 503619.48, 256.71, 502882))
+print(chauvenet(100, 503619.48, 256.71, 504247))
+# --- t2 ---- #
+print(chauvenet(100, 503908.47, 270.92, 503250))
+print(chauvenet(100, 503908.47, 270.92, 503178))
+print(chauvenet(100, 503908.47, 270.92, 503248))
+# ----------- #
