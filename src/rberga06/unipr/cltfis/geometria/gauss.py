@@ -409,9 +409,9 @@ def gauss[K: (R, C)](M: Matrix[K], /) -> Matrix[K]:
         M.swap_rows(0, i)
         i += 1
     # Ora il primo elemento è sicuramente un perno. Sottraiamo le volte necessarie ogni riga
-    x = M[0,0]
+    r = M[0,:]/M[0,0]
     for i in range(1, M.m):
-        M[i,:] += M[0,:]*cast(K, -M[i,0]/x)
+        M[i,:] -= r * M[i,0]
     # Ora la prima colonna è tutta di zeri (a parte il perno): procedi senza prima riga e prima colonna
     return M[0,:] & (M[1:,0] | gauss(M[1:,1:]))
 
