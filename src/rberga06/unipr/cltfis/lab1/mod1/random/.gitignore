@@ -1,0 +1,3 @@
+/media/*
+!/media/videos/
+/media/videos/*/*/partial_movie_files
