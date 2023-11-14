@@ -136,16 +136,16 @@ La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
     %            + 2\frac{\sigma_{\overline{t_i}}}{\overline{t_i}}
 \end{equation}
 dove l'errore su $g_s$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
-$\overline{t_s}$.
+$\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti).
 
 Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
-Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso, ovvero
-$g=\qty{9.806}{m\per s^2}$, valutiamo, per ogni sferetta $s$, la seguente quantità:\[
-\varepsilon_s = \frac{\bestp{g_s} - g}{\delta g_s}
-\] Allora la misura $g_s$ da noi ottenuta è compatibile con $g$ se e solo se
+Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso
+($g_\text{attesa}=\qty{9.806}{m\per s^2}$), valutiamo, per ogni sferetta $s$, la seguente quantità
+(adimensionale):\[\varepsilon_s = \frac{\bestp{g_s} - g_\text{attesa}}{\delta g_s}
+\] Allora la misura $g_s$ da noi ottenuta è compatibile con $g_\text{attesa}$ se e solo se
 $\left|\varepsilon_s\right|\le1$; inoltre, dal segno di $\varepsilon_s$ è possibile
-sapere se $g_s$ misurata è una sovrastima ($\varepsilon_s>0$) o una sottostima
-($\varepsilon_s<0$).
+determinare se $g_s$ misurata è una sovrastima ($\varepsilon_s>0$) o una sottostima
+($\varepsilon_s<0$) del valore atteso.
 
 \begin{figure}[H]
     % trim={< v > ^}
@@ -181,7 +181,7 @@ Le misure di $g$ ottenute sono pertanto ampiamente consistenti con il valore att
     tempo leggermente minore.
     Pertanto, ciò potrebbe suggerire un effetto molto ridotto dell'attrito dell'aria;
     questa tendenza però non è rispecchiata dai valore di $\varepsilon$,
-    probabilmente a causa di una sovrastima della distanza $d_0$. Si noti infatti che
+    probabilmente a causa di una sovrastima della distanza $d_0$. Si noti infatti che,
     dal segno degli $\varepsilon$, entrambe le misure di $g$ sono risultate sovrastime,
     mentre, nell'equazione (\ref{eq:1}), $d_0$ è al numeratore.
 }
