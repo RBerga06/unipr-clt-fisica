@@ -394,31 +394,3 @@ def mat[K: (R, C)](
     if (not it) or isinstance(it[0], Iterable):
         return Matrix[K](it)  # type: ignore
     return Matrix.from_cols([it])  # type: ignore
-
-
-def gauss[K: (R, C)](M: Matrix[K], /) -> Matrix[K]:
-    # Se la matrice è nulla, abbiamo finito
-    if not M:
-        return M
-    # Se la prima colonna è nulla, ignorala
-    if not M[:,0]:
-        return M[:,0] | gauss(M[:,1:])
-    # Fintanto che il primo elemento è uno 0, scambia la prima riga con un'altra
-    i = 1
-    while not M[0,0]:
-        M.swap_rows(0, i)
-        i += 1
-    # Ora il primo elemento è sicuramente un perno. Sottraiamo le volte necessarie ogni riga
-    r = M[0,:]/M[0,0]
-    for i in range(1, M.m):
-        M[i,:] -= r * M[i,0]
-    # Ora la prima colonna è tutta di zeri (a parte il perno): procedi senza prima riga e prima colonna
-    return M[0,:] & (M[1:,0] | gauss(M[1:,1:]))
-
-
-m1 = Matrix([
-    [1,  0,  0, 0],
-    [0,  1,  1, 5],
-    [1, -1,  0, 0],
-    [1,  1, -1, 2],
-])
