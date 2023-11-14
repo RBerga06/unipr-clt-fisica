@@ -140,10 +140,8 @@ $\overline{t_s}$.
 
 Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
 Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso, ovvero
-\[g=\left(9.806\pm0.001\right)\unit{m\per s^2},\]valutiamo, per ogni
-sferetta $s$, la seguente quantità:\[
-    \varepsilon_s = \frac{ \bestp{g_s}-\best{g} }
-                         { \delta g_s + \delta g }
+$g=\qty{9.806}{m\per s^2}$, valutiamo, per ogni sferetta $s$, la seguente quantità:\[
+\varepsilon_s = \frac{\bestp{g_s} - g}{\delta g_s}
 \] Allora la misura $g_s$ da noi ottenuta è compatibile con $g$ se e solo se
 $\left|\varepsilon_s\right|\le1$; inoltre, dal segno di $\varepsilon_s$ è possibile
 sapere se $g_s$ misurata è una sovrastima ($\varepsilon_s>0$) o una sottostima
@@ -165,9 +163,9 @@ sapere se $g_s$ misurata è una sovrastima ($\varepsilon_s>0$) o una sottostima
             $g_s\:(\unit{m\per s^2})$ &
             $\varepsilon_s$ \\
         \hline
-        A & $24.62\pm0.01$ & $503.63\pm0.02$ & $9.82\pm0.02$ & $+0.64$ \\
+        A & $24.62\pm0.01$ & $503.63\pm0.02$ & $9.82\pm0.02$ & $+0.67$ \\
         \hline[dashed]
-        B & $22.23\pm0.01$ & $503.93\pm0.02$ & $9.82\pm0.02$ & $+0.55$ \\
+        B & $22.23\pm0.01$ & $503.93\pm0.02$ & $9.82\pm0.02$ & $+0.57$ \\
         \hline
     \end{tblr}
 \end{center}
@@ -307,8 +305,7 @@ I risultati della regressione lineare sono i seguenti:
 Confrontiamo ora il $g$ misurato con il valore atteso
 $\left(9.805 \pm 0.001\right)\unit{m\per s^2}$,
 calcolando, come prima, il numero puro: \[
-\varepsilon = \frac{\bestp{g_\text{misurato}} - \bestp{g_\text{atteso}}}
-                   {\delta g_\text{misurato} + \delta g_\text{atteso}}
+\varepsilon = \frac{\bestp{g_\text{misurato}} - g_\text{atteso}}{\delta g_\text{misurato}}
 \]
 Per noi, $\varepsilon = +0.45$, quindi la misura di $g$ che abbiamo
 trovato è pienamente compatibile con il valore atteso.
