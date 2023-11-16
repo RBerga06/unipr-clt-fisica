@@ -21,6 +21,10 @@ build-backend = "pdm.backend"
 package-dir = "src"
 includes = ["src/rberga06/"]
 
+[tool.pdm.dev-dependencies]
+dev = [
+    "setuptools>=68.2.2",
+]
 [tool.ruff]
 line-length = 120
 ignore = [
