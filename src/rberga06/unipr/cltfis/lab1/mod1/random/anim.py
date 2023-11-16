@@ -14,7 +14,7 @@ from manim import *
 from manim.typing import Point3D
 
 from .utils import Dyn
-from .manim_utils import Anim
+from .manim_utils import AnimMut, AnimUpd
 
 
 def load_file() -> Iterator[list[float]]:
@@ -103,8 +103,8 @@ def histpts(hist: BarChart, ys: list[float]) -> Iterator[Point3D]:
     for i, y in enumerate(ys):
         yield histpt(hist, i, y)
 
-def mkdot(p: Point3D) -> Circle:
-    dot = Circle(DEFAULT_DOT_RADIUS).move_to(p)
+def mkdot() -> Circle:
+    dot = Circle(DEFAULT_DOT_RADIUS)
     dot.set_fill(RED_E, opacity=1)
     dot.set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.3)
     return dot
@@ -114,31 +114,49 @@ class Poisson(Scene):
     @override
     def construct(self) -> None:
         bins: list[int] = [0]
-        n = 0  # n
-        µ = 0  # µ
+        n: int   = 0
+        µ: float = 0
 
-        # --- Histogram & Theorical dots ---
+        # --- Histogram ---
         hist = mkhist(*bins)
-        dots = VGroup(mkdot(histpt(hist, 0, 0)))
 
         # --- Column labels ---
-        labels = Anim(Dyn(
+        labels = AnimUpd(Dyn(
             lambda: hist.get_bar_labels(font_size=26).set_stroke(
                 BLACK, width=DEFAULT_STROKE_WIDTH*.5, background=True,
             )
         ), Write, ReplacementTransform, Unwrite)
 
         # --- Counters ---
-        @Anim.dyn(Write, ReplacementTransform, Unwrite)
+        @AnimUpd.dyn(Write, ReplacementTransform, Unwrite)
         def text() -> VGroup:
             tn = MathTex(f"n = {n}")
             ta = MathTex(rf"\mu = {µ:.2f}").next_to(tn, DOWN).set_color(RED)
             ts = MathTex(rf"\sigma = {sqrt(µ):.2f}").next_to(ta, DOWN).set_color(RED)
             return VGroup(tn, ta, ts).to_edge(UP)
 
+        # --- Theorical dots ---
+        def _dotp(bin: int, /) -> Point3D:
+            return histpt(hist, bin, dist_vals[bin])
+
+        def mk_dot(bin: int, /) -> AnimMut[Circle]:
+            @AnimMut[Circle].const(
+                lambda dot: DrawBorderThenFill(dot.move_to(_dotp(bin))),  # type: ignore
+                lambda dot: dot.animate.move_to(_dotp(bin)),
+                FadeOut,
+            )
+            def dot() -> Circle:
+                return mkdot()
+            return dot
+
+        dist_vals: list[float]      = [0]
+        dots: list[AnimMut[Circle]] = [mk_dot(0)]
+
+        # --- Actual animations ---
         self.play(
-            DrawBorderThenFill(VGroup(hist, dots)),
-            text.intro(), Write(labels),
+            DrawBorderThenFill(hist),
+            text.intro(), labels.intro(),
+            *[d.intro() for d in dots],
         )
         for t, x in enumerate(load_poisson(1)):
             if N_MAX is not None:
@@ -149,30 +167,32 @@ class Poisson(Scene):
             n_old_dots = len(bins)
             while x >= (len_ := len(bins)):
                 bins.append(0)
-                dots.add(mkdot(histpt(hist, len_, 0)))
+                dots.append(mk_dot(len_))
             bins[x] += 1
             # Distribution fit
             µ, dist_vals = mybpoissont(bins)
             # Update Mobjects
             ohist, hist = hist, mkhist(*bins)
+            # Create dots animations
+            dots_anims: list[Animation] = []
+            for i, d in enumerate(dots):
+                if i < n_old_dots:
+                    dots_anims.append(d.morph())
+                else:
+                    dots_anims.append(d.intro())
             # Play animations
             self.play(
                 ReplacementTransform(ohist, hist),
                 text.morph(),
                 labels.morph(),
-                *[
-                    dot.animate.move_to(point)
-                    if i < n_old_dots else
-                    DrawBorderThenFill(dot.move_to(point))
-                    for i, (dot, point) in
-                    enumerate(zip(dots, histpts(hist, dist_vals)))
-                ],
+                *dots_anims,
                 run_time=self.__run_time(t),
             )
         self.wait(3)
         self.play(
             text.outro(),
             labels.outro(),
+            *[d.outro() for d in dots],
         )
         self.wait(.5)
 
