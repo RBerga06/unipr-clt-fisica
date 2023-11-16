@@ -3,8 +3,8 @@
 # pyright: reportMissingTypeStubs=false
 """MANIM utilities."""
 from dataclasses import dataclass, field
-from typing import Callable, override
-from .utils import Get
+from typing import Callable, Self, override
+from .utils import Dyn, Get
 from manim import Animation
 
 
@@ -15,6 +15,17 @@ class Anim[X](Get[X]):
     f_morph: Callable[[X, X], Animation]
     f_outro: Callable[[X],    Animation]
     last: X | None = field(init=False, default=None)
+
+    @classmethod
+    def dyn(
+        cls,
+        f_intro: Callable[[X], Animation],
+        f_morph: Callable[[X, X], Animation],
+        f_outro: Callable[[X], Animation],
+    ) -> Callable[[Callable[[], X]], Self]:
+        def convert(f: Callable[[], X], /) -> Self:
+            return cls(Dyn(f), f_intro, f_morph, f_outro)
+        return convert
 
     @override
     def get(self) -> X:

@@ -96,11 +96,6 @@ class Tr[X]:
         return _
 
 
-t = Tr(42)
-t.changed.connect(print)
-t._ = 69
-
-
 @dataclass(slots=True)
 class Computed[X]:
     """A computed Python object."""

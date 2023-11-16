@@ -15,8 +15,6 @@ from manim.typing import Point3D
 
 from .manim_utils import Anim
 
-from .utils import Dyn
-
 
 def load_file() -> Iterator[list[float]]:
     file = Path(__file__).parent/"simulazione.txt"
@@ -51,7 +49,7 @@ class Simulation(Scene):
 
 # --- Poisson ---
 
-N_MAX: int | None = None
+N_MAX: int | None = 10
 
 COLORS = [
     BLUE_E,
@@ -107,12 +105,6 @@ def histpts(hist: BarChart, ys: list[float]) -> Iterator[Point3D]:
     for i, y in enumerate(ys):
         yield histpt(hist, i, y)
 
-def mkcounter(n: int, a: float) -> VGroup:
-    tn = MathTex(f"n = {n}")
-    ta = MathTex(f"a = {a:.2f}").next_to(tn, DOWN).set_color(RED)
-    ts = MathTex(rf"\sigma = {sqrt(a):.2f}").next_to(ta, DOWN).set_color(RED)
-    return VGroup(tn, ta, ts).to_edge(UP)
-
 def mkdot(p: Point3D) -> Circle:
     dot = Circle(DEFAULT_DOT_RADIUS).move_to(p)
     dot.set_fill(RED_E, opacity=1)
@@ -127,8 +119,16 @@ class Poisson(Scene):
         hist, labels = mkhist(*bins)
         dots = VGroup(mkdot(histpt(hist, 0, 0)))
         n = 0  # n
-        a = 0  # µ
-        text = Anim(Dyn(lambda: mkcounter(n, a)), Write, ReplacementTransform, Unwrite)
+        avg = 0  # µ
+
+        @Anim.dyn(Write, ReplacementTransform, Unwrite)
+        def text() -> VGroup:
+            # --- Counters ---
+            tn = MathTex(f"n = {n}")
+            ta = MathTex(rf"\mu = {avg:.2f}").next_to(tn, DOWN).set_color(RED)
+            ts = MathTex(rf"\sigma = {sqrt(avg):.2f}").next_to(ta, DOWN).set_color(RED)
+            return VGroup(tn, ta, ts).to_edge(UP)
+
         self.play(
             DrawBorderThenFill(VGroup(hist, dots)),
             text.intro(), Write(labels),
@@ -138,17 +138,16 @@ class Poisson(Scene):
                 if t == N_MAX:
                     break
             # Make new empty bins if necessary
+            n = t + 1
             n_old_dots = len(bins)
             while x >= (len_ := len(bins)):
                 bins.append(0)
                 dots.add(mkdot(histpt(hist, len_, 0)))
             bins[x] += 1
             # Distribution fit
-            dist_avg, dist_vals = mybpoissont(bins)
+            avg, dist_vals = mybpoissont(bins)
             # Update Mobjects
             (ohist, olabels), (hist, labels) = (hist, labels), mkhist(*bins)
-            n = t+1
-            a = dist_avg
             # Play animations
             self.play(
                 ReplacementTransform(ohist, hist),
@@ -163,10 +162,11 @@ class Poisson(Scene):
                 ],
                 run_time=self.__run_time(t),
             )
-        self.wait(1)
+        self.wait(3)
         self.play(
             text.outro(),
         )
+        self.wait(.5)
 
     def __run_time(self, t: int) -> float:
         if t < 10:
@@ -191,3 +191,7 @@ class Poisson(Scene):
             return .5
         else:
             return 1
+
+
+if __name__ == "__main__":
+    Poisson().render(True)
