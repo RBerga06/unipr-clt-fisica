@@ -1,3 +1,4 @@
 /media/*
 !/media/videos/
+/media/videos/*/partial_movie_files
 /media/videos/*/*/partial_movie_files
