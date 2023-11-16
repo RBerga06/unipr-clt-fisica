@@ -13,6 +13,7 @@ from typing_extensions import override
 from manim import *
 from manim.typing import Point3D
 
+from .utils import Dyn
 from .manim_utils import Anim
 
 
@@ -95,9 +96,6 @@ def mkhist(*bins: float) -> BarChart:
         bar_colors=COLORS[:len(bins)],  # type: ignore
     ).shift(DOWN)
 
-def mkhistlbls(hist: BarChart) -> VGroup:
-    return hist.get_bar_labels(font_size=26).set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.5, background=True)
-
 def histpt(hist: BarChart, bin: int, y: float) -> Point3D:
     return hist.coords_to_point(bin + .5, y, 0)  # type: ignore
 
@@ -116,15 +114,23 @@ class Poisson(Scene):
     @override
     def construct(self) -> None:
         bins: list[int] = [0]
-        hist = mkhist(*bins)
-        labels = mkhistlbls(hist)
-        dots = VGroup(mkdot(histpt(hist, 0, 0)))
         n = 0  # n
         µ = 0  # µ
 
+        # --- Histogram & Theorical dots ---
+        hist = mkhist(*bins)
+        dots = VGroup(mkdot(histpt(hist, 0, 0)))
+
+        # --- Column labels ---
+        labels = Anim(Dyn(
+            lambda: hist.get_bar_labels(font_size=26).set_stroke(
+                BLACK, width=DEFAULT_STROKE_WIDTH*.5, background=True,
+            )
+        ), Write, ReplacementTransform, Unwrite)
+
+        # --- Counters ---
         @Anim.dyn(Write, ReplacementTransform, Unwrite)
         def text() -> VGroup:
-            # --- Counters ---
             tn = MathTex(f"n = {n}")
             ta = MathTex(rf"\mu = {µ:.2f}").next_to(tn, DOWN).set_color(RED)
             ts = MathTex(rf"\sigma = {sqrt(µ):.2f}").next_to(ta, DOWN).set_color(RED)
@@ -148,12 +154,12 @@ class Poisson(Scene):
             # Distribution fit
             µ, dist_vals = mybpoissont(bins)
             # Update Mobjects
-            (ohist, olabels), (hist, labels) = (hist, labels), mkhist(*bins)
+            ohist, hist = hist, mkhist(*bins)
             # Play animations
             self.play(
                 ReplacementTransform(ohist, hist),
                 text.morph(),
-                ReplacementTransform(olabels, labels),
+                labels.morph(),
                 *[
                     dot.animate.move_to(point)
                     if i < n_old_dots else
@@ -166,6 +172,7 @@ class Poisson(Scene):
         self.wait(3)
         self.play(
             text.outro(),
+            labels.outro(),
         )
         self.wait(.5)
 
