@@ -50,7 +50,7 @@ class Simulation(Scene):
 
 # --- Poisson ---
 
-N_MAX: int | None = 100
+N_MAX: int | None = 10
 
 COLORS = [
     BLUE_E,
@@ -72,7 +72,7 @@ def load_poisson(n: int) -> Iterator[int]:
 
 def ppoissont(a: float) -> Iterator[float]:
     for i in count():
-        yield exp(-a)*pow(a,i)/factorial(i)
+        yield exp(-a)*pow(a,i)/factorial(i)  # type: ignore
 
 def bpoissont(N: int, max: int, avg: float) -> list[float]:
     return [N*p for _, p in zip(range(max+1), ppoissont(avg))]
@@ -85,10 +85,12 @@ def mybpoissont(bins: list[int]) -> tuple[float, list[float]]:
     avg = sum(i*b for i, b in enumerate(bins))/s
     return avg, bpoissont(s, n-1, avg)
 
+def y_range(*bins: int) -> tuple[float, float]:
+    ymax = max(1, max(bins) + 1, sum(bins)//2)
+    dy = max(1, ymax//5)
+    return ymax, dy
 
-def mkhist(*bins: float) -> BarChart:
-    n = max(1, max(bins) + 1, sum(bins)//2)
-    d = max(1, n//5)
+def mkhist(n: float, d: float, *bins: float) -> BarChart:
     return BarChart(
         [*bins],
         bar_names=[f"{i}" for i in range(len(bins))],
@@ -96,7 +98,7 @@ def mkhist(*bins: float) -> BarChart:
         bar_colors=COLORS[:len(bins)],  # type: ignore
     ).shift(DOWN)
 
-def histpt(hist: BarChart, bin: int, y: float) -> Point3D:
+def histpt(hist: BarChart, bin: float, y: float) -> Point3D:
     return hist.coords_to_point(bin + .5, y, 0)  # type: ignore
 
 def histpts(hist: BarChart, ys: list[float]) -> Iterator[Point3D]:
@@ -118,7 +120,8 @@ class Poisson(Scene):
         µ: float = 0
 
         # --- Histogram ---
-        hist = mkhist(*bins)
+        ymax, dy = y_range(*bins)
+        hist = mkhist(ymax, dy, *bins)
 
         # --- Column labels ---
         labels = AnimUpd(Dyn(
@@ -134,6 +137,14 @@ class Poisson(Scene):
             ta = MathTex(rf"\mu = {µ:.2f}").next_to(tn, DOWN).set_color(RED)
             ts = MathTex(rf"\sigma = {sqrt(µ):.2f}").next_to(ta, DOWN).set_color(RED)
             return VGroup(tn, ta, ts).to_edge(UP)
+
+        # --- Average line ---
+        avg_line = AnimUpd(
+            Dyn(lambda: DashedLine(histpt(hist, µ, 0), histpt(hist, µ, ymax)).set_stroke(width=DEFAULT_STROKE_WIDTH*.5)),
+            DrawBorderThenFill,
+            ReplacementTransform,
+            FadeOut,
+        )
 
         # --- Theorical dots ---
         def _dotp(bin: int, /) -> Point3D:
@@ -155,8 +166,10 @@ class Poisson(Scene):
         # --- Actual animations ---
         self.play(
             DrawBorderThenFill(hist),
-            text.intro(), labels.intro(),
+            text.intro(),
             *[d.intro() for d in dots],
+            avg_line.intro(),
+            labels.intro(),
         )
         for t, x in enumerate(load_poisson(1)):
             if N_MAX is not None:
@@ -172,7 +185,8 @@ class Poisson(Scene):
             # Distribution fit
             µ, dist_vals = mybpoissont(bins)
             # Update Mobjects
-            ohist, hist = hist, mkhist(*bins)
+            ymax, dy = y_range(*bins)
+            ohist, hist = hist, mkhist(ymax, dy, *bins)
             # Create dots animations
             dots_anims: list[Animation] = []
             for i, d in enumerate(dots):
@@ -184,14 +198,16 @@ class Poisson(Scene):
             self.play(
                 ReplacementTransform(ohist, hist),
                 text.morph(),
-                labels.morph(),
                 *dots_anims,
+                avg_line.morph(),
+                labels.morph(),
                 run_time=self.__run_time(t),
             )
         self.wait(3)
         self.play(
             text.outro(),
             labels.outro(),
+            avg_line.outro(),
             *[d.outro() for d in dots],
         )
         self.wait(.5)
