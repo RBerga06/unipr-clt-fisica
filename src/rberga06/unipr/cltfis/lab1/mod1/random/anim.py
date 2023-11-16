@@ -13,6 +13,10 @@ from typing_extensions import override
 from manim import *
 from manim.typing import Point3D
 
+from .manim_utils import Anim
+
+from .utils import Dyn
+
 
 def load_file() -> Iterator[list[float]]:
     file = Path(__file__).parent/"simulazione.txt"
@@ -120,13 +124,14 @@ class Poisson(Scene):
     @override
     def construct(self) -> None:
         bins: list[int] = [0]
-        hist: BarChart
         hist, labels = mkhist(*bins)
         dots = VGroup(mkdot(histpt(hist, 0, 0)))
-        text = mkcounter(0, 0)
+        n = 0  # n
+        a = 0  # µ
+        text = Anim(Dyn(lambda: mkcounter(n, a)), Write, ReplacementTransform, Unwrite)
         self.play(
             DrawBorderThenFill(VGroup(hist, dots)),
-            Write(text), Write(labels),
+            text.intro(), Write(labels),
         )
         for t, x in enumerate(load_poisson(1)):
             if N_MAX is not None:
@@ -142,11 +147,12 @@ class Poisson(Scene):
             dist_avg, dist_vals = mybpoissont(bins)
             # Update Mobjects
             (ohist, olabels), (hist, labels) = (hist, labels), mkhist(*bins)
-            otext, text = text, mkcounter(t+1, dist_avg)
+            n = t+1
+            a = dist_avg
             # Play animations
             self.play(
                 ReplacementTransform(ohist, hist),
-                ReplacementTransform(otext, text),
+                text.morph(),
                 ReplacementTransform(olabels, labels),
                 *[
                     dot.animate.move_to(point)
@@ -158,6 +164,9 @@ class Poisson(Scene):
                 run_time=self.__run_time(t),
             )
         self.wait(1)
+        self.play(
+            text.outro(),
+        )
 
     def __run_time(self, t: int) -> float:
         if t < 10:
