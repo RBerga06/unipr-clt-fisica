@@ -49,7 +49,7 @@ class Simulation(Scene):
 
 # --- Poisson ---
 
-N_MAX: int | None = 10
+N_MAX: int | None = 100
 
 COLORS = [
     BLUE_E,
@@ -85,18 +85,18 @@ def mybpoissont(bins: list[int]) -> tuple[float, list[float]]:
     return avg, bpoissont(s, n-1, avg)
 
 
-def mkhist(*bins: float) -> tuple[BarChart, VGroup]:
+def mkhist(*bins: float) -> BarChart:
     n = max(1, max(bins) + 1, sum(bins)//2)
     d = max(1, n//5)
-    hist = BarChart(
+    return BarChart(
         [*bins],
         bar_names=[f"{i}" for i in range(len(bins))],
         y_range=[0, n, d],
         bar_colors=COLORS[:len(bins)],  # type: ignore
     ).shift(DOWN)
-    labels = hist.get_bar_labels(font_size=26)
-    labels.set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.5, background=True)
-    return hist, labels
+
+def mkhistlbls(hist: BarChart) -> VGroup:
+    return hist.get_bar_labels(font_size=26).set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.5, background=True)
 
 def histpt(hist: BarChart, bin: int, y: float) -> Point3D:
     return hist.coords_to_point(bin + .5, y, 0)  # type: ignore
@@ -116,17 +116,18 @@ class Poisson(Scene):
     @override
     def construct(self) -> None:
         bins: list[int] = [0]
-        hist, labels = mkhist(*bins)
+        hist = mkhist(*bins)
+        labels = mkhistlbls(hist)
         dots = VGroup(mkdot(histpt(hist, 0, 0)))
         n = 0  # n
-        avg = 0  # µ
+        µ = 0  # µ
 
         @Anim.dyn(Write, ReplacementTransform, Unwrite)
         def text() -> VGroup:
             # --- Counters ---
             tn = MathTex(f"n = {n}")
-            ta = MathTex(rf"\mu = {avg:.2f}").next_to(tn, DOWN).set_color(RED)
-            ts = MathTex(rf"\sigma = {sqrt(avg):.2f}").next_to(ta, DOWN).set_color(RED)
+            ta = MathTex(rf"\mu = {µ:.2f}").next_to(tn, DOWN).set_color(RED)
+            ts = MathTex(rf"\sigma = {sqrt(µ):.2f}").next_to(ta, DOWN).set_color(RED)
             return VGroup(tn, ta, ts).to_edge(UP)
 
         self.play(
@@ -145,7 +146,7 @@ class Poisson(Scene):
                 dots.add(mkdot(histpt(hist, len_, 0)))
             bins[x] += 1
             # Distribution fit
-            avg, dist_vals = mybpoissont(bins)
+            µ, dist_vals = mybpoissont(bins)
             # Update Mobjects
             (ohist, olabels), (hist, labels) = (hist, labels), mkhist(*bins)
             # Play animations
@@ -194,4 +195,5 @@ class Poisson(Scene):
 
 
 if __name__ == "__main__":
+    config.quality = "low_quality"
     Poisson().render(True)
