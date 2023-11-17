@@ -125,7 +125,7 @@ class Poisson(Scene):
 
         # --- Column labels ---
         labels = AnimUpd(Dyn(
-            lambda: hist.get_bar_labels(font_size=26).set_stroke(
+            lambda: hist.get_bar_labels(font_size=28).set_stroke(
                 BLACK, width=DEFAULT_STROKE_WIDTH*.5, background=True,
             )
         ), Write, ReplacementTransform, Unwrite)
@@ -140,7 +140,11 @@ class Poisson(Scene):
 
         # --- Average line ---
         avg_line = AnimUpd(
-            Dyn(lambda: DashedLine(histpt(hist, µ, 0), histpt(hist, µ, ymax)).set_stroke(width=DEFAULT_STROKE_WIDTH*.5)),
+            Dyn(lambda:
+                DashedLine(histpt(hist, µ, 0), histpt(hist, µ, ymax))
+                    .set_stroke(width=DEFAULT_STROKE_WIDTH*.5)
+                    .set_color(RED)
+            ),
             DrawBorderThenFill,
             ReplacementTransform,
             FadeOut,
