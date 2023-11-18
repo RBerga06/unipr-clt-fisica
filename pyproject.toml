@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "typing-extensions>=4.8.0",
     "matplotlib>=3.8.0",
+    "rberga06-phylab @ git+https://github.com/rberga06/pyphylab",
 ]
 requires-python = ">=3.12"
 readme = "README.md"

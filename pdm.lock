@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:6dfd91753c5ccf3edde645a21244e42350b273d76bf429233e96413b94d7944a"
+content_hash = "sha256:f69c5f3bb24493a190e4139295a429dbbbe40910429fc13e069820fbcbc5ef20"
 
 [[package]]
 name = "contourpy"
@@ -262,6 +262,14 @@ files = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
+
+[[package]]
+name = "rberga06-phylab"
+version = "0.1.0"
+requires_python = ">=3.12"
+git = "https://github.com/rberga06/pyphylab"
+revision = "d232bd43f35bd47afc93980bde0374d0890695d3"
+summary = "A small Python library for random daily use in the Physics laboratory"
 
 [[package]]
 name = "setuptools"
