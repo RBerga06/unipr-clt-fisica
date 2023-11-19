@@ -1,8 +1,14 @@
-/*** Constants ***/
-const N_THREADS: u8 = 50;
-const N_MILESTONES: u32 = 10_000;
-const N_THROWS: u32 = 2_000_000;
-const N_ROLLS: u8 = 5;
+/**** Architettura del programma ****
+ * Il lavoro viene spezzato fra i vari
+*/
+
+/* Costanti durante la compilazione */
+/// Parametri della simulazione
+const N_THREADS:    u8  = 50;        /// Numero di thread
+const N_MILESTONES: u32 = 10_000;    /// Numero di
+const N_THROWS:     u32 = 2_000_000;
+const N_ROLLS:      u8  = 5;
+/// Altre costanti
 const N_BINS: usize = (N_ROLLS + 1) as usize;
 const N_COUNT_TOTAL: u128 = (N_MILESTONES as u128) * (N_THREADS as u128);
 
