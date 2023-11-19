@@ -2,8 +2,7 @@
 from dataclasses import dataclass
 from typing import Protocol
 from typing_extensions import override
-from rberga06.phylab import Measure, Datum as DataPoint
-from ...core import π
+from rberga06.phylab import Measure, Datum as DataPoint, π
 
 
 class RealObject(Protocol):
