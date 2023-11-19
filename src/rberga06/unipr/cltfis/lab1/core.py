@@ -7,7 +7,7 @@ import math
 from typing import Callable, Literal, Self, final, overload
 from typing_extensions import override
 from matplotlib import pyplot as plt
-from .datum import Measure, Datum as DataPoint, π, g
+from rberga06.phylab import Measure, Datum as DataPoint, π, g
 from .dataset import DataSet
 
 

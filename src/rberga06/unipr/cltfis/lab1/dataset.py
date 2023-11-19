@@ -4,9 +4,9 @@
 from functools import cache
 from dataclasses import dataclass
 import math
-from typing import Callable, Iterable, Iterator, Protocol, Self, Sequence, overload
+from typing import Callable, Iterator, Protocol, Self, Sequence, overload
 from typing_extensions import override
-from .datum import Datum, Measure
+from rberga06.phylab import Datum, Measure
 
 
 class DataSetProto(Protocol):
@@ -81,14 +81,14 @@ class DataSet(DataSetProto):
         """Apply the given operation to all measures."""
         return self.chdata(tuple([f(x) for x in self.data]))
 
-    @classmethod
-    def new(
-        cls,
-        data: Iterable[Measure] | Iterable[tuple[float, float]] | Iterable[float],
-        /, *,
-        delta: float = 0,
-    ) -> Self:
-        return cls(tuple(Datum.new(best, delta=delta) for best in data))
+#     @classmethod
+#     def new(
+#         cls,
+#         data: Iterable[Measure] | Iterable[tuple[float, float]] | Iterable[float],
+#         /, *,
+#         delta: float = 0,
+#     ) -> Self:
+#         return cls(tuple(Datum.new(best, delta=delta) for best in data))
 
 
 __all__ = [
