@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xfrac}
+\newcommand*{\qed}{\blacksquare}
+\newcommand*{\oo}{\infty}
+\newcommand*{\limit}[2]{\lim_{#1\rightarrow#2}}
+\newcommand*{\sys}[1]{\left\{\begin{aligned}#1\end{aligned}\right.}
+\begin{document}
+
+\textbf{1. Data la funzione:}
+\[
+    f(x) = \begin{cases}
+        x^2       & x \le 0 \\
+        \sqrt{2x} & x > 0   \\
+    \end{cases}
+\]
+
+\textbf{a. Determinare l'immagine attraverso $f$ di $S=[-2;1]$.}
+L'immagine di $S$ attraverso $f$ è l'insieme di tutti i valori che $f$
+assume in corrispondenza dei punti di $S$:
+\[\begin{aligned}
+    f(\left[-2;1\right])
+    &= \left\{y\in\mathbb{R}\:|\:\exists x\in\left[-2;1\right]:y=f(x)\right\}
+\end{aligned}\]
+Risolviamo allora l'equazione $y = f(x)$, tenendo $y$ come parametro.
+I valori cercati di $y$ saranno allora tutti e soli quelli per i quali questa
+equazione ammette almeno una soluzione nell'intervallo specificato.
+\[y = f(x)\]
+\[\begin{aligned}
+    \:\\
+        \sys{&x\le0\\&y = x^2}
+        \quad&\vee\quad
+        \sys{&x > 0 \\ &y = \sqrt{2x}}
+    \\\:\\
+        \sys{&y\ge0\\&x\le 0\\&x=\pm\sqrt{y}}
+        \quad&\vee\quad
+        \sys{&y\ge0\\&x>0\\&y^2=2x}
+    \\\:\\
+        \sys{&y\ge0\\&x=-\sqrt{y}}
+        \quad&\vee\quad
+        \sys{&y\ge0\\&x=\frac{y^2}{2}}
+    \\\:\\
+        \sys{&y\ge0\\&x=-\sqrt{y}}
+        \quad&\vee\quad
+        \sys{&y\ge0\\&x=\frac{y^2}{2}}
+\end{aligned}\]
+Se $y<0$, sicuramente non ci sono soluzioni.
+Altrimenti, le soluzioni $x$ esistono, ma noi dobbiamo imporre che almeno una si
+trovi nell'intervallo $\left[-2;1\right]$. Le condizioni aggiuntive su $y$
+saranno allora:
+\[\begin{aligned}
+    \sys{&x\in\left[-2;1\right]\\&x=-\sqrt{y}}
+    \quad&\vee\quad
+    \sys{&x\in\left[-2;1\right]\\&x=\frac{y^2}{2}}
+    \\\:\\
+    -2\le-\sqrt{y}\le1
+    \quad&\vee\quad
+    -2\le\frac{y^2}{2}\le1
+    \\\:\\
+    2\ge\sqrt{y}\ge-1
+    \quad&\vee\quad
+    -4\le y^2\le2
+    \\\:\\
+    2\ge\sqrt{y}
+    \quad&\vee\quad
+    y^2\le2
+    \\\:\\
+    y\le4
+    \quad&\vee\quad
+    -\sqrt{2}\le y\le\sqrt{2}
+    \\\:\\
+    y&\le 4
+\end{aligned}\]
+A questo punto ci resta solo da intersecare questi valori di $y$ con $y\ge0$
+(la condizione trovata in precedenza): otteniamo allora $y\in\left[0;4\right]$.
+L'immagine di $S$ tramite $f$ sarà allora:
+
+\[\begin{aligned}
+    f(\left[-2;1\right])
+    = \left\{y\in\mathbb{R}\:|\:\exists x\in\left[-2;1\right]:y=f(x)\right\}
+    = \left[0; 4\right]\qquad\qed
+\end{aligned}\]
+
+\end{document}
