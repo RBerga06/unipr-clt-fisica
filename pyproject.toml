@@ -1,31 +1,19 @@
 [project]
-name = "rberga06-unipr-cltfis"
-version = "1.0.0"
+name = ""
+version = ""
 description = ""
 authors = [
     {name = "RBerga06", email = "78449715+RBerga06@users.noreply.github.com"},
 ]
 dependencies = [
     "typing-extensions>=4.8.0",
-    "matplotlib>=3.8.0",
+    "matplotlib>=3.8.2",
     "rberga06-phylab @ git+https://github.com/rberga06/pyphylab",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
-license = {text = "AGPL"}
+license = {text = "AGPL-3.0-only"}
 
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
-[tool.pdm.build]
-package-dir = "src"
-includes = ["src/rberga06/"]
-
-[tool.pdm.dev-dependencies]
-dev = [
-    "setuptools>=68.2.2",
-]
 [tool.ruff]
 line-length = 120
 ignore = [
