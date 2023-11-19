@@ -7,6 +7,8 @@
 \usepackage{tabularray}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{minted}
+\usepackage[page]{appendix}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -15,7 +17,7 @@
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
     Laboratorio di Fisica 1\\
-    R4: Rappresentazione delle distribuzioni di Bernoulli e Poisson
+    R4: Misura di variabili aleatorie
 }
 \author{Gruppo 17: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
 \date{8/11/2023 – 15/11/2023}
@@ -239,5 +241,14 @@ effetti possibile osservare che le distribuzioni da noi ottenute non sono,
 il più delle volte, del tutto simmetriche: la moda sembra essersi spostata
 leggermente a sinistra – un possibile sintomo dell'influenza di un
 errore sistematico sulle misure.
+
+\begin{appendices}
+    \section{Codice Rust per $5\cdot10^{12?}$ lanci di dadi}
+    Qui riportiamo il codice Rust, da noi scritto, che ci ha permesso di
+    lanciare virtualmente $5\cdot10^{12?}$ dadi in maniera estremamente
+    efficiente.
+
+    \inputminted[linenos, mathescape]{rust}{src/main.rs}
+\end{appendices}
 
 \end{document}
