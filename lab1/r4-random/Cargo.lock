@@ -62,7 +62,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rberga06-cltfis"
+name = "rberga06-cltfis-lab1-random"
 version = "0.1.0"
 dependencies = [
  "rand",

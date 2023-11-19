@@ -151,5 +151,8 @@
             ],
             "env": {}
         }
+    ],
+    "rust-analyzer.linkedProjects": [
+        "lab1/r4-random/Cargo.toml",
     ]
 }
