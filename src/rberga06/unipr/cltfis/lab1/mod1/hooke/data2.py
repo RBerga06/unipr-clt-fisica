@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from ...datum import Datum
+from rberga06.phylab import Datum
 
 # Masses
 MM = Datum(24.31, 0.01)

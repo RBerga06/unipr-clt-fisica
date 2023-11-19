@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # import matplotlib.pyplot as plt
 
-from ...datum import Datum, π, g
+from rberga06.phylab import Datum, π, g
 # from ...core import *
 
 

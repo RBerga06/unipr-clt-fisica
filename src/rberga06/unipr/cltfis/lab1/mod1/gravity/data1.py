@@ -1,5 +1,5 @@
 from math import erf
-from ...datum import Datum
+from rberga06.phylab import Datum
 
 t1 = Datum(503629.15, 225.71/10)/1_000_000
 t2 = Datum(503929.60, 246.21/10)/1_000_000
@@ -12,8 +12,8 @@ g  = Datum(9.806, 0)
 g1 = (2*x-ø1)/(t1**2)
 g2 = (2*x-ø2)/(t2**2)
 
-e1 = abs(g.best - g1.best)/(g.delta + g1.delta)
-e2 = abs(g.best - g2.best)/(g.delta + g2.delta)
+e1 = g1.ε(g)
+e2 = g2.ε(g)
 
 print(f"{ø1=}")
 print(f"{t1=}")
@@ -60,5 +60,4 @@ print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183731)}")
 print(f"Chauvenet tab4#1: {chauvenet(50, 183708.68, 10.14, 183733)}")
 
 # ----------- #
-gm = Datum(9.86, 0.12)
-print((gm.best - g.best)/(gm.delta + g.delta))
+print(Datum(9.86, 0.12).ε(g))
