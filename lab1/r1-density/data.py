@@ -5,6 +5,14 @@ from typing_extensions import override
 from rberga06.phylab import Measure, Datum as DataPoint, π
 
 
+def data_points(data: list[tuple[float, float]], /) -> list[DataPoint]:
+    return [DataPoint(*p) for p in data]
+
+def pick_best_point(points: list[DataPoint], /) -> DataPoint:
+    avg = sum([p.best for p in points])/len(points)
+    return min(points, key=lambda p: p.best - avg)
+
+
 class RealObject(Protocol):
     m: Measure
     V: Measure
@@ -55,17 +63,17 @@ class Sphere(RealObject):
 
 o1 = Parallelepiped(
     m = DataPoint(107.40, 0.01),
-    x = PickBestPoint(data_points([
+    x = pick_best_point(data_points([
         (39.90,0.05),
         (39.90,0.05),
         (39.90,0.05),
     ])),
-    y = PickBestPoint(data_points([
+    y = pick_best_point(data_points([
         (64.60, 0.05),
         (64.40, 0.05),
         (64.40, 0.05),
     ])),
-    z = PickBestPoint(data_points([
+    z = pick_best_point(data_points([
         (5.00, 0.05),
         (5.01, 0.01),
         (5.18, 0.01),
@@ -78,12 +86,12 @@ print(o1.d)
 
 o2 = Cylinder(
     m = DataPoint(41.21, 0.01),
-    h = PickBestPoint(data_points([
+    h = pick_best_point(data_points([
         (24.83, 0.01),
         (24.82, 0.01),
         (24.83, 0.01),
     ])),
-    ø = PickBestPoint(data_points([
+    ø = pick_best_point(data_points([
         (27.95, 0.05),
         (28.05, 0.05),
         (28.00, 0.05),
@@ -93,11 +101,11 @@ print(o2.V)
 print(o2.d)
 
 o3 = Sphere(
-    m = PickBestPoint(data_points([
+    m = pick_best_point(data_points([
         (35.81, 0.01),
         (35.81, 0.01),
     ])),
-    ø = PickBestPoint(data_points([
+    ø = pick_best_point(data_points([
         (20.63, 0.01),
         (20.63, 0.01),
         (20.64, 0.01),
@@ -108,12 +116,12 @@ print(o3.d)
 
 o4 = Cylinder(
     m = DataPoint(8.00, 0.01),
-    h = PickBestPoint(data_points([
+    h = pick_best_point(data_points([
         (77.75, 0.05),
         (77.80, 0.05),
         (77.80, 0.05),
     ])),
-    ø = PickBestPoint(data_points([
+    ø = pick_best_point(data_points([
         (6.97, 0.01),
         (6.97, 0.01),
         (6.98, 0.01),
