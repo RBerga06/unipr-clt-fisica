@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xfrac}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+\hskip -\arraycolsep
+\let\@ifnextchar\new@ifnextchar
+\array{#1}}
+\makeatother
+\newcommand*{\qed}{\blacksquare}
+\newcommand*{\M}[3]{\mathcal{M}_{#1\times#2} \left(#3\right)}
+\newcommand*{\MR}[2]{\M{#1}{#2}{\mathbb{R}}}
+\newcommand*{\MC}[2]{\M{#1}{#2}{\mathbb{C}}}
+\newcommand*{\MK}[2]{\M{#1}{#2}{\mathbb{K}}}
+\newcommand*{\T}[1]{{#1}^\text{T}}  % Trasposta di una matrice
+\newcommand*{\sys}[1]{\left\{\begin{array}{@{}l@{}}#1\end{array}\right.}
+\newcommand*{\m}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\DeclareMathOperator{\Tr}{Tr}  % Traccia di una matrice
+\DeclareMathOperator{\rg}{rg}  % Rango di una matrice
+\begin{document}
+
+Pag. 22 n. 3
+
+Punto 1.
+\[W=L\left(\m{1\\1\\1\\0},\m{1\\1\\0\\1},\m{1\\1\\2\\-1}\right)\]
+
+Determiniamo una base di $W$. Riducendo a scala, otteniamo che il rango della
+matrice $2$ e i perni corrispondono ai primi due vettori. Una base di $W$ è
+allora:
+
+\[B_W = \left\{\m{1\\1\\1\\0},\m{1\\1\\0\\1}\right\}\]
+
+\textbf{Punto 2.} Determiniamo equazioni cartesiane per $B_W$:
+
+\[
+    \m{[cc|c] 1&1&x_1\\1&1&x_2\\1&0&x_3\\0&1&x_4}
+    \longrightarrow
+    \m{[cc|c] 1&1&x_1\\0&-1&x_3-x_1\\0&0&x_2-x_1\\0&0&x_4+x_3-x_1}
+\]
+
+Allora:
+\[W = \left\{
+    \m{x_1\\x_2\\x_3\\x_4}\in\mathbb{R}^4:
+    x_2-x_1 = 0 \wedge x_4+x_3-x_1=0
+\right\}\]
+
+\[U: \sys{x_1-x_2+x_3-x_4=0\\x_2-3x_3+x_4=0}\]
+\[U = \left\{
+    \m{2x_3\\3x_3-x_4\\x_3\\x_4}:
+    x_3,x_4\in\mathbb{R}
+\right\}\]
+\[U: x_3\m{2\\3\\1\\0}+x_4\m{0\\-1\\0\\1},\quad x_3,x_4\in\mathbb{R}\]
+
+\textbf{Punto 4. $U+W=?$}
+
+\[U+W=L\left(\m{1\\1\\1\\0},\m{1\\1\\0\\1},\m{2\\3\\1\\0},\m{0\\-1\\0\\1}\right)\]
+
+\[
+    \m{
+        1&1&2&0\\
+        1&1&3&-1\\
+        1&0&1&0\\
+        0&1&0&1\\
+    }\longrightarrow\m{
+        1&1&2&0\\
+        0&1&0&-1\\
+        0&0&1&1\\
+        0&0&0&0\\
+    }
+\]
+
+Il rango è $3$, quindi l'ultimo vettore è combinazione linerare degli altri
+La dimensione di $U+W$ è $3$, e di conseguenza non può essere scritto come
+somma diretta degli altri.
+
+\[\mathbb{R}^4\]
+
+\[W = L\left(\m{1\\1\\k\\k},\m{1\\1\\1\\1},\m{1\\h\\h\\1}\right)\]
+\[U = L\left(\m{1\\1\\1\\h},\m{1\\k\\h\\1}\right)\]
+
+\subsection*{12.}
+
+\[\begin{aligned}
+    T:&\mathbb{R}^3&\longrightarrow&\mathbb{R}^4\\
+      &\m{1\\0\\0}&\longmapsto&\m{1\\0\\-1\\3}\\
+      &\m{0\\1\\0}&\longmapsto&\m{0\\3\\4\\1}\\
+      &\m{0\\0\\1}&\longmapsto&\m{1\\2\\1\\1}\\
+\end{aligned}\]
+
+
+\end{document}
