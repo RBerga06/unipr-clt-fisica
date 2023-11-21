@@ -4,6 +4,7 @@
 # pyright: reportMissingTypeStubs=false
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownArgumentType=false
+# ruff: noqa: E402
 """Mathematical ANIMations via MANIM."""
 from math import sqrt
 from pathlib import Path
@@ -13,14 +14,16 @@ from manim import *
 from manim.typing import Point3D
 from rberga06.phylab.poisson import Poisson
 
-from .utils import Dyn
-from .manim_utils import AnimMut, AnimUpd
+SRC = Path(__file__).parent
+
+from utils import Dyn
+from manim_utils import AnimMut, AnimUpd
 
 
 # --- Poisson ---
 
 N_MAX: int | None = 10
-FILE = Path(__file__).parent/"G171.txt"
+FILE = SRC.parent/"data/p1.txt"
 
 COLORS = [
     BLUE_E,
