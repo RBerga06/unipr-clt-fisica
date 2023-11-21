@@ -6,6 +6,7 @@
 # pyright: reportUnknownArgumentType=false
 # ruff: noqa: E402
 """Mathematical ANIMations via MANIM."""
+import sys
 from math import sqrt
 from pathlib import Path
 from typing import Iterator
@@ -15,6 +16,7 @@ from manim.typing import Point3D
 from rberga06.phylab.poisson import Poisson
 
 SRC = Path(__file__).parent
+sys.path.insert(0, str(SRC))
 
 from utils import Dyn
 from manim_utils import AnimMut, AnimUpd
