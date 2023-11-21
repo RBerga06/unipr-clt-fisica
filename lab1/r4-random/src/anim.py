@@ -137,7 +137,6 @@ class PoissonScene(Scene):
             # Make new dots if necessary
             n = t + 1
             dots += [mk_dot(i) for i in range(ndots, len(bins) - ndots)]
-            ndots = len(bins)
             # Distribution fit
             µ, dist_vals = P.average, [*P.expected()]
             # Update Mobjects
@@ -159,6 +158,7 @@ class PoissonScene(Scene):
                 labels.morph(),
                 run_time=self.__run_time(t),
             )
+            ndots = len(bins)
         self.wait(3)
         self.play(
             text.outro(),
