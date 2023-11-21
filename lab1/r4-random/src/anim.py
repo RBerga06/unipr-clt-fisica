@@ -5,13 +5,13 @@
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownArgumentType=false
 """Mathematical ANIMations via MANIM."""
-from itertools import count
-from math import exp, factorial, sqrt
+from math import sqrt
 from pathlib import Path
 from typing import Iterator
 from typing_extensions import override
 from manim import *
 from manim.typing import Point3D
+from rberga06.phylab.poisson import Poisson
 
 from .utils import Dyn
 from .manim_utils import AnimMut, AnimUpd
@@ -20,6 +20,7 @@ from .manim_utils import AnimMut, AnimUpd
 # --- Poisson ---
 
 N_MAX: int | None = 10
+FILE = Path(__file__).parent/"G171.txt"
 
 COLORS = [
     BLUE_E,
@@ -31,28 +32,11 @@ COLORS = [
     PURPLE_E,
 ]
 
-def load_poisson(n: int) -> Iterator[int]:
-    file = Path(__file__).parent/f"G17{n}.txt"
-    for s in file.read_text().strip().splitlines():
-        if not s:
-            continue
-        yield int(s)
-
-
-def ppoissont(a: float) -> Iterator[float]:
-    for i in count():
-        yield exp(-a)*pow(a,i)/factorial(i)  # type: ignore
-
-def bpoissont(N: int, max: int, avg: float) -> list[float]:
-    return [N*p for _, p in zip(range(max+1), ppoissont(avg))]
-
-def mybpoissont(bins: list[int]) -> tuple[float, list[float]]:
-    while bins[-1] == 0:  # exclude empty bins at the end
-        bins = bins[:-1]
-    s = sum(bins)
-    n = len(bins)
-    avg = sum(i*b for i, b in enumerate(bins))/s
-    return avg, bpoissont(s, n-1, avg)
+def load_data(file: Path) -> Iterator[int]:
+    return (
+        int(s) for s in map(str.strip, file.read_text().splitlines())
+        if s and not s.startswith("#")
+    )
 
 def y_range(*bins: int) -> tuple[float, float]:
     ymax = max(1, max(bins) + 1, sum(bins)//2)
@@ -81,7 +65,7 @@ def mkdot() -> Circle:
     return dot
 
 
-class Poisson(Scene):
+class PoissonScene(Scene):
     @override
     def construct(self) -> None:
         bins: list[int] = [0]
@@ -133,6 +117,7 @@ class Poisson(Scene):
                 return mkdot()
             return dot
 
+        ndots = 1
         dist_vals: list[float]      = [0]
         dots: list[AnimMut[Circle]] = [mk_dot(0)]
 
@@ -144,26 +129,24 @@ class Poisson(Scene):
             avg_line.intro(),
             labels.intro(),
         )
-        for t, x in enumerate(load_poisson(1)):
+        for t, P in enumerate(Poisson.mk_iter_cumulative(load_data(FILE))):
+            bins = [len(b) for b in P.bins]
             if N_MAX is not None:
                 if t == N_MAX:
                     break
-            # Make new empty bins if necessary
+            # Make new dots if necessary
             n = t + 1
-            n_old_dots = len(bins)
-            while x >= (len_ := len(bins)):
-                bins.append(0)
-                dots.append(mk_dot(len_))
-            bins[x] += 1
+            dots += [mk_dot(i) for i in range(ndots, len(bins) - ndots)]
+            ndots = len(bins)
             # Distribution fit
-            µ, dist_vals = mybpoissont(bins)
+            µ, dist_vals = P.average, [*P.expected()]
             # Update Mobjects
             ymax, dy = y_range(*bins)
             ohist, hist = hist, mkhist(ymax, dy, *bins)
             # Create dots animations
             dots_anims: list[Animation] = []
             for i, d in enumerate(dots):
-                if i < n_old_dots:
+                if i < ndots:
                     dots_anims.append(d.morph())
                 else:
                     dots_anims.append(d.intro())
@@ -212,4 +195,4 @@ class Poisson(Scene):
 
 if __name__ == "__main__":
     config.quality = "low_quality"
-    Poisson().render(True)
+    PoissonScene().render(True)
