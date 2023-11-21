@@ -17,37 +17,6 @@ from .utils import Dyn
 from .manim_utils import AnimMut, AnimUpd
 
 
-def load_file() -> Iterator[list[float]]:
-    file = Path(__file__).parent/"simulazione.txt"
-    for line in file.read_text().splitlines():
-        if not line:
-            continue
-        if line.startswith("#"):
-            continue
-        bins = [*map(int, line.strip().split("\t")[1:])]
-        t = sum(bins)
-        yield [x/t for x in bins]
-
-
-class Simulation(Scene):
-    @override
-    def construct(self) -> None:
-        chart = BarChart(
-            [0.]*6,
-            bar_names=[*map(str, range(6))],
-            y_range=[0,.4,.1],
-        )
-        self.add(chart)
-        self.wait(1)
-        for i, bins in enumerate(load_file()):
-            if i == 100:
-                break
-            self.play(
-                chart.animate.change_bar_values(bins),
-                run_time=.1,
-            )
-
-
 # --- Poisson ---
 
 N_MAX: int | None = 10
