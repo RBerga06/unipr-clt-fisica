@@ -31,13 +31,32 @@
     esperimenti distinti, rispettivamente il lancio dei dadi e il decadimento radioattivo.
 \end{abstract}
 
-\section{Materiali e strumenti di misura utilizzati}
+\section{Processo di Bernoulli}
+\subsection{Materiali e strumenti di misura utilizzati}
+\begin{center}
+    \begin{tblr}{ |Q[l,m]|Q[c,m]| }
+        \hline
+        \textbf{Materiali} & \textbf{Descrizione/Note} \\
+        \hline
+        {Sei dadi} & Di colori diversi per poterli identificare facilmente \\
+        \hline
+        {Calcolatore} & Computer portatile (Intel core i5 dual-core \qty{1,6}{GHz}) \\
+        \hline
+    \end{tblr}
+\end{center}
+
+\subsection{Esperienza}
+Eseguiamo 400 lanci simultanei dei sei dadi, riportando in una tabella il risultato di ognuno
+di essi ordinati secondo una successione cromatica prestabilita;
+
+\section{Processo di Poisson}
+\subsection{Materiali e strumenti di misura utilizzati}
 \begin{center}
     \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        {Contatore Geiger} & \qty{0}{0} & \qty{0}{0} & \qty{0}{0} \\
+        {Contatore Geiger} & \qty{1}{conteggi \per s} & ??? & \qty{1}{conteggi \per s} \\
         \hline[dashed]
         Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
         \hline
@@ -46,20 +65,19 @@
         {Sei dadi} & \SetCell[c=3]{l} {
             Usati per riprodurre un processo\\
             bernoulliano.
-        } \\
-        \hline[dashed]
-        {Campione di Torio-232} & \SetCell[c=3]{l} {
-            Usato per riprodurre un processo\\
-            poissoniano.
-        } \\
+            } \\
+            \hline[dashed]
+            {Campione di Torio-232} & \SetCell[c=3]{l} {
+                Usato per riprodurre un processo\\
+                poissoniano.
+            } \\
         \hline
     \end{tblr}
 \end{center}
 
-\section{Esperienza e procedimento di misura}
-\subsection{Esperienza sulla distribuzione di Bernoulli}
+
+\subsection{Esperienza e procedimento di misura}
 \begin{enumerate}
-    \item Eseguiamo 300 lanci simultanei dei sei dadi, riportando in una tabella il risultato di ognuno di essi distinguendoli per il colore;
     \item Acceso e impostato adeguatamente il contatore Geiger (intervalli di tempo di un secondo?), misuriamo per 5? diverse distanze tra contatore e campione il numero di raggi $\gamma$ emessi da quest'ultimo in tot intervalli da un secondo.
 \end{enumerate}
 
