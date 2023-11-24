@@ -5,8 +5,6 @@ DIR = Path(__file__).parent
 NA = int(6.022e23)
 T12 = 14.5e9 * 365 * 24 * 60 * 60
 Mn = 1.68e-27
-# Mp = 1.673e-27
-# Me = 9.11e-31
 r = 0.007
 
 def merge(file1: Path, file2: Path, output: Path, sep: str = "\n") -> None:
