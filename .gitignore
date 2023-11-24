@@ -163,6 +163,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+# --- Manim ---
+**/media/Tex/
+**/media/videos/**/partial_movie_files/
+
 # --- LaTeX ---
 *.aux
 *.fdb_latexmk
