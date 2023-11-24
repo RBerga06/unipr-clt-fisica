@@ -19,7 +19,7 @@ sys.path.insert(0, str(SRC))
 sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
 
 from rberga06.phylab.poisson import Poisson
-from rberga06.phylab.manim import hist as rb06hist
+from rberga06.phylab.manim import DEFAULT_BAR_COLORS, hist_discrete as rb06hist
 from utils import Dyn
 from manim_utils import AnimMut, AnimUpd
 
@@ -29,15 +29,6 @@ from manim_utils import AnimMut, AnimUpd
 N_MAX: int | None = 10
 FILE = SRC.parent/"data/p1.txt"
 
-COLORS = [
-    BLUE_E,
-    TEAL_E,
-    GREEN_E,
-    GOLD_E,
-    YELLOW_E,
-    MAROON_E,
-    PURPLE_E,
-]
 
 def load_data(file: Path) -> Iterator[int]:
     return (
@@ -50,12 +41,13 @@ def y_range(*bins: int) -> tuple[float, float]:
     dy = max(1, ymax//5)
     return ymax, dy
 
-def mkhist(n: float, d: float, *bins: float) -> BarChart:
-    return BarChart(
-        [*bins],
-        bar_names=[f"{i}" for i in range(len(bins))],
+def mkhist(P: Poisson[int], n: float, d: float) -> BarChart:
+    nbins = len(P.bins)
+    return rb06hist(
+        P,
+        bar_names=[f"{i}" for i in range(nbins)],
+        bar_colors=DEFAULT_BAR_COLORS[:nbins],
         y_range=[0, n, d],
-        bar_colors=COLORS[:len(bins)],  # type: ignore
     ).shift(DOWN)
 
 def histpt(hist: BarChart, bin: float, y: float) -> Point3D:
@@ -78,10 +70,6 @@ class PoissonScene(Scene):
         bins: list[int] = [0]
         n: int   = 0
         µ: float = 0
-
-        # --- Histogram ---
-        ymax, dy = y_range(*bins)
-        hist = mkhist(ymax, dy, *bins)
 
         # --- Column labels ---
         labels = AnimUpd(Dyn(
@@ -112,7 +100,10 @@ class PoissonScene(Scene):
 
         # --- Theorical dots ---
         def _dotp(bin: int, /) -> Point3D:
-            return histpt(hist, bin, dist_vals[bin])
+            return histpt(
+                hist, bin,
+                dist_vals[bin] if bin < len(dist_vals) else 0
+            )
 
         def mk_dot(bin: int, /) -> AnimMut[Circle]:
             @AnimMut[Circle].const(
@@ -124,32 +115,24 @@ class PoissonScene(Scene):
                 return mkdot()
             return dot
 
-        ndots = 1
-        dist_vals: list[float]      = [0]
-        dots: list[AnimMut[Circle]] = [mk_dot(0)]
-
         # --- Actual animations ---
-        self.play(
-            DrawBorderThenFill(hist),
-            text.intro(),
-            *[d.intro() for d in dots],
-            avg_line.intro(),
-            labels.intro(),
-        )
+        ndots = 0
+        dots: list[AnimMut[Circle]] = []
         for t, P in enumerate(Poisson.mk_iter_cumulative(load_data(FILE))):
-            bins = [len(b.data) for b in P.bins]
+            bins = [len(b.data) for b in P.bins] or [0]
             if N_MAX is not None:
                 if t == N_MAX:
                     break
-            n = t + 1
+            n = t
             # Make new dots if necessary
-            dots += [mk_dot(i) for i in range(ndots, len(bins) - ndots)]
+            dots += [mk_dot(i) for i in range(ndots, len(bins)+1 - ndots)]
             # Distribution fit
             µ, dist_vals = P.average, [*P.expected()]
-            print(bins, dist_vals)
             # Update Mobjects
             ymax, dy = y_range(*bins)
-            ohist, hist = hist, mkhist(ymax, dy, *bins)
+            hist_anim = ReplacementTransform(
+                locals().get("hist"), (hist := mkhist(P, ymax, dy))
+            )
             # Create dots animations
             dots_anims: list[Animation] = []
             for i, d in enumerate(dots):
@@ -158,14 +141,23 @@ class PoissonScene(Scene):
                 else:
                     dots_anims.append(d.intro())
             # Play animations
-            self.play(
-                ReplacementTransform(ohist, hist),
-                text.morph(),
-                *dots_anims,
-                avg_line.morph(),
-                labels.morph(),
-                run_time=self.__run_time(t),
-            )
+            if t == 0:
+                self.play(
+                    DrawBorderThenFill(hist),
+                    text.intro(),
+                    *dots_anims,
+                    avg_line.intro(),
+                    labels.intro(),
+                )
+            else:
+                self.play(
+                    hist_anim,
+                    text.morph(),
+                    *dots_anims,
+                    avg_line.morph(),
+                    labels.morph(),
+                    run_time=self.__run_time(t),
+                )
             ndots = len(bins)
         self.wait(3)
         self.play(
@@ -173,6 +165,7 @@ class PoissonScene(Scene):
             labels.outro(),
             avg_line.outro(),
             *[d.outro() for d in dots],
+            Unwrite(hist),
         )
         self.wait(.5)
 
