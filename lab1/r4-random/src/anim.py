@@ -13,11 +13,13 @@ from typing import Iterator
 from typing_extensions import override
 from manim import *
 from manim.typing import Point3D
-from rberga06.phylab.poisson import Poisson
 
 SRC = Path(__file__).parent
 sys.path.insert(0, str(SRC))
+sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
 
+from rberga06.phylab.poisson import Poisson
+from rberga06.phylab.manim import hist as rb06hist
 from utils import Dyn
 from manim_utils import AnimMut, AnimUpd
 
@@ -135,15 +137,16 @@ class PoissonScene(Scene):
             labels.intro(),
         )
         for t, P in enumerate(Poisson.mk_iter_cumulative(load_data(FILE))):
-            bins = [len(b) for b in P.bins]
+            bins = [len(b.data) for b in P.bins]
             if N_MAX is not None:
                 if t == N_MAX:
                     break
-            # Make new dots if necessary
             n = t + 1
+            # Make new dots if necessary
             dots += [mk_dot(i) for i in range(ndots, len(bins) - ndots)]
             # Distribution fit
             µ, dist_vals = P.average, [*P.expected()]
+            print(bins, dist_vals)
             # Update Mobjects
             ymax, dy = y_range(*bins)
             ohist, hist = hist, mkhist(ymax, dy, *bins)

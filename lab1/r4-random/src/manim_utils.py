@@ -4,7 +4,7 @@
 """MANIM utilities."""
 from dataclasses import dataclass, field
 from typing import Callable, Self, override
-from .utils import Const, Dyn, Get
+from utils import Const, Dyn, Get
 from manim import Animation
 
 
