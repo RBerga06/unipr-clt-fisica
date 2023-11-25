@@ -212,7 +212,7 @@ name = "rberga06-phylab"
 version = "0.1.0"
 requires_python = ">=3.12"
 git = "https://github.com/rberga06/pyphylab"
-revision = "2b6ab7b2c285c28f6e160ad049184824388867f7"
+revision = "3f28f9f57f3fd001e3f2df62ac851a9f5e4e7022"
 summary = "A small Python library for random daily use in the Physics laboratory"
 
 [[package]]
