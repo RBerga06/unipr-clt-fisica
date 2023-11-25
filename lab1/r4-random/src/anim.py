@@ -12,7 +12,6 @@ from pathlib import Path
 from typing import Iterator
 from typing_extensions import override
 from manim import *
-from manim.typing import Point3D
 
 SRC = Path(__file__).parent
 sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
@@ -32,9 +31,6 @@ def load_data(file: Path) -> Iterator[int]:
         int(s) for s in map(str.strip, file.read_text().splitlines())
         if s and not s.startswith("#")
     )
-
-def histpt(hist: BarChart, bin: float, y: float) -> Point3D:
-    return hist.coords_to_point(bin + .5, y, 0)  # type: ignore
 
 
 class PoissonScene(Scene):
@@ -74,11 +70,7 @@ class PoissonScene(Scene):
             y_range=[0, *self.y_range],
         ).shift(DOWN)
         # Average line
-        self.hist_avg = DashedLine(
-            histpt(hist, self.P.average, 0),
-            histpt(hist, self.P.average, self.y_range[0]),
-        ).set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
-        hist.add(self.hist_avg)
+        hist.add_avg_line().set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
         # Bar labels
         hist.add_bar_labels(font_size=28).set_stroke(
             BLACK, width=DEFAULT_STROKE_WIDTH*.6, background=True,
@@ -88,7 +80,7 @@ class PoissonScene(Scene):
             Circle(DEFAULT_DOT_RADIUS)
                 .set_fill(RED_E, opacity=1)
                 .set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.3)
-                .move_to(histpt(hist, i, h))
+                .move_to(hist.pt(i, h))
             for i, h in enumerate(self.P.expected())
         ])
         hist.add(self.hist_dots)
