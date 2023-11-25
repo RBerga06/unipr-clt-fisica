@@ -80,7 +80,7 @@ class PoissonScene(Scene):
             Circle(DEFAULT_DOT_RADIUS)
                 .set_fill(RED_E, opacity=1)
                 .set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.3)
-                .move_to(hist.pt(i, h))
+                .move_to(hist.pt(i, h * self.N))
             for i, h in enumerate(self.P.expected())
         ])
         hist.add(self.hist_dots)
