@@ -18,7 +18,7 @@ SRC = Path(__file__).parent
 sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
 
 from rberga06.phylab.poisson import Poisson
-from rberga06.phylab.manim import DEFAULT_BAR_COLORS, hist_discrete as rb06hist
+from rberga06.phylab.manim.hist import DEFAULT_BAR_COLORS, DiscreteDistributionHistogram
 
 
 # --- Poisson ---
@@ -60,14 +60,14 @@ class PoissonScene(Scene):
         return y, d
 
     # --- Mobjects ---
-    hist: BarChart
+    hist: DiscreteDistributionHistogram[Poisson[int]]
     hist_avg: DashedLine
     hist_dots: VGroup
     texts: VGroup
 
-    def mkhist(self, /) -> BarChart:
+    def mkhist(self, /):
         # Histogram
-        hist = rb06hist(
+        hist = DiscreteDistributionHistogram(
             self.P,
             bar_names=[f"{i}" for i in range(self.nbins)],
             bar_colors=DEFAULT_BAR_COLORS[:self.nbins],
@@ -80,10 +80,9 @@ class PoissonScene(Scene):
         ).set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
         hist.add(self.hist_avg)
         # Bar labels
-        hist.bar_labels = hist.get_bar_labels(font_size=28).set_stroke(
+        hist.add_bar_labels(font_size=28).set_stroke(
             BLACK, width=DEFAULT_STROKE_WIDTH*.6, background=True,
         )
-        hist.add(hist.bar_labels)
         # Theorical dots
         self.hist_dots = VGroup(*[
             Circle(DEFAULT_DOT_RADIUS)
