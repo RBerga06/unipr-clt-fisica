@@ -15,7 +15,6 @@ from manim import *
 from manim.typing import Point3D
 
 SRC = Path(__file__).parent
-sys.path.insert(0, str(SRC))
 sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
 
 from rberga06.phylab.poisson import Poisson
