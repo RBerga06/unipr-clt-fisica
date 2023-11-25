@@ -9,7 +9,7 @@
 """Mathematical ANIMations via MANIM."""
 import sys
 from pathlib import Path
-from typing import Iterator
+from typing import Iterator, ClassVar
 from typing_extensions import override
 from manim import *
 
@@ -23,7 +23,6 @@ from rberga06.phylab.manim.hist import DEFAULT_BAR_COLORS, DiscreteDistributionH
 # --- Poisson ---
 
 N_MAX: int | None = None
-FILE = SRC.parent/"data/p1.txt"
 
 
 def load_data(file: Path) -> Iterator[int]:
@@ -34,6 +33,7 @@ def load_data(file: Path) -> Iterator[int]:
 
 
 class PoissonScene(Scene):
+    FILE: ClassVar[Path]
     # --- Distribution stats ---
     P: Poisson[int]
 
@@ -93,7 +93,7 @@ class PoissonScene(Scene):
     @override
     def construct(self) -> None:
         # --- Load data (as an iterator) ---
-        Pit = Poisson.mk_iter_cumulative(load_data(FILE))
+        Pit = Poisson.mk_iter_cumulative(load_data(self.FILE))
         # --- Intro animations ---
         self.P = next(Pit)
         self.hist  = self.adding(self.mkhist())
@@ -141,6 +141,28 @@ class PoissonScene(Scene):
             return 1
 
 
+class PoissonSceneMeme(PoissonScene):
+    FILE = SRC.parent/"data/p-1.txt"
+
+class PoissonScene0(PoissonScene):
+    FILE = SRC.parent/"data/p0.txt"
+
+class PoissonScene1(PoissonScene):
+    FILE = SRC.parent/"data/p1.txt"
+
+class PoissonScene2(PoissonScene):
+    FILE = SRC.parent/"data/p2.txt"
+
+class PoissonScene3(PoissonScene):
+    FILE = SRC.parent/"data/p3.txt"
+
+class PoissonScene4(PoissonScene):
+    FILE = SRC.parent/"data/p4.txt"
+
+class PoissonScene5(PoissonScene):
+    FILE = SRC.parent/"data/p5.txt"
+
+
 if __name__ == "__main__":
     config.quality = "low_quality"
-    PoissonScene().render(True)
+    PoissonScene1().render(True)
