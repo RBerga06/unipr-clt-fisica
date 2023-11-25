@@ -69,20 +69,15 @@ class PoissonScene(Scene):
             bar_colors=DEFAULT_BAR_COLORS[:self.nbins],
             y_range=[0, *self.y_range],
         ).shift(DOWN)
-        # Average line
         hist.add_avg_line().set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
-        # Bar labels
-        hist.add_bar_labels(font_size=28).set_stroke(
-            BLACK, width=DEFAULT_STROKE_WIDTH*.6, background=True,
+        hist.add_bar_labels(font_size=30).set_stroke(
+            BLACK, width=DEFAULT_STROKE_WIDTH*.7, background=True,
         )
         # Theorical dots
         self.hist_dots = VGroup(*[
-            Circle(DEFAULT_DOT_RADIUS)
-                .set_fill(RED_E, opacity=1)
-                .set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.3)
-                .move_to(hist.pt(i, h * self.N))
+            Circle(DEFAULT_DOT_RADIUS).move_to(hist.pt(i, h))
             for i, h in enumerate(self.P.expected())
-        ])
+        ]).set_fill(RED_E, opacity=1).set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.3)
         hist.add(self.hist_dots)
         # Return
         return hist
