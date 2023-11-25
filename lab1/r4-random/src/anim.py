@@ -22,7 +22,7 @@ from rberga06.phylab.manim.hist import DEFAULT_BAR_COLORS, DiscreteDistributionH
 
 # --- Poisson ---
 
-N_MAX: int | None = 10
+N_MAX: int | None = 0
 FILE = SRC.parent/"data/p1.txt"
 
 
@@ -80,10 +80,11 @@ class PoissonScene(Scene):
         return hist
 
     def mktexts(self, /) -> VGroup:
-        tn = MathTex(f"n = {self.N}").to_edge(UP)
-        ta = MathTex(rf"\mu = {self.P.average:.2f}").next_to(tn, DOWN).set_color(RED)
-        ts = MathTex(rf"\sigma = {self.P.sigma:.2f}").next_to(ta, DOWN).set_color(RED)
-        return VGroup(tn, ta, ts)
+        return VGroup(
+            MathTex(f"n = {self.N}")                               .shift(  UP*.7),
+            MathTex(rf"\mu = {self.P.average :.2f}").set_color(RED),
+            MathTex(rf"\sigma = {self.P.sigma:.2f}").set_color(RED).shift(DOWN*.6),
+        ).to_edge(UP)
 
     def adding[T: Mobject](self, obj: T, /) -> T:
         self.add(obj)
