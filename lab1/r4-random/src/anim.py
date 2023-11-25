@@ -22,7 +22,7 @@ from rberga06.phylab.manim.hist import DEFAULT_BAR_COLORS, DiscreteDistributionH
 
 # --- Poisson ---
 
-N_MAX: int | None = 100
+N_MAX: int | None = None
 FILE = SRC.parent/"data/p1.txt"
 
 
