@@ -36,6 +36,7 @@ def load_data(file: Path) -> Iterator[int]:
 
 class PoissonScene(Scene):
     FILE: ClassVar[Path]
+    final_N: int
     final_colors: list[ManimColor]
     # --- Distribution stats ---
     P: Poisson[int]
@@ -100,8 +101,13 @@ class PoissonScene(Scene):
     def construct(self) -> None:
         # --- Load data & decide colors ---
         P_FINAL = Poisson([*load_data(self.FILE)])
+        self.final_N = len(P_FINAL.data)
         self.final_colors = cast(list[ManimColor], color_gradient(DEFAULT_BAR_COLORS, len(P_FINAL.bins)))
-        Ps = [*Poisson.mk_iter_cumulative(P_FINAL.data, custom_bins_start=P_FINAL.bins_start, custom_bins_stop=P_FINAL.bins_stop)]
+        Ps = [*Poisson.mk_iter_cumulative(
+            P_FINAL.data,
+            custom_bins_start=P_FINAL.bins_start,
+            custom_bins_stop=P_FINAL.bins_stop,
+        )]
         # --- Intro animations ---
         self.P     = Ps[0]
         self.hist  = self.adding(self.mkhist())
@@ -137,14 +143,12 @@ class PoissonScene(Scene):
             return .2
         elif t < 100:
             return .1
-        elif t < 3600:
+        elif t < self.final_N - 50:
             return .001
-        elif t < 3640:
-            return .05
-        elif t < 3645:
+        elif t < self.final_N - 10:
+            return .01
+        elif t < self.final_N - 5:
             return .1
-        elif t < 3650:
-            return .5
         else:
             return 1
 
