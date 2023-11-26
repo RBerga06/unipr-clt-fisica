@@ -9,7 +9,7 @@
 """Mathematical ANIMations via MANIM."""
 import sys
 from pathlib import Path
-from typing import Iterator, ClassVar
+from typing import Iterator, ClassVar, cast
 from typing_extensions import override
 from manim import *
 
@@ -20,9 +20,10 @@ from rberga06.phylab.poisson import Poisson
 from rberga06.phylab.manim.hist import DEFAULT_BAR_COLORS, DiscreteDistributionHistogram
 
 
-# --- Poisson ---
-
 N_MAX: int | None = None
+
+
+config.max_files_cached = 10_000
 
 
 def load_data(file: Path) -> Iterator[int]:
@@ -34,12 +35,17 @@ def load_data(file: Path) -> Iterator[int]:
 
 class PoissonScene(Scene):
     FILE: ClassVar[Path]
+    final_colors: list[ManimColor]
     # --- Distribution stats ---
     P: Poisson[int]
 
     @property
     def N(self, /) -> int:
         return len(self.P.data)
+
+    @property
+    def xbins(self, /) -> tuple[int, ...]:
+        return tuple([int(b.center) for b in self.P.bins])
 
     @property
     def bins(self, /) -> tuple[int, ...]:
@@ -65,9 +71,8 @@ class PoissonScene(Scene):
         # Histogram
         hist = DiscreteDistributionHistogram(
             self.P,
-            bar_names=[f"{i}" for i in range(self.nbins)],
-            bar_colors=DEFAULT_BAR_COLORS[:self.nbins],
             y_range=[0, *self.y_range],
+            bar_colors=self.final_colors[self.xbins[0]:self.xbins[-1]+1],
         ).shift(DOWN)
         hist.add_avg_line().set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
         hist.add_expected_dots().set_fill(RED_E, opacity=1).set_stroke(
@@ -92,16 +97,18 @@ class PoissonScene(Scene):
 
     @override
     def construct(self) -> None:
-        # --- Load data (as an iterator) ---
-        Pit = Poisson.mk_iter_cumulative(load_data(self.FILE))
+        # --- Load data & decide colors ---
+        P_FINAL = Poisson([*load_data(self.FILE)])
+        self.final_colors = cast(list[ManimColor], color_gradient(DEFAULT_BAR_COLORS, len(P_FINAL.bins)))
+        Ps = [*Poisson.mk_iter_cumulative(P_FINAL.data, custom_bins_start=P_FINAL.bins_start, custom_bins_stop=P_FINAL.bins_stop)]
         # --- Intro animations ---
-        self.P = next(Pit)
+        self.P     = Ps[0]
         self.hist  = self.adding(self.mkhist())
         self.texts = self.adding(self.mktexts())
         everything = VGroup(*self.mobjects)
         self.play(Write(everything))
         # --- Transform animations ---
-        for P in Pit:
+        for P in Ps[1:]:
             self.P = P
             if (N_MAX is not None) and (self.N == N_MAX + 1):
                 break
