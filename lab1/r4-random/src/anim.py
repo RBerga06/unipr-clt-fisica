@@ -7,6 +7,7 @@
 # pyright: reportConstantRedefinition=false
 # ruff: noqa: E402
 """Mathematical ANIMations via MANIM."""
+from math import ceil
 import sys
 from pathlib import Path
 from typing import Iterator, ClassVar, cast
@@ -57,7 +58,7 @@ class PoissonScene(Scene):
 
     @property
     def y_range(self, /) -> tuple[int, int]:
-        y = max(1, max(self.bins) + 1, self.N // 2)
+        y = max(1, max(self.bins) + 1, int(ceil(max(self.P.expected()))))
         d = max(1, y // 5)
         return y, d
 
