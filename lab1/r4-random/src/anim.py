@@ -31,12 +31,6 @@ type Fit[D: DiscreteDistribution] = DistributionFit[D, BinSet[int, DataSet[int]]
 type PoissonFit = DistributionFit[Poisson, BinSet[int, DataSet[int]]]
 
 
-def read(file: Path, /) -> Iterator[int]:
-    return (
-        int(s) for s in map(str.strip, file.read_text().splitlines())
-        if s and not s.startswith("#")
-    )
-
 def cumulative[T](it: Iterable[T], /) -> Iterator[tuple[T, ...]]:
     data: tuple[T, ...] = ()
     yield data
@@ -112,21 +106,25 @@ class DistributionScene[D: DiscreteDistribution](Scene):
         self.add(obj)
         return obj
 
+    @staticmethod
+    def readfile(file: Path, /) -> DataSet[int]:
+        raise NotImplementedError
+
     def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[D]:
         raise NotImplementedError
 
     @override
     def construct(self) -> None:
         # --- Load data & decide colors ---
-        raw = [*read(self.FILE)]
-        final = DataSet(raw).intbins()
+        raw = self.readfile(self.FILE)
+        final = raw.intbins()
         final_nbins = len(final.bins)
         self.final_N = final.n
         self.final_colors = cast(list[ManimColor], color_gradient(DEFAULT_BAR_COLORS, final_nbins))
         fits: list[Fit[D]] = [
             self.mkFit(DataSet(data).bins(
                 final_nbins, left=final.bins[0].left, right=final.bins[-1].right
-            )) for data in cumulative(raw)
+            )) for data in cumulative(raw.data)
         ]
         # --- Intro animations ---
         self.fit   = fits[0]
@@ -178,11 +176,28 @@ class PoissonScene(DistributionScene[Poisson]):
     def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Poisson]:
         return Poisson.fit(data)
 
+    @staticmethod
+    @override
+    def readfile(file: Path, /) -> DataSet[int]:
+        return DataSet([
+            int(s) for s in map(str.strip, file.read_text().splitlines())
+            if s and not s.startswith("#")
+        ])
+
 
 class BernoulliScene(DistributionScene[Bernoulli]):
     @override
     def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Bernoulli]:
         return Bernoulli.fit(data, n_trials=5, p_success=1/6)
+
+    @staticmethod
+    @override
+    def readfile(file: Path, /) -> DataSet[int]:
+        return DataSet([
+            [*map(int, s.split("\t"))][:5].count(1)
+            for s in map(str.strip, file.read_text().splitlines())
+            if s and not s.startswith("#")
+        ])
 
 class PoissonSceneMeme(PoissonScene):
     FILE = SRC.parent/"data/p-1.txt"
@@ -204,6 +219,9 @@ class PoissonScene4(PoissonScene):
 
 class PoissonScene5(PoissonScene):
     FILE = SRC.parent/"data/p5.txt"
+
+class BernoulliScene1(BernoulliScene):
+    FILE = SRC.parent/"data/dadi-day1.txt"
 
 
 if __name__ == "__main__":
