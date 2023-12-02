@@ -77,7 +77,7 @@ match sys.argv[1:]:
                     print(f"σ  = {file.fit.dist.sigma}")
                     print(f"σx = {file.fit.dist.sigma_avg}")
                     if file.distance is not None:
-                        print(f"m  = {massThEstimate(file.fit.dist, file.distance)}")
+                        print(f"m  = {massThEstimate(file.fit.dist, file.distance)*1_000} g")
                 print("------------------")
             case ["mass"] | _:
                 print("m =", massTh(Datum(.00571, 1.3e-4))*1_000, "g")
