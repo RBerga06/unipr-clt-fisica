@@ -1,8 +1,9 @@
 from math import log as ln
 from pathlib import Path
 from typing import Iterator
-from rberga06.phylab import DataSet, Poisson, MeasureLike
-from rberga06.phylab.distribution import DistFit
+from rberga06.phylab import MeasureLike, DistributionFit, DataSet, Poisson
+type PoissonFit = DistributionFit[Poisson, DataSet[int]]
+
 DIR = Path(__file__).parent
 
 MAX_DATA_N: int = 3657
@@ -17,7 +18,7 @@ def read(file: Path) -> Iterator[int]:
         if s and not s.startswith("#")
     )
 
-def poisson(file: Path, /) -> DistFit[Poisson, DataSet[int]]:
+def poisson(file: Path, /) -> PoissonFit:
     return Poisson.fit(DataSet([*read(file)][:MAX_DATA_N]))
 
 def merge(file1: Path, file2: Path, output: Path, sep: str = "\n") -> None:
