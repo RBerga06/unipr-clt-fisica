@@ -209,10 +209,10 @@ files = [
 
 [[package]]
 name = "rberga06-phylab"
-version = "0.1.0"
+version = "1.0.0a0"
 requires_python = ">=3.12"
 git = "https://github.com/rberga06/pyphylab"
-revision = "6c6df6a26292b3c43a13a809a0783d676fcc1674"
+revision = "2039af40a23f67ce4d97bb16b60233b950af53cc"
 summary = "A small Python library for random daily use in the Physics laboratory"
 
 [[package]]
