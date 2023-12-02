@@ -1,4 +1,4 @@
-# distance: 0.265 m
+# distance: 0.265 ± 0.001 m
 0
 0
 1

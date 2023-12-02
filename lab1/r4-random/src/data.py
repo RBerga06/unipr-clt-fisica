@@ -11,7 +11,7 @@ type PoissonFit = DistributionFit[Poisson, DataSet[int]]
 class PoissonFile:
     path: Path
     title: str = "<auto>"
-    distance: float | None = None
+    distance: MeasureLike[float] | None = None
     fit: PoissonFit = field(init=False)
 
     def __post_init__(self, /) -> None:
@@ -20,7 +20,11 @@ class PoissonFile:
             if line.startswith("# title:") and (self.title == "<auto>"):
                 self.title = line.removeprefix("# title:").strip()
             elif line.startswith("# distance:") and (self.distance is None):
-                self.distance = eval(line.removeprefix("# distance:").removesuffix("m").strip())
+                line = line.removeprefix("# distance:").removesuffix("m").strip()
+                if "±" in line:
+                    self.distance = Datum(*map(eval, line.split("±")))
+                else:
+                    self.distance = eval(line)
             elif line.startswith("#") or (not line):
                 pass
             else:
@@ -35,11 +39,9 @@ def poisson(file: Path, /) -> PoissonFit:
 def merge(file1: Path, file2: Path, output: Path, sep: str = "\n") -> None:
     output.write_text(file1.read_text() + sep + file2.read_text())
 
-def massTh1file(file: Path, R: MeasureLike[float], /) -> Measure[float]:
-    x = poisson(file).dist.average
+def massThEstimate(x: MeasureLike[float], R: MeasureLike[float], /) -> Measure[float]:
     Aa = (4*R**2)/r**2
     N = (Th232.T12 * Aa)/ln2 * x
-    print(f"{N=} {Aa=}")
     return Th232.mass * N
 
 def massTh[M: MeasureLike[float]](b: M, /) -> M:
@@ -65,8 +67,6 @@ match sys.argv[1:]:
                 pass
     case ["poisson", *argv] | argv:
         match argv:
-            case ["estimate", n, _d]:
-                print(massTh1file(DATA/f"p{n}.txt", eval(_d)))
             case ["files", *nums]:
                 for n in nums:
                     file = PoissonFile(DATA/f"p{n}.txt")
@@ -76,6 +76,8 @@ match sys.argv[1:]:
                     print(f"µ  = {file.fit.dist.average}")
                     print(f"σ  = {file.fit.dist.sigma}")
                     print(f"σx = {file.fit.dist.sigma_avg}")
+                    if file.distance is not None:
+                        print(f"m  = {massThEstimate(file.fit.dist, file.distance)}")
                 print("------------------")
             case ["mass"] | _:
                 print("m =", massTh(Datum(.00571, 1.3e-4))*1_000, "g")
