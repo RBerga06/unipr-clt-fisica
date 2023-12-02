@@ -68,11 +68,11 @@ match sys.argv[1:]:
     case ["poisson", *argv] | argv:
         match argv:
             case ["files", *nums]:
-                for n in nums:
+                for n in (nums or range(6)):
                     file = PoissonFile(DATA/f"p{n}.txt")
                     print(f"--- {file.title} ---")
-                    print(f"R  = {file.distance}")
-                    print(f"N  = {file.fit.dist.n}")
+                    print(f"R  = {file.distance} m")
+                    # print(f"N  = {file.fit.dist.n}")
                     print(f"µ  = {file.fit.dist.average}")
                     print(f"σ  = {file.fit.dist.sigma}")
                     print(f"σx = {file.fit.dist.sigma_avg}")
