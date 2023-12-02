@@ -17,7 +17,7 @@ from manim import *
 SRC = Path(__file__).parent
 sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
 
-from rberga06.phylab import BinSet, DistributionFit, DataSet, Poisson
+from rberga06.phylab import BinSet, DiscreteDistribution, DistributionFit, DataSet, Poisson, Bernoulli
 from rberga06.phylab.manim import DEFAULT_BAR_COLORS, DiscreteDistributionFitHistogram
 
 
@@ -27,6 +27,7 @@ N_MAX: int | None = None
 config.max_files_cached = 10_000
 
 
+type Fit[D: DiscreteDistribution] = DistributionFit[D, BinSet[int, DataSet[int]]]
 type PoissonFit = DistributionFit[Poisson, BinSet[int, DataSet[int]]]
 
 
@@ -44,12 +45,12 @@ def cumulative[T](it: Iterable[T], /) -> Iterator[tuple[T, ...]]:
         yield data
 
 
-class PoissonScene(Scene):
+class DistributionScene[D: DiscreteDistribution](Scene):
     FILE: ClassVar[Path]
     final_N: int
     final_colors: list[ManimColor]
     # --- Distribution stats ---
-    fit: PoissonFit
+    fit: Fit[D]
 
     @property
     def N(self, /) -> int:
@@ -78,7 +79,7 @@ class PoissonScene(Scene):
         return y, d
 
     # --- Mobjects ---
-    hist: DiscreteDistributionFitHistogram[PoissonFit]
+    hist: DiscreteDistributionFitHistogram[Fit[D]]
     hist_avg: DashedLine
     hist_dots: VGroup
     texts: VGroup
@@ -111,6 +112,9 @@ class PoissonScene(Scene):
         self.add(obj)
         return obj
 
+    def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[D]:
+        raise NotImplementedError
+
     @override
     def construct(self) -> None:
         # --- Load data & decide colors ---
@@ -119,8 +123,8 @@ class PoissonScene(Scene):
         final_nbins = len(final.bins)
         self.final_N = final.n
         self.final_colors = cast(list[ManimColor], color_gradient(DEFAULT_BAR_COLORS, final_nbins))
-        fits = [
-            Poisson.fit(DataSet(data).bins(
+        fits: list[Fit[D]] = [
+            self.mkFit(DataSet(data).bins(
                 final_nbins, left=final.bins[0].left, right=final.bins[-1].right
             )) for data in cumulative(raw)
         ]
@@ -168,6 +172,17 @@ class PoissonScene(Scene):
         else:
             return 1
 
+
+class PoissonScene(DistributionScene[Poisson]):
+    @override
+    def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Poisson]:
+        return Poisson.fit(data)
+
+
+class BernoulliScene(DistributionScene[Bernoulli]):
+    @override
+    def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Bernoulli]:
+        return Bernoulli.fit(data, n_trials=5, p_success=1/6)
 
 class PoissonSceneMeme(PoissonScene):
     FILE = SRC.parent/"data/p-1.txt"
