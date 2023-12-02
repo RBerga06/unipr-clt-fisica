@@ -1,58 +1,81 @@
-from math import log as ln
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+from dataclasses import dataclass, field
+import sys
 from pathlib import Path
-from typing import Iterator
-from rberga06.phylab import MeasureLike, DistributionFit, DataSet, Poisson
+from rberga06.phylab.constants import ln2, Th232
+from rberga06.phylab import Datum, Measure, MeasureLike, DistributionFit, DataSet, Poisson
 type PoissonFit = DistributionFit[Poisson, DataSet[int]]
 
-DIR = Path(__file__).parent
+@dataclass(slots=True)
+class PoissonFile:
+    path: Path
+    title: str = "<auto>"
+    distance: float | None = None
+    fit: PoissonFit = field(init=False)
 
-MAX_DATA_N: int = 3657
-NA = int(6.022e23)
-T12 = 14.5e9 * 365 * 24 * 60 * 60
-Mn = 1.68e-27
-r = 0.007
-
-def read(file: Path) -> Iterator[int]:
-    return (
-        int(s) for s in map(str.strip, file.read_text().splitlines())
-        if s and not s.startswith("#")
-    )
+    def __post_init__(self, /) -> None:
+        data: list[int] = []
+        for line in map(str.strip, self.path.read_text().splitlines()):
+            if line.startswith("# title:") and (self.title == "<auto>"):
+                self.title = line.removeprefix("# title:").strip()
+            elif line.startswith("# distance:") and (self.distance is None):
+                self.distance = eval(line.removeprefix("# distance:").removesuffix("m").strip())
+            elif line.startswith("#") or (not line):
+                pass
+            else:
+                data.append(int(line))
+        self.fit = Poisson.fit(DataSet(data[:MAX_DATA_N]))
+        if self.title == "<auto>":
+            self.title = self.path.name
 
 def poisson(file: Path, /) -> PoissonFit:
-    return Poisson.fit(DataSet([*read(file)][:MAX_DATA_N]))
+    return PoissonFile(file).fit
 
 def merge(file1: Path, file2: Path, output: Path, sep: str = "\n") -> None:
     output.write_text(file1.read_text() + sep + file2.read_text())
 
-def massTh1file(file: Path, R: float, /) -> float:
+def massTh1file(file: Path, R: MeasureLike[float], /) -> Measure[float]:
     x = poisson(file).dist.average
     Aa = (4*R**2)/r**2
-    N = (T12 * Aa)/ln(2) * x
+    N = (Th232.T12 * Aa)/ln2 * x
     print(f"{N=} {Aa=}")
-    return N * 232 * Mn
+    return Th232.mass * N
 
 def massTh[M: MeasureLike[float]](b: M, /) -> M:
     # x = Nr²ln2/4T₁₂ · R⁻²
     # b = Nr²ln2/4T₁₂
     # N = b·4T₁₂/r²ln2
-    N = b * (T12*4)/(ln(2)*r**2)
-    m = N * 232 * Mn
+    N = b * (Th232.T12*4)/(ln2*r**2)
+    m = Th232.mass * N
     return m  # type: ignore
 
-# merge(DIR/"dadi1.txt", DIR/"dadi2.txt", DIR/"dadi.txt", sep="# --- NEW DATA --- #\n")
-# print(T12)
-# print(massTh1file(DIR/"G171.txt", 0.103))
 
+# --- Actual data analysis ---
 DATA = Path(__file__).parent.parent/"data"
+MAX_DATA_N: int = 3657
+r = Datum(7.00, 0.05)/1000  # m
 
-for n in range(6):
-    data = DataSet([*read(DATA/f"p{n}.txt")][:3657])
-    fit = Poisson.fit(data)
-    print(f"--- File {n} ---")
-    print(f"N  = {fit.dist.n}")
-    print(f"µ  = {fit.dist.average}")
-    print(f"σ  = {fit.dist.sigma}")
-    print(f"σx = {fit.dist.sigma_avg}")
-print("---------------")
-
-print("m =", massTh(.00571), "g")
+match sys.argv[1:]:
+    case ["bernoulli", *argv]:
+        match argv:
+            case ["merge-files", *_]:
+                merge(DATA/"dadi1.txt", DATA/"dadi2.txt", DATA/"dadi.txt", sep="# --- NEW DATA --- #\n")
+            case _:
+                pass
+    case ["poisson", *argv] | argv:
+        match argv:
+            case ["estimate", n, _d]:
+                print(massTh1file(DATA/f"p{n}.txt", eval(_d)))
+            case ["files", *nums]:
+                for n in nums:
+                    file = PoissonFile(DATA/f"p{n}.txt")
+                    print(f"--- {file.title} ---")
+                    print(f"R  = {file.distance}")
+                    print(f"N  = {file.fit.dist.n}")
+                    print(f"µ  = {file.fit.dist.average}")
+                    print(f"σ  = {file.fit.dist.sigma}")
+                    print(f"σx = {file.fit.dist.sigma_avg}")
+                print("------------------")
+            case ["mass"] | _:
+                print("m =", massTh(Datum(.00571, 1.3e-4))*1_000, "g")
