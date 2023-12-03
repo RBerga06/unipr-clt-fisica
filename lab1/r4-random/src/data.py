@@ -131,13 +131,13 @@ match sys.argv[1:]:
     case ["dump"]:
         d = ("Rosso", "Verde", "Blu", "Viola", "Nero", "Bianco")
         print(csv(
+            *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)],
             *chain.from_iterable(
                 [
                     (f"Dadi {{{" ".join([d[i] for i in cols])}}}", BernoulliFile(DATA/"dadi.txt", columns=cols))
                     for cols in map(tuple, combinations(range(6), i))
-                ] for i in range(1, 6)
-            ),
-            *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)]
-        ))
+                ] for i in reversed(range(1, 7))
+            )),
+        )
     case _:
         pass
