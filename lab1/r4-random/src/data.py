@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from dataclasses import dataclass, field
-from itertools import chain, zip_longest
+from itertools import chain, zip_longest, combinations
 import sys
 from pathlib import Path
 from typing import Any, Iterable
@@ -129,8 +129,14 @@ match sys.argv[1:]:
             case _:
                 pass
     case ["dump"]:
+        d = ("Rosso", "Verde", "Blu", "Viola", "Nero", "Bianco")
         print(csv(
-            ("Dadi", BernoulliFile(DATA/"dadi.txt", columns=(0,1,2,3,4))),
+            *chain.from_iterable(
+                [
+                    (f"Dadi {{{", ".join([d[i] for i in cols])}}}", BernoulliFile(DATA/"dadi.txt", columns=cols))
+                    for cols in map(tuple, combinations(range(6), i))
+                ] for i in range(6)
+            ),
             *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)]
         ))
     case _:
