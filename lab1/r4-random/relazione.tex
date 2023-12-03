@@ -27,8 +27,8 @@
 \maketitle
 
 \begin{abstract}
-    Il gruppo di lavoro ha riprodotto le distribuzioni di Bernoulli e di Poisson attraverso due
-    esperimenti distinti, rispettivamente il lancio dei dadi e il decadimento radioattivo.
+    Il gruppo di lavoro ha misurato due variabili aleatorie, osservando come queste
+    rispecchino le rispettive distribuzioni teoriche (di Bernoulli e di Poisson).
 \end{abstract}
 
 \section{Processo di Bernoulli}
@@ -38,22 +38,24 @@
         \hline
         \textbf{Materiali} & \textbf{Descrizione/Note} \\
         \hline
-        {Sei dadi} & Di colori diversi per poterli identificare facilmente \\
+        Sei dadi & Di colori diversi, per poterli identificare facilmente \\
         \hline
-        {Calcolatore} & Computer portatile (Intel core i5 dual-core \qty{1,6}{GHz}) \\
+        Calcolatore & Computer portatile\footnotemark \\
         \hline
     \end{tblr}
 \end{center}
+\footnotetext{Intel core i5 gen 7 dual-core \qty{1,6}{GHz}}
 
-\subsection{Esperienza}
-\begin{enumerate}
-    \item Eseguiamo 400 lanci simultanei dei sei dadi, riportando in una tabella il risultato
-          di ognuno di essi ordinati secondo una successione cromatica prestabilita.
-    \item Successivamente simuliamo $10^{12}$ lanci di 5 dadi su un calcolatore tramite un
-          programma da noi compilato. Calcolato il valore medio e la deviazione standard del
-          numero di "1" usciti per ogni lancio dei dadi, riusciremo ad osservare se i lanci da
-          noi effettuati rispecchiano la distribuzione teorica bernoulliana.
-\end{enumerate}
+\subsection{Dati sperimentali}
+Eseguiamo 400 lanci simultanei dei sei dadi, riportando in una tabella il risultato
+di ciascuno di essi, ordinati secondo una successione cromatica prestabilita.
+
+\subsection{Simulazione}
+Successivamente, simuliamo $10^{12}$ lanci di 5 dadi su un calcolatore tramite un
+programma da noi compilato\footnote{\emph{Vedi} Appendice 1}.
+Calcolato il valore medio e la deviazione standard del numero di "1" usciti per
+ogni lancio dei dadi, riusciremo ad osservare se i lanci da
+noi effettuati rispecchiano la distribuzione teorica bernoulliana.
 
 \section{Processo di Poisson}
 \subsection{Materiali e strumenti di misura utilizzati}
@@ -85,7 +87,7 @@
 
 \subsection{Esperienza e procedimento di misura}
 \begin{enumerate}
-    \item Acceso e impostato adeguatamente il contatore Geiger, misuriamo per 5 diverse distanze 
+    \item Acceso e impostato adeguatamente il contatore Geiger, misuriamo per 5 diverse distanze
           tra contatore e campione il numero di raggi $\gamma_{ij}$ emessi da quest'ultimo in 3600 intervalli da un secondo.
     \item Direzionato il contatore dal verso opposto rispetto al campione, misuriamo il numero di raggi $\gamma_{amb}$ rilevabili che definiscono
           il fondo dei nostri dati.
