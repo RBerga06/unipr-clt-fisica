@@ -18,7 +18,7 @@ SRC = Path(__file__).parent
 sys.path.insert(0, str(SRC.parent.parent.parent/".venv/lib/python3.12/site-packages"))
 
 from rberga06.phylab import BinSet, DiscreteDistribution, DistributionFit, DataSet, Poisson, Bernoulli
-from rberga06.phylab.manim import DEFAULT_BAR_COLORS, DiscreteDistributionFitHistogram
+from rberga06.phylab.manim import DEFAULT_BAR_COLORS, DiscreteDistributionFitHistogram as FitHist
 
 
 N_MAX: int | None = None
@@ -27,8 +27,9 @@ N_MAX: int | None = None
 config.max_files_cached = 10_000
 
 
-type Fit[D: DiscreteDistribution] = DistributionFit[D, BinSet[int, DataSet[int]]]
-type PoissonFit = DistributionFit[Poisson, BinSet[int, DataSet[int]]]
+type Bins = BinSet[int, DataSet[int]]
+type Fit[D: DiscreteDistribution] = DistributionFit[D, Bins]
+type PoissonFit = DistributionFit[Poisson, Bins]
 
 
 def cumulative[T](it: Iterable[T], /) -> Iterator[tuple[T, ...]]:
@@ -39,12 +40,10 @@ def cumulative[T](it: Iterable[T], /) -> Iterator[tuple[T, ...]]:
         yield data
 
 
-class DistributionScene[D: DiscreteDistribution](Scene):
+class _DistributionSceneBase[D: DiscreteDistribution](Scene):
     FILE: ClassVar[Path]
-    final_N: int
-    final_colors: list[ManimColor]
-    # --- Distribution stats ---
     fit: Fit[D]
+    bar_colors: list[ManimColor]
 
     @property
     def N(self, /) -> int:
@@ -60,7 +59,7 @@ class DistributionScene[D: DiscreteDistribution](Scene):
 
     @property
     def nbins(self, /) -> int:
-        return len(self.bins)
+        return len(self.fit.data.bins)
 
     @property
     def dbins(self, /) -> tuple[float, ...]:
@@ -72,19 +71,23 @@ class DistributionScene[D: DiscreteDistribution](Scene):
         d = max(1, y // 5)
         return y, d
 
-    # --- Mobjects ---
-    hist: DiscreteDistributionFitHistogram[Fit[D]]
-    hist_avg: DashedLine
-    hist_dots: VGroup
-    texts: VGroup
+    def readfile(self, /) -> DataSet[int]:
+        raise NotImplementedError
 
-    def mkhist(self, /):
+    def mkFit(self, data: Bins, /) -> Fit[D]:
+        raise NotImplementedError
+
+    def adding[T: Mobject](self, obj: T, /) -> T:
+        self.add(obj)
+        return obj
+
+    def mkhist(self, /) -> FitHist[Fit[D]]:
         # Histogram
-        hist = DiscreteDistributionFitHistogram(
+        hist = FitHist(
             self.fit,
             y_range=[0, *self.y_range],
-            bar_colors=self.final_colors[self.xbins[0]:self.xbins[-1]+1],
-        ).shift(DOWN)
+            bar_colors=self.bar_colors[self.xbins[0]:self.xbins[-1]+1],
+        )
         hist.add_avg_line().set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
         hist.add_expected_dots().set_fill(RED_E, opacity=1).set_stroke(
             BLACK, width=DEFAULT_STROKE_WIDTH*.3,
@@ -95,6 +98,27 @@ class DistributionScene[D: DiscreteDistribution](Scene):
         # Return
         return hist
 
+
+class DistributionGraph[D: DiscreteDistribution](_DistributionSceneBase[D]):
+    @override
+    def construct(self, /) -> None:
+        config.background_color = WHITE
+        self.fit = self.mkFit(self.readfile().intbins())
+        self.bar_colors = color_gradient(  # type: ignore
+            DEFAULT_BAR_COLORS, len(self.fit.data.bins)
+        )
+        self.hist = self.adding(self.mkhist())
+
+
+class DistributionScene[D: DiscreteDistribution](_DistributionSceneBase[D]):
+    final_N: int
+
+    # --- Mobjects ---
+    hist: FitHist[Fit[D]]
+    hist_avg: DashedLine
+    hist_dots: VGroup
+    texts: VGroup
+
     def mktexts(self, /) -> VGroup:
         return VGroup(
             MathTex(f"n = {self.N}").shift(UP*.7),
@@ -102,29 +126,22 @@ class DistributionScene[D: DiscreteDistribution](Scene):
             MathTex(rf"\sigma = {self.fit.dist.sigma:.2f}").set_color(RED).shift(DOWN*.6),
         ).to_edge(UP)
 
-    def adding[T: Mobject](self, obj: T, /) -> T:
-        self.add(obj)
-        return obj
-
-    @staticmethod
-    def readfile(file: Path, /) -> DataSet[int]:
-        raise NotImplementedError
-
-    def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[D]:
-        raise NotImplementedError
+    @override
+    def mkhist(self, /):
+        return super().mkhist().shift(DOWN)
 
     @override
     def construct(self) -> None:
         # --- Load data & decide colors ---
-        raw = self.readfile(self.FILE)
-        final = raw.intbins()
-        final_nbins = len(final.bins)
-        self.final_N = final.n
-        self.final_colors = cast(list[ManimColor], color_gradient(DEFAULT_BAR_COLORS, final_nbins))
+        final_raw = self.readfile()
+        final_data = final_raw.intbins()
+        final_nbins = len(final_data.bins)
+        self.final_N = final_data.n
+        self.bar_colors = cast(list[ManimColor], color_gradient(DEFAULT_BAR_COLORS, final_nbins))
         fits: list[Fit[D]] = [
             self.mkFit(DataSet(data).bins(
-                final_nbins, left=final.bins[0].left, right=final.bins[-1].right
-            )) for data in cumulative(raw.data)
+                final_nbins, left=final_data.bins[0].left, right=final_data.bins[-1].right
+            )) for data in cumulative(final_raw.data)
         ]
         # --- Intro animations ---
         self.fit   = fits[0]
@@ -173,14 +190,26 @@ class DistributionScene[D: DiscreteDistribution](Scene):
 
 class PoissonScene(DistributionScene[Poisson]):
     @override
-    def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Poisson]:
+    def mkFit(self, data: Bins, /) -> Fit[Poisson]:
         return Poisson.fit(data)
 
-    @staticmethod
     @override
-    def readfile(file: Path, /) -> DataSet[int]:
+    def readfile(self, /) -> DataSet[int]:
         return DataSet([
-            int(s) for s in map(str.strip, file.read_text().splitlines())
+            int(s) for s in map(str.strip, self.FILE.read_text().splitlines())
+            if s and not s.startswith("#")
+        ])
+
+
+class PoissonGraph(DistributionGraph[Poisson]):
+    @override
+    def mkFit(self, data: Bins, /) -> Fit[Poisson]:
+        return Poisson.fit(data)
+
+    @override
+    def readfile(self, /) -> DataSet[int]:
+        return DataSet([
+            int(s) for s in map(str.strip, self.FILE.read_text().splitlines())
             if s and not s.startswith("#")
         ])
 
@@ -190,14 +219,29 @@ class BernoulliScene(DistributionScene[Bernoulli]):
     def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Bernoulli]:
         return Bernoulli.fit(data, n_trials=5, p_success=1/6)
 
-    @staticmethod
     @override
-    def readfile(file: Path, /) -> DataSet[int]:
+    def readfile(self, /) -> DataSet[int]:
         return DataSet([
             [*map(int, s.split("\t"))][:5].count(1)
-            for s in map(str.strip, file.read_text().splitlines())
+            for s in map(str.strip, self.FILE.read_text().splitlines())
             if s and not s.startswith("#")
         ])
+
+
+class BernoulliGraph(DistributionGraph[Bernoulli]):
+    @override
+    def mkFit(self, data: BinSet[int, DataSet[int]], /) -> Fit[Bernoulli]:
+        return Bernoulli.fit(data, n_trials=5, p_success=1/6)
+
+    @override
+    def readfile(self, /) -> DataSet[int]:
+        return DataSet([
+            [*map(int, s.split("\t"))][:5].count(1)
+            for s in map(str.strip, self.FILE.read_text().splitlines())
+            if s and not s.startswith("#")
+        ])
+
+
 
 class PoissonSceneMeme(PoissonScene):
     FILE = SRC.parent/"data/p-1.txt"
@@ -221,9 +265,29 @@ class PoissonScene5(PoissonScene):
     FILE = SRC.parent/"data/p5.txt"
 
 class BernoulliScene1(BernoulliScene):
-    FILE = SRC.parent/"data/dadi-day1.txt"
+    FILE = SRC.parent/"data/dadi.txt"
 
 
-if __name__ == "__main__":
-    config.quality = "low_quality"
-    PoissonScene1().render(True)
+class PoissonGraphMeme(PoissonGraph):
+    FILE = SRC.parent/"data/p-1.txt"
+
+class PoissonGraph0(PoissonGraph):
+    FILE = SRC.parent/"data/p0.txt"
+
+class PoissonGraph1(PoissonGraph):
+    FILE = SRC.parent/"data/p1.txt"
+
+class PoissonGraph2(PoissonGraph):
+    FILE = SRC.parent/"data/p2.txt"
+
+class PoissonGraph3(PoissonGraph):
+    FILE = SRC.parent/"data/p3.txt"
+
+class PoissonGraph4(PoissonGraph):
+    FILE = SRC.parent/"data/p4.txt"
+
+class PoissonGraph5(PoissonGraph):
+    FILE = SRC.parent/"data/p5.txt"
+
+class BernoulliGraph1(BernoulliGraph):
+    FILE = SRC.parent/"data/dadi.txt"
