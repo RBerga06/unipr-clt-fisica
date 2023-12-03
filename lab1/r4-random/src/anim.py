@@ -89,25 +89,32 @@ class _DistributionSceneBase[D: DiscreteDistribution](Scene):
             bar_colors=self.bar_colors[self.xbins[0]:self.xbins[-1]+1],
         )
         hist.add_avg_line().set_stroke(width=DEFAULT_STROKE_WIDTH*.5).set_color(RED)
-        hist.add_expected_dots().set_fill(RED_E, opacity=1).set_stroke(
-            BLACK, width=DEFAULT_STROKE_WIDTH*.3,
-        )
-        hist.add_bar_labels(font_size=30).set_stroke(
-            BLACK, width=DEFAULT_STROKE_WIDTH*.7, background=True,
-        )
+        hist.add_expected_dots().set_fill(RED_E, opacity=1).set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.3)
         # Return
         return hist
 
 
 class DistributionGraph[D: DiscreteDistribution](_DistributionSceneBase[D]):
     @override
+    def mkhist(self, /) -> FitHist[Fit[D]]:
+        hist = super().mkhist()
+        hist.axes.set_color(BLACK)
+        return hist
+
+    @override
     def construct(self, /) -> None:
-        config.background_color = WHITE
+        self.camera.background_color = WHITE  # type: ignore
         self.fit = self.mkFit(self.readfile().intbins())
         self.bar_colors = color_gradient(  # type: ignore
             DEFAULT_BAR_COLORS, len(self.fit.data.bins)
         )
         self.hist = self.adding(self.mkhist())
+        self.ylabel = self.adding(
+            Tex("Conteggi").set_color(BLACK).rotate(PI/2).next_to(self.hist, LEFT).shift(UP/2)
+        )
+        self.xlabel = self.adding(
+            Tex("Numero di successi").set_color(BLACK).next_to(self.hist, DOWN).shift(RIGHT/2)
+        )
 
 
 class DistributionScene[D: DiscreteDistribution](_DistributionSceneBase[D]):
@@ -127,8 +134,10 @@ class DistributionScene[D: DiscreteDistribution](_DistributionSceneBase[D]):
         ).to_edge(UP)
 
     @override
-    def mkhist(self, /):
-        return super().mkhist().shift(DOWN)
+    def mkhist(self, /) -> FitHist[Fit[D]]:
+        hist = super().mkhist().shift(DOWN)
+        hist.add_bar_labels(font_size=30).set_stroke(BLACK, width=DEFAULT_STROKE_WIDTH*.7, background=True)
+        return hist
 
     @override
     def construct(self) -> None:
@@ -290,4 +299,10 @@ class PoissonGraph5(PoissonGraph):
     FILE = SRC.parent/"data/p5.txt"
 
 class BernoulliGraph1(BernoulliGraph):
+    FILE = SRC.parent/"data/dadi-day1.txt"
+
+class BernoulliGraph2(BernoulliGraph):
+    FILE = SRC.parent/"data/dadi-day2.txt"
+
+class BernoulliGraph3(BernoulliGraph):
     FILE = SRC.parent/"data/dadi.txt"
