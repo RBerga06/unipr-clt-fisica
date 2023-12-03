@@ -133,9 +133,9 @@ match sys.argv[1:]:
         print(csv(
             *chain.from_iterable(
                 [
-                    (f"Dadi {{{", ".join([d[i] for i in cols])}}}", BernoulliFile(DATA/"dadi.txt", columns=cols))
+                    (f"Dadi {{{" ".join([d[i] for i in cols])}}}", BernoulliFile(DATA/"dadi.txt", columns=cols))
                     for cols in map(tuple, combinations(range(6), i))
-                ] for i in range(6)
+                ] for i in range(1, 6)
             ),
             *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)]
         ))
