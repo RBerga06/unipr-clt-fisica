@@ -1,11 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from dataclasses import dataclass, field
+from itertools import chain, zip_longest
 import sys
 from pathlib import Path
+from typing import Any, Iterable
 from rberga06.phylab.constants import ln2, Th232
-from rberga06.phylab import Datum, Measure, MeasureLike, DistributionFit, DataSet, Poisson
-type PoissonFit = DistributionFit[Poisson, DataSet[int]]
+from rberga06.phylab import Datum, Measure, MeasureLike, DistributionFit, DataSet, BinSet, Poisson, Bernoulli
+type Bins = BinSet[int, DataSet[int]]
+type PoissonFit   = DistributionFit[Poisson,   Bins]
+type BernoulliFit = DistributionFit[Bernoulli, Bins]
+
+
+@dataclass(slots=True)
+class BernoulliFile:
+    path: Path
+    success: int = 1
+    columns: tuple[int, ...] = tuple(range(6))
+    fit: BernoulliFit = field(init=False)
+
+    def __post_init__(self, /) -> None:
+        data: list[int] = []
+        for line in map(str.strip, self.path.read_text().splitlines()):
+            if line.startswith("#") or (not line):
+                pass
+            else:
+                rolls = [*map(int, line.split("\t"))]
+                data.append([rolls[i] for i in self.columns].count(self.success))
+        self.fit = Bernoulli.fit(
+            DataSet(data).intbins(),
+            n_trials=len(self.columns), p_success=1/6,
+        )
+
 
 @dataclass(slots=True)
 class PoissonFile:
@@ -29,9 +55,28 @@ class PoissonFile:
                 pass
             else:
                 data.append(int(line))
-        self.fit = Poisson.fit(DataSet(data[:MAX_DATA_N]))
+        self.fit = Poisson.fit(DataSet(data[:MAX_DATA_N]).intbins())
         if self.title == "<auto>":
             self.title = self.path.name
+
+
+def _csv(*data: Iterable[Any]) -> str:
+    return "\n".join([",".join([*map(str, line)]) for line in zip_longest(*data, fillvalue="")])
+
+
+def csv(*files: tuple[str, BernoulliFile | PoissonFile]) -> str:
+    return _csv(*chain.from_iterable([
+        (
+            [title, *map(len, file.fit.data.bins)],
+            ['', *file.fit.dist.bins(
+                len(file.fit.data.bins),
+                file.fit.data.bins[ 0].left,
+                file.fit.data.bins[-1].right,
+            )],
+        )
+        for title, file in files
+    ]))
+
 
 def poisson(file: Path, /) -> PoissonFit:
     return PoissonFile(file).fit
@@ -65,7 +110,7 @@ match sys.argv[1:]:
                 merge(DATA/"dadi1.txt", DATA/"dadi2.txt", DATA/"dadi.txt", sep="# --- NEW DATA --- #\n")
             case _:
                 pass
-    case ["poisson", *argv] | argv:
+    case ["poisson", *argv]:
         match argv:
             case ["files", *nums]:
                 for n in (nums or range(6)):
@@ -79,5 +124,14 @@ match sys.argv[1:]:
                     if file.distance is not None:
                         print(f"m  = {massThEstimate(file.fit.dist, file.distance)*1_000} g")
                 print("------------------")
-            case ["mass"] | _:
+            case ["mass"]:
                 print("m =", massTh(Datum(.00571, 1.3e-4))*1_000, "g")
+            case _:
+                pass
+    case ["dump"]:
+        print(csv(
+            ("Dadi", BernoulliFile(DATA/"dadi.txt", columns=(0,1,2,3,4))),
+            *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)]
+        ))
+    case _:
+        pass
