@@ -47,15 +47,46 @@
 \footnotetext{Intel core i5 gen 7 dual-core \qty{1,6}{GHz}}
 
 \subsection{Dati sperimentali}
-Eseguiamo 400 lanci simultanei dei sei dadi, riportando in una tabella il risultato
-di ciascuno di essi, ordinati secondo una successione cromatica prestabilita.
+Eseguiamo 400 lanci di sei dadi distinti\footnote{Li distinguiamo in base al colore},
+registrandone tutti i risultati.
+Per ogni possibile risultato\footnote{
+    \emph{Notazione.} Per noi $0\in\mathbb{N}$.
+} $s\in\left[1;6\right]\cap\mathbb{N}$, possiamo così
+definire una variabile aleatoria $x_s\in\left[0;6\right]\cap\mathbb{N}$ come il
+numero di dadi, fra i sei lanciati, con risultato pari ad $s$.
+Il lancio dei sei dadi è un processo di Bernoulli; di conseguenza,
+la distribuzione di probabilità di $x_s$ è data da:
+\[
+    p \left(x_s=k\right) =
+        \binom{6}{k}
+        \left(\frac{1}{6}\right)^k
+        \left(\frac{5}{6}\right)^{6-k}
+        \qquad\forall k\in\left[0;6\right]\cap\mathbb{N}
+\]
+Di seguito riportiamo gli istogrammi dei dati così raccolti, assieme ai valori attesi,
+dedotti dalla distribuzione teorica.
+
+\begin{figure*}
+    \caption{...}
+\end{figure*}
+
+\subsubsection*{Onestà dei dadi}
+Avendo segnato tutti i risultati di ogni dado, possiamo inoltre stimare se i dadi che
+abbiamo utilizzato sono truccati o meno. Infatti, su un dado onesto ci aspettiamo
+che escano tutti i risultati possibili con equa probabilità. Di seguito riportiamo
+gli istogrammi dei valori usciti su ogni dado.
+
+\begin{figure*}
+    \caption{...}
+\end{figure*}
 
 \subsection{Simulazione}
-Successivamente, simuliamo $10^{12}$ lanci di 5 dadi su un calcolatore tramite un
-programma da noi compilato\footnote{\emph{Vedi} Appendice 1}.
-Calcolato il valore medio e la deviazione standard del numero di "1" usciti per
-ogni lancio dei dadi, riusciremo ad osservare se i lanci da
-noi effettuati rispecchiano la distribuzione teorica bernoulliana.
+Tramite un programma da noi scritto e compilato\footnote{\emph{Vedi} Appendice 1},
+simuliamo la stessa esperienza con $10^{12}$ lanci dei sei dadi al fine di
+verificare la legge dei grandi numeri. Questa consiste nella tesi che, su un grande
+numero di prove, i risultati si avvicinino ai valori attesi.
+
+Di seguito riportiamo, in un istogramma, i risultati della simulazione.
 
 \section{Processo di Poisson}
 \subsection{Materiali e strumenti di misura utilizzati}
