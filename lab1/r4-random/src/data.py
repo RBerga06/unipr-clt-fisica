@@ -81,7 +81,7 @@ def _csv(*data: Iterable[Any]) -> str:
 def csv(*files: tuple[str, BernoulliFile | PoissonFile | DiceFile]) -> str:
     return _csv(*chain.from_iterable([
         (
-            [title, file.results],
+            [title, *file.results],
         ) if isinstance(file, DiceFile) else (
             [title, *map(len, file.fit.data.bins)],
             ['', *file.fit.dist.bins(
