@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from dataclasses import dataclass, field
-from itertools import chain, zip_longest, combinations
+from itertools import chain, zip_longest
 import sys
 from pathlib import Path
 from typing import Any, Iterable
@@ -10,6 +10,20 @@ from rberga06.phylab import Datum, Measure, MeasureLike, DistributionFit, DataSe
 type Bins = BinSet[int, DataSet[int]]
 type PoissonFit   = DistributionFit[Poisson,   Bins]
 type BernoulliFit = DistributionFit[Bernoulli, Bins]
+
+
+@dataclass(slots=True)
+class DiceFile:
+    path: Path
+    column: int
+    results: list[int] = field(default_factory=list, init=False)
+
+    def __post_init__(self, /) -> None:
+        for line in map(str.strip, self.path.read_text().splitlines()):
+            if line.startswith("#") or (not line):
+                pass
+            else:
+                self.results.append(int(line.split("\t")[self.column]))
 
 
 @dataclass(slots=True)
@@ -64,9 +78,11 @@ def _csv(*data: Iterable[Any]) -> str:
     return "\n".join([",".join([*map(str, line)]) for line in zip_longest(*data, fillvalue="")])
 
 
-def csv(*files: tuple[str, BernoulliFile | PoissonFile]) -> str:
+def csv(*files: tuple[str, BernoulliFile | PoissonFile | DiceFile]) -> str:
     return _csv(*chain.from_iterable([
         (
+            [title, file.results],
+        ) if isinstance(file, DiceFile) else (
             [title, *map(len, file.fit.data.bins)],
             ['', *file.fit.dist.bins(
                 len(file.fit.data.bins),
@@ -132,12 +148,8 @@ match sys.argv[1:]:
         d = ("Rosso", "Verde", "Blu", "Viola", "Nero", "Bianco")
         print(csv(
             *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)],
-            *chain.from_iterable(
-                [
-                    (f"Dadi {{{" ".join([d[i] for i in cols])}}}", BernoulliFile(DATA/"dadi.txt", columns=cols))
-                    for cols in map(tuple, combinations(range(6), i))
-                ] for i in reversed(range(1, 7))
-            )),
-        )
+            ("Dadi", BernoulliFile(DATA/"dadi.txt")),
+            *[(d[i], DiceFile(DATA/"dadi.txt", i)) for i in range(6)],
+        ))
     case _:
         pass
