@@ -82,14 +82,21 @@ def csv(*files: tuple[str, BernoulliFile | PoissonFile | DiceFile]) -> str:
     return _csv(*chain.from_iterable([
         (
             [title, *file.results],
-        ) if isinstance(file, DiceFile) else (
+        ) if isinstance(file, DiceFile) else ((
             [title, *map(len, file.fit.data.bins)],
             ['', *file.fit.dist.bins(
                 len(file.fit.data.bins),
                 file.fit.data.bins[ 0].left,
                 file.fit.data.bins[-1].right,
             )],
-        )
+        ) if isinstance(file, PoissonFile) else (
+            [title, *map(len, file.fit.data.bins)],
+            ['', *file.fit.dist.bins(
+                len(file.columns) + 1,
+                -.5,
+                len(file.columns) + .5,
+            )],
+        ))
         for title, file in files
     ]))
 
