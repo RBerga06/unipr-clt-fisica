@@ -148,7 +148,7 @@ match sys.argv[1:]:
         d = ("Rosso", "Verde", "Blu", "Viola", "Nero", "Bianco")
         print(csv(
             *[(f"Geiger {n}", PoissonFile(DATA/f"p{n}.txt")) for n in range(-1, 6)],
-            ("Dadi", BernoulliFile(DATA/"dadi.txt")),
+            *[(f"Dadi {i}", BernoulliFile(DATA/"dadi.txt", success=i)) for i in range(1, 7)],
             *[(d[i], DiceFile(DATA/"dadi.txt", i)) for i in range(6)],
         ))
     case _:
