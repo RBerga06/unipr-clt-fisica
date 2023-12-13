@@ -112,11 +112,34 @@ i conteggi di raggi $\gamma$ emessi nella direzione del contatore ogni secondo
 }.
 
 Infine, il gruppo di lavoro ha acquisito, sempre per $\qty{3657}{s}$,
-i conteggi di raggi $\gamma$ nella direzione opposta rispetto al campione
-($\left(\gamma_t\right)_\text{amb}$),
+i conteggi al secondo di raggi $\gamma$ nella direzione opposta rispetto
+al campione ($\left(\gamma_t\right)_\text{amb}$),
 per avere una stima della radioattività ambientale.
 
-Di seguito, riportiamo
+\emph{
+    \textbf{Notazione.} Indichiamo con $\gamma_i$ complessivamente i conteggi
+    acquisiti a distanza $d_i$ dal campione (con $i\in\left[1;5\right]\cap\mathbb{N}$),
+    mentre con $\gamma_{t,i}$ il numero di conteggi nell'intervallo temporale
+    $\left[(t-1)\;\unit{s};t\;\unit{s}\right]$ dall'inizio dell'acquisizione (con
+    $t\in\left[1;3657\right]\cap\mathbb{N}$).
+    Allora $\overline{\gamma_i}$ sarà la media della distribuzione, dove
+    $\bestp{\overline{\gamma_i}}$ sarà la media dei conteggi,
+    mentre $\sigma_{\gamma_i}$ sarà la deviazione standard e
+    $
+        \delta\!\left(\overline{\gamma_i}\right) =
+        \sigma_{\overline{\gamma_i}} =
+        \frac{\sigma_{\gamma_i}}{\sqrt{3657}}
+    $
+    l'errore sulla media.
+    Analogamente per \emph{
+        $\gamma_\text{amb}$,
+        $\gamma_\text{amb}$ e
+        $\overline{\gamma_\text{amb}}$.
+    }
+}
+
+Di seguito, riportiamo le distribuzioni di tutti i $\gamma_i$
+e la regerssione lineare dei conteggi in funzione di $1/d_i^2$
 
 \subsection{Conclusioni}
 Per valutare numericamente la consistenza tra i due valori di $k$ ottenuti,
