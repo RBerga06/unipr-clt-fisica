@@ -28,11 +28,11 @@
 
 \begin{abstract}
     Dobbiamo misurare il calore specifico degli oggetti a noi dati. Il calore
-    specifico c è la quantità di calore necessaria ad aumentare di un grado una
-    quantità unitaria di massa (di solito 1kg o 1g) e cambia da sostanza a sostanza.
+    specifico $c$ è la quantità di calore necessaria ad aumentare di $\qty{1}{K}$ una
+    quantità unitaria di massa ($\qty{1}{kg}$) e cambia da sostanza a sostanza.
     Se abbiamo oggetti composti da più materiali possiamo utilizzare come grandezza,
-    anche se contiene meno informazioni, la capacità termica C, ovvero il calore
-    necessario ad un oggetto per innalzare la sua temperatura di un grado Kelvin.
+    anche se contiene meno informazioni, la capacità termica $C$, ovvero il calore
+    necessario ad un oggetto per innalzare la sua temperatura di $\qty{1}{K}$.
 
     L'equazione che dobbiamo tenere presente è $Q=m c \Delta T$.
 
@@ -46,64 +46,76 @@
     Mettendo due corpi, uno caldo e uno freddo, a contatto termico in un sistema
     isolato e in cui non viene svolto lavoro meccanico, sappiamo che il corpo caldo
     cederà calore al corpo freddo fino al raggiungimento di una temperatura di
-    equilibrio e che $\Delta Q_{ced.}=-\Delta Q_{ass.}$ (conservazione dell'energia).
+    equilibrio e che $\Delta Q_\text{ced}=-\Delta Q_\text{ass}$ (conservazione dell'energia).
 
-    Se noi scaldiamo uno dei cilindretti nell'acqua bollente, ovvero in corrispondenza
+    Se noi scaldiamo uno dei cilindretti  % TODO: quali cilindretti?
+    nell'acqua bollente, ovvero in corrispondenza
     della transizione di quest'ultima da stato liquido ad aeriforme, tutto il sistema
-    è a 100 grandi, salvo correzioni dovute alla pressione diversa da 1 atm.
-    L'acqua da noi utilizzata è distillata (così $c=4186 J/kg*K$?)
-    Quando accendiamo il fornelletto, per farlo scaldare iù velocemente ed evitare di
-    non essere in stato di ebollizione, regoliamo la temperatura della piastra a 
-    $T>100°C$. 
+    è a $\qty{100}{\degree C}$, salvo correzioni dovute alla pressione diversa da $\qty{1}{atm}$.
+    L'acqua da noi utilizzata è distillata ($c=\qty{4186}{J \per kg\,K}$)
+    Quando accendiamo il fornelletto, per farlo scaldare più velocemente e assicurarci
+    di essere in stato di ebollizione, regoliamo la temperatura della piastra a
+    $T>\qty{100}{\degree C}$.
     Quando il cilindretto raggiunge la temperatura di 100°C lo mettiamo nel calorimetro,
     nel quale si troverà acqua a temperatura ambiente, ma prima di fare questo
     trasferimento facciamo partire la misura della temperatura. Chiuso il calorimetro,
-    mescoliamo (per evitare che l'acqua calda resti in alto?).
+    mescoliamo (per evitare che l'acqua calda resti in alto).
 
-    $m_{met.} c_{met.} (T_{caldo}-T_{eq.}=c_{acqua} m_{acqua} (T_{eq.}-T{ambiente})$
-    "Il calorimetro è abbastanza adiabatico e questo lo valuterete nell'ultima parte 
+    \[
+        m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
+        c_\text{acqua} m_\text{acqua} (T_\text{eq}-T_\text{fredda})
+    \]
+
+    "Il calorimetro è abbastanza adiabatico e questo lo valuterete nell'ultima parte
     dell'esperimento."
 
-    $m_{met.} c_{met.} (T_{caldo}-T_{eq.}=c_{acqua} m_{acqua} (T_{eq.}-T{ambiente})+
-    C_{cal.} (T_{eq.}-T{ambiente})$. Questa è la seconda parte dell'esperimento.
+    \[
+        m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
+        (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{fredda})
+    \]. Questa è la seconda parte dell'esperimento.
 
-    È necessaria una prima parte dell'esperimento per misurare ...
+    È necessaria una prima parte dell'esperimento per misurare $C_\text{calorimetro}$
     Prendiamo due masse d'acqua, una fredda da mettere nel calorimetro ed una da
     scaldare nel pentolino. È meglio che le masse si equivalgano, e che la loro
     somma sia uguale all'acqua che utilizzeremo nella seconda parte, in modo che
     il calorimetro si bagni allo stesso modo.
     Raggiunti i 100°C, versiamo l'acqua calda nel calorimetro. Allora:
 
-    $m_{calda} c_{calda} (T_{calda}-T_{eq.}=c_{fredda} m_{fredda} (T_{eq.}-T{ambiente})+
-    C_{cal.} (T_{eq.}-T{ambiente})$
-    
-    Invece che misurare $C_{cal.}$ in $J/K$, possiamo considerare a quanta acqua equivale
-    il calorimetro dal punto di vista termico, ovvero la quantità di acqua che assorbe lo 
+    \[
+        m_\text{calda} c_\text{acqua} (T_\text{calda}-T_\text{eq}) =
+        (m_\text{fredda} c_\text{acqua} + C_\text{calorimetro})(T_\text{eq}-T_\text{fredda})
+    \]
+
+    Invece che misurare $C_\text{calorimetro}$ in $\unit{J\per K}$, possiamo considerare a quanta acqua equivale
+    il calorimetro dal punto di vista termico, ovvero la quantità di acqua che assorbirebbe lo
     stesso calore del calorimetro.
 
-    $m_{calda} c_{acqua} (T_{calda}-T_{eq.}=c_{acqua} m_{fredda} (T_{eq.}-T{ambiente})+
-    m_{eq.} c_{acqua} (T_{eq.}-T{ambiente})$. La massa equivalente ci da anche un idea di
-    quanto il calorimetro disturbi la misura.
+    \[
+        m_\text{calda} (T_\text{calda}-T_\text{eq}) =
+        (m_\text{fredda} + m_\text{equiv})(T_\text{eq}-T_\text{fredda})
+    \]
+
+    \emph{
+        \textbf{Osservazione.} La massa equivalente ($m_\text{equiv}$) ci da anche un idea di
+        quanto il calorimetro disturbi la misura.
+    }
 
     Una volta ottenuto questo valore, possiamo calcolare i calori specifici dei metalli
     di cui sono composti i cilindretti.
 
     Come ultima cosa misureremo la discesa esponenziale della temperatura dell'acqua
     dentro al calorimetro e in particolare il suo tempo caratteristico, ovvero la quantità
-    di tempo che impiega l'acqua all'interno del calorimetro ad abbassare la sua
-    temperatura di $e(T_{0}-T_{amb.})$ volte.
+    di tempo $\tau$ che impiega l'acqua all'interno del calorimetro ad abbassare la sua
+    temperatura di $(T_0 - T_\text{amb})e$ volte.
 
-    La legge che segue questa discesa è: $(T-T_{amb.})=(T_{0}-T_{amb.}) e^{-t/\Tau}$.
+    La legge che segue questa discesa è: \[(T-T_\text{amb.})=(T_0-T_\text{amb.}) e^{-t/\tau}\]
 
-    Il parametro $\Tau$ descrive quanto bene il calorimetro trattenga il calore
-    (quindi sia adiabatico?). Per misurarlo abbiamo scaldato 200g d'acqua, che abbiamo
-    poi lasciato raffreddare nel calorimetro in partenza vuoto, registrandone la T.
+    Il parametro $\tau$ descrive quanto bene il calorimetro trattenga il calore
+    (quindi sia adiabatico). Per misurarlo abbiamo scaldato $\qty{200}{g}$ d'acqua, che abbiamo
+    poi lasciato raffreddare nel calorimetro in partenza vuoto, registrandone la $T$.
 
     L'equazioen della regressione lineare che abbiamo utilizzato è:
-    $ln(T-T_{amb.})=ln(T_{0}-T_{amb.})-(1/\Tau)t$.
-    
-    
-    
+    \[\ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t\]
 
 
 \end{abstract}
