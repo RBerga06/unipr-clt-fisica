@@ -102,6 +102,12 @@ Posizionato il contatore Geiger a una certa distanza $d_i$ dal campione di $\Th$
 (con $i\in\left[1;4\right]\cap\mathbb{N}$),
 definiamo una variabile aleatoria $x_\gamma$ come il numero di raggi $\gamma$
 emessi dal $\Th$ nell'arco di un secondo, nella direzione del contatore.
+Allora, la distribuzione di probabilità di $x_\gamma$ è data da una Poissoniana:
+\[
+    p(x_\gamma=k)=\frac{\overline{x_\gamma}^k e^{-\overline{x_\gamma}}}{k!}
+    \qquad
+    \forall k\in\mathbb{N}
+\]
 
 Per un tempo complessivo di circa un'ora\footnote{
     Abbiamo scelto deliberatamente di acquisire esattamente 3657 secondi in quanto
