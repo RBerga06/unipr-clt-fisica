@@ -56,10 +56,6 @@ la distribuzione di probabilità di $x_s$ è data da:
 Di seguito riportiamo gli istogrammi dei dati così raccolti, assieme ai valori attesi,
 calcolati mediante la distribuzione teorica.
 
-\begin{figure*}
-    \caption{...}
-\end{figure*}
-
 % \subsubsection*{Onestà dei dadi}
 % Avendo segnato tutti i risultati di ogni dado, possiamo inoltre stimare se i dadi che
 % abbiamo utilizzato sono truccati o meno. Infatti, su un dado onesto ci aspettiamo
@@ -105,7 +101,7 @@ Di seguito riportiamo, in un istogramma, i risultati della simulazione.
 \subsection{Esperienza e procedimento di misura}
 
 Per ogni distanza $d_i$ tra il campione di $\Th$ e il contatore Geiger
-(con $i\in\left[1;5\right]\cap\mathbb{N}$), il gruppo di lavoro ha acquisito
+(con $i\in\left[1;4\right]\cap\mathbb{N}$), il gruppo di lavoro ha acquisito
 i conteggi di raggi $\gamma$ emessi nella direzione del contatore ogni secondo
 per un tempo complessivo di circa un'ora ($\qty{3657}{s}$)\footnote{
     Abbiamo scelto di acquisire esattamente 3657 secondi in quanto
@@ -121,7 +117,7 @@ per avere una stima della radioattività ambientale.
 
 \emph{
     \textbf{Notazione.} Indichiamo con $\gamma_i$ complessivamente i conteggi
-    acquisiti a distanza $d_i$ dal campione (con $i\in\left[1;5\right]\cap\mathbb{N}$),
+    acquisiti a distanza $d_i$ dal campione (con $i\in\left[1;4\right]\cap\mathbb{N}$),
     mentre con $\gamma_{t,i}$ il numero di conteggi nell'intervallo temporale
     $\left[(t-1)\;\unit{s};t\;\unit{s}\right]$ dall'inizio dell'acquisizione (con
     $t\in\left[1;3657\right]\cap\mathbb{N}$).
@@ -143,6 +139,18 @@ per avere una stima della radioattività ambientale.
 
 Di seguito, riportiamo le distribuzioni di tutti i $\gamma_i$
 e la regerssione lineare dei conteggi in funzione di $1/d_i^2$.
+
+\begin{figure}[H]
+    % trim={< v > ^}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger2.jpg}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger1.jpg}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger4.jpg}
+    \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger5.jpg}
+    \caption{
+        Istogrammi dei dati raccolti (nell'ordine, $\gamma_1$, $\gamma_2$, $\gamma_3$ e $\gamma_4$).\\
+        I quadratini neri rappresentano i valori delle rispettive distribuzioni teoriche.
+    }
+\end{figure}
 
 \subsection{Conclusioni}
 Per valutare numericamente la consistenza tra i due valori di $k$ ottenuti,
