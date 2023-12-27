@@ -1,5 +1,5 @@
 /**** Architettura del programma ****
- * Il lavoro viene eseguito in parallelo da 50 thread.
+ * Il lavoro viene eseguito in parallelo da 20 thread.
  * Ogni volta che un thread completa una milestone,
  *   invia i risultati attuali al `main()`.
  * Quando il programma principale
@@ -7,9 +7,9 @@
 
 /*** Costanti per la compilazione ***/
 // Parametri della simulazione
-const N_THREADS:    u8  = 50;        // Numero di thread
+const N_THREADS:    u8  = 20;        // Numero di thread
 const N_MILESTONES: u32 = 10_000;    // Numero di milestone
-const N_THROWS:     u32 = 2_000_000; // Numero di lanci per milestone
+const N_THROWS:     u32 = 5_000_000; // Numero di lanci per milestone
 const N_ROLLS:      u8  = 6;         // Numero di dadi da lanciare
 // Altre costanti
 const N_BINS: usize = (N_ROLLS + 1) as usize;
