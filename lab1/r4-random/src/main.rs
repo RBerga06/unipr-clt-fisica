@@ -1,27 +1,29 @@
 /**** Architettura del programma ****
- * Il lavoro viene spezzato fra i vari
+ * Il lavoro viene eseguito in parallelo da 50 thread.
+ * Ogni volta che un thread completa una milestone,
+ *   invia i risultati attuali al `main()`.
+ * Quando il programma principale
 */
 
-/* Costanti durante la compilazione */
-/// Parametri della simulazione
-const N_THREADS:    u8  = 50;        /// Numero di thread
-const N_MILESTONES: u32 = 10_000;    /// Numero di
-const N_THROWS:     u32 = 2_000_000;
-const N_ROLLS:      u8  = 5;
-/// Altre costanti
+/*** Costanti per la compilazione ***/
+// Parametri della simulazione
+const N_THREADS:    u8  = 50;        // Numero di thread
+const N_MILESTONES: u32 = 10_000;    // Numero di milestone
+const N_THROWS:     u32 = 2_000_000; // Numero di lanci per milestone
+const N_ROLLS:      u8  = 6;         // Numero di dadi da lanciare
+// Altre costanti
 const N_BINS: usize = (N_ROLLS + 1) as usize;
 const N_COUNT_TOTAL: u128 = (N_MILESTONES as u128) * (N_THREADS as u128);
 
-/*** Imports ***/
+/*** Importazioni ***/
 use std::{sync::mpsc::{self, Sender}, thread, io::{self, Write}};
 use rand::prelude::Distribution;
 
 
+/*** Lavoro di ogni thread ***/
 fn work(tx: Sender<[u128; N_BINS]>) {
-    /*** Setup ***/
     let mut rng = rand::thread_rng();
     let die = rand::distributions::Uniform::from(1..7u8);
-    /*** Main program ***/
     let mut counter: u8;
     let mut bins: [u128; N_BINS];
     for _milestone in 0..N_MILESTONES {
@@ -41,7 +43,10 @@ fn work(tx: Sender<[u128; N_BINS]>) {
 }
 
 
+/*** Utility per l'output ***/
+
 fn print_info() {
+    // Stampa a schermo la configurazione iniziale
     println!("#dadi:   {N_ROLLS}");
     println!("#lanci:  {N_THROWS}");
     println!("#volte:  {N_MILESTONES}");
@@ -51,6 +56,7 @@ fn print_info() {
 }
 
 fn print_bins(count: u128, bins: [u128; N_BINS]) {
+    // Stampa a schermo il progresso attuale e i conteggi dei bin
     let percent: u128 = (100*count)/N_COUNT_TOTAL;
     print!("[{count}/{N_COUNT_TOTAL}|{percent}%]");
     for i in 0..N_BINS {
@@ -62,22 +68,23 @@ fn print_bins(count: u128, bins: [u128; N_BINS]) {
 }
 
 
+/*** Programma principale ***/
 fn main() {
     print_info();
-    /*** Spawn threads ***/
+    // Crea i thread
     let (tx, rx) = mpsc::channel::<[u128;N_BINS]>();
     for _i in 0..N_THREADS {
         let txi = tx.clone();
         thread::spawn(move ||{ work(txi); });
     }
-    /*** Combine all outputs ***/
+    // Combina gli output
     let mut count: u128 = 0;
     let mut bins: [u128; N_BINS] = [0; N_BINS];
     for bin in rx {
         for i in 0..N_BINS {
             bins[i] += bin[i];
         }
-        count += 1;  // another thread has finished!
+        count += 1;  // Un altro thread ha finito!
         if (count % (N_THREADS as u128)) == 0 {
             print_bins(count, bins);
         }
