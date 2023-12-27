@@ -116,10 +116,8 @@ al campione, per avere una stima della radioattività ambientale.
 
 \emph{
     \textbf{Notazione.} Indichiamo con $\gamma_i$ complessivamente i conteggi
-    acquisiti a distanza $d_i$ dal campione (con $i\in\left[1;4\right]\cap\mathbb{N}$),
-    mentre con $\gamma_{t,i}$ il numero di eventi nell'intervallo temporale
-    $\left[(t-1)\;\unit{s};t\;\unit{s}\right]$ dall'inizio dell'acquisizione (con
-    $t\in\left[1;3657\right]\cap\mathbb{N}$).
+    acquisiti a distanza $d_i$ dal campione
+    (con $i\in\left[1;4\right]\cap\mathbb{N}$).
     Allora $\overline{\gamma_i}$ sarà la media della distribuzione, dove
     $\bestp{\overline{\gamma_i}}$ sarà la media dei conteggi,
     mentre $\sigma_{\gamma_i}$ sarà la deviazione standard e
@@ -136,8 +134,8 @@ al campione, per avere una stima della radioattività ambientale.
     }
 }
 
-Di seguito, riportiamo le distribuzioni di tutti i $\gamma_i$
-e la regerssione lineare pesata dei conteggi in funzione di $1/d_i^2$.
+Di seguito, riportiamo, come istogrammi, le distribuzioni di tutti i $\gamma_i$,
+a cui abbiamo sovrapposto i valori attesi
 
 \begin{center}
     \begin{figure}[H]
@@ -146,12 +144,13 @@ e la regerssione lineare pesata dei conteggi in funzione di $1/d_i^2$.
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger1.jpg}
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger4.jpg}
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger5.jpg}
-        \caption{
-            Istogrammi dei dati raccolti (nell'ordine, $\gamma_1$, $\gamma_2$, $\gamma_3$ e $\gamma_4$).\\
-            I quadratini neri rappresentano i valori delle rispettive distribuzioni teoriche.
-        }
     \end{figure}
-    \vspace{.5cm}
+\end{center}
+
+Come si può osservare, le distribuzioni ottenute si allineano molto bene alle
+distribuzioni di Poisson
+
+\begin{center}
     \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
         $i$ & $d_i\;\;(\unit{cm})$ & $d_i^{-2}\;\;(\unit{m^{-2}})$ & $\overline{\gamma_i}$ \\
