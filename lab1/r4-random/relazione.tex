@@ -102,12 +102,27 @@ Posizionato il contatore Geiger a una certa distanza $d_i$ dal campione di $\Th$
 (con $i\in\left[1;4\right]\cap\mathbb{N}$),
 definiamo una variabile aleatoria $x_\gamma$ come il numero di raggi $\gamma$
 emessi dal $\Th$ nell'arco di un secondo, nella direzione del contatore.
-Allora, la distribuzione di probabilità di $x_\gamma$ è data da una Poissoniana:
+Allora, detta $\overline{x_\gamma}$ la media teorica\footnote{
+    Che il parametro della distribuzione coincida con la media è facilmente
+    dimostrabile. Detto $\lambda$ quel parametro, vale:
+    \[\begin{aligned}
+        \overline{x_\gamma} &= \sum_{k=0}^{+\infty} k\,p(x_\gamma=k) =
+        \sum_{k=0}^{+\infty} k \frac{\lambda^k  e^-\lambda}{k!} =
+        e^{-\lambda} \sum_{k=0}^{+\infty} k \frac{\lambda^k}{k!} =
+        e^{-\lambda} \left(0 + \sum_{k=1}^{+\infty} k \frac{\lambda^k}{k!}\right) \\ &=
+        \lambda e^{-\lambda} \sum_{k=1}^{+\infty} \frac{\lambda^{k-1}}{(k-1)!} =
+        \lambda e^{-\lambda} \sum_{j=0}^{+\infty} \frac{\lambda^j}{j!} =
+        \lambda e^{-\lambda} e^\lambda =
+        \lambda\quad\square
+    \end{aligned}\]
+} di $x_\gamma$,
+la distribuzione di probabilità di $x_\gamma$ è data da una Poissoniana:
 \[
     p(x_\gamma=k)=\frac{\overline{x_\gamma}^k e^{-\overline{x_\gamma}}}{k!}
     \qquad
     \forall k\in\mathbb{N}
 \]
+Il valore di $\overline{x_\lambda}$ è legato alla natura del $\Th$, nonché alla distanza
 
 Per un tempo complessivo di circa un'ora\footnote{
     Abbiamo scelto deliberatamente di acquisire esattamente 3657 secondi in quanto
