@@ -95,7 +95,7 @@ Di seguito riportiamo, in un istogramma, i risultati della simulazione.
 \end{center}
 
 Come è possibile osservare dal grafico, i risultati della simulazione sono, in proporzione,
-talmente vicini alla distribuzione teorica da risultare pressoché indistinguibili.
+talmente vicini alla distribuzione teorica da risultare pressoché indistinguibili da essa.
 
 Ciò è in accordo con la legge dei grandi numeri, secondo la quale, al crescere del
 numero di prove, la distribuzione di probabilità rappresenta sempre meglio i
@@ -181,6 +181,7 @@ $\Th$ e alla massa $m$ di $\Th$ secondo la seguente relazione\footnote{
 }:
 \[
     \overline{x_i} = \frac{mr^2\ln{2}}{4 d_i^2 T_\frac{1}{2} (90(m_p + m_e) + 142m_n)}
+                   + \overline{x_0}
 \]
 
 Per ogni distanza $d_i$, il gruppo di lavoro ha acquisito ripetutamente il valore di
@@ -189,34 +190,11 @@ $x_i$ per un tempo complessivo di circa un'ora\footnote{
     $3657$ minimizza la funzione
     $f(x)=\left\{\frac{x}{\pi}\right\}=\frac{x}{\pi} - \left\lfloor\frac{x}{\pi}\right\rfloor$
     meglio di $3600$.
-} ($\qty{3657}{s}$).
+} ($\qty{3657}{s}$); ha poi acquisito nuovamente $x_4$ col contatore Geiger rivolto in
+direzione opposta, per avere una stima diretta di $\overline{x_0}$.
 
-Infine, il gruppo di lavoro ha acquisito, sempre per $\qty{3657}{s}$,
-i conteggi al secondo di raggi $\gamma$ nella direzione opposta rispetto
-al campione, per avere una stima della radioattività ambientale.
-
-\emph{
-    \textbf{Notazione.} Indichiamo con $\gamma_i$ complessivamente i conteggi
-    acquisiti a distanza $d_i$ dal campione
-    (con $i\in\left[1;4\right]\cap\mathbb{N}$).
-    Allora $\overline{\gamma_i}$ sarà la media della distribuzione, dove
-    $\bestp{\overline{\gamma_i}}$ sarà la media dei conteggi,
-    mentre $\sigma_{\gamma_i}$ sarà la deviazione standard e
-    $
-        \delta\!\left(\overline{\gamma_i}\right) =
-        \sigma_{\overline{\gamma_i}} =
-        \frac{\sigma_{\gamma_i}}{\sqrt{3657}}
-    $
-    l'errore sulla media.
-    Analogamente per \emph{
-        $\gamma_\text{amb}$,
-        $\gamma_\text{amb}$ e
-        $\overline{\gamma_\text{amb}}$.
-    }
-}
-
-Di seguito, riportiamo, come istogrammi, le distribuzioni di tutti i $\gamma_i$,
-a cui abbiamo sovrapposto i valori attesi
+Di seguito riportiamo gli istogrammi dei dati così raccolti,
+assieme ai valori attesi, calcolati mediante la distribuzione teorica.
 
 \begin{center}
     \begin{figure}[H]
@@ -225,16 +203,27 @@ a cui abbiamo sovrapposto i valori attesi
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger1.jpg}
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger4.jpg}
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger5.jpg}
+        \caption{Conteggi, nell'ordine, di $x_1$, $x_2$, $x_3$ e $x_4$.}
     \end{figure}
 \end{center}
 
-Come si può osservare, le distribuzioni ottenute si allineano molto bene alle
-distribuzioni di Poisson
+Come si può osservare da questi grafici, i risultati ottenuti si allineano molto bene
+alle distribuzioni di Poisson.
+Per valutare l'accuratezza della nostra stima di $\overline{x_0}$, possiamo effettuare
+una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di $d_i$:
+\[
+    \overline{x_i} = \frac{mr^2\ln{2}}
+                          {4 T_\frac{1}{2} (90(m_p + m_e) + 142m_n)} d_i^{-2}
+                   + \overline{x_0}
+\]
+Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare,
+assieme a un grafico della retta di regressione stessa.
+
 
 \begin{center}
     \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
-        $i$ & $d_i\;\;(\unit{cm})$ & $d_i^{-2}\;\;(\unit{m^{-2}})$ & $\overline{\gamma_i}$ \\
+        $i$ & $d_i\;\;(\unit{cm})$ & $d_i^{-2}\;\;(\unit{m^{-2}})$ & $\overline{x_i}$ \\
         \hline
         1 & $9.5\pm0.1$  & $111\pm2$      & $0.809\pm0.015$\\
         2 & $10.3\pm0.1$ & $94.3\pm1.8$   & $0.737\pm0.014$\\
@@ -245,9 +234,7 @@ distribuzioni di Poisson
     \begin{figure}[H]
         % trim={< v > ^}
         \includegraphics[trim={2cm .5cm 2cm 2.1cm},clip,width=\textwidth]{img/Regressione.png}
-        \caption{
-            La retta di regressione (in rosso) e la sua regione di incertezza (in rosa).
-        }
+        \caption{Regressione lineare. In rosa la regione di incercezza.}
     \end{figure}
 \end{center}
 
