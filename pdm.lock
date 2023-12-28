@@ -2,9 +2,9 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "dev"]
+groups = ["default"]
 strategy = ["cross_platform"]
-lock_version = "4.4"
+lock_version = "4.4.1"
 content_hash = "sha256:c6626b7aae3370238146f37f8eb19db529363e4fbe7a3c8060fd82d9ad8f80bb"
 
 [[package]]
@@ -44,20 +44,20 @@ files = [
 
 [[package]]
 name = "fonttools"
-version = "4.44.3"
+version = "4.47.0"
 requires_python = ">=3.8"
 summary = "Tools to manipulate font files"
 files = [
-    {file = "fonttools-4.44.3-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:fad1c74aa10b77764d3cdf3481bd181d4949e0b46f2da6f9e57543d4adbda177"},
-    {file = "fonttools-4.44.3-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:b6a77e3b994649f72fb46b0b8cfe64481b5640e5aecc2d77961300a34fe1dc4f"},
-    {file = "fonttools-4.44.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:2bff4f9d5edc10b29d2a2daeefd78a47289ba2f751c9bf247925b9d43c6efd79"},
-    {file = "fonttools-4.44.3-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3302998e02a854a41c930f9f1366eb8092dbc5fe7ff636d86aeb28d232f4610a"},
-    {file = "fonttools-4.44.3-cp312-cp312-musllinux_1_1_aarch64.whl", hash = "sha256:8c7985017e7fb2c2613fa5c440457cd45a6ea808f8d08ed70c27e02e6862cbbe"},
-    {file = "fonttools-4.44.3-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:35d88af2b63060ed2b50aa00d38f60edf4c0b9275a77ae1a98e8d2c03540c617"},
-    {file = "fonttools-4.44.3-cp312-cp312-win32.whl", hash = "sha256:5478a77a15d01a21c569fc4ab6f2faba852a21d0932eef02ac4c4a4b50af8070"},
-    {file = "fonttools-4.44.3-cp312-cp312-win_amd64.whl", hash = "sha256:979fc845703e0d9b35bc65379fcf34d050e04c3e0b3381a0f66b0be33183da1c"},
-    {file = "fonttools-4.44.3-py3-none-any.whl", hash = "sha256:42eefbb1babf81de40ab4a6ace6018c8c5a0d79ece0f986f73a9904b26ee511b"},
-    {file = "fonttools-4.44.3.tar.gz", hash = "sha256:f77b6c0add23a3f1ec8eda40015bcb8e92796f7d06a074de102a31c7d007c05b"},
+    {file = "fonttools-4.47.0-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:e3f4d61f3a8195eac784f1d0c16c0a3105382c1b9a74d99ac4ba421da39a8826"},
+    {file = "fonttools-4.47.0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:174995f7b057e799355b393e97f4f93ef1f2197cbfa945e988d49b2a09ecbce8"},
+    {file = "fonttools-4.47.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ea592e6a09b71cb7a7661dd93ac0b877a6228e2d677ebacbad0a4d118494c86d"},
+    {file = "fonttools-4.47.0-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:40bdbe90b33897d9cc4a39f8e415b0fcdeae4c40a99374b8a4982f127ff5c767"},
+    {file = "fonttools-4.47.0-cp312-cp312-musllinux_1_1_aarch64.whl", hash = "sha256:843509ae9b93db5aaf1a6302085e30bddc1111d31e11d724584818f5b698f500"},
+    {file = "fonttools-4.47.0-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:9acfa1cdc479e0dde528b61423855913d949a7f7fe09e276228298fef4589540"},
+    {file = "fonttools-4.47.0-cp312-cp312-win32.whl", hash = "sha256:66c92ec7f95fd9732550ebedefcd190a8d81beaa97e89d523a0d17198a8bda4d"},
+    {file = "fonttools-4.47.0-cp312-cp312-win_amd64.whl", hash = "sha256:e8fa20748de55d0021f83754b371432dca0439e02847962fc4c42a0e444c2d78"},
+    {file = "fonttools-4.47.0-py3-none-any.whl", hash = "sha256:d6477ba902dd2d7adda7f0fd3bfaeb92885d45993c9e1928c9f28fc3961415f7"},
+    {file = "fonttools-4.47.0.tar.gz", hash = "sha256:ec13a10715eef0e031858c1c23bfaee6cba02b97558e4a7bfa089dba4a8c2ebf"},
 ]
 
 [[package]]
@@ -212,7 +212,7 @@ name = "rberga06-phylab"
 version = "1.0.0a0"
 requires_python = ">=3.12"
 git = "https://github.com/rberga06/pyphylab"
-revision = "3ec1e6067b901107cb69ff9a9e708d5aa9e1c5fe"
+revision = "b2746a717783ec085b1a5b25c7f7f2853c331fa0"
 summary = "A small Python library for random daily use in the Physics laboratory"
 
 [[package]]
@@ -227,10 +227,10 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.8.0"
+version = "4.9.0"
 requires_python = ">=3.8"
 summary = "Backported and Experimental Type Hints for Python 3.8+"
 files = [
-    {file = "typing_extensions-4.8.0-py3-none-any.whl", hash = "sha256:8f92fc8806f9a6b641eaa5318da32b44d401efaac0f6678c9bc448ba3605faa0"},
-    {file = "typing_extensions-4.8.0.tar.gz", hash = "sha256:df8e4339e9cb77357558cbdbceca33c303714cf861d1eef15e1070055ae8b7ef"},
+    {file = "typing_extensions-4.9.0-py3-none-any.whl", hash = "sha256:af72aea155e91adfc61c3ae9e0e342dbc0cba726d6cba4b6c72c1f34e47291cd"},
+    {file = "typing_extensions-4.9.0.tar.gz", hash = "sha256:23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783"},
 ]
