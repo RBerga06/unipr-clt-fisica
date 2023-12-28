@@ -54,6 +54,18 @@ la distribuzione di probabilità di $x_s$ è data da:
 Di seguito riportiamo gli istogrammi dei dati così raccolti, assieme ai valori attesi,
 calcolati mediante la distribuzione teorica.
 
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi1.jpg}
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi2.jpg}
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi3.jpg}
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi4.jpg}
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi5.jpg}
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi6.jpg}
+    \end{figure}
+\end{center}
+
 % \subsubsection*{Onestà dei dadi}
 % Avendo segnato tutti i risultati di ogni dado, possiamo inoltre stimare se i dadi che
 % abbiamo utilizzato sono truccati o meno. Infatti, su un dado onesto ci aspettiamo
@@ -72,6 +84,13 @@ su un grande numero di prove, i risultati si avvicinino, in proporzione,
 ai valori attesi.
 
 Di seguito riportiamo, in un istogramma, i risultati della simulazione.
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm .5cm 2cm 2.1cm},clip,width=\textwidth]{img/DadiSimul.png}
+    \end{figure}
+\end{center}
 
 \pagebreak
 \section{Processo di Poisson}
@@ -102,21 +121,22 @@ Posizionato il contatore Geiger a una certa distanza $d_i$ dal campione di $\Th$
 (con $i\in\left[1;4\right]\cap\mathbb{N}$),
 definiamo una variabile aleatoria $x_\gamma$ come il numero di raggi $\gamma$
 emessi dal $\Th$ nell'arco di un secondo, nella direzione del contatore.
-Allora, detta $\overline{x_\gamma}$ la media teorica\footnote{
-    Che il parametro della distribuzione coincida con la media è facilmente
-    dimostrabile. Detto $\lambda$ quel parametro, vale:
-    \[\begin{aligned}
-        \overline{x_\gamma} &= \sum_{k=0}^{+\infty} k\,p(x_\gamma=k) =
-        \sum_{k=0}^{+\infty} k \frac{\lambda^k  e^-\lambda}{k!} =
-        e^{-\lambda} \sum_{k=0}^{+\infty} k \frac{\lambda^k}{k!} =
-        e^{-\lambda} \left(0 + \sum_{k=1}^{+\infty} k \frac{\lambda^k}{k!}\right) \\ &=
-        \lambda e^{-\lambda} \sum_{k=1}^{+\infty} \frac{\lambda^{k-1}}{(k-1)!} =
-        \lambda e^{-\lambda} \sum_{j=0}^{+\infty} \frac{\lambda^j}{j!} =
-        \lambda e^{-\lambda} e^\lambda =
-        \lambda\quad\square
-    \end{aligned}\]
-} di $x_\gamma$,
-la distribuzione di probabilità di $x_\gamma$ è data da una Poissoniana:
+Allora, detta $\overline{x_\gamma}$ la media teorica
+% \footnote{
+    % Che il parametro della distribuzione coincida con la media è facilmente
+    % dimostrabile. Detto $\lambda$ quel parametro, vale:
+    % \[\begin{aligned}
+        % \overline{x_\gamma} &= \sum_{k=0}^{+\infty} k\,p(x_\gamma=k) =
+        % \sum_{k=0}^{+\infty} k \frac{\lambda^k  e^{-\lambda}}{k!} =
+        % e^{-\lambda} \sum_{k=0}^{+\infty} k \frac{\lambda^k}{k!} =
+        % e^{-\lambda} \left(0 + \sum_{k=1}^{+\infty} k \frac{\lambda^k}{k!}\right) \\ &=
+        % \lambda e^{-\lambda} \sum_{k=1}^{+\infty} \frac{\lambda^{k-1}}{(k-1)!} =
+        % \lambda e^{-\lambda} \sum_{j=0}^{+\infty} \frac{\lambda^j}{j!} =
+        % \lambda e^{-\lambda} e^\lambda =
+        % \lambda\quad\square
+    % \end{aligned}\]
+% }
+di $x_\gamma$, la distribuzione di probabilità di $x_\gamma$ è data da una Poissoniana:
 \[
     p(x_\gamma=k)=\frac{\overline{x_\gamma}^k e^{-\overline{x_\gamma}}}{k!}
     \qquad
