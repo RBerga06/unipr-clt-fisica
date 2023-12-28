@@ -153,13 +153,8 @@ di $x_i$, la distribuzione di probabilità di $x_i$ è data da una Poissoniana:
 \]
 Il valore di $\overline{x_i}$ è legato alla distanza $d_i$, al raggio $r$
 della finestra del contatore, al tempo di dimezzamento $T_\frac{1}{2}$ del
-$\Th$ e alla massa $m$ di $\Th$ secondo la seguente relazione\footnote{
-    Se la massa del campione è $m$, il numero di atomi è:
-    \[
-        N = \frac{m}{m_\text{atomo}} =
-        \frac{m}{90(m_p+m_e) + (232-90)m_n}
-    \]
-    Il numero medio $\overline{X}$ di raggi $\gamma$ emessi dal campione sarà allora:
+$\Th$ e al numero $N$ di atomi di $\Th$ secondo la seguente relazione\footnote{
+    Il numero medio $\overline{X}$ di raggi $\gamma$ emessi dal campione è:
     \[
         \overline{X} = \frac{N}{\tau} = \frac{N\ln{2}}{T_\frac{1}{2}}
     \]
@@ -168,21 +163,20 @@ $\Th$ e alla massa $m$ di $\Th$ secondo la seguente relazione\footnote{
     dobbiamo moltiplicare per il rapporto fra le aree:
     \[
         \overline{x_i} = \frac{\pi r^2}{4\pi d_i^2} \overline{X} =
-        \frac{r^2N\ln{2}}{4 d_i^2 T_\frac{1}{2}}
+        \frac{Nr^2\ln{2}}{4 d_i^2 T_\frac{1}{2}}
     \]
     Infine, dobbiamo ricordare che il contatore Geiger non rileva soltanto le
     radiazioni emesse dal campione. Possiamo tenere conto di tutti gli altri
     contributi introducendo un termine costante $\overline{x_0}$, che chiameremo
-    “media dei conteggi relativi alla radioattività ambientale”:
-    \[
-        \overline{x_i} = \frac{r^2N\ln{2}}{4 d_i^2 T_\frac{1}{2}} + \overline{x_0}
-    \]
-    Sostituendo l'espressione di $N$, si ottiene la formula riportata.
+    “media dei conteggi relativi alla radioattività ambientale”.
+    Si ottiene così la relazione riportata.
 }:
 \[
-    \overline{x_i} = \frac{mr^2\ln{2}}{4 d_i^2 T_\frac{1}{2} (90(m_p + m_e) + 142m_n)}
-                   + \overline{x_0}
+    \overline{x_i} = \frac{Nr^2\ln{2}}{4 d_i^2 T_\frac{1}{2}} + \overline{x_0}
 \]
+D'ora in avanti indicheremo con $\spadesuit$ la costante $\frac{r^2\ln{2}}{4T_\frac{1}{2}}$.
+La relazione diventa allora:
+\[\overline{x_i} = N\spadesuit d_i^{-2} + \overline{x_0}\]
 
 Per ogni distanza $d_i$, il gruppo di lavoro ha acquisito ripetutamente il valore di
 $x_i$ per un tempo complessivo di circa un'ora\footnote{
@@ -238,8 +232,12 @@ assieme a un grafico della retta di regressione stessa.
     \end{figure}
 \end{center}
 
-\subsection{Conclusioni}
-Per valutare numericamente la consistenza tra i due valori di $k$ ottenuti,
+Risultati della regressione lineare:
+\begin{itemize}
+    \item $k$
+\end{itemize}
+
+Per valutare numericamente la consistenza tra i due valori di $\overline{x_0}$ ottenuti,
 abbiamo calcolato il seguente valore (numero puro):
 \[
     \varepsilon =
