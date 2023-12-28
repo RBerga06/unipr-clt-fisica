@@ -174,9 +174,10 @@ $\Th$ e al numero $N$ di atomi di $\Th$ secondo la seguente relazione\footnote{
 \[
     \overline{x_i} = \frac{Nr^2\ln{2}}{4 d_i^2 T_\frac{1}{2}} + \overline{x_0}
 \]
-D'ora in avanti indicheremo con $\xi$ la costante $\frac{r^2\ln{2}}{4T_\frac{1}{2}}$.
+D'ora in avanti indicheremo con $\xi$ la costante $\frac{Nr^2\ln{2}}{4T_\frac{1}{2}}$
+(unità di misura: $\unit{m^2\per s}$).
 La relazione diventa allora:
-\[\overline{x_i} = N\xi d_i^{-2} + \overline{x_0}\]
+\[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
 
 Per ogni distanza $d_i$, il gruppo di lavoro ha acquisito ripetutamente il valore di
 $x_i$ per un tempo complessivo di circa un'ora\footnote{
@@ -204,8 +205,8 @@ assieme ai valori attesi, calcolati mediante la distribuzione teorica.
 Come si può osservare da questi grafici, i risultati ottenuti si allineano molto bene
 alle distribuzioni di Poisson.
 Per valutare l'accuratezza della nostra stima di $\overline{x_0}$, possiamo effettuare
-una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di $d_i$:
-\[\overline{x_i} = N\xi d_i^{-2} + \overline{x_0}\]
+una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di
+$d_i^{-2}$: \[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
 Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare,
 assieme a un grafico della retta di regressione stessa.
 
@@ -230,7 +231,8 @@ assieme a un grafico della retta di regressione stessa.
 
 Risultati della regressione lineare:
 \begin{itemize}
-    \item $k$
+    \item $\overline{x_0} = 0.188\pm0.006$
+    \item $\xi = \left(5.70\pm0.13\right)\cdot10^{-3}\,\unit{m^2\per s}$
 \end{itemize}
 
 Per valutare numericamente la consistenza tra i due valori di $\overline{x_0}$ ottenuti,
