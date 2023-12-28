@@ -108,23 +108,29 @@ def merge(file1: Path, file2: Path, output: Path, sep: str = "\n") -> None:
     output.write_text(file1.read_text() + sep + file2.read_text())
 
 def massThEstimate(x: MeasureLike[float], R: MeasureLike[float], /) -> Measure[float]:
-    Aa = (4*R**2)/r**2
-    N = (Th232.T12 * Aa)/ln2 * x
-    return Th232.mass * N
+    # Aa = (4*R**2)/r_geiger**2
+    # N = (Th232.T12 * Aa)/ln2 * x
+    xi = x*R
+    N = (4 * Th232.T12 * xi)/(ln2 * r_geiger**2)
+    m = Th232.mass * N
+    return m
 
 def massTh[M: MeasureLike[float]](xi: M, /) -> M:
     # ξ = (Nr²ln2)/(4T₁₂)
     # 4T₁₂ξ = Nr²ln2
     # (4T₁₂ξ)/(r²ln2) = N
-    N = (4 * Th232.T12 * xi)/(ln2 * r**2)
+    print(ln2, r_geiger**2, Th232.T12, xi, sep="\n")
+    N = (4 * Th232.T12 * xi)/(ln2 * r_geiger**2)
     m = Th232.mass * N
+    print(N, Th232.mass, m, sep="\n")
     return m  # type: ignore
 
 
 # --- Actual data analysis ---
 DATA = Path(__file__).parent.parent/"data"
 MAX_DATA_N: int = 3657
-r = Datum(7.00, 0.05)/1000  # m
+d_geiger = Datum(14.00, 0.05)/1000  # m
+r_geiger = d_geiger/2
 
 match sys.argv[1:]:
     case ["bernoulli", *argv]:
