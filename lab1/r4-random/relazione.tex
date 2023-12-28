@@ -128,9 +128,9 @@ risultati ottenuti, normalizzati.
 
 Posizionato il contatore Geiger a una certa distanza $d_i$ dal campione di $\Th$
 (con $i\in\left[1;4\right]\cap\mathbb{N}$),
-definiamo una variabile aleatoria $x_\gamma$ come il numero di raggi $\gamma$
+definiamo una variabile aleatoria $x_i$ come il numero di raggi $\gamma$
 emessi dal $\Th$ nell'arco di un secondo, nella direzione del contatore.
-Allora, detta $\overline{x_\gamma}$ la media teorica
+Allora, detta $\overline{x_i}$ la media teorica
 % \footnote{
     % Che il parametro della distribuzione coincida con la media è facilmente
     % dimostrabile. Detto $\lambda$ quel parametro, vale:
@@ -151,9 +151,9 @@ di $x_i$, la distribuzione di probabilità di $x_i$ è data da una Poissoniana:
     \qquad
     \forall k\in\mathbb{N}
 \]
-Il valore di $\overline{x_i}$ è legato alla distanza $d_i$, al tempo
-di dimezzamento $T_\frac{1}{2}$ del $\Th$ e alla massa $m$ di $\Th$ secondo la seguente
-relazione\footnote{
+Il valore di $\overline{x_i}$ è legato alla distanza $d_i$, al raggio $r$
+della finestra del contatore, al tempo di dimezzamento $T_\frac{1}{2}$ del
+$\Th$ e alla massa $m$ di $\Th$ secondo la seguente relazione\footnote{
     Se la massa del campione è $m$, il numero di atomi è:
     \[
         N = \frac{m}{m_\text{atomo}} =
@@ -163,12 +163,19 @@ relazione\footnote{
     \[
         \overline{X} = \frac{N}{\tau} = \frac{N\ln{2}}{T_\frac{1}{2}}
     \]
-    con $\tau=T_\frac{1}{2}/\ln{2}$ il tempo caratteristico del $\Th$.
+    con $\tau=\frac{1}{\ln{2}}T_\frac{1}{2}$ il tempo caratteristico del $\Th$.
     Tuttavia, poiché la superficie di acquisizione è $\pi r^2$, e non $4\pi d_i^2$,
     dobbiamo moltiplicare per il rapporto fra le aree:
     \[
         \overline{x_i} = \frac{\pi r^2}{4\pi d_i^2} \overline{X} =
         \frac{r^2N\ln{2}}{4 d_i^2 T_\frac{1}{2}}
+    \]
+    Infine, dobbiamo ricordare che il contatore Geiger non rileva soltanto le
+    radiazioni emesse dal campione. Possiamo tenere conto di tutti gli altri
+    contributi introducendo un termine costante $x_0$, che chiameremo “conteggi
+    relativi alla radioattività ambientale”:
+    \[
+        \overline{x_i} = \frac{r^2N\ln{2}}{4 d_i^2 T_\frac{1}{2}} + x_0
     \]
     Sostituendo l'espressione di $N$, si ottiene la formula riportata.
 }:
