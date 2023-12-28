@@ -119,10 +119,8 @@ def massTh[M: MeasureLike[float]](xi: M, /) -> M:
     # ξ = (Nr²ln2)/(4T₁₂)
     # 4T₁₂ξ = Nr²ln2
     # (4T₁₂ξ)/(r²ln2) = N
-    print(ln2, r_geiger**2, Th232.T12, xi, sep="\n")
     N = (4 * Th232.T12 * xi)/(ln2 * r_geiger**2)
     m = Th232.mass * N
-    print(N, Th232.mass, m, sep="\n")
     return m  # type: ignore
 
 
