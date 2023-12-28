@@ -31,9 +31,9 @@ fn work(tx: Sender<[u128; N_BINS]>) {
         for _throw in 0..N_THROWS {
             counter = 0;
             for _roll in 0..N_ROLLS {
-                // Roll a die
+                // Lancia un dado
                 if die.sample(&mut rng) == 1 {
-                    counter += 1;   // Success!
+                    counter += 1;   // Successo!
                 }
             }
             bins[counter as usize] += 1;
