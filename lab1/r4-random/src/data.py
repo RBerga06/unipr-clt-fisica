@@ -120,6 +120,7 @@ def massTh[M: MeasureLike[float]](xi: M, /) -> M:
     # 4T₁₂ξ = Nr²ln2
     # (4T₁₂ξ)/(r²ln2) = N
     N = (4 * Th232.T12 * xi)/(ln2 * r_geiger**2)
+    print("N =", N)
     m = Th232.mass * N
     return m  # type: ignore
 
@@ -152,6 +153,7 @@ match sys.argv[1:]:
                         print(f"m  = {massThEstimate(file.fit.dist, file.distance)*1_000} g")
                 print("------------------")
             case ["mass"]:
+                print("ε =", Datum(0.19442166, 0.00729138).ε(Datum(0.188200746, 0.0064266811)))
                 print("m =", massTh(Datum(.005704, 1.3e-4))*1_000, "g")
             case _:
                 pass

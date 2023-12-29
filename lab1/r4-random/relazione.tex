@@ -8,7 +8,9 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{minted}
+\usepackage{caption}
 \usepackage[page]{appendix}
+\usepackage[bottom]{footmisc}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -16,6 +18,7 @@
 \newcommand*{\pbestp}[1]{\left({\left(#1\right)}_\text{best}\right)}
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \newcommand*{\Th}{^{232}_{\;\;90} \text{Th}}
+\renewcommand{\appendixpagename}{Appendici}
 \title{
     Laboratorio di Fisica 1\\
     R4: Misura di variabili aleatorie
@@ -77,7 +80,7 @@ gruppo di lavoro ritiene che ciò sia principalmente dovuto al ridotto numero di
 % gli istogrammi dei valori usciti su ogni dado.
 
 % \begin{figure*}
-%     \caption{...}
+%     \caption*{...}
 % \end{figure*}
 
 \subsection{Simulazione}
@@ -128,7 +131,11 @@ risultati ottenuti, normalizzati.
 
 Posizionato il contatore Geiger a una certa distanza $d_i$ dal campione di $\Th$
 (con $i\in\left[1;4\right]\cap\mathbb{N}$),
-definiamo una variabile aleatoria $x_i$ come il numero di raggi $\gamma$
+definiamo una variabile aleatoria\footnote{
+    L'unità di misura di $x_i$ (e, conseguentemente, anche di $\overline{x_i}$) è
+    $\unit{s^{-1}}$. Detto altrimenti,
+    $x_i\in\left\{n\,\unit{s^{-1}}:n\in\mathbb{N}\right\}$
+} $x_i$ come il numero di raggi $\gamma$
 emessi dal $\Th$ nell'arco di un secondo, nella direzione del contatore.
 Allora, detta $\overline{x_i}$ la media teorica
 % \footnote{
@@ -154,10 +161,8 @@ di $x_i$, la distribuzione di probabilità di $x_i$ è data da una Poissoniana:
 Il valore di $\overline{x_i}$ è legato alla distanza $d_i$, al raggio $r$
 della finestra del contatore, al tempo di dimezzamento $T_\frac{1}{2}$ del
 $\Th$ e al numero $N$ di atomi di $\Th$ secondo la seguente relazione\footnote{
-    Il numero medio $\overline{X}$ di raggi $\gamma$ emessi dal campione è:
-    \[
-        \overline{X} = \frac{N}{\tau} = \frac{N\ln{2}}{T_\frac{1}{2}}
-    \]
+    Il numero medio $\overline{X}$ di raggi $\gamma$ emessi dal campione è
+    $\overline{X} = \tau^{-1}N = {T^{-1}_\frac{1}{2}}N\ln{2}$,
     con $\tau=\frac{1}{\ln{2}}T_\frac{1}{2}$ il tempo caratteristico del $\Th$.
     Tuttavia, poiché la superficie di acquisizione è $\pi r^2$, e non $4\pi d_i^2$,
     dobbiamo moltiplicare per il rapporto fra le aree:
@@ -198,18 +203,23 @@ assieme ai valori attesi, calcolati mediante la distribuzione teorica.
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger1.jpg}
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger4.jpg}
         \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger5.jpg}
-        \caption{Conteggi, nell'ordine, di $x_1$, $x_2$, $x_3$ e $x_4$.}
+    \end{figure}\begin{figure}[H]
+        \centering
+        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger0.jpg}
+        \caption*{Conteggi, nell'ordine, di $x_1$, $x_2$, $x_3$, $x_4$ e $x_0$.}
     \end{figure}
 \end{center}
 
 Come si può osservare da questi grafici, i risultati ottenuti si allineano molto bene
 alle distribuzioni di Poisson.
+
+In particolare, $\overline{x_0} = \left(194\pm7\right)\cdot10^{-3}\,\unit{s^{-1}}$.
+
 Per valutare l'accuratezza della nostra stima di $\overline{x_0}$, possiamo effettuare
 una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di
 $d_i^{-2}$: \[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
 Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare,
 assieme a un grafico della retta di regressione stessa.
-
 
 \begin{center}
     \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
@@ -225,38 +235,52 @@ assieme a un grafico della retta di regressione stessa.
     \begin{figure}[H]
         % trim={< v > ^}
         \includegraphics[trim={2cm .5cm 2cm 2.1cm},clip,width=\textwidth]{img/Regressione.png}
-        \caption{Regressione lineare. In rosa la regione di incercezza.}
+        \caption*{Regressione lineare. In rosa la regione di incercezza.}
     \end{figure}
 \end{center}
 
 Risultati della regressione lineare:
 \begin{itemize}
-    \item $\overline{x_0} = 0.188\pm0.006$
-    \item $\xi = \left(5.70\pm0.13\right)\cdot10^{-3}\,\unit{m^2\per s}$
+    \item $\overline{x_0} = \left(188\pm6\right)\cdot10^{-3}\,\unit{s^{-1}}$ (intercetta)
+    \item $\xi = \left(5.70\pm0.13\right)\cdot10^{-3}\,\unit{m^2\per s}$ (coefficiente angolare)
 \end{itemize}
 
-Per valutare numericamente la consistenza tra i due valori di $\overline{x_0}$ ottenuti,
+Per valutare numericamente la consistenza tra i due valori di $\overline{x_0}$
+ottenuti ($\overline{x_0}_\text{\,diretto}$, misurato direttamente, e
+$\overline{x_0}_\text{\,indiretto}$, ottenuto dalla regressione lineare),
 abbiamo calcolato il seguente valore (numero puro):
 \[
     \varepsilon =
     \frac{
-        \left(x_{0\,\text{misurato}}\right)_\text{best} - \left(x_{0\,\text{misurato}}\right)_\text{best}
+        \left(\overline{x_0}_\text{\,diretto}\right)_\text{best} -
+        \left(\overline{x_0}_\text{\,indiretto}\right)_\text{best}
     }{
-        \delta x_{0\,\text{misurato}} + \delta x_{0\,\text{misurato}}
+        \delta\overline{x_0}_\text{\,diretto} +
+        \delta\overline{x_0}_\text{\,indiretto}
     }
 \]
-Allora $x_{0\,\text{misurato}}$ e $x_{0\,\text{misurato}}$ sono consistenti se e solo se $\left|\varepsilon\right|\le1$.
+Allora $\overline{x_0}_\text{\,diretto}$ e $\overline{x_0}_\text{\,indiretto}$
+sono consistenti se e solo se $\left|\varepsilon\right|\le1$.
 
-Nel nostro caso, $\varepsilon = 1.33$. Il gruppo di lavoro ha ipotizzato che
-questa inconsistenza (comunque contenuta, seppur non trascurabile) fra le due
-misure possa essere ragionevolmente giustificata dalla difficoltà incontrata
-nel ridurre al minimo le oscillazioni in direzione perpendicolare a $\vec{g}$;
-considerato inoltre che la posizione dei fototraguardi non era ottimale, ciò
-potrebbe avere ulteriormente influenzato la distribuzione dei tempi. È in
-effetti possibile osservare che le distribuzioni da noi ottenute non sono,
-il più delle volte, del tutto simmetriche: la moda sembra essersi spostata
-leggermente a sinistra – un possibile sintomo dell'influenza di un
-errore sistematico sulle misure.
+Nel nostro caso, $\varepsilon = +0.45$, per cui i due valori di $\overline{x_0}$
+sono consistenti.
+
+Dal valore di $\xi$ ottenuto mediante la regressione lineare, è possibile stimare
+il numero $N$ di atomi (e, di conseguenza, la massa) di $\Th$ nel campione.
+
+Dalle formule precedentemente esposte, segue:
+\[
+    N = \frac{4\,\xi\,T_\frac{1}{2}}{r^2\ln{2}}
+    = \left(2.98\pm0.09\right)\cdot10^{20}
+\]
+da cui:
+\[\begin{aligned}
+    m &= m_{\left(\text{1 atomo di }\Th\right)}N
+       = (90(m_p+m_e) + (232-90)m_n)N\\
+      &= \left(1.16\pm0.04\right)\cdot10^{-4}\,\unit{kg}
+       = \left(0.116\pm0.004\right)\unit{g}
+       = \left(116\pm4\right)\unit{mg}.
+\end{aligned}\]
 
 \pagebreak
 \begin{appendices}
