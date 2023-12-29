@@ -16,7 +16,7 @@ jobs:
       - name: Compile PDFs
         shell: bash
         run: |
-          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r4-random/ "$(pwd)/lab1/r4-random/relazione.tex"
+          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r4-random/ /lab1/r4-random/relazione.tex
           latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r5-torsione/ lab1/r5-torsione/relazione.tex
           latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r6-calorimetro/ lab1/r6-calorimetro/relazione.tex
       - name: Commit changes
