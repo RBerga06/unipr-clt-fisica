@@ -9,7 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: cd lab1/r4-random
-        run: cd lab1/r4-random
+        run: |
+          cd lab1/r4-random
+          ls -a .
       - name: Compile r4-random
         uses: dante-ev/latex-action@latest
         with:
