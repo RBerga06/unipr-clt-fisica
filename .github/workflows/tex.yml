@@ -16,6 +16,7 @@ jobs:
         shell: bash
         run: |
           pwd
+          ls -a .
           latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r4-random/ "$(pwd)/lab1/r4-random/relazione.tex"
           latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r5-torsione/ lab1/r5-torsione/relazione.tex
           latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r6-calorimetro/ lab1/r6-calorimetro/relazione.tex
