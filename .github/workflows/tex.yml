@@ -1,0 +1,25 @@
+name: "CI: LaTeX compilation"
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+          packages: >
+            l3build latex latex-bin luatex latex-bin-dev
+      - name: Use TeX Live
+        run: |
+          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r4-random/ lab1/r4-random/relazione.tex
+          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r5-torsione/ lab1/r5-torsione/relazione.tex
+          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r6-calorimetro/ lab1/r6-calorimetro/relazione.tex
+      - name: Save compiled PDFs
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git commit -am "Compile PDFs"
+          git push
