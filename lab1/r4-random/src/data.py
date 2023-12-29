@@ -110,7 +110,7 @@ def merge(file1: Path, file2: Path, output: Path, sep: str = "\n") -> None:
 def massThEstimate(x: MeasureLike[float], R: MeasureLike[float], /) -> Measure[float]:
     # Aa = (4*R**2)/r_geiger**2
     # N = (Th232.T12 * Aa)/ln2 * x
-    xi = x*R
+    xi = x*R**2
     N = (4 * Th232.T12 * xi)/(ln2 * r_geiger**2)
     m = Th232.mass * N
     return m
