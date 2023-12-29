@@ -8,17 +8,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install TeX Live
-        uses: zauguin/install-texlive@v3
+      - name: Compile r4-random
+        uses: dante-ev/latex-action@latest
         with:
-          packages: >
-            l3build latex latex-bin luatex latex-bin-dev latexmk amsmath amssymb babel-italian siunitx
-      - name: Compile PDFs
-        shell: bash
-        run: |
-          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r4-random/ lab1/r4-random/relazione.tex
-          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r5-torsione/ lab1/r5-torsione/relazione.tex
-          latexmk -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=lab1/r6-calorimetro/ lab1/r6-calorimetro/relazione.tex
+          root_file: lab1/r4-random/relazione.tex
+          compiler: latexmk
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r4-random/
+      - name: Compile r5-torsione
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: lab1/r5-torsione/relazione.tex
+          compiler: latexmk
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r5-torsione/
+      - name: Compile r6-calorimetro
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: lab1/r6-calorimetro/relazione.tex
+          compiler: latexmk
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r6-calorimetro/
       - name: Commit changes
         run: |
           git config --global user.name 'RBerga06'
