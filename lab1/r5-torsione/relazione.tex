@@ -54,18 +54,6 @@ la distribuzione di probabilità di $x_s$ è data da:
 Di seguito riportiamo gli istogrammi dei dati così raccolti, assieme ai valori attesi,
 calcolati mediante la distribuzione teorica.
 
-\begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi1.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi2.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi3.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi4.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi5.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Dadi6.jpg}
-    \end{figure}
-\end{center}
-
 Come è possibile osservare da questi grafici, i risultati riportati sembrano seguire
 grossomodo la distribuzione teorica. Tuttavia, presentano deviazioni osservabili; il
 gruppo di lavoro ritiene che ciò sia principalmente dovuto al ridotto numero di lanci.
@@ -86,13 +74,6 @@ simuliamo la stessa esperienza con $10^{12}$ lanci dei sei dadi, al fine di
 verificare la legge dei grandi numeri.
 
 Di seguito riportiamo, in un istogramma, i risultati della simulazione.
-
-\begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm .5cm 2cm 2.1cm},clip,width=\textwidth]{img/DadiSimul.png}
-    \end{figure}
-\end{center}
 
 Come è possibile osservare dal grafico, i risultati della simulazione sono, in proporzione,
 talmente vicini alla distribuzione teorica da risultare pressoché indistinguibili da essa.
@@ -191,16 +172,6 @@ direzione opposta, per avere una stima diretta di $\overline{x_0}$.
 Di seguito riportiamo gli istogrammi dei dati così raccolti,
 assieme ai valori attesi, calcolati mediante la distribuzione teorica.
 
-\begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger2.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger1.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger4.jpg}
-        \includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/Geiger5.jpg}
-        \caption{Conteggi, nell'ordine, di $x_1$, $x_2$, $x_3$ e $x_4$.}
-    \end{figure}
-\end{center}
 
 Come si può osservare da questi grafici, i risultati ottenuti si allineano molto bene
 alle distribuzioni di Poisson.
@@ -222,11 +193,7 @@ assieme a un grafico della retta di regressione stessa.
         4 & $41.2\pm0.1$ & $5.89\pm0.03$  & $0.219\pm0.008$\\
         \hline
     \end{tblr}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm .5cm 2cm 2.1cm},clip,width=\textwidth]{img/Regressione.png}
-        \caption{Regressione lineare. In rosa la regione di incercezza.}
-    \end{figure}
+
 \end{center}
 
 Risultati della regressione lineare:
@@ -259,13 +226,4 @@ leggermente a sinistra – un possibile sintomo dell'influenza di un
 errore sistematico sulle misure.
 
 \pagebreak
-\begin{appendices}
-    \section{Codice Rust per $10^{12}$ lanci di sei dadi}
-    Qui riportiamo il codice Rust, da noi scritto, che ci ha permesso di
-    lanciare virtualmente $6\cdot10^{12?}$ dadi in maniera estremamente
-    efficiente.
-
-    \inputminted[linenos, mathescape]{rust}{src/main.rs}
-\end{appendices}
-
 \end{document}
