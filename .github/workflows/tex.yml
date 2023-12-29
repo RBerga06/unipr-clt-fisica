@@ -9,13 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: cd lab1/r4-random
-        run: |
-          cd lab1/r4-random
-          ls -a .
+        run: cd lab1/r4-random
       - name: Compile r4-random
         uses: dante-ev/latex-action@latest
         with:
-          root_file: relazione.tex
+          root_file: ./relazione.tex
           compiler: latexmk
           args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=.
       - name: cd ../..
