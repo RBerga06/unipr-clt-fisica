@@ -8,16 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: cd lab1/r4-random
-        run: cd lab1/r4-random
       - name: Compile r4-random
         uses: dante-ev/latex-action@latest
         with:
-          root_file: ./relazione.tex
+          root_file: relazione.tex
+          working_directory: lab1/r4-random
           compiler: latexmk
           args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=.
-      - name: cd ../..
-        run: cd ../..
       - name: Compile r5-torsione
         uses: dante-ev/latex-action@latest
         with:
