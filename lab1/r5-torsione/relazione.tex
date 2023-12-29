@@ -18,88 +18,45 @@
 \newcommand*{\Th}{^{232}_{\;\;90} \text{Th}}
 \title{
     Laboratorio di Fisica 1\\
-    R4: Misura di variabili aleatorie
+    R5: Misura del modulo di scorrimento di un filo
 }
 \author{Gruppo 17: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
-\date{8/11/2023 – 15/11/2023}
+\date{22/11/2023 – 29/11/2023}
 \makeindex
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-    Il gruppo di lavoro ha misurato due variabili aleatorie, osservando come queste
-    rispecchino le rispettive distribuzioni teoriche (di Bernoulli e di Poisson).
+    Il gruppo di lavoro ha misurato la costante di torsione di diversi fili,
+    in modo da ricavarne il modulo di scorrimento $G$.
 \end{abstract}
 
-\section{Processo di Bernoulli}
-
-\subsection{Dati sperimentali}
-Eseguiamo 400 lanci di sei dadi distinti\footnote{Li distinguiamo in base al colore},
-registrandone tutti i risultati.
-Per ogni possibile risultato $s\in\left[1;6\right]\cap\mathbb{N}$, possiamo così
-definire una variabile aleatoria\footnote{\emph{Notazione.} Per noi $0\in\mathbb{N}$.}
-$x_s\in\left[0;6\right]\cap\mathbb{N}$ come il
-numero di dadi, fra i sei lanciati, con risultato pari ad $s$.
-Possiamo considerare il lancio dei sei dadi come un processo di Bernoulli,
-in quanto i risultati dei dadi sono indipendenti fra loro. Di conseguenza,
-la distribuzione di probabilità di $x_s$ è data da:
-\[
-    p \left(x_s=k\right) =
-        \binom{6}{k}
-        \left(\frac{1}{6}\right)^k
-        \left(\frac{5}{6}\right)^{6-k}
-        \qquad\forall k\in\left[0;6\right]\cap\mathbb{N}
-\]
-Di seguito riportiamo gli istogrammi dei dati così raccolti, assieme ai valori attesi,
-calcolati mediante la distribuzione teorica.
-
-Come è possibile osservare da questi grafici, i risultati riportati sembrano seguire
-grossomodo la distribuzione teorica. Tuttavia, presentano deviazioni osservabili; il
-gruppo di lavoro ritiene che ciò sia principalmente dovuto al ridotto numero di lanci.
-
-% \subsubsection*{Onestà dei dadi}
-% Avendo segnato tutti i risultati di ogni dado, possiamo inoltre stimare se i dadi che
-% abbiamo utilizzato sono truccati o meno. Infatti, su un dado onesto ci aspettiamo
-% che escano tutti i risultati possibili con equa probabilità. Di seguito riportiamo
-% gli istogrammi dei valori usciti su ogni dado.
-
-% \begin{figure*}
-%     \caption{...}
-% \end{figure*}
-
-\subsection{Simulazione}
-Tramite un programma da noi scritto e compilato\footnote{\emph{Vedi} Appendice A},
-simuliamo la stessa esperienza con $10^{12}$ lanci dei sei dadi, al fine di
-verificare la legge dei grandi numeri.
-
-Di seguito riportiamo, in un istogramma, i risultati della simulazione.
-
-Come è possibile osservare dal grafico, i risultati della simulazione sono, in proporzione,
-talmente vicini alla distribuzione teorica da risultare pressoché indistinguibili da essa.
-
-Ciò è in accordo con la legge dei grandi numeri, secondo la quale, al crescere del
-numero di prove, la distribuzione di probabilità rappresenta sempre meglio i
-risultati ottenuti, normalizzati.
-
-\pagebreak
-\section{Processo di Poisson}
-\subsection{Materiali e strumenti di misura utilizzati}
+\section{Materiali e strumenti di misura utilizzati}
+\section{Materiali e strumenti di misura utilizzati}
 \begin{center}
     \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        {Contatore Geiger} & \qty{1}{conteggi \per s} & N./A. & \qty{1}{conteggi \per s} \\
+        Termometro digitale & $\qty{00}{\degree C}$ & $\qty{00}{\degree C}$ & $\qty{0.1}{\degree C}$ \\
+        % \hline[dashed]
+        % Termometro a mercurio & $\qty{0.1}{\degree C}?$ & $\qty{100}{\degree C}?$ & $\qty{0.1}{\degree C}?$ \\
         \hline[dashed]
-        Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
+        Barometro & $\qty{0}{hPa}?$ & $\qty{14000}{hPa}$ & $\qty{1}{hPa}$ \\
+        \hline[dashed]
+        Cilindro graduato & $\qty{1}{mL}$ & $\qty{100}{mL}$ & $\qty{1}{mL}$ \\
+        \hline[dashed]
+        Bilancia di precisione & $\qty{0.50}{g}$ & $\qty{4100.00}{g}$ & $\qty{0.01}{g}$ \\
         \hline
         \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
-        {Campione di $\Th$} & \SetCell[c=3]{l} {
-            Componente di una lampada da campeggio
-        } \\
+        Calorimetro & \SetCell[c=3]{l} {Isolato termicamente, quasi adiabatico.} \\
+        \hline[dashed]
+        {Fornelletto e pentolino} & \SetCell[c=3]{l} {Per scaldare acqua e campioni.} \\
+        \hline[dashed]
+        Tre campioni solidi & \SetCell[c=3]{l} {Li chiameremo $A$, $B$ e $C$.} \\
         \hline
     \end{tblr}
 \end{center}
