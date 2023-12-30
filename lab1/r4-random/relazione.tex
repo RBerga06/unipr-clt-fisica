@@ -218,13 +218,15 @@ In particolare, $\overline{x_0} = \left(194\pm7\right)\cdot10^{-3}\,\unit{s^{-1}
 Per valutare l'accuratezza della nostra stima di $\overline{x_0}$, possiamo effettuare
 una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di
 $d_i^{-2}$: \[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
-Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare,
-assieme a un grafico della retta di regressione stessa.
+Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare\footnote{
+    Tutti gli errori, qui e successivamente, sono stati calcolati secondo la tradizionale
+    propagazione degli errori, in quanto sono considerabili piccoli, casuali e indipendenti.
+}, assieme a un grafico della retta di regressione stessa.
 
 \begin{center}
     \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
-        $i$ & $d_i\;\;(\unit{cm})$ & $d_i^{-2}\;\;(\unit{m^{-2}})$ & $\overline{x_i}$ \\
+        $i$ & $d_i\;\;(\unit{cm})$ & $d_i^{-2}\;\;(\unit{m^{-2}})$ & $\overline{x_i}\;\;(\unit{s^{-1}})$ \\
         \hline
         1 & $9.5\pm0.1$  & $111\pm2$      & $0.809\pm0.015$\\
         2 & $10.3\pm0.1$ & $94.3\pm1.8$   & $0.737\pm0.014$\\
