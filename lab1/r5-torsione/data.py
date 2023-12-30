@@ -52,7 +52,7 @@ def compile_csv(csv: str, /) -> str:
                 ),
             ]
         )
-    return "\n".join(["m,dm,I,dI,T1,T2,T3,T4"] + [",".join(map(str, line)) for line in compiled] + [""])
+    return "\n".join(["m,,I,,T1,,T2,,T3,,T4,"] + [",".join(map(str, line)) for line in compiled] + [""])
 
 
 def main(argv: list[str], /) -> int | None:
