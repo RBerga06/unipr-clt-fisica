@@ -137,13 +137,18 @@ possiamo calcolare i calori specifici dei metalli di cui sono composti i campion
             transizione di fase, lo immergiamo in essa in modo che raggiunga la
             $T$ del sistema.
         \item
-            Quando il solido raggiunge la temperatura di $\qty{100}{\degree C}$ lo mettiamo nel calorimetro,
-            nel quale si troverà acqua a temperatura ambiente, ma prima di fare questo
-            trasferimento facciamo partire la misura della temperatura. Chiuso il calorimetro,
-            mescoliamo (per evitare che l'acqua calda resti in alto).  
+            Quando anch'esso la temperatura di $\qty{100}{\degree C}$, lo spostiamo
+            nel calorimetro e mescoliamo nuovamente. Come prima, sarà il termometro
+            digitale a darci il valore di $T$ in funzione del tempo.
     \end{enumerate}
 \end{enumerate}
-        
+
+\subsection{Analisi dei dati raccolti e conclusioni}
+Grazie alle leggi della termodinamica sappiamo che:
+    \[
+        m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
+        c_\text{acqua} m_\text{acqua} (T_\text{eq}-T_\text{fredda})
+    \]   
 
 
 
@@ -153,81 +158,13 @@ possiamo calcolare i calori specifici dei metalli di cui sono composti i campion
 
 
 \subsection{Scritto}
-    Dobbiamo misurare il calore specifico degli oggetti a noi dati. Il calore
-    specifico $c$ è la quantità di calore necessaria ad aumentare di $\qty{1}{K}$ una
-    quantità unitaria di massa ($\qty{1}{kg}$) e cambia da sostanza a sostanza.
-    Se abbiamo oggetti composti da più materiali possiamo utilizzare come grandezza,
-    anche se contiene meno informazioni, la capacità termica $C$, ovvero il calore
-    necessario ad un oggetto per innalzare la sua temperatura di $\qty{1}{K}$.
-
-    L'equazione che dobbiamo tenere presente è $Q=m c \Delta T$.
-
-    Per determinare il calore specifico di un oggetto dobbiamo conoscerne la massa,
-    che si misura con la bilancia, lo sbalzo termico, che si misura con i due
-    termometri, uno a mercurio e uno digitale, e il calore assorbito o ceduto dal
-    corpo, che, però, non è misurabile in modo immediato.
-    Si può misurare in un sistema isolato termicamente, come un calorimetro adiabatico
-    dove mettiamo il corpo a contatto con un'altro corpo (per esempio una massa
-    d'acqua) di cui conosciamo i valori precedentemente descritti.
-    Mettendo due corpi, uno caldo e uno freddo, a contatto termico in un sistema
-    isolato e in cui non viene svolto lavoro meccanico, sappiamo che il corpo caldo
-    cederà calore al corpo freddo fino al raggiungimento di una temperatura di
-    equilibrio e che $\Delta Q_\text{ced}=-\Delta Q_\text{ass}$ (conservazione dell'energia).
-
-    Se noi scaldiamo uno dei solidi  % TODO: quali solidi?
-    nell'acqua bollente, ovvero in corrispondenza
-    della transizione di quest'ultima da stato liquido ad aeriforme, tutto il sistema
-    è a $\qty{100}{\degree C}$, salvo correzioni dovute alla pressione diversa da $\qty{1}{atm}$.
-    L'acqua da noi utilizzata è distillata ($c=\qty{4186}{J \per kg\,K}$)
-    Quando accendiamo il fornelletto, per farlo scaldare più velocemente e assicurarci
-    di essere in stato di ebollizione, regoliamo la temperatura della piastra a
-    $T>\qty{100}{\degree C}$.
-    Quando il cilindretto raggiunge la temperatura di $\qty{100}{\degree C}$ lo mettiamo nel calorimetro,
-    nel quale si troverà acqua a temperatura ambiente, ma prima di fare questo
-    trasferimento facciamo partire la misura della temperatura. Chiuso il calorimetro,
-    mescoliamo (per evitare che l'acqua calda resti in alto).
-
-    \[
-        m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
-        c_\text{acqua} m_\text{acqua} (T_\text{eq}-T_\text{fredda})
-    \]
-
     "Il calorimetro è abbastanza adiabatico e questo lo valuterete nell'ultima parte
     dell'esperimento."
 
     \[
         m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
         (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{fredda})
-    \]. Questa è la seconda parte dell'esperimento.
-
-    È necessaria una prima parte dell'esperimento per misurare $C_\text{calorimetro}$
-    Prendiamo due masse d'acqua, una fredda da mettere nel calorimetro ed una da
-    scaldare nel pentolino. È meglio che le masse si equivalgano, e che la loro
-    somma sia uguale all'acqua che utilizzeremo nella seconda parte, in modo che
-    il calorimetro si bagni allo stesso modo.
-    Raggiunti i 100°C, versiamo l'acqua calda nel calorimetro. Allora:
-
-    \[
-        m_\text{calda} c_\text{acqua} (T_\text{calda}-T_\text{eq}) =
-        (m_\text{fredda} c_\text{acqua} + C_\text{calorimetro})(T_\text{eq}-T_\text{fredda})
-    \]
-
-    Invece che misurare $C_\text{calorimetro}$ in $\unit{J\per K}$, possiamo considerare a quanta acqua equivale
-    il calorimetro dal punto di vista termico, ovvero la quantità di acqua che assorbirebbe lo
-    stesso calore del calorimetro.
-
-    \[
-        m_\text{calda} (T_\text{calda}-T_\text{eq}) =
-        (m_\text{fredda} + m_\text{equiv})(T_\text{eq}-T_\text{fredda})
-    \]
-
-    \emph{
-        \textbf{Osservazione.} La massa equivalente ($m_\text{equiv}$) ci da anche un idea di
-        quanto il calorimetro disturbi la misura.
-    }
-
-    Una volta ottenuto questo valore, possiamo calcolare i calori specifici dei metalli
-    di cui sono composti i cilindretti.
+    \]  Questa è la seconda parte dell'esperimento.
 
     Come ultima cosa misureremo la discesa esponenziale della temperatura dell'acqua
     dentro al calorimetro e in particolare il suo tempo caratteristico, ovvero la quantità
@@ -246,111 +183,9 @@ possiamo calcolare i calori specifici dei metalli di cui sono composti i campion
 
 
 
-\subsection{Esperienza sulla distribuzione di Poisson}
-\begin{enumerate}
-    \item Consideriamo la distanza tra i due fototraguardi e impostiamo i fotodiodi
-          del contatore su A+B.
-    \item Usando solo
-    \begin{enumerate}
-        \item Appeso il campione alla molla, allineiamo i due fototraguardi
-              aiutandoci con la livella, in modo tale che possano rilevare
-              le oscillazioni nel modo più accurato possibile;
-        \item Tiriamo leggermente il campione verso il basso e poi lo rilasciamo,
-              in modo che il sistema molla inizi a oscillare con direzione
-              il più possibile parallela a $\vec{g}$;
-        \item Attesa la stabilizzazione dell’oscillazione, avviamo
-              l'acquisizione della misura di un tempo (20 periodi)
-              $20T_i$.
-        \item Ripetiamo molte volte (in tutto $N_{20T_i}$) i punti
-              (b) e (c). In particolare, $N_{20T_A} = N_{20T_B} = 25$
-              e $N_{20T_C} = N_{20T_{A+B}} = 30$.
-    \end{enumerate}
-    \item Infine, misuriamo con la bilancia, separatamente,
-          la massa della molla $m_m$ e la massa del gancio $m_g$.
-\end{enumerate}
 
-Infatti, nel caso dinamico, il contributo di queste masse
-\emph{non} si annulla; in particolare, la massa del gancio
-contribuisce appieno (in quanto è solidale col grave),
-mentre la massa della molla contribuisce per circa
-$\frac{1}{3}$. La massa effettiva da considerare per ogni grave
-sarà allora:
-\[\best{\left(\left(m_\text{eff}\right)_i\right)} = \best{\left(m_i\right)} + \best{\left(m_g\right)} + \frac{1}{3}\best{\left(m_m\right)}\]
-\[\delta \left(m_\text{eff}\right)_i = \delta m_i + \delta m_g + \frac{1}{3}\delta m_m\]
 
-Di seguito sono riportate le distribuzioni dei dati raccolti:
 
-\begin{figure}[H]
-    %\includegraphics[trim={2cm 1.8cm .7cm 1.5cm},width=.5\textwidth]{Dinamico1.jpg}
-    %\includegraphics[trim={.7cm 1.8cm 2cm 1.5cm},width=.5\textwidth]{Dinamico2.jpg}
-    \caption{Istogrammi dei periodi delle oscillazioni di $A$ e $B$}
-\end{figure}\begin{figure}[H]
-    %\includegraphics[trim={2cm 1.8cm .7cm 1.5cm},width=.5\textwidth]{Dinamico3.jpg}
-    %\includegraphics[trim={.7cm 1.8cm 2cm 1.5cm},width=.5\textwidth]{Dinamico4.jpg}
-    \caption{Istogrammi dei periodi delle oscillazioni di $C$ e $A+B$}
-\end{figure}
-
-Poiché i nostri dati hanno assunto distribuzioni grossolanamente
-approssimabili a gaussiane, possiamo procedere al calcolo di $k$,
-utilizzando, per ogni grave $i$, i seguenti valori:
-\[
-    \left(20T_i\right)_\text{best} = \overline{20T_i}
-    \qquad\wedge\qquad
-    \delta\left(20T_i\right) =
-    \sigma_{\overline{20T_i}} =
-    \frac{\sigma_{20T_i}}{\sqrt{N_{20T_i}}}
-\]
-dove $\overline{20T_i}$ e $\sigma_{20T_i}$ indicano rispettivamente
-media e deviazione standard dei tempi.
-
-Per determinare la costante elastica della molla, abbiamo effettuato
-una regressione lineare (stavolta pesata) sui quadrati dei valori medi
-dei tempi ($T_i^2$, con
-$\delta T_i^2 = 5 \cdot 10^{-3} (20 T_i)_\text{best} \delta(20 T_i)$
-)\footnote[2]{
-    La formula per l'errore su $T_i^2$ segue direttamente dalla
-    propagazione degli errori:
-    \[
-        \frac{\delta T_i^2}{\left(T_i^2\right)_\text{best}} = 2\frac{\delta T_i}{{\left(T_i\right)}_\text{best}}
-        \qquad
-        \delta T_i^2 = 2\left(T_i\right)_\text{best}\delta T_i
-        \qquad
-        \delta T_i^2 = \frac{\left(20T_i\right)_\text{best}(\delta 20T_i)}{200}
-    \]
-    da cui quanto riportato sopra.
-    Si osservi che $\delta T_i^2$ dipende da
-    $\left(20T_i\right)_\text{best}$:
-    proprio questo è il motivo dietro alla scelta del metodo pesato
-    per la regressione lineare.
-} rispetto alla massa $\left(m_\text{eff}\right)_i$, facendo riferimento
-alla relazione $T_i^2 = \frac{4\pi^2}{k} \left(m_\text{eff}\right)_i$. Allora, detto $b$ il
-coefficiente angolare della retta di regressione, varrà:
-\[
-    k_\text{best}=\frac{4\pi^2}{b_\text{best}}
-    \qquad\wedge\qquad
-    \frac{\delta k}{k_\text{best}}=\frac{\delta b}{b_\text{best}}
-\]
-Si noti che, anche in questo caso, l'intercetta $a$ della retta dev'essere
-compatibile con $0$.
-
-Di seguito è riportata la retta di regressione, assieme ai risultati ottenuti:
-
-\begin{figure}[H]
-    %\includegraphics[trim={0 1.8cm 0 0},width=\textwidth]{DinamicoReg.jpg}
-    \caption{
-        La retta di regressione (in rosso)
-        e la sua regione di incertezza (in rosa).
-    }
-\end{figure}
-
-\begin{itemize}
-    \item $a = \left(0.02\pm0.19\right)\unit{cm}$ (compatibile con 0)
-    \item $
-        b = \left(4.604\pm0.002\right)\cdot10^{-4}\;\unit{s^2\per g}
-          = \left(46.04\pm0.02\right)\cdot10^{-2}\;\unit{s^2\per kg}
-    $
-    \item $k = \left(85.74\pm0.04\right)\unit{N\per m}$
-\end{itemize}
 
 
 \section{Conclusioni}
