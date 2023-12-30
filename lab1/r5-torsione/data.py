@@ -38,7 +38,7 @@ def compile_csv(csv: str, /) -> str:
     compiled: list[list[float]] = []
     for line in lines[1:]:
         sobjs, *periods = line.split(",")
-        objs = [CAMPIONI[i] for i in range(2) if int(sobjs[i])]
+        objs = [CAMPIONI[i] for i in range(3) if int(sobjs[i])]
         m = sum([x.m for x in objs], start=Datum(0.0, 0.0))
         i = sum([x.I for x in objs], start=Datum(0.0, 0.0))
         compiled.append(
