@@ -28,7 +28,7 @@
 
 \begin{abstract}
     Il gruppo di lavoro ha misurato il calore specifico di tre solidi distinti
-    per risalirne alla natura.
+    per risalirne alla natura; inoltre ha determinato l'adiabaticità del calorimetro    %TODO: va bene adiabaticità?
 \end{abstract}
 
 \section{Materiali e strumenti di misura utilizzati}
@@ -111,8 +111,8 @@ seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:
     \[
         m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
     \]
-ovvero $m_\text{equiv} = \qty{00}{g}$. Ora che abbiamo ottenuto questo valore,    %TODO: calcolare il valore
-possiamo calcolare i calori specifici dei metalli di cui sono composti i campioni.
+ovvero $m_\text{equiv} = \qty{00}{g}$. Ora che abbiamo ottenuto questo valore, possiamo calcolare    %TODO: calcolare il valore
+i calori specifici dei metalli di cui sono composti i campioni.
 
 
 
@@ -133,7 +133,7 @@ possiamo calcolare i calori specifici dei metalli di cui sono composti i campion
         Per ogni solido ($A$, $B$ e $C$):
     \begin{enumerate}
         \item
-            Ne misuriamo la massa con la bilancia di precisione
+            Ne misuriamo la massa con la bilancia di precisione.
         \item
             Una volta che l'acqua nel pentolino si trova in corrispondenza della
             transizione di fase, lo immergiamo in essa in modo che raggiunga la
@@ -151,7 +151,7 @@ Grazie alle leggi della termodinamica sappiamo che:
         m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
         (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{acqua})
     \]   
-o meglio:
+Conoscendo il valore di $m_\text{equiv}$, possiamo scrivere:
     \[
         m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
         (m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})
@@ -170,7 +170,7 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 \begin{center}
     \begin{tabular}{ |c|c|c| }
         \hline
-        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J {kg}^{-1} {K}^{-1} }$) \\
+        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$) \\
         \hline
         $A$ & 12.43 ± 0.01 & 0 ± 0 \\
         $B$ & 28.73 ± 0.01 & 0 ± 0 \\    %TODO: calcolare i valori
@@ -181,38 +181,37 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 
 
 
-\section{Misurazione dell'adiabaticità del calorimetro}
+\section{Misurazione del tempo caratteristico (del calorimetro?)}
     
 \subsection{Esperienza e procedimento di misura}
 
+\begin{enumerate}
+    \item
+        Misuriamo $\qty{200}{mL}$ di acqua distillata e la scaldiamo con nel
+        pentolino.    %TODO: per quanto? o fino a che temperatura?
+    \item 
+        Nel calorimetro, in partenza vuoto, versiamo l'acqua e la lasciamo
+        raffreddare per circa un'ora registrandone la temperatura.
+\end{enumerate}
 
 \subsection{Analisi dei dati raccolti e conclusioni}
+L'ultima cosa che analizzeremo è la discesa esponenziale della temperatura    %TODO: cambiare la parola "cosa"
+dell'acqua dentro al calorimetro. La legge che segue questa discesa è:
+    \[    
+        (T-T_\text{amb.})=(T_0-T_\text{amb.}) e^{-t/\tau}
+    \]
 
+Ne calcoleremo, in particolare, il tempo caratteristico, ovvero la quantità
+di tempo $\tau$ che impiega l'acqua all'interno del calorimetro ad abbassare
+la sua temperatura di $(T_0 - T_\text{amb})e$ volte (indicheremo con $T_0$
+la temperatura dell'acqua scaldata).
 
+\emph{
+        \textbf{Osservazione.} Il parametro $\tau$ descrive quanto bene il
+        calorimetro trattenga il calore (quindi sia adiabatico). 
+        }
 
-
-
-
-
-
-
-\section{Scritto}
-    "Il calorimetro è abbastanza adiabatico e questo lo valuterete nell'ultima parte
-    dell'esperimento."
-
-
-    Come ultima cosa misureremo la discesa esponenziale della temperatura dell'acqua
-    dentro al calorimetro e in particolare il suo tempo caratteristico, ovvero la quantità
-    di tempo $\tau$ che impiega l'acqua all'interno del calorimetro ad abbassare la sua
-    temperatura di $(T_0 - T_\text{amb})e$ volte.
-
-    La legge che segue questa discesa è: \[(T-T_\text{amb.})=(T_0-T_\text{amb.}) e^{-t/\tau}\]
-
-    Il parametro $\tau$ descrive quanto bene il calorimetro trattenga il calore
-    (quindi sia adiabatico). Per misurarlo abbiamo scaldato $\qty{200}{g}$ d'acqua, che abbiamo
-    poi lasciato raffreddare nel calorimetro in partenza vuoto, registrandone la $T$.
-
-    L'equazione della regressione lineare che abbiamo utilizzato è:
-    \[\ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t\]
+L'equazione della regressione lineare che abbiamo utilizzato è:
+\[\ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t\]
 
 \end{document}
