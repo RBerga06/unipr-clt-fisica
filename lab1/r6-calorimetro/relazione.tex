@@ -109,7 +109,7 @@ acqua che assorbirebbe lo stesso calore del calorimetro. Quindi:
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
 seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:
     \[
-        m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda}) - m_\text{fredda}}
+        m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
     \]
 ovvero $m_\text{equiv} = \qty{00}{g}$. Ora che abbiamo ottenuto questo valore,    %TODO: calcolare il valore
 possiamo calcolare i calori specifici dei metalli di cui sono composti i campioni.
@@ -170,7 +170,7 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 \begin{center}
     \begin{tabular}{ |c|c|c| }
         \hline
-        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J kg{-1} K{-1} }$) \\
+        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J {kg}^{-1} {K}^{-1} }$) \\
         \hline
         $A$ & 12.43 ± 0.01 & 0 ± 0 \\
         $B$ & 28.73 ± 0.01 & 0 ± 0 \\    %TODO: calcolare i valori
@@ -184,6 +184,9 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 \section{Misurazione dell'adiabaticità del calorimetro}
     
 \subsection{Esperienza e procedimento di misura}
+
+
+\subsection{Analisi dei dati raccolti e conclusioni}
 
 
 
@@ -211,29 +214,5 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 
     L'equazione della regressione lineare che abbiamo utilizzato è:
     \[\ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t\]
-
-\section{Conclusioni}
-Per valutare numericamente la consistenza tra i due valori di $k$ ottenuti,
-abbiamo calcolato il seguente valore (numero puro):
-\[
-    \varepsilon =
-    \frac{
-        \left|\left(k_\text{statica}\right)_\text{best} - \left(k_\text{dinamica}\right)_\text{best}\right|
-    }{
-        \delta k_\text{statica} + \delta k_\text{dinamica}
-    }
-\]
-Allora $k_\text{statica}$ e $k_\text{dinamica}$ sono consistenti se e solo se $\varepsilon \le 1$.
-
-Nel nostro caso, $\varepsilon = 1.33$. Il gruppo di lavoro ha ipotizzato che
-questa inconsistenza (comunque contenuta, seppur non trascurabile) fra le due
-misure possa essere ragionevolmente giustificata dalla difficoltà incontrata
-nel ridurre al minimo le oscillazioni in direzione perpendicolare a $\vec{g}$;
-considerato inoltre che la posizione dei fototraguardi non era ottimale, ciò
-potrebbe avere ulteriormente influenzato la distribuzione dei tempi. È in
-effetti possibile osservare che le distribuzioni da noi ottenute non sono,
-il più delle volte, del tutto simmetriche: la moda sembra essersi spostata
-leggermente a sinistra – un possibile sintomo dell'influenza di un
-errore sistematico sulle misure.
 
 \end{document}
