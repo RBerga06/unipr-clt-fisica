@@ -107,7 +107,7 @@ acqua che assorbirebbe lo stesso calore del calorimetro. Quindi:
         }
 
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
-seguente grafico, abbiamo trovato il valore di $T_\text{eq}$. Dunque:
+seguente grafico, abbiamo trovato il valore di $T_\text{eq}$. Dunque:    %TODO: mettiamo il grafico?
     \[
         m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
     \]
@@ -158,7 +158,7 @@ Conoscendo il valore di $m_\text{equiv}$, possiamo scrivere:
     \]
 
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
-seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:
+seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:    %TODO: mettiamo i grafici?
     \[
         c_\text{met} = \frac{(m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})}
         {m_\text{met} (T_\text{met}-T_\text{eq})}
@@ -170,11 +170,11 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 \begin{center}
     \begin{tabular}{ |c|c|c| }
         \hline
-        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$) \\
+        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$) & Materiale\\
         \hline
-        $A$ & 12.43 ± 0.01 & 0 ± 0 \\
-        $B$ & 28.73 ± 0.01 & 0 ± 0 \\    %TODO: calcolare i valori
-        $C$ & 44.86 ± 0.01 & 0 ± 0 \\
+        $A$ & 12.43 ± 0.01 & 0 ± 0 & Alluminio \\
+        $B$ & 28.73 ± 0.01 & 0 ± 0 & Rame \\    %TODO: calcolare i valori
+        $C$ & 44.86 ± 0.01 & 0 ± 0 & Ottone \\
         \hline
     \end{tabular}
 \end{center}
@@ -203,9 +203,12 @@ dell'acqua dentro al calorimetro. La legge che segue questa discesa è:
 
 Ne calcoleremo, in particolare, il tempo caratteristico, ovvero la quantità
 di tempo $\tau$ che impiega l'acqua all'interno del calorimetro ad abbassare
-la sua temperatura di $(T_0 - T_\text{amb})e$ volte (indicheremo con $T_0$
-la temperatura dell'acqua scaldata).
+la sua temperatura di $(T_0 - T_\text{amb})e$ volte. 
 
+\emph{
+        \textbf{Notazione.} Indicheremo con $T_0$ la temperatura
+        dell'acqua scaldata.
+        }
 \emph{
         \textbf{Osservazione.} Il parametro $\tau$ descrive quanto bene il
         calorimetro trattenga il calore (quindi sia adiabatico). 
