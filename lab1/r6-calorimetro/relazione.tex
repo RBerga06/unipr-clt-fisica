@@ -109,7 +109,7 @@ acqua che assorbirebbe lo stesso calore del calorimetro. Quindi:
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
 seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:
     \[
-        m_\text{equiv} = (m_\text{calda} (T_\text{calda}-T_\text{eq}))/(T_\text{eq}-T_\text{fredda}) - m_\text{fredda}
+        m_\text{equiv} = (m_\text{calda} (T_\text{calda}-T_\text{eq}))/((T_\text{eq}-T_\text{fredda}) - m_\text{fredda})
     \]
 ovvero $m_\text{equiv} = \qty{00}{g}$. Ora che abbiamo ottenuto questo valore,    %TODO: calcolare il valore
 possiamo calcolare i calori specifici dei metalli di cui sono composti i campioni.
@@ -133,6 +133,8 @@ possiamo calcolare i calori specifici dei metalli di cui sono composti i campion
         Per ogni solido ($A$, $B$ e $C$):
     \begin{enumerate}
         \item
+            Ne misuriamo la massa con la bilancia di precisione
+        \item
             Una volta che l'acqua nel pentolino si trova in corrispondenza della
             transizione di fase, lo immergiamo in essa in modo che raggiunga la
             $T$ del sistema.
@@ -146,14 +148,24 @@ possiamo calcolare i calori specifici dei metalli di cui sono composti i campion
 \subsection{Analisi dei dati raccolti e conclusioni}
 Grazie alle leggi della termodinamica sappiamo che:
     \[
-        m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
-        c_\text{acqua} m_\text{acqua} (T_\text{eq}-T_\text{fredda})
+        m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
+        (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{acqua})
     \]   
 o meglio:
     \[
-        m_\text{met} c_\text{met} (T_\text{caldo}-T_\text{eq}) =
-        (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{fredda})
+        m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
+        (m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})
     \]
+
+Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
+seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:
+    \[
+        c_\text{met} = (m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})/
+        (m_\text{met} (T_\text{met}-T_\text{eq}))
+    \]
+
+Nella seguente tabella riportiamo i valori ottenuti per ogni solido con le relative incertezze, che abbiamo calcolato con la
+propagazione standard degli errori in quanto piccole, sistematiche e indipendenti.
 
 
 
