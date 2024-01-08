@@ -33,15 +33,15 @@ void main() {
 
 namespace es2 {
     int main() {
-        unsigned int N, n = 2;
+        int N, n = 12;
         cout << "--- Potenze di "<< n <<" minori di N ---" << endl << "\tN = ";
         cin >> N;
-        unsigned long long x = 1, y;
+        int x = 1, y;
         while (x < N) {
             cout << x << endl;
             y = x * n;
             if (y < x) {
-                cout << "{!} ERROR: OVERFLOW. ABORTING. {!}";
+                cout << "{!} ERROR: OVERFLOW. ABORTING. {!}" << endl;
                 return -1;
             }
             x = y;
@@ -52,7 +52,5 @@ namespace es2 {
 
 
 int main() {
-    // es1::main();
-    // return es2::main();
-    // es3::main();
+    return es2::main();
 }
