@@ -41,7 +41,7 @@ namespace es2 {
             cout << x << endl;
             y = x * n;
             if (y < x) {
-                cout << "{!} ERROR: OVERFLOW. ABORTING. {!}" << endl;
+                cerr << "{!} ERROR: OVERFLOW. ABORTING. {!}" << endl;
                 return -1;
             }
             x = y;
@@ -76,13 +76,13 @@ namespace es3 {
                 break;
             case '/':
                 if (b == 0) {
-                    cout << "Error: Division by 0!"<<endl<<"\t(no, that's not a factorial, sorry!)"<<endl;
+                    cerr << "Error: Division by 0!"<<endl<<"\t(no, that's not a factorial, sorry!)"<<endl;
                     return -1;
                 }
                 n = a / b;
                 break;
             default:
-                cout << "Unsupported operation: '" << op << "'." << endl;
+                cerr << "Unsupported operation: '" << op << "'." << endl;
                 return -1;
         }
         cout << n;
@@ -91,6 +91,31 @@ namespace es3 {
 }
 
 
+
+namespace es6 {
+    void main() {
+        cout << "--- Rombi di asterischi! ---" << endl;
+        int n;
+        cout << "Lato: ";
+        cin >> n;
+        while (n < 0) {
+            cerr << "{!} Errore: il lato dev'essere un intero non negativo. Riprova!" << endl;
+            cout << "Lato: ";
+            cin >> n;
+        }
+        if (n == 0) return;
+        for (int i = 0; i < 2*n-1; i++) {
+            for (int j = 0; j < 2*n-1; j++) {
+                if ((j-i)*(j-i) >= n*n || (j + i) < n-1 || (j + i) > 3*(n-1)) cout << " ";
+                else cout << "*";
+                cout << " ";
+            }
+            cout << endl;
+        }
+    }
+}
+
+
 int main() {
-    return es3::main();
+    es6::main();
 }
