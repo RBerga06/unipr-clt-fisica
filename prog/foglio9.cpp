@@ -51,6 +51,46 @@ namespace es2 {
 }
 
 
+namespace es3 {
+    int main() {
+        cout << "--- Le cinque operazioni (+, -, *, /, %) ---"<<endl;
+        cout << "Calcola a @ b"<<endl;
+        int a, b, n;
+        char op;
+        cout << "\ta = ";
+        cin >> a;
+        cout << "\tb = ";
+        cin >> b;
+        cout << "\t@ = ";
+        cin >> op;
+        cout << "=>\t";
+        switch (op) {
+            case '+':
+                n = a + b;
+                break;
+            case '-':
+                n = a - b;
+                break;
+            case '*':
+                n = a * b;
+                break;
+            case '/':
+                if (b == 0) {
+                    cout << "Error: Division by 0!"<<endl<<"\t(no, that's not a factorial, sorry!)"<<endl;
+                    return -1;
+                }
+                n = a / b;
+                break;
+            default:
+                cout << "Unsupported operation: '" << op << "'." << endl;
+                return -1;
+        }
+        cout << n;
+        return 0;
+    }
+}
+
+
 int main() {
-    return es2::main();
+    return es3::main();
 }
