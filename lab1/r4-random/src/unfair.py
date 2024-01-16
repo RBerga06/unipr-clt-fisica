@@ -18,12 +18,12 @@ else:
 type tuple6[T] = tuple[T, T, T, T, T, T]
 
 
-def load_data(file: Path) -> tuple[int, tuple6[tuple6[int]]]:
+def load_data(file: Path, /, *, n: int = 400) -> tuple[int, tuple6[tuple6[int]]]:
     rows: list[list[int]] = [
         [*map(int, line.split("\t"))]
         for line in map(str.strip, file.read_text().strip().splitlines())
         if line and not line.startswith("#")
-    ]
+    ][:n]
     cols: list[tuple[int, ...]] = [*map(tuple, zip(*rows))]
     return len(rows), tuple([tuple([col.count(i) for i in range(1, 7)]) for col in cols])  # type: ignore
 
@@ -61,7 +61,7 @@ def riemann(f: Callable[[float], float], x1: float, x2: float, /) -> float:
     return sum([f(x1 + i * dx) * dx for i in range(n)])
 
 
-RIEMANN_N_PER_UNIT = 10_000
+RIEMANN_N_PER_UNIT = 100_000
 
 
 class _bernoulli(NamedTuple):
@@ -154,7 +154,7 @@ def _fixparams(n: int, a: int, /) -> tuple[int, int]:
     return b, a
 
 
-def distribution(a: int, b: int, *vlines: float) -> None:
+def plotdist(a: int, b: int, *vlines: float) -> None:
     X1 = 0  # 0.075
     X2 = 1  # 0.2
     N = 1_000
@@ -170,29 +170,74 @@ def distribution(a: int, b: int, *vlines: float) -> None:
     # ifplot(B.Pin, X1, X2, 40, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 50, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 100, norm=False, hist=True)
-    for vline in [1 / 6, *vlines]:
+    for vline in vlines:
         vlineplot([0, 1], vline)
     plt.show()  # type: ignore
 
 
-e = 1 / 60
+e = 1 / 36
 
 
-def probabilities(die: tuple6[int], n: int, /) -> tuple6[float]:
-    return tuple([bernoulli(*_fixparams(n, a)).Pin(1 / 6 - e, 1 / 6 + e) for a in die])  #  type: ignore
+class Die(NamedTuple):
+    n: int
+    data: tuple6[int]
+    color: str
+
+    @cache
+    def probabilities(self, /) -> tuple6[float]:
+        return tuple([bernoulli(*_fixparams(self.n, a)).Pin(1 / 6 - e, 1 / 6 + e) for a in self.data])  #  type: ignore
+
+    @cache
+    def fairness(self, /) -> float:
+        return reduce(mul, self.probabilities(), 1)
+
+    def analysis(self, *, plots: bool = False, log: bool = False) -> tuple[tuple6[float], float]:
+        probs = self.probabilities()
+        fair = self.fairness()
+        if log:
+            print(f"{self.color:<6}", "".join([f"{p:>9.3%}" for p in probs]), " ->", f"{fair:>8.3%}")
+        if plots:
+            for j in range(6):
+                try:
+                    plotdist(*_fixparams(self.n, self.data[j]), 1 / 6, 1 / 6 - e, 1 / 6 + e)
+                except KeyboardInterrupt:
+                    print()
+                    plots = False
+                break
+        return probs, fair
 
 
-def fairness(die: tuple6[int], n: int, /) -> float:
-    return pow(reduce(mul, probabilities(die, n), 1), 1 / 6)
+class Data(NamedTuple):
+    n: int
+    data: tuple6[tuple6[int]]
+
+    @cache
+    def dice(self, /) -> tuple6[Die]:
+        return tuple([Die(self.n, self.data[i], COLORS[i]) for i in range(6)])  # type: ignore
 
 
-_n, data = load_data(Path(__file__).parent.parent / "data/dadi.txt")
-print(_n, "\n")
-print(*data, sep="\n")
-print()
-COLS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
-for col, die in zip(COLS, data):
-    print(f"{col:<6}", "".join([f"{_p:>9.3%}" for _p in probabilities(die, _n)]), " ->", f"{fairness(die, _n):>8.3%}")
-# for i in range(6):
-#     for j in range(6):
-#         distribution(*_fixparams(_n, data[i][j]))
+FILE = Path(__file__).parent.parent / "data/dadi.txt"
+COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
+
+alldata: list[Data] = [Data(*load_data(FILE, n=n)) for n in range(1, 401)]
+fairnesses: tuple6[list[float]] = ([], [], [], [], [], [])
+probs: tuple6[tuple6[list[float]]] = (
+    ([], [], [], [], [], []),
+    ([], [], [], [], [], []),
+    ([], [], [], [], [], []),
+    ([], [], [], [], [], []),
+    ([], [], [], [], [], []),
+    ([], [], [], [], [], []),
+)
+for data in alldata:
+    print(f"Analyzing {data.n}...")
+    for i, die in enumerate(data.dice()):
+        fairnesses[i].append(die.fairness())
+        for j, prob in enumerate(die.probabilities()):
+            probs[i][j].append(prob)
+
+for j in range(6):
+    plt.plot(probs[0][j])  # type: ignore
+# plt.plot([sum(prbs) for prbs in zip(*probs[0])])
+plt.plot(fairnesses[0])  # type: ignore
+plt.show()  # type: ignore
