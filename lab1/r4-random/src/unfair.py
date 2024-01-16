@@ -1,5 +1,6 @@
 # Bro, it's unfair! We don't have the tools...
 # ... so let's make them ourselves!
+from dataclasses import dataclass
 from functools import reduce, wraps
 from operator import mul
 import matplotlib.pyplot as plt
@@ -18,14 +19,63 @@ else:
 type tuple6[T] = tuple[T, T, T, T, T, T]
 
 
-def load_data(file: Path, /, *, n: int = 400) -> tuple[int, tuple6[tuple6[int]]]:
+@dataclass(slots=True, frozen=True)
+class Die:
+    data: tuple[float, ...]
+    color: str
+
+    @cache
+    def epsilon(self, t: int, /) -> float:
+        return 1 / 36
+
+    @cache
+    def count(self, x: int, /, *, n: int = 400) -> int:
+        return self.data[:n].count(x)
+
+    @cache
+    def counts(self, /, *, n: int = 400) -> list[int]:
+        return [self.count(i, n=n) for i in range(1, 7)]
+
+    @cache
+    def probability(self, x: int, /, *, n: int = 400) -> float:
+        a = self.count(x, n=n)
+        e = self.epsilon(n)
+        return bernoulli(a, n - a).Pin(1 / 6 - e, 1 / 6 + e)
+
+    @cache
+    def probabilities(self, /, *, n: int = 400) -> list[float]:
+        e = self.epsilon(n)
+        return [bernoulli(a, n - a).Pin(1 / 6 - e, 1 / 6 + e) for a in self.counts(n=n)]
+
+    @cache
+    def fairness(self, /, *, n: int = 400) -> float:
+        return (reduce(mul, self.probabilities(n=n), 1)) ** (1 / 6)
+
+    def analysis(self, /, *, n: int = 400, plots: bool = False, log: bool = False) -> tuple[list[float], float]:
+        """Note: returns (probabilities, fairness)."""
+        probs = self.probabilities(n=n)
+        fair = self.fairness(n=n)
+        e = self.epsilon(n)
+        if log:
+            print(f"{self.color:<6}", "".join([f"{p:>9.3%}" for p in probs]), " ->", f"{fair:>8.3%}")
+        if plots:
+            for a in self.counts(n=n):
+                try:
+                    plotdist(a, n - a, 1 / 6, 1 / 6 - e, 1 / 6 + e)
+                except KeyboardInterrupt:
+                    print()
+                    plots = False
+                break
+        return probs, fair
+
+
+def load_data(file: Path, /) -> tuple6[Die]:
     rows: list[list[int]] = [
         [*map(int, line.split("\t"))]
         for line in map(str.strip, file.read_text().strip().splitlines())
         if line and not line.startswith("#")
-    ][:n]
-    cols: list[tuple[int, ...]] = [*map(tuple, zip(*rows))]
-    return len(rows), tuple([tuple([col.count(i) for i in range(1, 7)]) for col in cols])  # type: ignore
+    ]
+    return tuple([Die(tuple(col), color) for color, *col in zip(COLORS, *rows)])  # type: ignore
 
 
 def nicecallrepr[**P, R](__f__: Callable[P, R], __r__: R, *args: P.args, **kwargs: P.kwargs) -> str:
@@ -96,15 +146,6 @@ def bernoulli(a: int, b: int, /) -> _bernoulli:
     return _bernoulli(a, b)
 
 
-# @cache
-# def RecursiveIntegral(a: int, b: int, x1: float, x2: float) -> float:
-#     np1 = a + b + 1
-#     if b == 0:
-#         return (pow(x2, np1) - pow(x1, np1)) / np1
-#     contrib = f(a + 1, b, x2) - f(a + 1, b, x1)
-#     return (contrib - b * RecursiveIntegral(a + 1, b - 1, x1, x2)) / (a + 1)
-
-
 @cache
 def p(n: int, a: int, x1: float, x2: float) -> float:
     return (n + 1) * bernoulli(a, n - a).Fin(x1, x2)
@@ -147,13 +188,6 @@ def vlineplot(Ys: list[float], x: float) -> None:
     plt.plot([x, x], [min(Ys), max(Ys)])  # type: ignore
 
 
-def _fixparams(n: int, a: int, /) -> tuple[int, int]:
-    b = n - a
-    if b > a:
-        return a, b
-    return b, a
-
-
 def plotdist(a: int, b: int, *vlines: float) -> None:
     X1 = 0  # 0.075
     X2 = 1  # 0.2
@@ -175,38 +209,6 @@ def plotdist(a: int, b: int, *vlines: float) -> None:
     plt.show()  # type: ignore
 
 
-e = 1 / 36
-
-
-class Die(NamedTuple):
-    n: int
-    data: tuple6[int]
-    color: str
-
-    @cache
-    def probabilities(self, /) -> tuple6[float]:
-        return tuple([bernoulli(*_fixparams(self.n, a)).Pin(1 / 6 - e, 1 / 6 + e) for a in self.data])  #  type: ignore
-
-    @cache
-    def fairness(self, /) -> float:
-        return reduce(mul, self.probabilities(), 1)
-
-    def analysis(self, *, plots: bool = False, log: bool = False) -> tuple[tuple6[float], float]:
-        probs = self.probabilities()
-        fair = self.fairness()
-        if log:
-            print(f"{self.color:<6}", "".join([f"{p:>9.3%}" for p in probs]), " ->", f"{fair:>8.3%}")
-        if plots:
-            for j in range(6):
-                try:
-                    plotdist(*_fixparams(self.n, self.data[j]), 1 / 6, 1 / 6 - e, 1 / 6 + e)
-                except KeyboardInterrupt:
-                    print()
-                    plots = False
-                break
-        return probs, fair
-
-
 class Data(NamedTuple):
     n: int
     data: tuple6[tuple6[int]]
@@ -216,28 +218,26 @@ class Data(NamedTuple):
         return tuple([Die(self.n, self.data[i], COLORS[i]) for i in range(6)])  # type: ignore
 
 
+def timeAnalysis(d: Die, /, *, plot: bool = False) -> tuple[tuple6[list[float]], list[float]]:
+    """Note: Return (probabilities, fairness)"""
+    probabilities: tuple6[list[float]] = ([], [], [], [], [], [])
+    fairness: list[float] = []
+    for t in range(1, 401):
+        print(f"Analyzing {t}...")
+        fairness.append(d.fairness(n=t))
+        for j, prob in enumerate(d.probabilities(n=t)):
+            probabilities[j].append(prob)
+    if plot:
+        for j in range(6):
+            plt.plot(probabilities[j])  # type: ignore
+        # plt.plot([sum(prbs) for prbs in zip(*probs[0])])
+        plt.plot(fairness)  # type: ignore
+        plt.show()  # type: ignore
+    return probabilities, fairness
+
+
 FILE = Path(__file__).parent.parent / "data/dadi.txt"
 COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
 
-alldata: list[Data] = [Data(*load_data(FILE, n=n)) for n in range(1, 401)]
-fairnesses: tuple6[list[float]] = ([], [], [], [], [], [])
-probs: tuple6[tuple6[list[float]]] = (
-    ([], [], [], [], [], []),
-    ([], [], [], [], [], []),
-    ([], [], [], [], [], []),
-    ([], [], [], [], [], []),
-    ([], [], [], [], [], []),
-    ([], [], [], [], [], []),
-)
-for data in alldata:
-    print(f"Analyzing {data.n}...")
-    for i, die in enumerate(data.dice()):
-        fairnesses[i].append(die.fairness())
-        for j, prob in enumerate(die.probabilities()):
-            probs[i][j].append(prob)
-
-for j in range(6):
-    plt.plot(probs[0][j])  # type: ignore
-# plt.plot([sum(prbs) for prbs in zip(*probs[0])])
-plt.plot(fairnesses[0])  # type: ignore
-plt.show()  # type: ignore
+dice = load_data(FILE)
+timeAnalysis(dice[0], plot=True)
