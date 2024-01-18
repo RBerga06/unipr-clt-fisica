@@ -249,7 +249,10 @@ FILE = Path(__file__).parent.parent / "data/dadi.txt"
 COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
 
 dice = load_data(FILE)
-print(dice[0].counts())
-dice[0].analysis(log=True, plots=True)
-print(dice[0].chi_square())
+for die in dice:
+    print(die.counts())
+for die in dice:
+    die.analysis(log=True)  # , plots=True)
+for die in dice:
+    print(die.chi_square())
 # timeAnalysis(dice[0], plot=True)
