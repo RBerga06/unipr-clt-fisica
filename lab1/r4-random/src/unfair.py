@@ -130,7 +130,6 @@ class _bernoulli(NamedTuple):
 
     @cache
     def avg(self, /) -> float:
-        print(f"avg(): {self.a=}, {self.b=}")
         return (self.a + 1) / (self.a + self.b + 2)
 
     @cache
@@ -151,8 +150,6 @@ class _bernoulli(NamedTuple):
     def Fworse(self, x: float, /) -> float:
         m = self.avg()
         d = abs(x - m)
-        print("avg: ", m, "d: ", d)
-        print("Fin(", m - d, m + d, ") ->", self.Fin(m - d, m + d))
         return 1 - self.Fin(m - d, m + d)
 
 
