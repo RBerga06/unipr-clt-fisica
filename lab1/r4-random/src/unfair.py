@@ -206,7 +206,7 @@ def plotdist(a: int, b: int, *vlines: float) -> None:
     avg = B.avg()
     dx = abs(avg - 1 / 6)
     _Xs, Ys = fplot(B.f, X1, X2, N)
-    fplot(B.F, X1, X2, N)
+    # fplot(B.F, X1, X2, N)
     # ifplot(B.Pin, X1, X2, 1, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 2, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 3, norm=False, hist=True)
