@@ -1,5 +1,3 @@
-# Bro, it's unfair! We don't have the tools...
-# ... so let's make them ourselves!
 from dataclasses import dataclass
 from functools import reduce, wraps
 from operator import mul
@@ -37,35 +35,47 @@ class Die:
         return [self.count(i, n=n) for i in range(1, 7)]
 
     @cache
-    def probability(self, x: int, /, *, n: int = 400) -> float:
+    def old_probability(self, x: int, /, *, n: int = 400) -> float:
         a = self.count(x, n=n)
         e = self.epsilon(n)
-        return bernoulli(a, n - a).Pin(1 / 6 - e, 1 / 6 + e)
+        return bernoulli(a, n - a).Fin(1 / 6 - e, 1 / 6 + e)
+
+    @cache
+    def old_probabilities(self, /, *, n: int = 400) -> list[float]:
+        e = self.epsilon(n)
+        return [bernoulli(a, n - a).Fin(1 / 6 - e, 1 / 6 + e) for a in self.counts(n=n)]
+
+    @cache
+    def probability(self, x: int, /, *, n: int = 400) -> float:
+        a = self.count(x, n=n)
+        return bernoulli(a, n - a).Fworse(1 / 6)
 
     @cache
     def probabilities(self, /, *, n: int = 400) -> list[float]:
-        e = self.epsilon(n)
-        return [bernoulli(a, n - a).Pin(1 / 6 - e, 1 / 6 + e) for a in self.counts(n=n)]
+        return [bernoulli(a, n - a).Fworse(1 / 6) for a in self.counts(n=n)]
 
     @cache
     def fairness(self, /, *, n: int = 400) -> float:
-        return (reduce(mul, self.probabilities(n=n), 1)) ** (1 / 6)
+        return reduce(mul, self.old_probabilities(n=n), 1) ** (1 / 6)
+
+    @cache
+    def chi_square(self, /, *, n: int = 400) -> float:
+        e = n / 6
+        return sum([(a - e) ** 2 / e for a in self.counts(n=n)])
 
     def analysis(self, /, *, n: int = 400, plots: bool = False, log: bool = False) -> tuple[list[float], float]:
         """Note: returns (probabilities, fairness)."""
         probs = self.probabilities(n=n)
         fair = self.fairness(n=n)
-        e = self.epsilon(n)
         if log:
             print(f"{self.color:<6}", "".join([f"{p:>9.3%}" for p in probs]), " ->", f"{fair:>8.3%}")
         if plots:
             for a in self.counts(n=n):
                 try:
-                    plotdist(a, n - a, 1 / 6, 1 / 6 - e, 1 / 6 + e)
+                    plotdist(a, n - a)
                 except KeyboardInterrupt:
                     print()
-                    plots = False
-                break
+                    break
         return probs, fair
 
 
@@ -119,9 +129,14 @@ class _bernoulli(NamedTuple):
     b: int
 
     @cache
+    def avg(self, /) -> float:
+        print(f"avg(): {self.a=}, {self.b=}")
+        return (self.a + 1) / (self.a + self.b + 2)
+
+    @cache
     def f(self, x: float, /) -> float:
         a, b = self.a, self.b
-        return binom(a + b, a) * pow(x, a) * pow(1 - x, b)
+        return (a + b + 1) * binom(a + b, a) * pow(x, a) * pow(1 - x, b)
 
     @cache
     # @printcalls(lambda __f__, __r__, *args, **kwargs: f"F {args[1]:.2f} -> {__r__}")  #  type: ignore
@@ -130,25 +145,20 @@ class _bernoulli(NamedTuple):
 
     @cache
     def Fin(self, x1: float, x2: float, /) -> float:
-        return riemann(self.f, x1, x2)
+        return riemann(self.f, max(x1, 0), min(x2, 1))
 
     @cache
-    def P(self, x: float, /) -> float:
-        return self.F(x) * (self.a + self.b + 1)
-
-    @cache
-    def Pin(self, x1: float, x2: float, /) -> float:
-        return self.Fin(x1, x2) * (self.a + self.b + 1)
+    def Fworse(self, x: float, /) -> float:
+        m = self.avg()
+        d = abs(x - m)
+        print("avg: ", m, "d: ", d)
+        print("Fin(", m - d, m + d, ") ->", self.Fin(m - d, m + d))
+        return 1 - self.Fin(m - d, m + d)
 
 
 @cache
 def bernoulli(a: int, b: int, /) -> _bernoulli:
     return _bernoulli(a, b)
-
-
-@cache
-def p(n: int, a: int, x1: float, x2: float) -> float:
-    return (n + 1) * bernoulli(a, n - a).Fin(x1, x2)
 
 
 def splitrange(x1: float, x2: float, n: int) -> list[tuple[float, float]]:
@@ -193,8 +203,10 @@ def plotdist(a: int, b: int, *vlines: float) -> None:
     X2 = 1  # 0.2
     N = 1_000
     B = bernoulli(a, b)
-    fplot(B.f, X1, X2, N)
-    fplot(B.P, X1, X2, N)
+    avg = B.avg()
+    dx = abs(avg - 1 / 6)
+    _Xs, Ys = fplot(B.f, X1, X2, N)
+    fplot(B.F, X1, X2, N)
     # ifplot(B.Pin, X1, X2, 1, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 2, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 3, norm=False, hist=True)
@@ -204,8 +216,8 @@ def plotdist(a: int, b: int, *vlines: float) -> None:
     # ifplot(B.Pin, X1, X2, 40, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 50, norm=False, hist=True)
     # ifplot(B.Pin, X1, X2, 100, norm=False, hist=True)
-    for vline in vlines:
-        vlineplot([0, 1], vline)
+    for vline in [avg, avg - dx, avg + dx, *vlines]:
+        vlineplot([min(Ys), max(Ys)], vline)
     plt.show()  # type: ignore
 
 
@@ -225,7 +237,7 @@ def timeAnalysis(d: Die, /, *, plot: bool = False) -> tuple[tuple6[list[float]],
     for t in range(1, 401):
         print(f"Analyzing {t}...")
         fairness.append(d.fairness(n=t))
-        for j, prob in enumerate(d.probabilities(n=t)):
+        for j, prob in enumerate(d.old_probabilities(n=t)):
             probabilities[j].append(prob)
     if plot:
         for j in range(6):
@@ -240,4 +252,7 @@ FILE = Path(__file__).parent.parent / "data/dadi.txt"
 COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
 
 dice = load_data(FILE)
-timeAnalysis(dice[0], plot=True)
+print(dice[0].counts())
+dice[0].analysis(log=True, plots=True)
+print(dice[0].chi_square())
+# timeAnalysis(dice[0], plot=True)
