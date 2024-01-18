@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from dataclasses import dataclass
 from functools import reduce, wraps
 from operator import mul
@@ -79,13 +80,13 @@ class Die:
         return probs, fair
 
 
-def load_data(file: Path, /) -> tuple6[Die]:
+def load_data(file: Path, colors: Iterable[str], /) -> tuple[Die, ...]:
     rows: list[list[int]] = [
         [*map(int, line.split("\t"))]
         for line in map(str.strip, file.read_text().strip().splitlines())
         if line and not line.startswith("#")
     ]
-    return tuple([Die(tuple(col), color) for color, *col in zip(COLORS, *rows)])  # type: ignore
+    return tuple([Die(tuple(col), color) for color, *col in zip(colors, *rows)])
 
 
 def nicecallrepr[**P, R](__f__: Callable[P, R], __r__: R, *args: P.args, **kwargs: P.kwargs) -> str:
@@ -218,15 +219,6 @@ def plotdist(a: int, b: int, *vlines: float) -> None:
     plt.show()  # type: ignore
 
 
-class Data(NamedTuple):
-    n: int
-    data: tuple6[tuple6[int]]
-
-    @cache
-    def dice(self, /) -> tuple6[Die]:
-        return tuple([Die(self.n, self.data[i], COLORS[i]) for i in range(6)])  # type: ignore
-
-
 def timeAnalysis(d: Die, /, *, plot: bool = False) -> tuple[tuple6[list[float]], list[float]]:
     """Note: Return (probabilities, fairness)"""
     probabilities: tuple6[list[float]] = ([], [], [], [], [], [])
@@ -245,10 +237,20 @@ def timeAnalysis(d: Die, /, *, plot: bool = False) -> tuple[tuple6[list[float]],
     return probabilities, fairness
 
 
-FILE = Path(__file__).parent.parent / "data/dadi.txt"
-COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
+def mini_simulation(dice: int = 1, /, *, n: int = 400):
+    """Run a mini simulation."""
+    from random import randint
 
-dice = load_data(FILE)
+    rolls = [[randint(1, 6) for _j in range(n)] for _i in range(dice)]
+    FILE_MINI_SIMUL.write_text("\n".join(["\t".join(map(str, row)) for row in zip(*rolls)]))
+
+
+FILE = Path(__file__).parent.parent / "data/dadi.txt"
+FILE_MINI_SIMUL = Path(__file__).parent.parent / "data/dadi-mini-simul.txt"
+COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
+COLORS_MINI_SIMUL = [f"👾 {n}" for n in range(10)]
+
+dice = load_data(FILE, COLORS) + load_data(FILE_MINI_SIMUL, COLORS_MINI_SIMUL)
 for die in dice:
     print(die.counts())
 for die in dice:
