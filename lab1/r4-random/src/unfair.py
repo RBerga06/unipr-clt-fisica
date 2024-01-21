@@ -298,7 +298,7 @@ FILE_MINI_SIMUL = Path(__file__).parent.parent / "data/dadi-mini-simul.txt"
 COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
 COLORS_MINI_SIMUL = (f"👾 {n}" for n in count())
 
-mini_simulation(360)
+# mini_simulation(360)
 
 dice0, dice1 = load_data(FILE, COLORS), load_data(FILE_MINI_SIMUL, COLORS_MINI_SIMUL)
 dice = dice0 + dice1
