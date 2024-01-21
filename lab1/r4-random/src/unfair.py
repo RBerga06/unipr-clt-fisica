@@ -1,11 +1,15 @@
 from collections.abc import Iterable
 from dataclasses import dataclass
 from functools import reduce, wraps
+from itertools import count
 from operator import mul
 import matplotlib.pyplot as plt
 from pathlib import Path
 from typing import TYPE_CHECKING, Callable, Concatenate, NamedTuple, Any
 from math import factorial, pow
+from rich import print, reconfigure
+
+reconfigure(highlight=False)
 
 if TYPE_CHECKING:
 
@@ -13,6 +17,37 @@ if TYPE_CHECKING:
         ...
 else:
     from functools import cache
+
+
+def hsv2rgb(h: float, s: float, v: float, /) -> tuple[float, float, float]:
+    c = v * s
+    h1 = h * 6
+    x = c * (1 - abs(h1 % 2 - 1))
+    r1, g1, b1 = (
+        (c, x, 0)
+        if 0 <= h1 < 1
+        else (x, c, 0)
+        if 1 <= h1 < 2
+        else (0, c, x)
+        if 2 <= h1 < 3
+        else (0, x, c)
+        if 3 <= h1 < 4
+        else (x, 0, c)
+        if 4 <= h1 < 5
+        else (c, 0, x)
+    )
+    m = v - c
+    return r1 + m, g1 + m, b1 + m
+
+
+def rich_hsv(h: float, s: float, v: float, /) -> str:
+    r, g, b = hsv2rgb(h, s, v)
+    return f"rgb({int(r * 255)},{int(g * 255)},{int(b * 255)})"
+
+
+def pfmt(p: float, /) -> str:
+    s = f"{p:>9.3%}"
+    return f"[{rich_hsv((p**.5)/3, 1, 1)}]{s}[/]"
 
 
 type tuple6[T] = tuple[T, T, T, T, T, T]
@@ -56,6 +91,14 @@ class Die:
         return [bernoulli(a, n - a).Fworse(1 / 6) for a in self.counts(n=n)]
 
     @cache
+    def probabilities_add1(self, /, *, n: int = 400) -> list[float]:
+        return [bernoulli(a + 1, n - (a + 1)).Fworse(1 / 6) for a in self.counts(n=n)]
+
+    @cache
+    def probabilities_sub1(self, /, *, n: int = 400) -> list[float]:
+        return [bernoulli(a - 1, n - (a - 1)).Fworse(1 / 6) for a in self.counts(n=n)]
+
+    @cache
     def fairness(self, /, *, n: int = 400) -> float:
         return reduce(mul, self.old_probabilities(n=n), 1) ** (1 / 6)
 
@@ -64,12 +107,18 @@ class Die:
         e = n / 6
         return sum([(a - e) ** 2 / e for a in self.counts(n=n)])
 
-    def analysis(self, /, *, n: int = 400, plots: bool = False, log: bool = False) -> tuple[list[float], float]:
+    def analysis(self, /, *, n: int = 400, plots: bool = False, log: bool = False, log_alt: bool = False) -> None:
         """Note: returns (probabilities, fairness)."""
         probs = self.probabilities(n=n)
-        fair = self.fairness(n=n)
+        avg = sum(probs) / 6
+        avg_geo = reduce(mul, probs) ** (1 / 6)
+        avg_harm = 1 / sum([1 / x for x in probs])
+        if log_alt:
+            print(f"{self.color}+\t" + "".join(map(pfmt, self.probabilities_add1(n=n))))
         if log:
-            print(f"{self.color:<6}", "".join([f"{p:>9.3%}" for p in probs]), " ->", f"{fair:>8.3%}")
+            print(f"{self.color}\t" + "".join(map(pfmt, probs)), f" ->{pfmt(avg)} {pfmt(avg_geo)} {pfmt(avg_harm)}")
+        if log_alt:
+            print(f"{self.color}-\t" + "".join(map(pfmt, self.probabilities_sub1(n=n))))
         if plots:
             for a in self.counts(n=n):
                 try:
@@ -77,7 +126,6 @@ class Die:
                 except KeyboardInterrupt:
                     print()
                     break
-        return probs, fair
 
 
 def load_data(file: Path, colors: Iterable[str], /) -> tuple[Die, ...]:
@@ -248,13 +296,19 @@ def mini_simulation(dice: int = 1, /, *, n: int = 400):
 FILE = Path(__file__).parent.parent / "data/dadi.txt"
 FILE_MINI_SIMUL = Path(__file__).parent.parent / "data/dadi-mini-simul.txt"
 COLORS = "Rosso Verde Blu Viola Nero Bianco".split(" ")
-COLORS_MINI_SIMUL = [f"👾 {n}" for n in range(10)]
+COLORS_MINI_SIMUL = (f"👾 {n}" for n in count())
 
-dice = load_data(FILE, COLORS) + load_data(FILE_MINI_SIMUL, COLORS_MINI_SIMUL)
-for die in dice:
-    print(die.counts())
-for die in dice:
-    die.analysis(log=True)  # , plots=True)
-for die in dice:
-    print(die.chi_square())
+mini_simulation(360)
+
+dice0, dice1 = load_data(FILE, COLORS), load_data(FILE_MINI_SIMUL, COLORS_MINI_SIMUL)
+dice = dice0 + dice1
+# for die in dice:
+#     print(die.color, *die.counts(), sep="\t")
+for die in dice0:
+    die.analysis(log=True, log_alt=True)  # , plots=True)
+# print("—" * 95)
+# for die in dice1:
+#     die.analysis(log=True)  # , plots=die.color == "👾 3")
+# for die in dice:
+#     print(die.chi_square())
 # timeAnalysis(dice[0], plot=True)
