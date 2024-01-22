@@ -73,18 +73,13 @@ Come è possibile osservare da questi grafici, i risultati riportati sembrano se
 grossomodo la distribuzione teorica. Tuttavia, presentano deviazioni osservabili; il
 gruppo di lavoro ritiene che ciò sia principalmente dovuto al ridotto numero di lanci.
 
-% \subsubsection*{Onestà dei dadi}
-% Avendo segnato tutti i risultati di ogni dado, possiamo inoltre stimare se i dadi che
-% abbiamo utilizzato sono truccati o meno. Infatti, su un dado onesto ci aspettiamo
-% che escano tutti i risultati possibili con equa probabilità. Di seguito riportiamo
-% gli istogrammi dei valori usciti su ogni dado.
-
-% \begin{figure*}
-%     \caption*{...}
-% \end{figure*}
+\subsubsection*{Onestà dei dadi}
+Avendo raccolto tutti i risultati di ogni dado, possiamo infine stimare se i dadi che
+abbiamo utilizzato sono truccati o meno. Essendo questa analisi statistica solo
+tangenziale rispetto al resto del lavoro, la riportiamo in dettaglio nell'appendice A.
 
 \subsection{Simulazione}
-Tramite un programma da noi scritto e compilato\footnote{\emph{Vedi} Appendice A},
+Tramite un programma da noi scritto e compilato\footnote{\emph{Vedi} Appendice B},
 simuliamo la stessa esperienza con $10^{12}$ lanci dei sei dadi, al fine di
 verificare la legge dei grandi numeri.
 
@@ -286,12 +281,105 @@ da cui:
 
 \pagebreak
 \begin{appendices}
-    \section{Codice Rust per $10^{12}$ lanci di sei dadi}
-    Qui riportiamo il codice Rust, da noi scritto, che ci ha permesso di
-    lanciare virtualmente $6\cdot10^{12}$ dadi in maniera estremamente
-    efficiente.
 
-    \inputminted[linenos, mathescape]{rust}{src/main.rs}
+\section{Onestà dei dadi}
+Per prima cosa, mostreremo e giustificheremo il procedimento che abbiamo utilizzato per
+determinare se ogni dado sia onesto; successivamente, riporteremo i risultati di questa
+analisi statistica operata sui singoli dadi.
+
+\subsection{Analisi statistica}
+
+\subsubsection{Sommario}
+Sia $D$ un dado a $N\in\left[2,+\infty\right)\cap\mathbb{N}$ facce distinte
+$D_1,\dots,D_N$ con probabilità di uscire in un solo lancio, rispettivamente,
+$p_1,\dots,p_N\in\left[0;1\right]$.
+
+Consideriamo $n\in\mathbb{N}$ lanci ripetuti di $D$.
+Per ogni faccia $D_i$, chiameremo $n_i$ il numero di occorrenze di $D_i$.
+
+Per valutare se $D$ è truccato, ci limiteremo a studiare separatamente le $N$ facce:
+riterremo il dado “truccato” se e solo se almeno una delle facce è “truccata”.
+Diremo una faccia $D_i$ “truccata” se e solo se la probabilità che $p_i$ sia “pari a $\frac{1}{N}$
+o peggio”, in base ai dati raccolti, è inferiore al $5\%$.
+
+Chiariremo in seguito questi termini, ove opportuno.
+
+\subsubsection{Notazione generale}
+In questa sede, indicheremo con $p(A)$ la probabilità dell'evento $A$ e con $p(A|E)$ la
+probabilità di $A$ condizionata al verificarsi dell'evento $E$.
+
+Nel caso di distribuzioni continue, indicheremo con $f_X$ la funzione di densità di probabilità
+della variabile aleatoria $X$.
+Pertanto, fissato $\left[x_1;x_2\right]\subseteq\left[0;1\right]$, vale:
+\[p(x_1\le X\le x_2) = \int_{x_1}^{x_2}f_X(x)\,dx.\]
+
+Analogamente, $f_{X|E}$ sarà la funzione di densità di probabilità della variabile aleatoria $X$
+condizionata al verificarsi dell'evento $E$, e varrà, come prima:
+\[p(x_1\le X\le x_2|E) = \int_{x_1}^{x_2}f_{X|E}(x)\,dx.\]
+
+\subsubsection{Lanci consecutivi: distribuzione di Bernoulli}
+
+Limitiamoci a studiare le occorrenze di ogni faccia $D_i$ separatamente.
+
+Trattando gli $n$ lanci come prove di Bernoulli con probabilità di succeso $p_i$, al variare di
+$x\in\left[0;1\right]$ la probabilità che $D_i$ si presenti
+$m\in\left\{1,\dots,n\right\}$ volte fra gli $N$ lanci sarà allora:
+\[p(n_i=m|p_i=x) = \binom{n}{m} x^m (1-x)^{n - m}.\]
+
+Tuttavia, per stimare l'onestà della faccia $D_i$, è necessario determinare la distribuzione di
+probabilità di $p_i$ in base ai dati raccolti, cioè passare dalla funzione
+$x\longmapsto p(n_i=m|p_i=x)$ alla funzione $x\longmapsto f_{p_i|n_i=m}(x)$.
+
+\subsubsection{Il teorema di Bayes}
+È possibile operare questo cambio di prospettiva mediante il teorema di Bayes sulla probabilità
+condizionata, ricordando che, nel caso di distribuzioni continue, esso opera sulle funzioni di
+densità di probabilità:
+
+\[f_{p_i|n_i=m}(x) = \frac{p(n_i=m|p_i=x)\;f_{p_i}(x)}{p(n_i=m)}.\]
+
+\emph{
+    \textbf{Nota.} Non stiamo più lavorando con distribuzioni discrete, bensì continue,
+    poiché $p_i \in \left[0,1\right]$ è la nostra (nuova) variabile aleatoria.
+    Questo è corretto, in quanto, ad esempio, non avrebbe senso lavorare su
+    $p(p_i = \frac{1}{6}|n_i=m)$, poiché sarebbe sempre $0$: in fondo, è impossibile
+    costruire un dado “perfettamente onesto” senza margini di errore!
+}
+
+Supponiamo che la distribuzione \emph{a priori} di $p_i$ sia uniforme, per cui:
+\[f_{p_i}(x) = 1\qquad\forall x\in \left[0,1\right].\]
+e quindi:
+\[p(x_1\le p_i\le x_2) = \int_{x_1}^{x_2}1\,dx = x\Big|_{x_1}^{x_2}=x_2-x_1
+\qquad\forall \left[x_1,x_2\right]\subseteq \left[0,1\right].\]
+Calcoliamo allora $p(n_i=m)$:
+\[\begin{aligned}
+p(n_i=m)&=p(n_i=m|0\le p_i\le 1) = \int_{0}^{1}p(n_i=m|p_i=x)\,dx=\\
+        &=\int_{0}^{1}\binom{n}{m}x^m (1-x)^{n - m}\,dx=\binom{n}{m}\int_{0}^{1}x^m(1-x)^{n - m}\,dx=\\
+        &=\binom{n}{m}\frac{m!\;(n-m)!}{(n+1)!}
+        =\frac{n!}{m!\;(n-m)!}\cdot\frac{m!\;(n-m)!}{(n+1)\,n!}
+        =\frac{1}{n+1}
+\end{aligned}\]
+Sostituendo quanto appena trovato nell'espressione di $f_{p_i|n_i=m}$, otteniamo:
+\[f_{p_i|n_i=m}(x)=\frac{\binom{n}{m}x^m(1-x)^{n-m}\cdot 1}{\frac{1}{n+1}}
+=\frac{(n+1)!}{m!\;(n-m)!}\,x^m(1-x)^{n-m}.\]
+
+\subsubsection{La nuova distribuzione}
+Si può osservare che quella trovata è, come ci si aspetterebbe, una distribuzione di probabilità:
+\[\begin{aligned}
+p(0\le p_i\le 1|n_i=m)  &= \int_{0}^{1}f_{p_i|n_i=m}(x)\,dx = \\
+                        &= \frac{(n+1)!}{m!\;(n-m)!}\int_{0}^{1}x^m(1-x)^{n-m}\,dx = \\
+                        &= \frac{(n+1)!}{m!\;(n-m)!}\cdot\frac{m!\;(n-m)!}{(n+1)!} = 1
+\end{aligned}\]
+
+\subsection*{I nostri dadi sono truccati?}
+
+\pagebreak
+\section{Codice Rust per $10^{12}$ lanci di sei dadi}
+
+Qui riportiamo il codice Rust, da noi scritto, che ci ha permesso di
+lanciare virtualmente $6\cdot10^{12}$ dadi in maniera estremamente
+efficiente.
+
+\inputminted[linenos, mathescape]{rust}{src/main.rs}
+
 \end{appendices}
-
 \end{document}
