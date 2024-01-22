@@ -11,6 +11,7 @@
 \usepackage{caption}
 \usepackage[page]{appendix}
 \usepackage[bottom]{footmisc}
+\usepackage{mathtools}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -287,7 +288,7 @@ Per prima cosa, mostreremo e giustificheremo il procedimento che abbiamo utilizz
 determinare se ogni dado sia onesto; successivamente, riporteremo i risultati di questa
 analisi statistica operata sui singoli dadi.
 
-\subsection{Analisi statistica}
+\subsection{Analisi statistica: motivazione}
 
 \subsubsection{Sommario}
 Sia $D$ un dado a $N\in\left[2,+\infty\right)\cap\mathbb{N}$ facce distinte
@@ -314,7 +315,7 @@ Pertanto, fissato $\left[x_1;x_2\right]\subseteq\left[0;1\right]$, vale:
 \[p(x_1\le X\le x_2) = \int_{x_1}^{x_2}f_X(x)\,dx.\]
 
 Analogamente, $f_{X|E}$ sarà la funzione di densità di probabilità della variabile aleatoria $X$
-condizionata al verificarsi dell'evento $E$, e varrà, come prima:
+condizionata al verificarsi dell'evento $E$ e varrà, come prima:
 \[p(x_1\le X\le x_2|E) = \int_{x_1}^{x_2}f_{X|E}(x)\,dx.\]
 
 \subsubsection{Lanci consecutivi: distribuzione di Bernoulli}
@@ -323,7 +324,7 @@ Limitiamoci a studiare le occorrenze di ogni faccia $D_i$ separatamente.
 
 Trattando gli $n$ lanci come prove di Bernoulli con probabilità di succeso $p_i$, al variare di
 $x\in\left[0;1\right]$ la probabilità che $D_i$ si presenti
-$m\in\left\{1,\dots,n\right\}$ volte fra gli $N$ lanci sarà allora:
+$m\in\left\{1,\dots,n\right\}$ volte fra gli $n$ lanci sarà allora:
 \[p(n_i=m|p_i=x) = \binom{n}{m} x^m (1-x)^{n - m}.\]
 
 Tuttavia, per stimare l'onestà della faccia $D_i$, è necessario determinare la distribuzione di
@@ -350,7 +351,15 @@ Supponiamo che la distribuzione \emph{a priori} di $p_i$ sia uniforme, per cui:
 e quindi:
 \[p(x_1\le p_i\le x_2) = \int_{x_1}^{x_2}1\,dx = x\Big|_{x_1}^{x_2}=x_2-x_1
 \qquad\forall \left[x_1,x_2\right]\subseteq \left[0,1\right].\]
-Calcoliamo allora $p(n_i=m)$:
+Calcoliamo allora\footnote{
+In generale, $\int_{0}^{1}x^a(1-x)^b\,dx = \frac{a!\,b!}{(a+b+1)!}\quad\forall a,b\in\mathbb{N}$.
+Ciò si dimostra, ad esempio, per induzione su $b$, utilizzando, nel passo induttivo, l'integrazione
+per parti.
+
+Tuttavia, questa famiglia di integrali non ammette un'espressione analitica “chiusa”
+nel caso indefinito: questo è il motivo per cui \emph{non} tenteremo di determinare l'espressione
+generale di $p(x_1\le p_i\le x_2|n_i=m)$, facendo affidamento, invece, a metodi numerici.
+} $p(n_i=m)$:
 \[\begin{aligned}
 p(n_i=m)&=p(n_i=m|0\le p_i\le 1) = \int_{0}^{1}p(n_i=m|p_i=x)\,dx=\\
         &=\int_{0}^{1}\binom{n}{m}x^m (1-x)^{n - m}\,dx=\binom{n}{m}\int_{0}^{1}x^m(1-x)^{n - m}\,dx=\\
@@ -369,8 +378,64 @@ p(0\le p_i\le 1|n_i=m)  &= \int_{0}^{1}f_{p_i|n_i=m}(x)\,dx = \\
                         &= \frac{(n+1)!}{m!\;(n-m)!}\int_{0}^{1}x^m(1-x)^{n-m}\,dx = \\
                         &= \frac{(n+1)!}{m!\;(n-m)!}\cdot\frac{m!\;(n-m)!}{(n+1)!} = 1
 \end{aligned}\]
+La media di questa distribuzione è:
+\[\begin{aligned}
+\mu \coloneqq \mu_{p_i|n_i=m} &= \int_{0}^{1}xf_{p_i|n_i=m}(x)\,dx = \\
+    &= \frac{(n+1)!}{m!\;(n-m)!}\int_{0}^{1}x^{m+1}(1-x)^{n-m}\,dx = \\
+    &= \frac{(n+1)!}{m!\;(n-m)!}\cdot\frac{(m+1)!\;(n-m)!}{(n+2)!} =
+    \frac{m+1}{n+2}
+\end{aligned}\]
+La sua varianza, invece, è\footnote{
+Per brevità, non riportiamo tutti i passaggi della risoluzione. L'integrale è stato
+calcolato espandendo il quadrato del binomio e poi procedendo con i tre integrali definiti
+risultanti come accennato alla nota 8.
+}:
+\[\begin{aligned}
+\sigma_{p_i|n_i=m}^2 &= \int_{0}^{1}(x-\mu_{p_i|n_i=m})^2f_{p_i|n_i=m}(x)\,dx = \\
+&= \frac{(n+1)!}{m!\;(n-m)!}\int_{0}^{1}\left(x-\frac{m+1}{n+2}\right)^2x^{m+1}(1-x)^{n-m}\,dx = \\
+&= \frac{m+1}{n+2}\left(\frac{m+2}{n+3}-\frac{m+1}{n+2}\right)
+\end{aligned}\]
 
-\subsection*{I nostri dadi sono truccati?}
+\subsubsection{La faccia $D_i$ è onesta?}
+Per valutare l'onestà della faccia $D_i$, abbiamo ritenuto opportuno basarci sulla probabilità
+che $p_i$ sia “$\frac{1}{N}$ o peggio”. Più formalmente, detto:
+\[\Delta x \coloneqq \left|\frac{1}{N} - \mu\right|\]
+chiameremo “onestà di $D_i$” il valore:
+\[\begin{aligned}
+\omega_{D_i|n_i=m} &\coloneqq p(p_i\in\left[0;\mu-\Delta x\right)\cup\left(\mu+\Delta x;1\right])=\\
+    &=1-p(p_i\in\left[\mu-\Delta x;\mu+\Delta x\right])=\\
+    &=1-\int_{\mu-\Delta x}^{\mu+\Delta x}f_{p_i|n_i=m}(x)\,dx.
+\end{aligned}\]
+In particolare, diremo che la faccia è “truccata” se $\omega_{D_i|n_i=m}<5\%$.
+
+Tuttavia, con $n$ finito, non possiamo valutare \emph{con certezza} l'onestà della faccia.
+Per avere una stima della \emph{precisione} della nostra valutazione, calcoliamo anche\footnote{
+    Per $m=0$ o $m=n$, una delle due espressioni non ha senso. Per ovviare a ciò,
+    basta definire $\omega_{D_i|n_i=n+1}\coloneqq0$ e $\omega_{D_i|n_i=-1}\coloneqq0$.
+}
+$\omega_{D_i|n_i=m-1}$ e $\omega_{D_i|n_i=m+1}$; allora:
+\begin{itemize}
+    \item Se tutte e tre le probabilità sono $<5\%$, diremo che
+          “\emph{è abbastanza probabile che $D_i$ sia truccata}”.
+    \item Se tutte e tre le probabilità sono $\ge5\%$, diremo che
+          “\emph{non è abbastanza probabile che $D_i$ sia truccata}”.
+    \item Altrimenti, diremo che
+          “\emph{$D_i$ potrebbe essere truccata, ma $n$ lanci sono troppo pochi per poterlo
+          affermare ragionevolmente}”.
+\end{itemize}
+Questa interpretazione di $\omega_{D_i|n_i=m}$, $\omega_{D_i|n_i=m-1}$ e $\omega_{D_i|n_i=m+1}$
+è giustificata dalle seguenti proposizioni (dimostrabili):
+\[\omega_{D_i|n_i=m-1}\le\omega_{D_i|n_i=m}\le\omega_{D_i|n_i=m+1}\]
+\[\vee\]
+\[\omega_{D_i|n_i=m-1}\ge\omega_{D_i|n_i=m}\ge\omega_{D_i|n_i=m+1}\]
+
+\[
+    \lim_{n\rightarrow+\infty}\omega_{D_i|n_i=m-1} =
+    \lim_{n\rightarrow+\infty}\omega_{D_i|n_i=m} =
+    \lim_{n\rightarrow+\infty}\omega_{D_i|n_i=m+1}
+\]
+
+\subsection{I nostri dadi sono truccati?}
 
 \pagebreak
 \section{Codice Rust per $10^{12}$ lanci di sei dadi}
