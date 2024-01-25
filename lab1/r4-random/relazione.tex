@@ -435,6 +435,31 @@ Questa interpretazione di $\omega_{D_i|n_i=m}$, $\omega_{D_i|n_i=m-1}$ e $\omega
     \lim_{n\rightarrow+\infty}\omega_{D_i|n_i=m+1}
 \]
 
+Infine, diremo che “$D$ è truccato” se e solo se almeno una faccia è truccata. Più formalmente:
+\begin{itemize}
+    \item Se $\exists D_i$ tale che è abbastanza probabile che $D_i$ sia truccata,
+          diremo che “\emph{è abbastanza probabile che $D$ sia truccato}”.
+    \item Se $\forall D_i$ non è abbastanza probabile che $D_i$ sia truccata,
+          diremo che “\emph{non è abbastanza probabile che $D$ sia truccato}”.
+    \item Altrimenti, diremo che
+          “\emph{$D$ potrebbe essere truccato, ma $n$ lanci sono troppo pochi per poterlo
+          affermare ragionevolmente}”.
+\end{itemize}
+
+\emph{\textbf{Osservazione.} Le variabili aleatorie $p_1,\dots,p_N$ non sono fra loro indipendenti:
+infatti, per ovvi motivi, deve valere $p_1+\dots+p_N = 1$. Pertanto, in generale:}
+\[p(D\text{ onesto})=p\left(\bigcap_{i=1}^N D_i\text{ onesto}\right)
+\ne\prod_{i=1}^{N}p(D_i\text{ onesta})\]
+\emph{Si potrebbe definire una funzione a $N$ variabili
+$F:\left[0,1\right]^N\longmapsto\left[0,1\right]$, ad esempio:}
+\[F(x_1,\dots,x_n) = \sqrt{N}\left\lVert
+\begin{bmatrix}x_1\\\vdots\\x_N\end{bmatrix} - \frac{1}{N}\begin{bmatrix}1\\\vdots\\1\end{bmatrix}
+\right\rVert = \sqrt{N\sum_{i=1}^{N}\left(x_i-\frac{1}{N}\right)^2}\]
+\emph{per poi determinare i valori che $p_1,\dots,p_n$ devono assumere affinché, ad esempio,
+$F(p_1,\dots,p_n)\le95\%$. Il problema, allora, sarebbe calcolare le probabilità che
+$p_1,\dots,p_n$ assumano tali valori, in quanto, come detto,
+}
+
 \subsection{I nostri dadi sono truccati?}
 
 \pagebreak
