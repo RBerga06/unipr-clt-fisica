@@ -41,30 +41,33 @@
         \hline[dashed]
         Metro & $\qty{0.1}{cm}$ & $\qty{300.0}{cm}$ & $\qty{0.1}{cm}$ \\
         \hline[dashed]
-        Calibro ventesimale & $\qty{0.05}{mm}?$ & $\qty{150.00}{mm}$ & $\qty{0.05}{mm}$ \\
+        Calibro ventesimale & $\qty{0.05}{mm}$ & $\qty{150.00}{mm}$ & $\qty{0.05}{mm}$ \\
         \hline[dashed]
         Micrometro ad asta filettata & $\qty{0.01}{mm}$ & $\qty{25.00}{mm}$ & $\qty{0.01}{mm}$ \\
         \hline[dashed]
-        Bilancia di precisione & $\qty{0.01}{g}?$ & $\qty{6200.00}{g}?$ & $\qty{0.01}{g}?$ \\
+        Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
         \hline
         \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
-        {Quattro fili} & \SetCell[c=3]{l} {
-            In particolare tre in alluminio e uno \\         %TODO: erano veramente in alluminio?
-            in rame, principalmente distiguibili \\
-            per il diametro.} \\
+        {Quattro fili inestensibili} & \SetCell[c=3]{l} {
+            Distinguibili per diametro e materiale
+        } \\
         \hline[dashed]
-        {Tre cilindri \\ (con masse distinte)} & \SetCell[c=3]{l} {
+        {Tre cilindri \\ (con masse e raggi distinti)} & \SetCell[c=3]{l} {
             Indicheremo con $A,B,C$ i tre cilindri e \\
-            con $\diam$, $A+B$, $A+C$, $B+C$ e $A+B+C$ \\
-            le loro combinazioni. Tutti questi saranno \\
-            qui chiamati “gravi”.} \\                        %TODO: dare un nome diverso da "gravi"
+            con $0$, $A+B$, $A+C$,
+            $B+C$ e $A+B+C$ \\
+            le loro combinazioni.
+            % Tutti questi saranno qui chiamati “carichi”.
+            } \\
         \hline[dashed]
-        {Pendolo di torsione} & \SetCell[c=3]{l} {           %"IL FILO È IL SOGGETTO DEL PENDOLO"
+        {Pendolo di torsione} & \SetCell[c=3]{l} {
+            % "IL FILO È IL SOGGETTO DEL PENDOLO"
             Formato da un disco che ruotando provoca \\
             una deformazione elastica al filo ad esso \\
-            fissato.} \\
+            fissato lungo l'asse di rotazione.
+        } \\
         \hline
     \end{tblr}
 \end{center}
@@ -79,16 +82,20 @@
         Con il metro a nastro e il micrometro ad asta filettata misuriamo
         rispettivamente la lunghezza e il diametro dei fili.
     \item
-        Per ogni filo e per ogni grave:
+        Per ogni filo e per ogni combinazione di cilindri:
     \begin{enumerate}
         \item
-            Lo fissiamo al pendolo in modo tale che l'estremità
-            superiore sia libera di ruotare insieme al disco.
+            Fissiamo il filo al pendolo in modo tale che l'estremità
+            superiore sia vincolata al disco rotante; posizioniamo poi
+            i cilindri sopra al disco, con l'asse centrale allineato
+            a quello del disco stesso.
         \item
-            Tramite una rotazione iniziale del disco da noi applicata
+            Avviamo l'acquisizione dell'angolo in funzione del tempo
+            (rispetto alla posizione di equilibrio);
+        \item
+            Ruotando il disco di un angolo prefissato,
             diamo inizio al moto armonico del pendolo.
-            Grazie al sensore otterremo l'angolo di rotazione rispetto
-            a quello di partenza in funzione del tempo.
+            Acquisiamo dati fino all'arresto del moto.
     \end{enumerate}
 \end{enumerate}
 
