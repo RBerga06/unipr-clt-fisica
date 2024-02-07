@@ -48,11 +48,11 @@ def compile_csv(csv: str, /) -> str:
                 i.best,
                 i.delta,
                 *chain.from_iterable(
-                    [(d.best, d.delta) for d in [Datum(float(T), 0.001) / f for T, f in zip(periods, factors)]]
+                    [(d.best, d.delta) for d in [(Datum(float(T), 0.001) / f)**2 for T, f in zip(periods, factors)]]
                 ),
             ]
         )
-    return "\n".join(["m,,I,,T1,,T2,,T3,,T4,"] + [",".join(map(str, line)) for line in compiled] + [""])
+    return "\n".join(["I,,T1²,,T2²,,T3²,,T4²,"] + [",".join(map(str, line)) for line in compiled] + [""])
 
 
 def main(argv: list[str], /) -> int | None:
