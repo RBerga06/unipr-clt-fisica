@@ -23,7 +23,7 @@ class Cilindro(NamedTuple):
     @property
     def I(self, /):
         """Momento d'inerzia"""
-        return self.m * self.r**2
+        return self.m * self.r**2 / 2
 
 
 A = Cilindro(m=Datum(344.07, 0.01) / 1000, d=Datum(9.45, 0.01) / 100)
