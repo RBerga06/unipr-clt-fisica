@@ -26,9 +26,9 @@ class Cilindro(NamedTuple):
         return self.m * self.r**2 / 2
 
 
-A = Cilindro(m=Datum(344.07, 0.01) / 1000, d=Datum(9.45, 0.01) / 100)
-B = Cilindro(m=Datum(429.65, 0.01) / 1000, d=Datum(5.85, 0.01) / 100)
-C = Cilindro(m=Datum(473.02, 0.01) / 1000, d=Datum(5.20, 0.01) / 100)
+A = Cilindro(m=Datum(344.07, 0.01) / 1000, d=Datum(9.45, 0.05) / 100)
+B = Cilindro(m=Datum(429.65, 0.01) / 1000, d=Datum(5.85, 0.05) / 100)
+C = Cilindro(m=Datum(473.02, 0.01) / 1000, d=Datum(5.20, 0.05) / 100)
 CAMPIONI = [A, B, C]
 
 
