@@ -43,8 +43,8 @@ def compile_csv(csv: str, /) -> str:
         i = sum([x.I for x in objs], start=Datum(0.0, 0.0))
         compiled.append(
             [
-                m.best,
-                m.delta,
+                # m.best,
+                # m.delta,
                 i.best,
                 i.delta,
                 *chain.from_iterable(
@@ -52,7 +52,7 @@ def compile_csv(csv: str, /) -> str:
                 ),
             ]
         )
-    return "\n".join(["I,,T1²,,T2²,,T3²,,T4²,"] + [",".join(map(str, line)) for line in compiled] + [""])
+    return "\n".join(['I,,T1²,,T2²,,T3²,,T4²,'] + [",".join(map(str, line)) for line in compiled] + [""])
 
 
 def main(argv: list[str], /) -> int | None:
