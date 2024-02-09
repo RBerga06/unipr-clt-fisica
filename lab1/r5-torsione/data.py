@@ -91,6 +91,19 @@ def main(argv: list[str], /) -> int | None:
                     print(compile_csv(Path(src).resolve().read_text()))
                 case _:
                     raise
+        case ["groupcsv"]:
+            SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
+            DST = Path(__file__).parent/"data/tempi.csv"
+
+            def trasp[T](x: list[list[T]]) -> list[list[T]]: return [*zip(*x)]
+
+            col_src = trasp([l.split(",") for l in SRC.read_text().splitlines()])
+            colonne = [
+                max(col_src, key=lambda c: len([*filter(bool, c)]))
+            ] + [col_src[i] for i in range(len(col_src)) if i % 2]
+
+            DST.write_text('\n'.join(map(','.join, trasp(colonne))))
+
         case ["calc"]:
             FILE = Path(__file__).parent/"data/regressioni.csv"
             for F, line in zip([F1, F2, F3, F4], FILE.read_text().splitlines()[1:]):
