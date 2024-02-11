@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+# pyright: reportConstantRedefinition=false
 # ruff: noqa: E743
 from itertools import chain
+from math import log
 from pathlib import Path
 import sys
 from typing import NamedTuple
@@ -58,6 +60,22 @@ C = Cilindro(m=Datum(473.02, 0.01) / 1000, d=Datum(5.20, 0.05) / 100)
 CAMPIONI = [A, B, C]
 
 
+# --- CSV utility functions ---
+
+def csv_rows_write(*rows: list[str]) -> str:
+    return "\n".join(map(",".join, rows))
+
+def csv_cols_write(*cols: list[str]) -> str:
+    return csv_rows_write(*zip(*cols))
+
+def csv_rows_read(csv: str, /) -> list[list[str]]:
+    return [l.split(",") for l in csv.split("\n")]
+
+def csv_cols_read(csv: str, /) -> list[list[str]]:
+    return [*zip(*csv_rows_read(csv))]
+
+# ---
+
 def compile_csv(csv: str, /) -> str:
     lines = csv.splitlines()
     factors = [int(s.split("T")[0] or "1") for s in lines[0].split(",")[1:]]
@@ -81,6 +99,26 @@ def compile_csv(csv: str, /) -> str:
     return "\n".join(['I,,T1^2,,T2^2,,T3^2,,T4^2,'] + [",".join(map(str, line)) for line in compiled] + [""])
 
 
+
+def find_picchi(X: list[str], Y: list[str]) -> tuple[list[str], list[str]]:
+    X1: list[float] = []
+    Y1: list[float] = []
+    picco: list[tuple[float, float]] = []
+    prev: tuple[float, float] = (0, 0)
+    for x, y in zip(map(float, X[1:]), map(float, Y[1:])):
+        if y > prev[1]:
+            picco = [(x, y)]
+        elif y == prev[1] and picco:
+            picco.append((x, y))
+        else:
+            if picco:
+                X1.append(sum([p[0] for p in picco])/len(picco))
+                Y1.append(picco[0][1])
+            picco = []
+        prev = x, y
+    return [X[0], *map(str, X1)], [Y[0], *map(str, Y1)]
+
+
 def main(argv: list[str], /) -> int | None:
     match argv:
         case ["compile", *args]:
@@ -95,14 +133,30 @@ def main(argv: list[str], /) -> int | None:
             SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
             DST = Path(__file__).parent/"data/tempi.csv"
 
-            def trasp[T](x: list[list[T]]) -> list[list[T]]: return [*zip(*x)]
+            col_src = csv_cols_read(SRC.read_text())
+            DST.write_text(csv_cols_write(
+                max(col_src, key=lambda c: len([*filter(bool, c)])),
+                *[col for i, col in enumerate(col_src) if i % 2]
+            ))
 
-            col_src = trasp([l.split(",") for l in SRC.read_text().splitlines()])
-            colonne = [
-                max(col_src, key=lambda c: len([*filter(bool, c)]))
-            ] + [col_src[i] for i in range(len(col_src)) if i % 2]
+        case ["picchi"]:
+            SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
+            DST = Path(__file__).parent/"data/picchi.csv"
+            cols = csv_cols_read(SRC.read_text())
+            DST.write_text(csv_cols_write(
+                *chain.from_iterable([find_picchi(cols[2*i], cols[2*i+1]) for i in range(len(cols) // 2)])
+            ))
 
-            DST.write_text('\n'.join(map(','.join, trasp(colonne))))
+        case ["picchi-log"]:
+            def ylog(X: list[str], Y: list[str]) -> tuple[list[str], list[str]]:
+                return X, [Y[0], *[str(log(float(y))) for y in Y[1:]]]
+
+            SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
+            DST = Path(__file__).parent/"data/picchi-log.csv"
+            cols = csv_cols_read(SRC.read_text())
+            DST.write_text(csv_cols_write(
+                *chain.from_iterable([ylog(*find_picchi(cols[2*i], cols[2*i+1])) for i in range(len(cols) // 2)])
+            ))
 
         case ["calc"]:
             FILE = Path(__file__).parent/"data/regressioni.csv"
