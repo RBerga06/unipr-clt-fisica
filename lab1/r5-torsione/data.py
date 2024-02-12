@@ -54,9 +54,9 @@ F3 = Filo(Datum(43.0, .1)/100, Datum(1.57, 0.01)/1000, "Filo di acciaio 3")
 F4 = Filo(Datum(42.7, .1)/100, Datum(1.97, 0.01)/1000, "Filo di rame")
 
 
-A = Cilindro(m=Datum(344.07, 0.01) / 1000, d=Datum(9.45, 0.05) / 100)
-B = Cilindro(m=Datum(429.65, 0.01) / 1000, d=Datum(5.85, 0.05) / 100)
-C = Cilindro(m=Datum(473.02, 0.01) / 1000, d=Datum(5.20, 0.05) / 100)
+A = Cilindro(m=Datum(344.07, 0.01) / 1000, d=Datum(90.45, 0.05) / 1000)
+B = Cilindro(m=Datum(429.65, 0.01) / 1000, d=Datum(59.85, 0.05) / 1000)
+C = Cilindro(m=Datum(473.02, 0.01) / 1000, d=Datum(52.00, 0.05) / 1000)
 CAMPIONI = [A, B, C]
 
 
