@@ -9,6 +9,7 @@ from typing import NamedTuple
 from rberga06.phylab import Datum, Measure
 from rberga06.phylab.constants import π
 
+-0.0466661825 ± 1.0861373135E-4
 DATA_DIR = Path(__file__).parent / "data"
 
 
