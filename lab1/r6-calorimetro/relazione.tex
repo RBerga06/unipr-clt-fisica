@@ -28,7 +28,7 @@
 
 \begin{abstract}
     Il gruppo di lavoro ha misurato il calore specifico di tre solidi distinti
-    per risalirne alla natura; inoltre ha determinato l'adiabaticità del calorimetro    %TODO: va bene adiabaticità?
+    per risalirne alla natura; inoltre ha determinato l'adiabaticità del calorimetro.    %TODO: va bene adiabaticità?
 \end{abstract}
 
 \section{Materiali e strumenti di misura utilizzati}
@@ -37,11 +37,11 @@
         \hline
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        Termometro digitale & $\qty{00}{\degree C}$ & $\qty{00}{\degree C}$ & $\qty{0.1}{\degree C}$ \\
+        Termometro digitale & $\qty{0.1}{\degree C}?$ & N./A. & $\qty{0.1}{\degree C}$ \\
         % \hline[dashed]
         % Termometro a mercurio & $\qty{0.1}{\degree C}?$ & $\qty{100}{\degree C}?$ & $\qty{0.1}{\degree C}?$ \\
         \hline[dashed]
-        Barometro & $\qty{0}{hPa}?$ & $\qty{14000}{hPa}$ & $\qty{1}{hPa}$ \\
+        Barometro & $\qty{1}{hPa}?$ & $\qty{14000}{hPa}$ & $\qty{1}{hPa}$ \\
         \hline[dashed]
         Cilindro graduato & $\qty{1}{mL}$ & $\qty{100}{mL}$ & $\qty{1}{mL}$ \\
         \hline[dashed]
@@ -73,9 +73,9 @@
         versiamo l'acqua a temperatura ambiente nel calorimetro.
         
     \emph{
-        \textbf{Osservazione.} È meglio che le masse si equivalgano, e che la loro
-        somma sia uguale all'acqua che utilizzeremo nella seconda parte dell'esperimento,
-        in modo che il calorimetro si bagni allo stesso modo.
+        \textbf{Osservazione.} È meglio che le masse d'acqua si equivalgano, e che 
+        la loro somma sia uguale a quella che utilizzeremo nella seconda parte
+        dell'esperimento, in modo che il calorimetro si bagni allo stesso modo.
         }
         
     \item
@@ -106,8 +106,9 @@ acqua che assorbirebbe lo stesso calore del calorimetro. Quindi:
         quanto il calorimetro disturbi la misura.
         }
 
+%QUA SERVIREBBE UN "A CAPO", CHE NON SO INSERIRE
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
-seguente grafico, abbiamo trovato il valore di $T_\text{eq}$. Dunque:    %TODO: mettiamo il grafico?
+seguente grafico, abbiamo trovato che $T_\text{eq} = \qty{46,35}{\degree C}?$. Dunque:    %TODO: mettiamo il grafico?
     \[
         m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
     \]
@@ -122,7 +123,7 @@ i calori specifici dei metalli di cui sono composti i campioni.
 
 \begin{enumerate}
     \item
-        Versiamo nel pentolino una quantità d'acqua tale permettere l'immersione
+        Versiamo nel pentolino una quantità d'acqua tale da permettere l'immersione
         completa dei campioni in essa e la scaldiamo. Per fare ciò più velocemente
         e assicurarci di essere in stato di ebollizione, regoliamo la temperatura
         della piastra a $T>\qty{100}{\degree C}$.
@@ -158,7 +159,7 @@ Conoscendo il valore di $m_\text{equiv}$, possiamo scrivere:
     \]
 
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
-seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$. Dunque:    %TODO: mettiamo i grafici?
+seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$ per ogni solido. Dunque:    %TODO: mettiamo i grafici?
     \[
         c_\text{met} = \frac{(m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})}
         {m_\text{met} (T_\text{met}-T_\text{eq})}
@@ -170,11 +171,12 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 \begin{center}
     \begin{tabular}{ |c|c|c| }
         \hline
-        \emph{Campione} & $m$ ($\unit{g}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$)\\
+        \emph{Campione} & $m$ ($\unit{g}$) & $T_\text{acqua}$ ($\unit{\degree C}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$)\\
+        %$T_\text{eq}$ ($\unit{\degree C}$)
         \hline
-        $A$ & 12.43 ± 0.01 & 0 ± 0 \\
-        $B$ & 28.73 ± 0.01 & 0 ± 0 \\    %TODO: calcolare i valori
-        $C$ & 44.86 ± 0.01 & 0 ± 0 \\
+        $A$ & 12.43 ± 0.01 & 25.2 ± 0.2 & 0 ± 0 \\
+        $B$ & 28.73 ± 0.01 & 25.9 ± 0.2 & 0 ± 0 \\    %TODO: calcolare i valori
+        $C$ & 44.86 ± 0.01 & 26.0 ± 0.2 & 0 ± 0 \\
         \hline
     \end{tabular}
 \end{center}
