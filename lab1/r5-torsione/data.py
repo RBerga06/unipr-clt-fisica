@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # pyright: reportConstantRedefinition=false
 # ruff: noqa: E743
-from itertools import chain
+from itertools import chain, zip_longest
 from math import log
 from pathlib import Path
 import sys
-from typing import NamedTuple
+from typing import Iterable, NamedTuple
+import pandas as pd
 from rberga06.phylab import Datum, Measure
 from rberga06.phylab.constants import π
 
@@ -67,13 +68,13 @@ def csv_rows_write(*rows: list[str]) -> str:
     return "\n".join(map(",".join, rows))
 
 def csv_cols_write(*cols: list[str]) -> str:
-    return csv_rows_write(*zip(*cols))
+    return csv_rows_write(*zip_longest(*cols, fillvalue=""))  # type: ignore
 
 def csv_rows_read(csv: str, /) -> list[list[str]]:
     return [l.split(",") for l in csv.split("\n")]
 
 def csv_cols_read(csv: str, /) -> list[list[str]]:
-    return [*zip(*csv_rows_read(csv))]
+    return [*zip_longest(*csv_rows_read(csv), fillvalue="")]  # type: ignore
 
 # ---
 
@@ -101,12 +102,12 @@ def compile_csv(csv: str, /) -> str:
 
 
 
-def find_picchi(X: list[str], Y: list[str]) -> tuple[list[str], list[str]]:
+def find_picchi(X: Iterable[float], Y: Iterable[float]) -> tuple[list[float], list[float]]:
     X1: list[float] = []
     Y1: list[float] = []
     picco: list[tuple[float, float]] = []
     prev: tuple[float, float] = (0, 0)
-    for x, y in zip(map(float, X[1:]), map(float, Y[1:])):
+    for x, y in zip(X, Y):
         if y > prev[1]:
             picco = [(x, y)]
         elif y == prev[1] and picco:
@@ -117,7 +118,7 @@ def find_picchi(X: list[str], Y: list[str]) -> tuple[list[str], list[str]]:
                 Y1.append(picco[0][1])
             picco = []
         prev = x, y
-    return [X[0], *map(str, X1)], [Y[0], *map(str, Y1)]
+    return X1, Y1
 
 
 def main(argv: list[str], /) -> int | None:
@@ -143,28 +144,37 @@ def main(argv: list[str], /) -> int | None:
         case ["picchi"]:
             SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
             DST = Path(__file__).parent/"data/picchi.csv"
-            cols = csv_cols_read(SRC.read_text())
-            DST.write_text(csv_cols_write(
-                *chain.from_iterable([find_picchi(cols[2*i], cols[2*i+1]) for i in range(len(cols) // 2)])
-            ))
+            src  = pd.read_csv(SRC)  # type: ignore
+            cols: list[pd.Series[float]] = [src[c].abs() for c in src.columns]
+            picchi = [find_picchi(cols[2*i], cols[2*i+1]) for i in range(len(cols)//2)]
+            DST.write_text(
+                csv_rows_write(
+                    [*src.columns],
+                    *csv_rows_read(csv_cols_write(*[[*map(str, col)] for col in chain.from_iterable(picchi)])),
+                )
+            )
 
         case ["picchi-log"]:
-            def ylog(X: list[str], Y: list[str]) -> tuple[list[str], list[str]]:
-                return X, [Y[0], *[str(log(float(y))) for y in Y[1:]]]
+            def ylog(X: Iterable[float], Y: Iterable[float]) -> tuple[list[float], list[float]]:
+                return [*X], [*map(log, Y)]
 
             SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
             DST = Path(__file__).parent/"data/picchi-log.csv"
-            cols = csv_cols_read(SRC.read_text())
-            DST.write_text(csv_cols_write(
-                *chain.from_iterable([ylog(*find_picchi(cols[2*i], cols[2*i+1])) for i in range(len(cols) // 2)])
-            ))
+            src  = pd.read_csv(SRC)  # type: ignore
+            cols: list[pd.Series[float]] = [src[c].abs() for c in src.columns]
+            picchi = [ylog(*find_picchi(cols[2*i], cols[2*i+1])) for i in range(len(cols)//2)]
+            DST.write_text(
+                csv_rows_write(
+                    [*src.columns],
+                    *csv_rows_read(csv_cols_write(*[[*map(str, col)] for col in chain.from_iterable(picchi)])),
+                )
+            )
 
         case ["calc"]:
             FILE = Path(__file__).parent/"data/regressioni.csv"
             for F, line in zip([F1, F2, F3, F4], FILE.read_text().splitlines()[1:]):
                 _i, m, dm, _q, _dq, *_ = [*map(float, filter(bool, line.split(",")))]
                 F.calc(Datum(m, dm))
-                print()
             # # FORMULE:
             # # I = C/(4π^2) T^2
             # # C = ( π R^4 G )/( 2L )
