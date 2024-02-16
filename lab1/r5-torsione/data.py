@@ -6,7 +6,6 @@ from math import log
 from pathlib import Path
 import sys
 from typing import Iterable, NamedTuple
-import pandas as pd
 from rberga06.phylab import Datum, Measure
 from rberga06.phylab.constants import π
 
@@ -123,6 +122,9 @@ def find_picchi(X: Iterable[float], Y: Iterable[float]) -> tuple[list[float], li
 
 def main(argv: list[str], /) -> int | None:
     match argv:
+        case ["I"]:
+            print(A.I, B.I, C.I, sep="\n")
+
         case ["compile", *args]:
             match args:
                 case []:
@@ -142,6 +144,8 @@ def main(argv: list[str], /) -> int | None:
             ))
 
         case ["picchi"]:
+            import pandas as pd
+
             SRC = Path(__file__).parent/"data/G17-pendolo-di-torsione.csv"
             DST = Path(__file__).parent/"data/picchi.csv"
             src  = pd.read_csv(SRC)  # type: ignore
@@ -155,6 +159,8 @@ def main(argv: list[str], /) -> int | None:
             )
 
         case ["picchi-log"]:
+            import pandas as pd
+
             def ylog(X: Iterable[float], Y: Iterable[float]) -> tuple[list[float], list[float]]:
                 return [*X], [*map(log, Y)]
 

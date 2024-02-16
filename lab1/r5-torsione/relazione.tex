@@ -101,20 +101,54 @@
     \end{enumerate}
 \end{enumerate}
 
-\section{Dati raccolti}
+\section{Analisi dei dati raccolti}
+
+Di seguito riportiamo massa, diametro e momento d'inerzia\footnote{
+    Il momento d'inerzia è stato calcolato approssimando questi oggetti
+    a cilindri di densità uniforme e raggio e altezza costanti, in rotazione
+    attorno ad un asse verticale passante per il loro centro:
+    \[I_i = \frac{1}{2} m_i \left(\frac{d_i}{2}\right)^2 = \frac{1}{8}m_i d_i^2\]
+    Supponendo gli errori su massa e diametro piccoli, casuali e indipendenti,
+    abbiamo calcolato $\delta I_i$ secondo la tradizionale propagazione degli errori.
+} dei tre cilindretti:
 
 \begin{center}
 \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
     \hline
-    $i$ & $m_i\;\;(\unit{g})$ & $d_i\;\;(\unit{cm})$ & $I_i\;\;(\unit{kg\,m^2})$ \\
+    $i$ & $m_i\;\;(\unit{g})$ & $d_i\;\;(\unit{cm})$ & $I_i\;\;(10^{-4}\,\unit{kg\,m^2})$ \\
     \hline
-    0 & 473.02 & 9.845 & \\
-    A & 344.07 & 9.045 & \\
-    B & 429.65 & 5.985 & \\
-    C & 473.02 & 5.200 & \\
+    % 0 & 473.02 & 9.845 & \\
+    A & $344.07 \pm 0.01$ & $9.045 \pm 0.005$ & $3.519 \pm 0.004$ \\
+    B & $429.65 \pm 0.01$ & $5.985 \pm 0.005$ & $1.924 \pm 0.003$ \\
+    C & $473.02 \pm 0.01$ & $5.200 \pm 0.005$ & $1.599 \pm 0.003$ \\
     \hline
 \end{tblr}
 \end{center}
+
+Fissiamo un sistema di riferimento inerziale, solidale all'apparato,
+a coordinate cilindriche\footnote{
+    Le coordinate di un punto $P$ in questo sistema di riferimento sono
+    definite come segue: detta $\vec{r}$ la proiezione di $\overrightarrow{OP}$
+    sul piano per $O$ normale a $\hat{z}$,
+    $\theta$ è l'angolo piano orientato fra $\hat{x}$ e $\vec{r}$,
+    $r$ è la norma di $\vec{r}$ e
+    $h$ è la posizione lungo $\hat{z}$ della proiezione di $P$ su
+    $\hat{z}$ stesso.
+} $(\theta, r, h)$, con versore $\hat{z}$ giacente
+lungo l'asse di rotazione del filo (antiparallelo a $\vec{g}$),
+origine $O$ e versore $\hat{x}$ contenuti nel piano sul quale vengono appoggiati
+i cilindri. Sia inoltre $P$ un punto materiale qualunque solidale all'estremità
+superiore del filo (e quindi anche ai cilindretti) che, con il filo a riposo,
+si trovi sul piano $xOz$.
+Allora, \emph{trascurando gli attriti}, il moto di $P$ è caratterizzato da
+(per $\theta_0$ sufficientemente piccolo):
+\[\theta(t) = \theta_0 \sin(\omega t)\]
+La pulsazione $\omega$ di questo moto armonico dipende dal momento d'inerzia
+complessivo $I_\text{tot}$ dei corpi solidali all'estremità mobile del filo,
+nonché dalle caratteristiche del filo stesso. Queste ultime vengono riassunte
+nella \emph{costante torsionale} $C$. In particolare:
+\[ C = I_\text{tot} \omega^2 \]
+Per stimare la costante torsionale di ogni filo
 
 \begin{center}
 \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
