@@ -147,8 +147,18 @@ La pulsazione $\omega$ di questo moto armonico dipende dal momento d'inerzia
 complessivo $I_\text{tot}$ dei corpi solidali all'estremità mobile del filo,
 nonché dalle caratteristiche del filo stesso. Queste ultime vengono riassunte
 nella \emph{costante torsionale} $C$. In particolare:
-\[ C = I_\text{tot} \omega^2 \]
-Per stimare la costante torsionale di ogni filo
+\[ C = I_\text{tot}\,\omega^2 \]
+Detto $T = 2\pi / \omega$ il periodo del moto armonico, si ottiene:
+\[ I_\text{tot} = \frac{C}{4\pi^2}\,T^2 \]
+Detto $I_0$ il momento d'inerzia che rimane costante\footnote{
+    $I_0$ include, ad esempio, il momento d'inerzia del disco su cui
+    era possibile appoggiare i cilindretti, nonché quello della parte mobile
+    del sensore di rotazione.
+},
+al variare dei cilindretti posizionati sopra al filo, si ha:
+\[ I_\text{cilindretti} = \frac{C}{4\pi^2}\,T^2 - I_0 \]
+Da questa dipendenza lineare, tramite una regressione lineare pesata, è possibile
+ottenere una stima piuttosto accurata del valore di $C$.
 
 \begin{center}
 \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
