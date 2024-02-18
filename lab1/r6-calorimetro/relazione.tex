@@ -31,13 +31,14 @@
     per risalirne alla natura; inoltre ha determinato l'adiabaticità del calorimetro.    %TODO: va bene adiabaticità?
 \end{abstract}
 
+\setcounter{section}{-1}
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
     \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
         \hline
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        Termometro digitale & $\qty{0.1}{\degree C}?$ & N./A. & $\qty{0.1}{\degree C}$ \\
+        Termometro digitale & $\qty{0.2}{\degree C}$ & N./A. & $\qty{0.2}{\degree C}$ \\
         % \hline[dashed]
         % Termometro a mercurio & $\qty{0.1}{\degree C}?$ & $\qty{100}{\degree C}?$ & $\qty{0.1}{\degree C}?$ \\
         \hline[dashed]
@@ -60,9 +61,9 @@
 \end{center}
 
 \section{Misurazione della massa equivalente}
-    
+
 \subsection{Esperienza e procedimento di misura}
-    
+
 \begin{enumerate}
     \item
         Versiamo in un cilindro graduato $\qty{100}{mL}$ di acqua distillata
@@ -71,21 +72,21 @@
     \item
         Ripetiamo il passaggio precedente, ma, invece di scaldarla, questa volta
         versiamo l'acqua a temperatura ambiente nel calorimetro.
-        
+
     \emph{
-        \textbf{Osservazione.} È meglio che le masse d'acqua si equivalgano, e che 
+        \textbf{Osservazione.} È meglio che le masse d'acqua si equivalgano, e che
         la loro somma sia uguale a quella che utilizzeremo nella seconda parte
         dell'esperimento, in modo che il calorimetro si bagni allo stesso modo.
         }
-        
+
     \item
-        Quando l'acqua raggiunge lo stato di ebollizione, che corrisponde a 
+        Quando l'acqua raggiunge lo stato di ebollizione, che corrisponde a
         $\qty{100}{\degree C}$, salvo correzioni dovute alla pressione diversa da
         $\qty{1}{atm}$, la versiamo nel calorimetro e mescoliamo lentamente
         per evitare che l'acqua calda resti in alto. Il termometro digitale ci
         darà il valore della temperatura in funzione del tempo.
 \end{enumerate}
-        
+
 \subsection{Analisi dei dati raccolti e conclusioni}
 Per le leggi della termodinamica noi sappiamo che:
     \[
@@ -101,25 +102,23 @@ acqua che assorbirebbe lo stesso calore del calorimetro. Quindi:
         (m_\text{fredda} + m_\text{equiv})(T_\text{eq}-T_\text{fredda})
     \]
 
-    \emph{
-        \textbf{Osservazione.} La massa equivalente ($m_\text{equiv}$) ci dà anche un idea di
-        quanto il calorimetro disturbi la misura.
-        }
-
-%QUA SERVIREBBE UN "A CAPO", CHE NON SO INSERIRE
+\emph{
+\textbf{Osservazione.} La massa equivalente ($m_\text{equiv}$) ci dà anche un idea di
+quanto il calorimetro disturbi la misura.
+}
 
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
 seguente grafico, abbiamo trovato che $T_\text{eq} = \qty{55.0}{\degree C}$. Dunque:    %TODO: mettiamo il grafico?
     \[
         m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
     \]
-ovvero $m_\text{equiv} = \qty{24.61116505 ± 0.003}{g}$. Ora che abbiamo ottenuto questo valore, possiamo calcolare
+ovvero $m_\text{equiv} = (24.61116505 \pm 3)\,\unit{g}?$. Ora che abbiamo ottenuto questo valore, possiamo calcolare
 i calori specifici dei metalli di cui sono composti i campioni.
 
 
 
 \section{Misurazione del calore specifico dei materiali ignoti}
-    
+
 \subsection{Esperienza e procedimento di misura}
 
 \begin{enumerate}
@@ -154,7 +153,7 @@ Grazie alle leggi della termodinamica sappiamo che:
     \[
         m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
         (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{acqua})
-    \]   
+    \]
 Conoscendo il valore di $m_\text{equiv}$, possiamo scrivere:
     \[
         m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
@@ -172,27 +171,27 @@ Nella seguente tabella riportiamo i valori ottenuti per ogni solido con le relat
 propagazione standard degli errori in quanto piccole, sistematiche e indipendenti.
 
 \begin{center}
-    \begin{tabular}{ |c|c|c| }
+    \begin{tabular}{ |c|c|c|c| }
         \hline
-        \emph{Campione} & $m$ ($\unit{g}$) & & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$) \\
+        \emph{Campione} & $m$ ($\unit{g}$) & $T_\text{eq}$ ($\unit{\degree C}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$) \\
         \hline
-        $A$ & 12.43 ± 0.01 & 500.9617709 ± 0 \\
-        $B$ & 28.73 ± 0.01 & 345.7664279 ± 0 \\    %TODO: calcolare i valori
-        $C$ & 44.86 ± 0.01 & 110.4618573 ± 0 \\
+        $A$ & $12.43 \pm 0.01$ & $25.2 \pm 0.2$ & $500.9617709 \pm 0$ \\
+        $B$ & $28.73 \pm 0.01$ & $25.9 \pm 0.2$ & $345.7664279 \pm 0$ \\    %TODO: calcolare i valori
+        $C$ & $44.86 \pm 0.01$ & $26.0 \pm 0.2$ & $110.4618573 \pm 0$ \\
         \hline
     \end{tabular}
 \end{center}
 
 
 \section{Misurazione del tempo caratteristico (del calorimetro?)}
-    
+
 \subsection{Esperienza e procedimento di misura}
 
 \begin{enumerate}
     \item
         Misuriamo $\qty{200}{mL}$ di acqua distillata e la scaldiamo con nel
         pentolino.    %TODO: per quanto? o fino a che temperatura?
-    \item 
+    \item
         Nel calorimetro, in partenza vuoto, versiamo l'acqua e la lasciamo
         raffreddare per circa un'ora registrandone la temperatura.
 \end{enumerate}
@@ -200,27 +199,27 @@ propagazione standard degli errori in quanto piccole, sistematiche e indipendent
 \subsection{Analisi dei dati raccolti e conclusioni}
 L'ultima cosa che analizzeremo è la discesa esponenziale della temperatura    %TODO: cambiare la parola "cosa"
 dell'acqua dentro al calorimetro. La legge che segue questa discesa è:
-    \[    
-        (T-T_\text{amb.})=(T_0-T_\text{amb.}) e^{-t/\tau}
-    \]
+\[
+    (T-T_\text{amb.})=(T_0-T_\text{amb.}) e^{-t/\tau}
+\]
 
 Ne calcoleremo, in particolare, il tempo caratteristico, ovvero la quantità
 di tempo $\tau$ che impiega l'acqua all'interno del calorimetro ad abbassare
-la sua temperatura di $(T_0 - T_\text{amb})e$ volte. 
+la sua temperatura di $(T_0 - T_\text{amb})e$ volte.
 
 \emph{
-        \textbf{Notazione.} Indicheremo con $T_0$ la temperatura
-        dell'acqua scaldata.
-        }
-        %QUA SERVIREBBE UN "A CAPO", CHE NON SO INSERIRE
+    \textbf{Notazione.} Indicheremo con $T_0$ la temperatura
+    dell'acqua scaldata.
+}
+
 \emph{
-        \textbf{Osservazione.} Il parametro $\tau$ descrive quanto bene il
-        calorimetro trattenga il calore (quindi sia adiabatico). 
-        }
+    \textbf{Osservazione.} Il parametro $\tau$ descrive quanto bene il
+    calorimetro trattenga il calore (quindi sia adiabatico).
+}
 
 L'equazione della regressione lineare che abbiamo utilizzato è:
-    \[
-        \ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t
-    \]
+\[
+    \ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t
+\]
 
 \end{document}
