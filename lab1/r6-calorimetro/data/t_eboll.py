@@ -1,5 +1,7 @@
 import math
-def ln(d):
+from rberga06.phylab import Datum, Measure
+
+def ln(d: Measure[float]):
   return Datum(math.log(d.best), d.delta_rel)
 
 a = Datum(-71.785524864, 4.2047211397)
