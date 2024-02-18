@@ -2,7 +2,7 @@ from rberga06.phylab import Datum
 from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).parent))
-from t_eboll import Teb
+from Teb import Teb
 
 q1 = Datum(55.1660457307, 0.004603675)
 xi1 = Datum(-0.0027120068, 1.6298245602E-5)
