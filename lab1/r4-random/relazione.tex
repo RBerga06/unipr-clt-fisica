@@ -233,7 +233,7 @@ Di seguito riportiamo una tabella con i dati utilizzati per la regressione linea
     \begin{figure}[H]
         % trim={< v > ^}
         \includegraphics[trim={2cm .5cm 2cm 2.1cm},clip,width=\textwidth]{img/Regressione.png}
-        \caption*{Regressione lineare. In rosa la regione di incercezza.}
+        \caption*{Regressione lineare. In rosa la regione di incertezza.}
     \end{figure}
 \end{center}
 
@@ -448,19 +448,53 @@ Infine, diremo che “$D$ è truccato” se e solo se almeno una faccia è trucc
 
 \emph{\textbf{Osservazione.} Le variabili aleatorie $p_1,\dots,p_N$ non sono fra loro indipendenti:
 infatti, per ovvi motivi, deve valere $p_1+\dots+p_N = 1$. Pertanto, in generale:}
-\[p(D\text{ onesto})=p\left(\bigcap_{i=1}^N D_i\text{ onesto}\right)
+\[p(D\text{ onesto})=p\left(\bigcap_{i=1}^N D_i\text{ onesta}\right)
 \ne\prod_{i=1}^{N}p(D_i\text{ onesta})\]
 \emph{Si potrebbe definire una funzione a $N$ variabili
-$F:\left[0,1\right]^N\longmapsto\left[0,1\right]$, ad esempio:}
+$F:\left[0,1\right]^N\longrightarrow\left[0,1\right]$, ad esempio:}
 \[F(x_1,\dots,x_n) = \sqrt{N}\left\lVert
 \begin{bmatrix}x_1\\\vdots\\x_N\end{bmatrix} - \frac{1}{N}\begin{bmatrix}1\\\vdots\\1\end{bmatrix}
 \right\rVert = \sqrt{N\sum_{i=1}^{N}\left(x_i-\frac{1}{N}\right)^2}\]
 \emph{per poi determinare i valori che $p_1,\dots,p_n$ devono assumere affinché, ad esempio,
 $F(p_1,\dots,p_n)\le95\%$. Il problema, allora, sarebbe calcolare le probabilità che
-$p_1,\dots,p_n$ assumano tali valori, in quanto, come detto,
-}
+$p_1,\dots,p_n$ assumano tali valori, in quanto, come detto, non sono fra loro indipendenti.}
+
+\emph{Alla luce di queste osservazioni, il gruppo di lavoro ha ritenuto pertanto
+opportuno valutare l'onestà del dado considerando le singole facce separatamente.
+Si tratta, in un certo senso, di una sovrastima: se almeno una faccia è “truccata”
+(indipendentemente dalle altre), anche tutto il dado è “truccato”; se il dado è
+“truccato”, non è detto che la nostra stima lo valuti come tale, perché ogni faccia
+potrebbe comunque risultare “onesta”, quando considerata indipendentemente dalle
+altre.}
+
+\emph{Bisogna infine osservare che la definizione di “onestà” è piuttosto
+arbitraria, o, comunque, non univoca: questo giustifica ulteriormente la
+nostra conduzione dell'analisi dell'“onestà” dei dadi.}
 
 \subsection{I nostri dadi sono truccati?}
+Riportiamo finalmente i parametri della nostra analisi valutati sui dati raccolti
+($N = 400$).
+Gli integrali sono stati valutati con metodi numerici, in particolare mediante
+somme di Riemann su intervalli sufficientemente piccoli.
+
+\begin{center}
+    \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+        \hline
+        $i$ & $m$ & $\omega_{D_i|n_i=m-1}$ & $\omega_{D_i|n_i=m}$ & $\omega_{D_i|n_i=m+1}$ & Conclusione \\
+        \hline
+        \hline
+        \SetCell[c=5]{c} { Dado rosso } & {Truccato} \\
+        \hline
+        1 &  & 1.044\% & 1.644\% & 2.535\% & Truccata \\
+        2 &  & 8.077\% & 6.252\% & 4.795\% & N./A. \\
+        3 &  & 89.429\% & 79.157\% & 69.339\% & Onesta \\
+        4 &  & 3.817\% & 5.602\% & 8.006\% & N./A. \\
+        5 &  & 2.053\% & 1.522\% & 1.120\% & Truccata \\
+        6 &  & 48.983\% & 58.329\% & 68.280\% & Onesta \\
+        \hline
+        \hline
+    \end{tblr}
+\end{center}
 
 \pagebreak
 \section{Codice Rust per $10^{12}$ lanci di sei dadi}
