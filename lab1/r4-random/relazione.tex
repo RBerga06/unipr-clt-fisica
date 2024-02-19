@@ -212,7 +212,11 @@ alle distribuzioni di Poisson.
 In particolare, $\overline{x_0} = \left(194\pm7\right)\cdot10^{-3}\,\unit{s^{-1}}$.
 
 Per valutare l'accuratezza della nostra stima di $\overline{x_0}$, possiamo effettuare
-una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di
+una regressione lineare (pesata\footnote{
+    Abbiamo scelto il metodo pesato poiché gli errori assoluti,
+    come è anche possibile notare dalle barre di errore nel grafico,
+    variano notevolmente fra i quattro punti.
+}) utilizzando l'equazione di $x_i$ in funzione di
 $d_i^{-2}$: \[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
 Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare\footnote{
     Tutti gli errori, qui e successivamente, sono stati calcolati secondo la tradizionale
