@@ -305,7 +305,8 @@ dice = dice0 + dice1
 # for die in dice:
 #     print(die.color, *die.counts(), sep="\t")
 for die in dice0:
-    die.analysis(log=True, log_alt=True)  # , plots=True)
+    print(*die.counts(), sep="\t")
+    # die.analysis(log=True, log_alt=True)  # , plots=True)
 # print("—" * 95)
 # for die in dice1:
 #     die.analysis(log=True)  # , plots=die.color == "👾 3")
