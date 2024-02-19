@@ -477,10 +477,14 @@ Riportiamo finalmente i parametri della nostra analisi valutati sui dati raccolt
 Gli integrali sono stati valutati con metodi numerici, in particolare mediante
 somme di Riemann su intervalli sufficientemente piccoli.
 
-\DefTblrTemplate{contfoot-text}{normal}{Continua nella pagina successiva}
+\DefTblrTemplate{contfoot-text}{normal}{(Continua nella pagina successiva)}
 \SetTblrTemplate{contfoot-text}{normal}
-\DefTblrTemplate{conthead-text}{normal}{(Continua)}
+\DefTblrTemplate{conthead-text}{normal}{(Continua dalla pagina precedente)}
 \SetTblrTemplate{conthead-text}{normal}
+\DefTblrTemplate{caption-tag}{normal}{}
+\SetTblrTemplate{caption-tag}{normal}
+\DefTblrTemplate{caption-sep}{default}{}
+\DefTblrTemplate{caption-sep}{normal}{}
 
 \begin{longtblr}{
     colspec={ |c|cccc|c| },
@@ -541,6 +545,11 @@ somme di Riemann su intervalli sufficientemente piccoli.
     5 & 76 & 25.086\% & 20.409\% & 16.433\% & Onesta \\*
     6 & 70 & 69.339\% & 60.103\% & 51.549\% & Onesta \\
 \end{longtblr}
+
+In conclusione, secondo le definizioni sopra enunciate,
+l'analisi del gruppo di lavoro ha individuato tre dadi
+onesti (giallo, blu, bianco), due dadi truccati (rosso, viola)
+e uno indecidibile (nero).
 
 \pagebreak
 \section{Codice Rust per $10^{12}$ lanci di sei dadi}
