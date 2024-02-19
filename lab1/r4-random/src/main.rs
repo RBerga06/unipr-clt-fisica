@@ -1,9 +1,18 @@
 /**** Architettura del programma ****
  * Il lavoro viene eseguito in parallelo da 20 thread.
- * Ogni volta che un thread completa una milestone,
- *   invia i risultati attuali al `main()`.
- * Quando il programma principale
-*/
+ * Ogni volta che un thread completa una `milestone`,
+ *   invia i risultati attuali al `main()`:
+ *   questi vengono sommati ai risultati parziali
+ *   trovati fino a quel momento e stampati a schermo.
+ * La caratteristica fondamentale che rende
+ *   questo programma particolarmente efficiente è
+ *   la seguente: il programma non salva in memoria
+ *   i risultati di ogni lancio, ma conta immediatamente
+ *   il numero di risultati `1` usciti e incrementa il
+ *   contatore della classe (`bin`) corrispondente.
+ * Questo riduce notevolmente l'utilizzo di memoria
+ *   e semplifica l'esecuzione in parallelo.
+ */
 
 /*** Costanti per la compilazione ***/
 // Parametri della simulazione
