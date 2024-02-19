@@ -418,16 +418,13 @@ $\omega_{D_i|n_i=m-1}$ e $\omega_{D_i|n_i=m+1}$; allora:
     \item Se tutte e tre le probabilità sono $<5\%$, diremo che
           “\emph{è abbastanza probabile che $D_i$ sia truccata}”.
     \item Se tutte e tre le probabilità sono $\ge5\%$, diremo che
-          “\emph{non è abbastanza probabile che $D_i$ sia truccata}”.
+          “\emph{è sufficientemente improbabile che $D_i$ sia truccata}”.
     \item Altrimenti, diremo che
           “\emph{$D_i$ potrebbe essere truccata, ma $n$ lanci sono troppo pochi per poterlo
           affermare ragionevolmente}”.
 \end{itemize}
 Questa interpretazione di $\omega_{D_i|n_i=m}$, $\omega_{D_i|n_i=m-1}$ e $\omega_{D_i|n_i=m+1}$
-è giustificata dalle seguenti proposizioni (dimostrabili):
-\[\omega_{D_i|n_i=m-1}\le\omega_{D_i|n_i=m}\le\omega_{D_i|n_i=m+1}\]
-\[\vee\]
-\[\omega_{D_i|n_i=m-1}\ge\omega_{D_i|n_i=m}\ge\omega_{D_i|n_i=m+1}\]
+è giustificata dalla seguente proposizione (dimostrabile):
 
 \[
     \lim_{n\rightarrow+\infty}\omega_{D_i|n_i=m-1} =
@@ -435,12 +432,14 @@ Questa interpretazione di $\omega_{D_i|n_i=m}$, $\omega_{D_i|n_i=m-1}$ e $\omega
     \lim_{n\rightarrow+\infty}\omega_{D_i|n_i=m+1}
 \]
 
+\subsubsection{Il dado $D$ è onesto?}
+
 Infine, diremo che “$D$ è truccato” se e solo se almeno una faccia è truccata. Più formalmente:
 \begin{itemize}
     \item Se $\exists D_i$ tale che è abbastanza probabile che $D_i$ sia truccata,
           diremo che “\emph{è abbastanza probabile che $D$ sia truccato}”.
-    \item Se $\forall D_i$ non è abbastanza probabile che $D_i$ sia truccata,
-          diremo che “\emph{non è abbastanza probabile che $D$ sia truccato}”.
+    \item Se $\forall D_i$ è sufficientemente improbabile che $D_i$ sia truccata,
+          diremo che “\emph{è sufficientemente improbabile che $D$ sia truccato}”.
     \item Altrimenti, diremo che
           “\emph{$D$ potrebbe essere truccato, ma $n$ lanci sono troppo pochi per poterlo
           affermare ragionevolmente}”.
@@ -473,9 +472,19 @@ nostra conduzione dell'analisi dell'“onestà” dei dadi.}
 
 \subsection{I nostri dadi sono truccati?}
 Riportiamo finalmente i parametri della nostra analisi valutati sui dati raccolti
-($N = 400$).
+($n = 400$).
 Gli integrali sono stati valutati con metodi numerici, in particolare mediante
 somme di Riemann su intervalli sufficientemente piccoli.
+
+\emph{\textbf{Nota.}
+    Nell'ultima colonna della tabella, per ragioni di spazio,
+    scriveremo
+    “truccato/a” se è abbastanza probabile che
+    il dado/la faccia in questione sia truccato/a,
+    “onesto/a” se è sufficientemente improbabile
+    che il dado/la faccia sia truccato/a,
+    “indecidibile” altrimenti.
+}
 
 \DefTblrTemplate{contfoot-text}{normal}{(Continua nella pagina successiva)}
 \SetTblrTemplate{contfoot-text}{normal}
