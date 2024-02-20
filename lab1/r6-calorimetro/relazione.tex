@@ -217,31 +217,39 @@ In tutti i casi, $T_\text{eq}$ è stata calcolata secondo quanto descritto al
 paragrafo 1.2.
 
 \begin{center}
-    \begin{tabular}{ |c|c|c|c|c|c| }
-        \hline
-        $i$ & $m_\acqua$ ($\unit{g}$) & $m_i$ ($\unit{g}$) & $T_\text{amb}$ ($\unit{\degree C}$) & $T_\text{eq}$ ($\unit{\degree C}$) & $c_i$ ($\unit{J\,{kg}^{-1}{K}^{-1}}$) \\
-        \hline
-        $A$&$197.54\pm0.02$&$12.43\pm0.01$&$24.7\pm0.1$&$25.2\pm0.1$ & $500\pm200$ \\
-        $B$&$194.81\pm0.02$&$28.73\pm0.01$&$25.1\pm0.1$&$25.9\pm0.1$ & $350\pm100$ \\
-        $C$&$194.00\pm0.02$&$44.86\pm0.01$&$25.6\pm0.1$&$26.0\pm0.1$ & $110\pm60$ \\
-        \hline
-    \end{tabular}
+\begin{tabular}{ |c|c|c|c|c|c| }
+    \hline
+    $i$ & $m_\acqua$ ($\unit{g}$) & $m_i$ ($\unit{g}$) & $T_\text{amb}$ ($\unit{\degree C}$) & $T_\text{eq}$ ($\unit{\degree C}$) & $c_i$ ($\unit{J\,{kg}^{-1}{K}^{-1}}$) \\
+    \hline
+    $A$&$197.54\pm0.02$&$12.43\pm0.01$&$24.7\pm0.1$&$25.2\pm0.1$ & $500\pm200$ \\
+    $B$&$194.81\pm0.02$&$28.73\pm0.01$&$25.1\pm0.1$&$25.9\pm0.1$ & $350\pm100$ \\
+    $C$&$194.00\pm0.02$&$44.86\pm0.01$&$25.6\pm0.1$&$26.0\pm0.1$ & $110\pm60$ \\
+    \hline
+\end{tabular}
 \end{center}
 
+Per capire di che materiale siano composti i campioni abbiamo confrontato i valori
+di $c_i$ calcolati con le misure indicate in letteratura ($c_\text{met}$).
+
+Per valutare numericamente la consistenza dei risultati ottenuti con i valori attesi,
+abbiamo calcolato, per ogni combinazione campione-materiale, il seguente valore (numero puro):
+\[\varepsilon = \frac{c_i - c_\text{met}}{\delta c_i + \delta c_\text{met}}\]
+Allora $c_i$ è consistente con $c_\text{met}$ se e solo se $\left|\varepsilon\right|\le 1$.
+
 \begin{center}
-    \begin{tblr}{ |c|c|c|c|c| }
-        \hline
-        $i$ & $c_i$ ($\unit{J\,kg^{-1}K^{-1}}$) & Metallo $m$ & $c_m$ ($\unit{J\,kg^{-1}K^{-1}}$) & $\varepsilon$ \\
-        \hline
-        $A$ & $500\pm200$ & Acciaio inox & $502 \pm 1$ & $+0.018$ \\
-        \hline[dashed]
-            &             & Ottone  & $377 \pm 1$ & $+0.124$ \\
-        $B$ & $350\pm100$ & Rame    & $385 \pm 1$ & $-0.359$ \\
-            &             & Zinco   & $388 \pm 1$ & $-0.389$ \\
-        \hline[dashed]
-        $C$ & $110\pm60$  & Piombo  & $130 \pm 1$ & $-0.305$ \\
-        \hline
-    \end{tblr}
+\begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    $i$ & $c_i$ ($\unit{J\,kg^{-1}K^{-1}}$) & Metallo $m$ & $c_m$ ($\unit{J\,kg^{-1}K^{-1}}$) & $\varepsilon$ \\
+    \hline
+    $A$ & $500\pm200$ & Acciaio inox & $502 \pm 1$ & $+0.018$ \\
+    \hline[dashed]
+        &             & Ottone  & $377 \pm 1$ & $+0.124$ \\
+    $B$ & $350\pm100$ & Rame    & $385 \pm 1$ & $-0.359$ \\
+        &             & Zinco   & $388 \pm 1$ & $-0.389$ \\
+    \hline[dashed]
+    $C$ & $110\pm60$  & Piombo  & $130 \pm 1$ & $-0.305$ \\
+    \hline
+\end{tblr}
 \end{center}
 
 
