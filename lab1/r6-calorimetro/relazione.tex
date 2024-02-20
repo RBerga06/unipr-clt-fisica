@@ -32,7 +32,7 @@
     Il gruppo di lavoro ha misurato il calore specifico di tre solidi distinti
     per risalirne alla natura; a questo fine, è stato necessario determinare
     le caratteristiche termiche del calorimetro
-    (capacità termica e conducibilità).
+    (capacità termica, tempo caratteristico e conducibilità).
 \end{abstract}
 
 \setcounter{section}{-1}
@@ -84,6 +84,13 @@ quanto il calorimetro disturbi le misure.
 
 \subsection{Esperienza e procedimento di misura}
 
+\emph{
+\textbf{Nota.} La temperatura di ebollizione ($T_\text{db}$) dell'acqua distillata
+dipende dalla pressione atmosferica. Per questo motivo, abbiamo misurato la pressione
+atmosferica, ottenendo un valore di $\left(992\pm1\right)\unit{hPa}$, al quale, secondo la
+letteratura, corrisponde un punto di ebollizione dell'acqua di $\left(99.4\pm0.1\right)\unit{\degree C}$.
+}
+
 \begin{enumerate}
     \item
         Misuriamo, mediante la bilancia di precisione, la massa del
@@ -99,7 +106,7 @@ quanto il calorimetro disturbi le misure.
         $m_\text{fredda} = \left(99.35\pm0.02\right) \unit{g}$
     \item
         Scaldiamo nel pentolino altri $\qty{100}{mL}$, circa, di acqua distillata,
-        fino al punto di ebollizione $T_\text{eb}$.
+        fino al punto di ebollizione.
     \item
         Inserito nel calorimetro il termometro digitale, avviamo l'acquisizione dati
         (a intervalli di $\qty{0.5}{s}$).
@@ -260,43 +267,76 @@ Allora $c_i$ è consistente con $c_\text{met}$ se e solo se $\left|\varepsilon\r
     a causa della sua colorazione.
 }
 
-\section{Misurazione di tempo caratteristico e conducibilità termica del calorimetro}
+\section{Misurazione del tempo caratteristico del calorimetro}
 
 \subsection{Esperienza e procedimento di misura}
 
 \begin{enumerate}
     \item
-        Misuriamo $\qty{200}{mL}$ di acqua distillata e la scaldiamo con nel
-        pentolino.    %TODO: per quanto? o fino a che temperatura?
+        Scaldiamo, nel pentolino, circa $\qty{200}{mL}$ di acqua distillata
+        fino al punto di ebollizione.
     \item
-        Nel calorimetro, in partenza vuoto, versiamo l'acqua e la lasciamo
-        raffreddare per circa un'ora registrandone la temperatura.
+        Inseriamo il termometro nel calorimetro, vuoto e asciutto, e avviamo
+        l'acquisizione dati.
+    \item
+        Aperto il calorimetro, vi versaimo l'acqua, per poi richiuderlo velocemente.
+        Acquisiamo dati per un tempo complessivo di $\qty{2845}{s}$, ovvero
+        $\qty{47}{min}\qty{25}{s}$.
+    \item
+        Al termine dell'acquisizione, prima di riaprire il calorimetro, estraiamo
+        il termometro e misuriamo nuovamente la massa complessiva, sempre per
+        determinare la quantità d'acqua calda inizialmente introdotta.
 \end{enumerate}
 
 \subsection{Analisi dei dati raccolti e conclusioni}
-L'ultima cosa che analizzeremo è la discesa esponenziale della temperatura    %TODO: cambiare la parola "cosa"
-dell'acqua dentro al calorimetro. La legge che segue questa discesa è:
+Su larga scala, l'andamento della temperatura all'interno del calorimetro
+in funzione del tempo è esponenziale. In particolare, $T(t)$ segue questa
+legge:
 \[
-    (T-T_\text{amb.})=(T_0-T_\text{amb.}) e^{-t/\tau}
+    T(t) = (T_0 - T_\text{amb}) e^{-t/\tau} + T_\text{amb}
 \]
+dove $\tau$ è il cosiddetto “tempo caratteristico”, un parametro legato
+alla conducibilità termica: vale infatti
+\[\kappa = \frac{C_\text{cal}}{\tau} = \frac{c_\acqua m_\text{eq}}{\tau}\].
 
-Ne calcoleremo, in particolare, il tempo caratteristico, ovvero la quantità
-di tempo $\tau$ che impiega l'acqua all'interno del calorimetro ad abbassare
-la sua temperatura di $(T_0 - T_\text{amb})e$ volte.
-
-\emph{
-    \textbf{Notazione.} Indicheremo con $T_0$ la temperatura
-    dell'acqua scaldata.
-}
-
-\emph{
-    \textbf{Osservazione.} Il parametro $\tau$ descrive quanto bene il
-    calorimetro trattenga il calore (quindi sia adiabatico).
-}
-
-L'equazione della regressione lineare che abbiamo utilizzato è:
+Riarrangiando l'equazione precedente, si ottiene\footnote{
+    A patto, ovviamente, che $T(t) > 0 \forall t$.
+    Nel caso dei nostri dati, cio è vero in particolare
+    a partire dal momento in cui $T(t)$ assume l'andamento
+    esponenziale.
+}:
 \[
-    \ln(T-T_\text{amb.})=\ln(T_0-T_\text{amb.})-\frac{1}{\tau}t
+    \ln(T(t) - T_\text{amb}) = -1/\tau t + \ln(T_0 - T_\text{amb})
 \]
+È pertanto possibile determinare $\tau$ mediante una regressione lineare (pesata\footnote{
+    A causa della trasformazione applicata ai dati ($T \longmapsto \ln(T - T_\text{amb})$),
+    gli errori assoluti su $\ln(T(t) - T_\text{amb})$ variano notevolmente. Per leggibilità,
+    \emph{non} abbiamo riportato le barre di errore nei grafici; tuttavia, abbiamo
+    considerato le incertezze in ogni calcolo, utilizzando, ove necessario, la propagazione
+    degli errori, come sottolineato alla nota 2.
+}):
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/LogLinFit.jpg}
+        \caption{\emph{I dati che abbiamo utilizzato per la regressione lineare.
+        In blu, la retta di regressione sull'intervallo di dati indicato in nero.
+        }}
+    \end{figure}
+\end{center}
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/ExpFit.jpg}
+        \caption[]{\emph{I dati raccolti col termometro.
+        In blu, la curva esponenziale così ottenuta.
+        In verde, la temperatura ambiente.
+        }}
+    \end{figure}
+\end{center}
+
+Dalla regressione lineare emerge che $\tau = \left(11.510\pm0.014\right)\unit{ks} = \qty{191}{min}\qty{50}{s}\pm\qty{14}{s}$.
+Pertanto $\kappa = \left(9.3\pm1.1\right)\unit{W\,K^{-1}}$.
 
 \end{document}
