@@ -9,6 +9,7 @@
 \usepackage{float}
 \usepackage{minted}
 \usepackage[page]{appendix}
+\usepackage{mathtools}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -28,7 +29,9 @@
 
 \begin{abstract}
     Il gruppo di lavoro ha misurato il calore specifico di tre solidi distinti
-    per risalirne alla natura; inoltre ha determinato l'adiabaticità del calorimetro.    %TODO: va bene adiabaticità?
+    per risalirne alla natura; a questo fine, è stato necessario determinare
+    le caratteristiche termiche del calorimetro
+    (capacità termica e conducibilità).
 \end{abstract}
 
 \setcounter{section}{-1}
@@ -38,7 +41,9 @@
         \hline
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        Termometro digitale & $\qty{0.2}{\degree C}$ & N./A. & $\qty{0.2}{\degree C}$ \\
+        Termometro digitale & $\qty{0.1}{\degree C}$ & N./A. & $\qty{0.1}{\degree C}$ \\
+        \hline[dashed]
+        Cronometro & $\qty{0.5}{s}$ & N./A. & $\qty{0.5}{s}$ \\
         % \hline[dashed]
         % Termometro a mercurio & $\qty{0.1}{\degree C}?$ & $\qty{100}{\degree C}?$ & $\qty{0.1}{\degree C}?$ \\
         \hline[dashed]
@@ -46,12 +51,12 @@
         \hline[dashed]
         Cilindro graduato & $\qty{1}{mL}$ & $\qty{100}{mL}$ & $\qty{1}{mL}$ \\
         \hline[dashed]
-        Bilancia di precisione & $\qty{0.50}{g}$ & $\qty{4100.00}{g}$ & $\qty{0.01}{g}$ \\
+        Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{4100.00}{g}$ & $\qty{0.01}{g}$ \\
         \hline
         \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
-        Calorimetro & \SetCell[c=3]{l} {Isolato termicamente, quasi adiabatico.} \\
+        Calorimetro & \SetCell[c=3]{l} {Quasi adiabatico.} \\
         \hline[dashed]
         {Fornelletto e pentolino} & \SetCell[c=3]{l} {Per scaldare acqua e campioni.} \\
         \hline[dashed]
@@ -62,56 +67,80 @@
 
 \section{Misurazione della massa equivalente}
 
+Il calorimetro, per quanto isolante termicamente, comunque non è completamente
+adiabatico. Pertanto, prima di procedere con la misura indiretta dei calori
+specifici dei campioni di materiale ignoto, è necessario ottenere una stima
+della capacità termica del calorimetro $C_\text{cal}$.
+
+Per semplificare i calcoli, abbiamo definito “massa (d'acqua) equivalente
+(in senso termico) al calorimetro” come la quantità:
+\[m_\text{eq} \coloneqq \frac{C_\text{cal}}{c_{\text{H}_2\text{O}}}\]
+
+\emph{
+\textbf{Osservazione.} La massa equivalente ci dà anche un'idea di
+quanto il calorimetro disturbi le misure.
+}
+
 \subsection{Esperienza e procedimento di misura}
 
 \begin{enumerate}
     \item
-        Versiamo in un cilindro graduato $\qty{100}{mL}$ di acqua distillata
-        ($c=\qty{4186}{J \per kg\,K}$) e, dopo averne misurato la massa con
-        la bilancia di precisione, la scaldiamo in un pentolino.
+        Misuriamo, mediante la bilancia di precisione, la massa del
+        calorimetro vuoto (coperchio compreso):
+        $m_\text{cal} = \left(781.91\pm0.01\right) \unit{g}$
     \item
-        Ripetiamo il passaggio precedente, ma, invece di scaldarla, questa volta
-        versiamo l'acqua a temperatura ambiente nel calorimetro.
-
-    \emph{
-        \textbf{Osservazione.} È meglio che le masse d'acqua si equivalgano, e che
-        la loro somma sia uguale a quella che utilizzeremo nella seconda parte
-        dell'esperimento, in modo che il calorimetro si bagni allo stesso modo.
-        }
-
+        Versiamo, aiutandoci col cilindro graduato, circa $\qty{100}{mL}$
+        di acqua distillata ($c_{\text{H}_2\text{O}}=\qty{4186}{J\,kg^{-1}K^{-1}}$)
+        a temperatura ambiente $T_\text{amb}$ nel calorimetro.
+        Per avere una stima più accurata di questa quantità di acqua,
+        misuriamo la massa complessiva del calorimetro dopo questa operazione.
+        In questo modo, otteniamo indirettamente la massa d'acqua “fredda”:
+        $m_\text{fredda} = \left(99.35\pm0.02\right) \unit{g}$
     \item
-        Quando l'acqua raggiunge lo stato di ebollizione, che corrisponde a
-        $\qty{100}{\degree C}$, salvo correzioni dovute alla pressione diversa da
-        $\qty{1}{atm}$, la versiamo nel calorimetro e mescoliamo lentamente
-        per evitare che l'acqua calda resti in alto. Il termometro digitale ci
-        darà il valore della temperatura in funzione del tempo.
+        Scaldiamo nel pentolino altri $\qty{100}{mL}$, circa, di acqua distillata,
+        fino al punto di ebollizione $T_\text{eb}$.
+    \item
+        Inserito nel calorimetro il termometro digitale, avviamo l'acquisizione dati
+        (a intervalli di $\qty{0.5}{s}$).
+        Riapriamo poi il calorimetro e vi versiamo all'interno,
+        velocemente, l'acqua calda. Infine, richiudiamo il coperchio.
+    \item
+        Dopo una decina di minuti, interrompiamo l'acquisizione, estraiamo il
+        termometro e misuriamo nuovamente la massa del sistema.
+        In questo modo, per differenza, otteniamo la massa dell'acqua calda che
+        avevamo versato nel calorimetro\footnote{
+        Si noti che questa massa è minore di quella che avevamo versato
+        nel pentolino, poiché una parte dell'acqua è evaporata. Misurare la massa
+        alla fine dell'esperimento, per differenza, ci permette di non doverne
+        tener conto successivamente. Possiamo infatti considerare il calorimetro
+        come un sistema chiuso: finché non lo apriamo, la massa complessiva
+        non cambia.
+        }:
+        $m_\text{calda} = \left(85.12\pm0.03\right) \unit{g}$
 \end{enumerate}
 
-\subsection{Analisi dei dati raccolti e conclusioni}
-Per le leggi della termodinamica noi sappiamo che:
-    \[
-        m_\text{calda} c_\text{acqua} (T_\text{calda}-T_\text{eq}) =
-        (m_\text{fredda} c_\text{acqua} + C_\text{calorimetro})(T_\text{eq}-T_\text{fredda})
-    \]
-
-Invece che misurare $C_\text{calorimetro}$ in $\unit{J\per K}$, possiamo considerare a
-quanta acqua equivale il calorimetro dal punto di vista termico, ovvero la quantità di
-acqua che assorbirebbe lo stesso calore del calorimetro. Quindi:
-    \[
-        m_\text{calda} (T_\text{calda}-T_\text{eq}) =
-        (m_\text{fredda} + m_\text{equiv})(T_\text{eq}-T_\text{fredda})
-    \]
-
 \emph{
-\textbf{Osservazione.} La massa equivalente ($m_\text{equiv}$) ci dà anche un idea di
-quanto il calorimetro disturbi la misura.
+\textbf{Osservazione.} È meglio che i due volumi d'acqua siano molto simili e che
+la loro somma sia pressoché pari al volume che utilizzeremo nella seconda parte
+dell'esperimento, in modo che il calorimetro si bagni allo stesso modo.
 }
+
+\subsection{Analisi dei dati raccolti e conclusioni}
+Detta $T_\text{eq}$ la temperatura di equilibrio del sistema, vale:
+\[
+m_\text{calda} (T_\text{eb} - T_\text{eq}) =
+(m_\text{fredda} + m_\text{eq})(T_\text{eq} - T_\text{fredda})
+\]
+da cui:
+\[
+    m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
+\]
+
+Di seguito riportiamo, in un grafico, i dati raccolti dal termometro digitale.
 
 Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
 seguente grafico, abbiamo trovato che $T_\text{eq} = \qty{55.0}{\degree C}$. Dunque:    %TODO: mettiamo il grafico?
-    \[
-        m_\text{equiv} = \frac{m_\text{calda} (T_\text{calda}-T_\text{eq})}{(T_\text{eq}-T_\text{fredda})} - m_\text{fredda}
-    \]
+
 ovvero $m_\text{equiv} = (24.61116505 \pm 3)\,\unit{g}?$. Ora che abbiamo ottenuto questo valore, possiamo calcolare
 i calori specifici dei metalli di cui sono composti i campioni.
 
