@@ -181,13 +181,14 @@ Per ogni campione $i\in\left\{A,B,C\right\}$:
         campione all'interno dell'acqua, nel pentolino, in modo tale che non tocchi
         il fondo e, contemporaneamente, sia immerso completamente.
     \item
-        Versiamo circa $\qty{200}{mL}$ di acqua distillata, a temperatura ambiente,
-        nel calorimetro (vuoto e asciutto). Ne misuriamo la massa $m_\acqua$
-        per differenza, secondo quanto descritto nel paragrafo 1.1.
+        Versiamo circa $\qty{200}{mL}$ di acqua distillata, a temperatura ambiente
+        ($T_\text{amb}$), nel calorimetro (vuoto e asciutto).
+        Ne misuriamo la massa $m_\acqua$ per differenza, secondo quanto descritto
+        al paragrafo 1.1.
     \item
         Misuriamo la massa $m_i$ del campione con la bilancia di precisione.
     \item
-        Quando il campione raggiunge la stessa temperatura dell'acqua,
+        Quando il campione raggiunge la stessa temperatura dell'acqua ($T_\text{eb}$),
         inseriamo il termometro nel calorimetro e avviamo l'acquisizione dati.
         Poi, apriamo velocemente il calorimetro per inserirvi inseriamo il campione.
     \item
@@ -198,38 +199,31 @@ Per ogni campione $i\in\left\{A,B,C\right\}$:
         Dopo una decina di minuti, interrompiamo l'acquisizione.
 \end{enumerate}
 
-
-
 \subsection{Analisi dei dati raccolti e conclusioni}
-Grazie alle leggi della termodinamica sappiamo che:
-    \[
-        m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
-        (c_\text{acqua} m_\text{acqua} + C_\text{calorimetro}) (T_\text{eq}-T_\text{acqua})
-    \]
-Conoscendo il valore di $m_\text{equiv}$, possiamo scrivere:
-    \[
-        m_\text{met} c_\text{met} (T_\text{met}-T_\text{eq}) =
-        (m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})
-    \]
+Detta $T_\text{eq}$ la temperatura di equilibrio, per ogni campione
+$i\in\left\{A,B,C\right\}$ vale:
+\[
+    c_i m_i (T_\text{eb} - T_\text{eq}) =
+    c_\acqua (m_\acqua + m_\text{eq}) (T_\text{eq} - T_\text{amb})
+\]
+dove $c_i$ è il calore specifico del campione. Risolvendo in $c_i$ otteniamo:
+\[
+    c_i = c_\acqua\cdot\frac{m_\acqua + m_\text{eq}}{m_i}
+          \cdot\frac{T_\text{eq} - T_\text{amb}}{T_\text{db} - T_\text{eq}}
+\]
 
-Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
-seguente grafico, abbiamo trovato calcolato il valore di $T_\text{eq}$ per ogni solido. Dunque:    %TODO: mettiamo i grafici?
-    \[
-        c_\text{met} = \frac{(m_\text{acqua} + m_\text{equiv}) c_\text{acqua} (T_\text{eq}-T_\text{acqua})}
-        {m_\text{met} (T_\text{met}-T_\text{eq})}
-    \]
-
-Nella seguente tabella riportiamo i valori ottenuti per ogni solido con le relative incertezze, che abbiamo calcolato con la
-propagazione standard degli errori in quanto piccole, sistematiche e indipendenti.
+Nella seguente tabella riportiamo quanto calcolato a partire dai dati raccolti.
+In tutti i casi, $T_\text{eq}$ è stata calcolata secondo quanto descritto al
+paragrafo 1.2.
 
 \begin{center}
-    \begin{tabular}{ |c|c|c|c| }
+    \begin{tabular}{ |c|c|c|c|c|c| }
         \hline
-        \emph{Campione} & $m$ ($\unit{g}$) & $T_\text{eq}$ ($\unit{\degree C}$) & $c$ ($\unit{J \, {kg}^{-1} {K}^{-1} }$) \\
+        $i$ & $m_\acqua$ ($\unit{g}$) & $m_i$ ($\unit{g}$) & $T_\text{amb}$ ($\unit{\degree C}$) & $T_\text{eq}$ ($\unit{\degree C}$) & $c_i$ ($\unit{J\,{kg}^{-1}{K}^{-1}}$) \\
         \hline
-        $A$ & $12.43 \pm 0.01$ & $25.2 \pm 0.2$ & $500.9617709 \pm 0$ \\
-        $B$ & $28.73 \pm 0.01$ & $25.9 \pm 0.2$ & $345.7664279 \pm 0$ \\    %TODO: calcolare i valori
-        $C$ & $44.86 \pm 0.01$ & $26.0 \pm 0.2$ & $110.4618573 \pm 0$ \\
+        $A$&$197.54\pm0.02$&$12.43\pm0.01$&$24.7\pm0.1$&$25.2\pm0.1$ & $500\pm200$ \\
+        $B$&$194.81\pm0.02$&$28.73\pm0.01$&$25.1\pm0.1$&$25.9\pm0.1$ & $350\pm100$ \\
+        $C$&$194.00\pm0.02$&$44.86\pm0.01$&$25.6\pm0.1$&$26.0\pm0.1$ & $110\pm60$ \\
         \hline
     \end{tabular}
 \end{center}
