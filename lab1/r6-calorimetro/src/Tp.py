@@ -34,3 +34,9 @@ cs = [
         m_aq=Datum(194.00, 0.02),
     ),
 ]
+
+print(cs[0].ε(Datum(502, 1)))
+print(cs[1].ε(Datum(337, 1)))
+print(cs[1].ε(Datum(385, 1)))
+print(cs[1].ε(Datum(388, 1)))
+print(cs[2].ε(Datum(130, 1)))
