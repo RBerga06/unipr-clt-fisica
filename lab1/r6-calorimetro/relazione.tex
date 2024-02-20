@@ -11,6 +11,7 @@
 \usepackage[page]{appendix}
 \usepackage{mathtools}
 \newcommand*{\diam}{\varnothing}
+\newcommand*{\acqua}{{\text{H}_2\text{O}}}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
 \newcommand*{\pbest}[1]{\left({#1}_\text{best}\right)}
@@ -103,7 +104,11 @@ quanto il calorimetro disturbi le misure.
         Inserito nel calorimetro il termometro digitale, avviamo l'acquisizione dati
         (a intervalli di $\qty{0.5}{s}$).
         Riapriamo poi il calorimetro e vi versiamo all'interno,
-        velocemente, l'acqua calda. Infine, richiudiamo il coperchio.
+        velocemente, l'acqua calda.
+    \item
+        Chiuso il calorimetro, mescoliamo lentamente l'acqua per assicurarci
+        una distribuzione omogenea del calore, senza però introdurre una quantità
+        significativa di energia all'interno del sistema.
     \item
         Dopo una decina di minuti, interrompiamo l'acquisizione, estraiamo il
         termometro e misuriamo nuovamente la massa del sistema.
@@ -160,33 +165,37 @@ Utilizzando le relazioni sopra esposte, abbiamo calcolato\footnote{
 Possiamo ora proseguire con la stima dei calori specifici dei vari campioni
 metallici.
 
-\section{Misurazione del calore specifico dei materiali ignoti}
+\pagebreak
+\section{Misurazione del calore specifico dei campioni}
 
 \subsection{Esperienza e procedimento di misura}
+
+Per ogni campione $i\in\left\{A,B,C\right\}$:
 
 \begin{enumerate}
     \item
         Versiamo nel pentolino una quantità d'acqua tale da permettere l'immersione
-        completa dei campioni in essa e la scaldiamo. Per fare ciò più velocemente
-        e assicurarci di essere in stato di ebollizione, regoliamo la temperatura
-        della piastra a $T>\qty{100}{\degree C}$.
+        completa del campione in essa e la portiamo ad ebollizione.
     \item
-        Misuriamo $\qty{200}{mL}$ di acqua, distillata ed a temperatura ambiente,
-        e la versiamo nel calorimetro.
+        Con l'aiuto del calibro ventesimale e di una cordicella, sospendiamo il
+        campione all'interno dell'acqua, nel pentolino, in modo tale che non tocchi
+        il fondo e, contemporaneamente, sia immerso completamente.
     \item
-        Per ogni solido ($A$, $B$ e $C$):
-    \begin{enumerate}
-        \item
-            Ne misuriamo la massa con la bilancia di precisione.
-        \item
-            Una volta che l'acqua nel pentolino si trova in corrispondenza della
-            transizione di fase, lo immergiamo in essa in modo che raggiunga la
-            $T$ del sistema.
-        \item
-            Quando anch'esso raggiunge la temperatura di $\qty{100}{\degree C}$,
-            lo spostiamo nel calorimetro e mescoliamo nuovamente. Come prima, sarà
-            il termometro digitale a darci il valore di $T$ in funzione del tempo.
-    \end{enumerate}
+        Versiamo circa $\qty{200}{mL}$ di acqua distillata, a temperatura ambiente,
+        nel calorimetro (vuoto e asciutto). Ne misuriamo la massa $m_\acqua$
+        per differenza, secondo quanto descritto nel paragrafo 1.1.
+    \item
+        Misuriamo la massa $m_i$ del campione con la bilancia di precisione.
+    \item
+        Quando il campione raggiunge la stessa temperatura dell'acqua,
+        inseriamo il termometro nel calorimetro e avviamo l'acquisizione dati.
+        Poi, apriamo velocemente il calorimetro per inserirvi inseriamo il campione.
+    \item
+        Chiuso il calorimetro, mescoliamo lentamente l'acqua per assicurarci
+        una distribuzione omogenea del calore, senza però introdurre una quantità
+        significativa di energia all'interno del sistema.
+    \item
+        Dopo una decina di minuti, interrompiamo l'acquisizione.
 \end{enumerate}
 
 
