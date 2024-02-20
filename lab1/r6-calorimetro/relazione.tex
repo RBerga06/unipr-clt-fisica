@@ -18,7 +18,7 @@
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
     Laboratorio di Fisica 1\\
-    R6: Misura dei calori specifici di materiali ignoti
+    R6: Calorimetro delle mescolanze
 }
 \author{Gruppo 17: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
 \date{6/12/2023 – 13/12/2023}
@@ -53,8 +53,8 @@
         \hline[dashed]
         Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{4100.00}{g}$ & $\qty{0.01}{g}$ \\
         \hline
-        \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
+        \hline
         \hline
         Calorimetro & \SetCell[c=3]{l} {Quasi adiabatico.} \\
         \hline[dashed]
@@ -150,13 +150,15 @@ Di seguito riportiamo, in un grafico, i dati raccolti dal termometro digitale.
     \end{figure}
 \end{center}
 
-Eseguendo una regressione lineare sui dati raccolti dal termometro digitale, rappresentati nel    %TODO: spiegare la regressione?
-seguente grafico, abbiamo trovato che $T_\text{eq} = \qty{55.0}{\degree C}$. Dunque:    %TODO: mettiamo il grafico?
+Abbiamo ottenuto $T_\text{eq} = \left(55.0\pm0.1\right)\unit{\degree C}$.
+Utilizzando le relazioni sopra esposte, abbiamo calcolato\footnote{
+    Avendo stimato gli errori come piccoli, casuali e indipendenti,
+    abbiamo utilizzato la propagazione degli errori per calcolare tutte le
+    incertezze delle misure indirette.
+} $m_\text{eq} = \left(25\pm3\right)\unit{g}$.
 
-ovvero $m_\text{equiv} = (24.61116505 \pm 3)\,\unit{g}?$. Ora che abbiamo ottenuto questo valore, possiamo calcolare
-i calori specifici dei metalli di cui sono composti i campioni.
-
-
+Possiamo ora proseguire con la stima dei calori specifici dei vari campioni
+metallici.
 
 \section{Misurazione del calore specifico dei materiali ignoti}
 
