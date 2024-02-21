@@ -298,8 +298,7 @@ legge:
 \]
 dove $\tau$ è il cosiddetto “tempo caratteristico”, un parametro legato
 alla conducibilità termica: vale infatti
-\[\kappa = \frac{C_\text{cal}}{\tau} = \frac{c_\acqua m_\text{eq}}{\tau}\].
-
+\[\kappa = \frac{C_\text{cal}}{\tau} = \frac{c_\acqua m_\text{eq}}{\tau}\]
 Riarrangiando l'equazione precedente, si ottiene\footnote{
     A patto, ovviamente, che $T(t) > 0\;\;\forall t$.
     Nel caso dei nostri dati, cio è vero in particolare
@@ -311,10 +310,7 @@ Riarrangiando l'equazione precedente, si ottiene\footnote{
 \]
 È pertanto possibile determinare $\tau$ mediante una regressione lineare (pesata\footnote{
     A causa della trasformazione applicata ai dati ($T \longmapsto \ln(T - T_\text{amb})$),
-    gli errori assoluti sull'ordinata variano notevolmente. Per leggibilità,
-    \emph{non} abbiamo riportato le barre di errore nei grafici; tuttavia, abbiamo
-    considerato le incertezze in ogni calcolo, utilizzando, ove necessario, la propagazione
-    degli errori, come indicato alla nota 2.
+    gli errori assoluti sull'ordinata variano notevolmente.
 }):
 
 \begin{center}
@@ -342,5 +338,12 @@ Dalla regressione lineare emerge che:
 
 Pertanto:
 \[\kappa = \left(9.3\pm1.1\right)\unit{W\,K^{-1}}\]
+
+\emph{
+    \textbf{Nota.} Per leggibilità,
+    \emph{non} abbiamo riportato le barre di errore nei grafici; tuttavia, abbiamo
+    considerato le incertezze in ogni calcolo, utilizzando, ove necessario, la propagazione
+    degli errori, come indicato alla nota \footnotemark[2].
+}
 
 \end{document}
