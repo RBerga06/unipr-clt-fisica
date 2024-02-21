@@ -85,7 +85,7 @@ quanto il calorimetro disturbi le misure.
 \subsection{Esperienza e procedimento di misura}
 
 \emph{
-\textbf{Nota.} La temperatura di ebollizione ($T_\text{db}$) dell'acqua distillata
+\textbf{Nota.} La temperatura di ebollizione $(T_\text{eb})$ dell'acqua distillata
 dipende dalla pressione atmosferica. Per questo motivo, abbiamo misurato la pressione
 atmosferica, ottenendo un valore di $\left(992\pm1\right)\unit{hPa}$, al quale, secondo la
 letteratura, corrisponde un punto di ebollizione dell'acqua di $\left(99.4\pm0.1\right)\unit{\degree C}$.
@@ -108,8 +108,7 @@ letteratura, corrisponde un punto di ebollizione dell'acqua di $\left(99.4\pm0.1
         Scaldiamo nel pentolino altri $\qty{100}{mL}$, circa, di acqua distillata,
         fino al punto di ebollizione.
     \item
-        Inserito nel calorimetro il termometro digitale, avviamo l'acquisizione dati
-        (a intervalli di $\qty{0.5}{s}$).
+        Inserito nel calorimetro il termometro digitale, avviamo l'acquisizione dati.
         Riapriamo poi il calorimetro e vi versiamo all'interno,
         velocemente, l'acqua calda.
     \item
@@ -280,8 +279,9 @@ Allora $c_i$ è consistente con $c_\text{met}$ se e solo se $\left|\varepsilon\r
         l'acquisizione dati.
     \item
         Aperto il calorimetro, vi versaimo l'acqua, per poi richiuderlo velocemente.
-        Acquisiamo dati per un tempo complessivo di $\qty{2845}{s}$, ovvero
-        $\qty{47}{min}\qty{25}{s}$.
+        Acquisiamo dati per un tempo complessivo di
+        $\left(2.8450\pm0.0005\right)\cdot10^4\,\unit{s}$, ovvero
+        $\qty{47}{min}\;\qty{25.0}{s}\pm\qty{0.5}{s}$.
     \item
         Al termine dell'acquisizione, prima di riaprire il calorimetro, estraiamo
         il termometro e misuriamo nuovamente la massa complessiva, sempre per
@@ -293,7 +293,7 @@ Su larga scala, l'andamento della temperatura all'interno del calorimetro
 in funzione del tempo è esponenziale. In particolare, $T(t)$ segue questa
 legge:
 \[
-    T(t) = (T_0 - T_\text{amb}) e^{-t/\tau} + T_\text{amb}
+    T(t) = (T_0 - T_\text{amb}) e^{-\frac{t}{\tau}} + T_\text{amb}
 \]
 dove $\tau$ è il cosiddetto “tempo caratteristico”, un parametro legato
 alla conducibilità termica: vale infatti
@@ -306,7 +306,7 @@ Riarrangiando l'equazione precedente, si ottiene\footnote{
     esponenziale.
 }:
 \[
-    \ln(T(t) - T_\text{amb}) = -1/\tau t + \ln(T_0 - T_\text{amb})
+    \ln(T(t) - T_\text{amb}) = -\frac{1}{\tau} t + \ln(T_0 - T_\text{amb})
 \]
 È pertanto possibile determinare $\tau$ mediante una regressione lineare (pesata\footnote{
     A causa della trasformazione applicata ai dati ($T \longmapsto \ln(T - T_\text{amb})$),
@@ -336,7 +336,10 @@ Riarrangiando l'equazione precedente, si ottiene\footnote{
     \end{figure}
 \end{center}
 
-Dalla regressione lineare emerge che $\tau = \left(11.510\pm0.014\right)\unit{ks} = \qty{191}{min}\qty{50}{s}\pm\qty{14}{s}$.
-Pertanto $\kappa = \left(9.3\pm1.1\right)\unit{W\,K^{-1}}$.
+Dalla regressione lineare emerge che:
+\[\tau = \left(1.1510\pm0.0014\right)\cdot 10^4\,\unit{s} = \qty{3}{h}\;\qty{11}{min}\;\qty{50}{s}\pm\qty{14}{s}\]
+
+Pertanto:
+\[\kappa = \left(9.3\pm1.1\right)\unit{W\,K^{-1}}\]
 
 \end{document}
