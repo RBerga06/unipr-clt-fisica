@@ -1,7 +1,7 @@
 import math
 from rberga06.phylab import Datum, Measure
 __import__("sys").path.insert(0, str(__import__("pathlib").Path(__file__).parent))
-from regressioni import m_eq
+from m_eq import m_eq
 c_aq = Datum(4186, 0)
 # q = Datum(87.288, 0.007)
 # k = Datum(-0.004796, 4e-6)
