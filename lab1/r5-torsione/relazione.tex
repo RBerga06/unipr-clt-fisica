@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{minted}
+\usepackage[bottom]{footmisc}
 \usepackage[page]{appendix}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
@@ -27,8 +28,9 @@
 \maketitle
 
 \begin{abstract}
-    Il gruppo di lavoro ha misurato la costante di torsione di diversi fili,
-    in modo da ricavarne il modulo di scorrimento.
+    Il gruppo di lavoro ha misurato la costante torsionale di quattro
+    fili metallici, al fine di verificare il modulo di scorrimento dei
+    rispettivi materiali.
 \end{abstract}
 
 \section{Materiali e strumenti di misura utilizzati}
@@ -53,7 +55,8 @@
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
         {Quattro fili inestensibili} & \SetCell[c=3]{l} {
-            Distinguibili per diametro e materiale
+            Distinguibili per diametro e materiale. \\
+            Li indicheremo con $1,2,3,4$.
         } \\
         \hline[dashed]
         {Tre cilindri \\ (con masse e raggi distinti)} & \SetCell[c=3]{l} {
@@ -64,9 +67,9 @@
             % Tutti questi saranno qui chiamati “carichi”.
             } \\
         \hline[dashed]
-        {Pendolo di torsione} & \SetCell[c=3]{l} {
+        {Struttura portante \\ e parti mobili} & \SetCell[c=3]{l} {
             % "IL FILO È IL SOGGETTO DEL PENDOLO"
-            Formato da un disco che ruotando provoca \\
+            Un disco, ruotando, provoca \\
             una deformazione elastica al filo ad esso \\
             fissato lungo l'asse di rotazione.
         } \\
@@ -78,42 +81,42 @@
 
 \begin{enumerate}
     \item
-        Misuriamo la massa dei cilindri con la bilancia di precisione
-        e il loro diametro con il calibro ventesimale.
+        Misuriamo le masse dei cilindri con la bilancia di precisione
+        e i rispettivi diametri con il calibro ventesimale.
     \item
-        Con il metro a nastro e il micrometro ad asta filettata misuriamo
-        rispettivamente la lunghezza e il diametro dei fili.
+        Con il metro a nastro e il micrometro ad asta filettata misuriamo,
+        rispettivamente, lunghezza e diametro dei fili.
     \item
         Per ogni filo e per ogni combinazione di cilindri:
     \begin{enumerate}
         \item
-            Fissiamo il filo al pendolo in modo tale che l'estremità
-            superiore sia vincolata al disco rotante; posizioniamo poi
+            Fissiamo il filo al sistema, in modo tale che l'estremità
+            inferiore sia vincolata alla struttura, mentre quella superiore
+            al disco rotante; posizioniamo poi
             i cilindri sopra al disco, con l'asse centrale allineato
             a quello del disco stesso.
         \item
             Avviamo l'acquisizione dell'angolo in funzione del tempo
-            (rispetto alla posizione di equilibrio);
+            ($\theta(t)$, lo definiremo formalmente più avanti).
         \item
-            Ruotando il disco di un angolo prefissato,
+            Ruotando il disco di un angolo prefissato $\theta_0$,
             diamo inizio al moto armonico del pendolo.
             Acquisiamo dati fino all'arresto del moto.
     \end{enumerate}
 \end{enumerate}
 
-\section{Analisi dei dati raccolti}
+\section{Analisi dei dati raccolti e conclusioni}
+\subsection{Costante torsionale e modulo di scorrimento}
 
 Di seguito riportiamo massa, diametro e momento d'inerzia\footnote{
     Il momento d'inerzia è stato calcolato approssimando questi oggetti
     a cilindri di densità uniforme e raggio e altezza costanti, in rotazione
     attorno ad un asse verticale passante per il loro centro:
     \[I_i = \frac{1}{2} m_i \left(\frac{d_i}{2}\right)^2 = \frac{1}{8}m_i d_i^2\]
-    Supponendo gli errori su massa e diametro piccoli, casuali e indipendenti,
-    abbiamo calcolato $\delta I_i$ secondo la tradizionale propagazione degli errori.
 } dei tre cilindretti:
 
 \begin{center}
-\begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+\begin{tblr}{ |c|c|c|c| }
     \hline
     $i$ & $m_i\;\;(\unit{g})$ & $d_i\;\;(\unit{cm})$ & $I_i\;\;(10^{-4}\,\unit{kg\,m^2})$ \\
     \hline
@@ -142,7 +145,7 @@ superiore del filo (e quindi anche ai cilindretti) che, con il filo a riposo,
 si trovi sul piano $xOz$.
 Allora, \emph{trascurando gli attriti}, il moto di $P$ è caratterizzato da
 (per $\theta_0$ sufficientemente piccolo):
-\[\theta(t) = \theta_0 \sin(\omega t)\]
+\[\theta(t) = \theta_0 \cos(\omega t)\]
 La pulsazione $\omega$ di questo moto armonico dipende dal momento d'inerzia
 complessivo $I_\text{tot}$ dei corpi solidali all'estremità mobile del filo,
 nonché dalle caratteristiche del filo stesso. Queste ultime vengono riassunte
@@ -155,97 +158,69 @@ Detto $I_0$ il momento d'inerzia che rimane costante\footnote{
     era possibile appoggiare i cilindretti, nonché quello della parte mobile
     del sensore di rotazione.
 },
-al variare dei cilindretti posizionati sopra al filo, si ha:
-\[ I_\text{cilindretti} = \frac{C}{4\pi^2}\,T^2 - I_0 \]
-Da questa dipendenza lineare, tramite una regressione lineare pesata, è possibile
-ottenere una stima piuttosto accurata del valore di $C$.
+al variare dei cilindretti ($\text{Cil}$) posizionati sopra al filo, si ha:
+\[ \sum_{i\,\in\,\text{Cil}}\!\!I_i = \frac{C}{4\pi^2}\,T^2 - I_0 \]
+Da questa relazione, tramite una regressione lineare (pesata\footnote{
+    Gli errori assoluti su $I$ variano da punto a punto.
+}), è possibile
+ottenere una stima piuttosto precisa dei valori di $C$ e $I_0$.
 
 \begin{center}
-\begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg1.jpg}
+        \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg2.jpg}
+        \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg3.jpg}
+        \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg4.jpg}
+        \caption{\emph{
+            I dati raccolti, assieme alle rette di regressione lineare
+            (in rosa, le regioni di incertezza).
+            Abbiamo ingrandito le regioni che
+            contenevano punti così vicini fra loro da
+            risultare addirittura indistinguibili.
+        }}
+    \end{figure}
+\end{center}
+
+Riportiamo di seguito i risultati delle regressioni lineari,
+dove $\xi=\frac{C}{4\pi^2}$ è il coefficiente angolare.
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c| }
     \hline
-    $j$ & $l_j$ & $d_j$ & $\xi_j$ & $C_j$ & $G_j$ & materiale \\
+    $j$ & $I_0$ ($10^{-4}\,\unit{kg\,m^2}$) & $\xi$ ($10^{-4}\,\unit{J}$) & $C$ ($\unit{mJ}$) \\
     \hline
-    1 & & & & & \\
-    2 & & & & & \\
-    3 & & & & & \\
-    4 & & & & & \\
+    1 & $1.620\pm0.006$ & $2.015\pm0.002$ & $7.956\pm0.010$ \\
+    2 & $1.581\pm0.006$ & $9.587\pm0.012$ & $37.85\pm0.05$  \\
+    3 & $1.582\pm0.006$ & $28.56\pm0.03$  & $112.75\pm0.14$ \\
+    4 & $1.587\pm0.006$ & $39.86\pm0.05$  & $157.38\pm0.20$ \\
     \hline
 \end{tblr}
 \end{center}
 
-\section{Conclusioni}
-
-\pagebreak
-\pagebreak
-D'ora in avanti indicheremo con $\xi$ la costante $\frac{Nr^2\ln{2}}{4T_\frac{1}{2}}$
-(unità di misura: $\unit{m^2\per s}$).
-La relazione diventa allora:
-\[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
-
-Per ogni distanza $d_i$, il gruppo di lavoro ha acquisito ripetutamente il valore di
-$x_i$ per un tempo complessivo di circa un'ora\footnote{
-    Abbiamo scelto deliberatamente di acquisire esattamente 3657 secondi in quanto
-    $3657$ minimizza la funzione
-    $f(x)=\left\{\frac{x}{\pi}\right\}=\frac{x}{\pi} - \left\lfloor\frac{x}{\pi}\right\rfloor$
-    meglio di $3600$.
-} ($\qty{3657}{s}$); ha poi acquisito nuovamente $x_4$ col contatore Geiger rivolto in
-direzione opposta, per avere una stima diretta di $\overline{x_0}$.
-
-Di seguito riportiamo gli istogrammi dei dati così raccolti,
-assieme ai valori attesi, calcolati mediante la distribuzione teorica.
-
-
-Come si può osservare da questi grafici, i risultati ottenuti si allineano molto bene
-alle distribuzioni di Poisson.
-Per valutare l'accuratezza della nostra stima di $\overline{x_0}$, possiamo effettuare
-una regressione lineare (pesata) utilizzando l'equazione di $x_i$ in funzione di
-$d_i^{-2}$: \[\overline{x_i} = \xi d_i^{-2} + \overline{x_0}\]
-Di seguito riportiamo una tabella con i dati utilizzati per la regressione lineare,
-assieme a un grafico della retta di regressione stessa.
-
+La costante torsionale $C$ dipende da caratteristiche del filo, come la lunghezza
+$l$ e il diametro $d$. In particolare, vale:
+\[
+C = \frac{\pi}{2 l}\!\left(\frac{d}{2}\right)^{\!\!4}\!G = \frac{\pi d^4}{32 l} G
+\]
+dove la grandezza $G$ (dimensionalmente, una pressione) è detta
+“modulo di scorrimento” del materiale di cui è composto il filo. Allora:
+\[G = \frac{32 l}{\pi d^4} C\]
+Di seguito riportiamo, in una tabella, le misure di $l$ e $d$ dei vari fili e i
+corrispondenti valori della costante di scorrimento.
 
 \begin{center}
-    \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
-        \hline
-        $i$ & $d_i\;\;(\unit{cm})$ & $d_i^{-2}\;\;(\unit{m^{-2}})$ & $\overline{x_i}$ \\
-        \hline
-        1 & $9.5\pm0.1$  & $111\pm2$      & $0.809\pm0.015$\\
-        2 & $10.3\pm0.1$ & $94.3\pm1.8$   & $0.737\pm0.014$\\
-        3 & $26.5\pm0.1$ & $14.24\pm0.11$ & $0.272\pm0.009$\\
-        4 & $41.2\pm0.1$ & $5.89\pm0.03$  & $0.219\pm0.008$\\
-        \hline
-    \end{tblr}
-
+\begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    $j$ & $l$ ($\unit{cm}$) & $d$ ($\unit{mm}$) & $C$ ($\unit{J}$) & $G$ ($\unit{GPa}$) \\
+    \hline
+    1 & $43.3\pm0.1$ & $0.81\pm0.01$ & $7.956\pm0.010$ & $82\pm4$ \\
+    2 & $43.1\pm0.1$ & $1.20\pm0.01$ & $37.85\pm0.05$  & $80\pm3$ \\
+    3 & $43.0\pm0.1$ & $1.57\pm0.01$ & $112.75\pm0.14$ & $81\pm2$ \\
+    4 & $42.7\pm0.1$ & $1.97\pm0.01$ & $157.38\pm0.20$ & $45.4\pm1.1$ \\
+    \hline
+\end{tblr}
 \end{center}
 
-Risultati della regressione lineare:
-\begin{itemize}
-    \item $\overline{x_0} = 0.188\pm0.006$
-    \item $\xi = \left(5.70\pm0.13\right)\cdot10^{-3}\,\unit{m^2\per s}$
-\end{itemize}
-
-Per valutare numericamente la consistenza tra i due valori di $\overline{x_0}$ ottenuti,
-abbiamo calcolato il seguente valore (numero puro):
-\[
-    \varepsilon =
-    \frac{
-        \left(x_{0\,\text{misurato}}\right)_\text{best} - \left(x_{0\,\text{misurato}}\right)_\text{best}
-    }{
-        \delta x_{0\,\text{misurato}} + \delta x_{0\,\text{misurato}}
-    }
-\]
-Allora $x_{0\,\text{misurato}}$ e $x_{0\,\text{misurato}}$ sono consistenti se e solo se $\left|\varepsilon\right|\le1$.
-
-Nel nostro caso, $\varepsilon = 1.33$. Il gruppo di lavoro ha ipotizzato che
-questa inconsistenza (comunque contenuta, seppur non trascurabile) fra le due
-misure possa essere ragionevolmente giustificata dalla difficoltà incontrata
-nel ridurre al minimo le oscillazioni in direzione perpendicolare a $\vec{g}$;
-considerato inoltre che la posizione dei fototraguardi non era ottimale, ciò
-potrebbe avere ulteriormente influenzato la distribuzione dei tempi. È in
-effetti possibile osservare che le distribuzioni da noi ottenute non sono,
-il più delle volte, del tutto simmetriche: la moda sembra essersi spostata
-leggermente a sinistra – un possibile sintomo dell'influenza di un
-errore sistematico sulle misure.
-
-\pagebreak
+\subsection{Attrito}
 \end{document}
