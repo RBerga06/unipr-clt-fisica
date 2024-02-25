@@ -48,6 +48,8 @@ class Filo(NamedTuple):
         print(f"- C = {C * 1000} mJ")
         G = C * self.l * 2 / (π * self.r**4)  # modulo di scorrimento
         print(f"- G = {G * 1e-9} GPa")
+        print(G.ε(Datum(84, 1)*1e9))
+        print(G.ε(Datum(43, 1)*1e9))
 
 F1 = Filo(Datum(43.3, .1)/100, Datum(0.81, 0.01)/1000, "Filo di acciaio 1")
 F2 = Filo(Datum(43.1, .1)/100, Datum(1.20, 0.01)/1000, "Filo di acciaio 2")

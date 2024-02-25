@@ -214,12 +214,33 @@ corrispondenti valori della costante di scorrimento.
 \begin{center}
 \begin{tblr}{ |c|c|c|c|c| }
     \hline
-    $j$ & $l$ ($\unit{cm}$) & $d$ ($\unit{mm}$) & $C$ ($\unit{J}$) & $G$ ($\unit{GPa}$) \\
+    $j$ & $l$ ($\unit{cm}$) & $d$ ($\unit{mm}$) & $C$ ($\unit{mJ}$) & $G$ ($\unit{GPa}$) \\
     \hline
     1 & $43.3\pm0.1$ & $0.81\pm0.01$ & $7.956\pm0.010$ & $82\pm4$ \\
     2 & $43.1\pm0.1$ & $1.20\pm0.01$ & $37.85\pm0.05$  & $80\pm3$ \\
     3 & $43.0\pm0.1$ & $1.57\pm0.01$ & $112.75\pm0.14$ & $81\pm2$ \\
     4 & $42.7\pm0.1$ & $1.97\pm0.01$ & $157.38\pm0.20$ & $45.4\pm1.1$ \\
+    \hline
+\end{tblr}
+\end{center}
+
+Per valutare numericamente la consistenza dei risultati ottenuti con i valori
+$G$ riportati in letteratura ($G_l$),
+abbiamo calcolato, per ogni filo $j$, il seguente valore (numero puro):
+\[\varepsilon = \frac{{G_j}_\text{best} - {G_l}_\text{best}}
+                     {\delta G_j + \delta G_l}\]
+Allora $G_j$ è consistente con $G_l$ se e solo se $\left|\varepsilon\right|\le 1$.
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    $j$ & $G_i$ ($\unit{GPa}$) & Materiale & $G_l$ ($\unit{GPa}$) & $\varepsilon$ \\
+    \hline
+    1 & $82\pm4$ &         &          & $-0.468$ \\
+    2 & $80\pm3$ & Acciaio & $84\pm1$ & $-0.978$ \\
+    3 & $81\pm2$ &         &          & $-0.809$ \\
+    \hline[dashed]
+    4 & $45.4\pm1.1$ & Rame& $43\pm1$ & $+1.174$ \\
     \hline
 \end{tblr}
 \end{center}
@@ -249,9 +270,33 @@ su un'acquisizione come segue:
     \item
         Infine, abbiamo graficato i punti su scala logaritmica e
         abbiamo effettuato una regressione lineare (pesata\footnote{
-            $\delta\ln{\left|\theta\right|}$ è tutt'altro che costante.
+            $\delta\ln{\left|\theta\right|}$, infatti, varia molto,
+            nonostante $\delta\left|\theta\right|$ sia costante.
+            Ciò è conseguenza della propagazione degli errori.
         })
         sulle nuove ordinate.
 \end{enumerate}
+
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp1.jpg}
+        \caption[]{\emph{I dati raccolti col termometro.
+        In blu, la curva esponenziale così ottenuta.
+        In verde, la temperatura ambiente.
+        }}
+    \end{figure}
+\end{center}
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp4.jpg}
+        \caption[]{\emph{I dati raccolti col termometro.
+        In blu, la curva esponenziale così ottenuta.
+        In verde, la temperatura ambiente.
+        }}
+    \end{figure}
+\end{center}
 
 \end{document}
