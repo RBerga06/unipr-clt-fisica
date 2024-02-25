@@ -106,6 +106,12 @@
 \end{enumerate}
 
 \section{Analisi dei dati raccolti e conclusioni}
+\emph{\textbf{Nota.}
+Avendo valutato gli errori sulle grandezze misurate direttamente
+come piccoli, casuali e indipendenti, per svolgere ogni calcolo
+abbiamo utilizzato la tradizionale propagazione degli errori.
+}
+
 \subsection{Costante torsionale e modulo di scorrimento}
 
 Di seguito riportiamo massa, diametro e momento d'inerzia\footnote{
@@ -174,9 +180,6 @@ ottenere una stima piuttosto precisa dei valori di $C$ e $I_0$.
         \caption{\emph{
             I dati raccolti, assieme alle rette di regressione lineare
             (in rosa, le regioni di incertezza).
-            Abbiamo ingrandito le regioni che
-            contenevano punti così vicini fra loro da
-            risultare addirittura indistinguibili.
         }}
     \end{figure}
 \end{center}
@@ -242,7 +245,7 @@ su un'acquisizione come segue:
         tali che $\left|\theta_{i-1}\right| < \left|\theta_k\right| > \left|\theta_{j+1}\right|$.
     \item
         Per ogni massimo, ne abbiamo calcolato il punto medio,
-        prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(\delta t + t_j - t_i)$.
+        prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(t_j - t_i) + \delta t$.
     \item
         Infine, abbiamo graficato i punti su scala logaritmica e
         abbiamo effettuato una regressione lineare (pesata\footnote{
