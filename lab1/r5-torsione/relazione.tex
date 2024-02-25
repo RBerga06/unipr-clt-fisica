@@ -245,15 +245,31 @@ Allora $G_j$ è consistente con $G_l$ se e solo se $\left|\varepsilon\right|\le 
 \end{tblr}
 \end{center}
 
+\pagebreak
 \subsection{Attrito}
 
 Il moto del pendolo di torsione è condizionato dalla presenza
-di attriti, che ne riducono l'ampiezza. In particolare, il modello
-di riferimento è il seguente:
+di attriti, che ne modificano ampiezza e periodo.
+In particolare, il modello matematico di riferimento è descritto da:
 \[\theta(t) = \theta_0\cos(\omega t)\,e^{-\lambda t}\]
-dove $\lambda$ è un parametro legato, appunto, agli attriti.
+dove $\lambda$ è un parametro costante legato allo smorzamento
+del moto.
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp1.jpg}
+        \caption[]{\emph{
+            I dati di un'acquisizione di $\theta(t)$,
+            come raccolti dal sensore di rotazione,
+            riportati su una larga scala temporale.
+            Si può chiaramente notare lo smorzamento del moto.
+        }}
+    \end{figure}
+\end{center}
+
 Per stimare $\lambda$, il gruppo di lavoro ha proceduto
-su un'acquisizione come segue:
+sull'acquisizione in \emph{Figura 2} come segue:
 \begin{enumerate}
     \item
         Per prima cosa, abbiamo calcolato $\left|\theta(t)\right|$.
@@ -270,25 +286,14 @@ su un'acquisizione come segue:
     \item
         Infine, abbiamo graficato i punti su scala logaritmica e
         abbiamo effettuato una regressione lineare (pesata\footnote{
-            $\delta\ln{\left|\theta\right|}$, infatti, varia molto,
-            nonostante $\delta\left|\theta\right|$ sia costante.
+            $\delta\!\ln{\left|\theta\right|}$, infatti, varia molto,
+            nonostante $\delta\!\left|\theta\right|$ sia costante.
             Ciò è conseguenza della propagazione degli errori.
+            È inoltre possibile osservarlo nella \emph{Figura 3}.
         })
         sulle nuove ordinate.
 \end{enumerate}
 
-
-\begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp1.jpg}
-        \caption[]{\emph{
-            $\theta(t)$, come raccolti dal sensore di rotazione,
-            su larga scala. Si può chiaramente notare lo smorzamento
-            del moto.
-        }}
-    \end{figure}
-\end{center}
 \begin{center}
     \begin{figure}[H]
         % trim={< v > ^}
