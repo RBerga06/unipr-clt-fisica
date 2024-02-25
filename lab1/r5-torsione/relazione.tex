@@ -223,4 +223,33 @@ corrispondenti valori della costante di scorrimento.
 \end{center}
 
 \subsection{Attrito}
+
+Il moto del pendolo di torsione è condizionato dalla presenza
+di attriti, che ne riducono l'ampiezza. In particolare, il modello
+di riferimento è il seguente:
+\[\theta(t) = \theta_0\cos(\omega t)\,e^{-\lambda t}\]
+dove $\lambda$ è un parametro legato, appunto, agli attriti.
+Per stimare $\lambda$, il gruppo di lavoro ha proceduto
+su un'acquisizione come segue:
+\begin{enumerate}
+    \item
+        Per prima cosa, abbiamo calcolato $\left|\theta(t)\right|$.
+        Ciò ci ha permesso di trattare massimi e minimi “insieme”,
+        evitando di ripetere l'analisi.
+    \item
+        Poi, abbiamo individuato i massimi dei nostri dati, ovvero
+        gli insiemi di punti della forma
+        $\left\{t_i,t_{i+1},\dots,t_j\right\}\times\left\{\left|\theta_k\right|\right\}$
+        tali che $\left|\theta_{i-1}\right| < \left|\theta_k\right| > \left|\theta_{j+1}\right|$.
+    \item
+        Per ogni massimo, ne abbiamo calcolato il punto medio,
+        prendendo come $\delta t$ la semidispersione $\frac{1}{2}(t_j - t_i)$.
+    \item
+        Infine, abbiamo graficato i punti su scala logaritmica e
+        abbiamo effettuato una regressione lineare (pesata\footnote{
+            $\delta\ln{\left|\theta\right|}$ è tutt'altro che costante.
+        })
+        sulle nuove ordinate.
+\end{enumerate}
+
 \end{document}
