@@ -203,6 +203,12 @@ def main(argv: list[str], /) -> int | None:
             # print()
             # F4.calc(Datum(2.1835799471e-4, 2.4403249662e-6))
             # print()
+        case ["calc1"]:
+            l = Datum(46.67, 0.11)/1000
+            T = Datum(409.96, 0.04)/1000
+            T0 = (1 / (1/T**2 + (l/(2*π))**2))**.5
+            print(T)
+            print(T0)
         case _:
             raise
 
