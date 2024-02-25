@@ -276,15 +276,16 @@ sull'acquisizione in \emph{Figura 2} come segue:
         Ciò ci ha permesso di trattare massimi e minimi “insieme”,
         evitando di ripetere l'analisi.
     \item
-        Poi, abbiamo individuato i massimi dei nostri dati, ovvero
+        Poi, abbiamo individuato i picchi dei nostri dati, ovvero
         gli insiemi di punti della forma
         $\left\{t_i,t_{i+1},\dots,t_j\right\}\times\left\{\left|\theta_k\right|\right\}$
         tali che $\left|\theta_{i-1}\right| < \left|\theta_k\right| > \left|\theta_{j+1}\right|$.
     \item
-        Per ogni massimo, ne abbiamo calcolato il punto medio,
+        Per ogni picco, ne abbiamo calcolato il punto medio,
         prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(t_j - t_i) + \delta t$.
     \item
-        Infine, abbiamo graficato i punti su scala logaritmica e
+        Infine, abbiamo graficato i punti così trovati
+        su scala logaritmica e
         abbiamo effettuato una regressione lineare (pesata\footnote{
             $\delta\!\ln{\left|\theta\right|}$, infatti, varia molto,
             nonostante $\delta\!\left|\theta\right|$ sia costante.
@@ -302,9 +303,13 @@ sull'acquisizione in \emph{Figura 2} come segue:
             $\left|\theta(t)\right|$, su scala logaritmica.
             Sono riportate anche le barre di errore.
             In blu, una retta di regressione lineare
-            sull'intervallo dati in nero.
+            sull'intervallo di dati in nero.
         }}
     \end{figure}
 \end{center}
+
+Dai risultati della regressione lineare emerge che
+\[\lambda = \left(46.67\pm0.11\right)\unit{mHz}\]
+
 
 \end{document}
