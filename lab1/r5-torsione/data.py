@@ -3,6 +3,7 @@
 # ruff: noqa: E743
 from itertools import chain, zip_longest
 from math import log
+import math
 from pathlib import Path
 import sys
 from typing import Iterable, NamedTuple
@@ -204,11 +205,24 @@ def main(argv: list[str], /) -> int | None:
             # F4.calc(Datum(2.1835799471e-4, 2.4403249662e-6))
             # print()
         case ["calc1"]:
-            l = Datum(46.67, 0.11)/1000
+            l = (Datum(46.67, 0.11) * math.log(10))/1000
             T = Datum(409.96, 0.04)/1000
             T0 = (1 / (1/T**2 + (l/(2*π))**2))**.5
             print(T)
             print(T0)
+        case ["calc-I"]:
+            I0m = Cilindro(
+                m = Datum(134.92, 0.01) / 1000,
+                d = Datum( 98.45, 0.05) / 1000,
+            ).I
+            print(I0m)
+            for I0c in [
+                Datum(1.620, 0.006)/1e4,
+                Datum(1.581, 0.006)/1e4,
+                Datum(1.582, 0.006)/1e4,
+                Datum(1.587, 0.006)/1e4,
+            ]:
+                print(I0m.ε(I0c))
         case _:
             raise
 
