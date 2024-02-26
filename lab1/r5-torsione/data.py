@@ -212,8 +212,8 @@ def main(argv: list[str], /) -> int | None:
             print(T0)
         case ["calc-I"]:
             I0m = Cilindro(
-                m = Datum(134.92, 0.01) / 1000,
-                d = Datum( 98.45, 0.05) / 1000,
+                m = Datum(134.92, 0.01) / 1000,  # kg
+                d = Datum( 98.45, 0.05) / 1000,  # m
             ).I
             print(I0m)
             for I0c in [
