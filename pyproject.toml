@@ -11,6 +11,7 @@ dependencies = [
     "rberga06-phylab @ git+https://github.com/rberga06/pyphylab",
     "pandas>=2.2.0",
     "pyarrow>=15.0.0",
+    "ipykernel>=6.29.3",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
@@ -22,3 +23,6 @@ ignore = [
     "F403",  # import *
     "F405",  # undefined symbols
 ]
+
+[tool.pyright]
+reportUnknownMemberType = false

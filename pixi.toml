@@ -1,0 +1,23 @@
+[project]
+name = "unipr-clt-fisica"
+version = "0.1.0"
+description = "Add a short description here"
+authors = ["RBerga06 <78449715+RBerga06@users.noreply.github.com>"]
+channels = ["conda-forge"]
+platforms = ["osx-64"]
+
+[tasks]
+
+[dependencies]
+numpy = ">=1.26.4,<1.27"
+sympy = ">=1.12,<2"
+pandas = ">=2.2.1,<2.3"
+matplotlib = ">=3.8.3,<3.9"
+ipywidgets = ">=8.1.2,<8.2"
+ipykernel = ">=6.29.3,<6.30"
+python = ">=3.11.8,<3.12"
+numba = ">=0.59.0,<0.60"
+ipympl = ">=0.9.3,<0.10"
+
+[pypi-dependencies]
+useful-types = "*"
