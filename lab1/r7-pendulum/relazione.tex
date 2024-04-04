@@ -1,0 +1,372 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{tabularray}
+\usepackage{graphicx}
+\usepackage{float}
+% \usepackage{minted}
+\usepackage[bottom]{footmisc}
+\usepackage[page]{appendix}
+\newcommand*{\diam}{\varnothing}
+\newcommand*{\best}[1]{{#1}_\text{best}}
+\newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
+\newcommand*{\pbest}[1]{\left({#1}_\text{best}\right)}
+\newcommand*{\pbestp}[1]{\left({\left(#1\right)}_\text{best}\right)}
+\newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
+\title{
+    Laboratorio di Fisica 1\\
+    R7: Misura di $\left|\vec{g}\right|$ mediante pendolo fisico
+}
+\author{Gruppo 15: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
+\date{05/03/2024 – 12/03/2024}
+\makeindex
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Il gruppo di lavoro ha misurato il modulo del campo gravitazionale locale
+    ($g$) studiando il moto oscillatorio di un pendolo fisico.
+\end{abstract}
+
+\section{Materiali e strumenti di misura utilizzati}
+\begin{center}
+    \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+        \hline
+        \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
+        \hline
+        Sensore di rotazione & $\qty{0.002}{rad}$ & N./A. & $\qty{0.002}{rad}$ \\
+        \hline[dashed]
+        Cronometro & $\qty{0.001}{s}$ & N./A. & $\qty{0.001}{s}$ \\
+        \hline[dashed]
+        Micrometro ad asta filettata & $\qty{0.01}{mm}$ & $\qty{25.00}{mm}$ & $\qty{0.01}{mm}$ \\
+        \hline[dashed]
+        Calibro ventesimale & $\qty{0.05}{mm}$ & $\qty{150.00}{mm}$ & $\qty{0.05}{mm}$ \\
+        \hline[dashed]
+        Metro & $\qty{0.1}{cm}$ & $\qty{300.0}{cm}$ & $\qty{0.1}{cm}$ \\
+        \hline[dashed]
+        Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
+        \hline
+        \hline
+        \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
+        \hline
+        {Rotore e asta} & \SetCell[c=3]{l} {
+            % "L'ASTA È IL SOGGETTO DEL PENDOLO"
+            L'asta, fissata ortogonalmente al rotore ad un \\
+            estremo, è libera di ruotare grazie ad esso.
+        } \\
+        \hline[dashed]
+        {Tre cilindri \\ (con masse e raggi distinti)} & \SetCell[c=3]{l} {
+            Presentano un foro centrale lungo l'asse di \\
+            simmetria. Indicheremo con $A,B,C$ i tre cilindri \\
+            e con $0$, $A+B$, $A+C$, $B+C$ e $A+B+C$ \\
+            le loro combinazioni.
+            } \\
+        \hline
+    \end{tblr}
+\end{center}
+
+\section{Esperienza e procedimento di misura}
+
+\begin{enumerate}
+    \item
+        Misuriamo le masse dei cilindri con la bilancia di precisione,
+        i rispettivi diametri (interni ed esterni) con il calibro ventesimale
+        e le altezze con il micrometro ad asta filettata.
+    \item
+        Con il metro a nastro misuriamo la lunghezza dell'asta e con il
+        micrometro il suo diametro, nonché il diametro del rotore.
+    \item
+        Per ogni configurazione di cilindri:  % TODO: Riformulare
+    \begin{enumerate}
+        \item
+            Fissiamo i cilindri scelti all'asta attraverso il foro centrale
+            e ne misuriamo la distanza dal rotore.
+        \item
+            Avviamo l'acquisizione dell'angolo in funzione del tempo
+            ($\theta(t)$, lo definiremo formalmente più avanti).
+        \item
+            Ruotando il disco di un angolo prefissato $\theta_0$,
+            sufficientemente piccolo\footnote{
+                % TODO: specificare la condizione del modello: sin(x) ~ x
+            },
+            diamo inizio al moto armonico del pendolo.
+            Acquisiamo dati fino all'arresto del moto.
+    \end{enumerate}
+\end{enumerate}
+
+\section{Analisi dei dati raccolti e conclusioni}
+\emph{\textbf{Nota.}
+Avendo valutato gli errori sulle grandezze misurate direttamente
+come piccoli, casuali e indipendenti, per svolgere ogni calcolo
+abbiamo utilizzato la tradizionale propagazione degli errori.
+}
+
+\subsection{Misura di $\left|\vec{g}\right|$}
+
+Di seguito riportiamo i momenti d'inerzia costanti per tutto l'esperimento:
+
+\begin{center}
+    \begin{tblr}{ |c|c|c|c|c| }
+        \hline
+        Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
+        \hline
+        Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
+        Rotore & N./A. & $13.41\pm0.01$ & $22.4\pm0.1^*$ & $0.058\pm0.001^*$ \\
+        \hline
+    \end{tblr}
+\end{center}
+
+\emph{$[^*]$ Valori dati}
+
+% TODO: Finire la tabella che segue e metterla in appendice
+Di seguito riportiamo distanza e momento d'inerzia per ogni pesetto e
+per ogni configurazione:
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    $i$ & $d_1\;\;(\unit{cm})$ & $d_2\;\;(\unit{cm})$ & $d_3\;\;(\unit{cm})$ & \\
+        & $I_1\;\;(\unit{kg\,m^2})$ & $I_2\;\;(\unit{kg\,m^2})$ & $I_3\;\;(\unit{kg\,m^2})$ &  $I_\text{tot}$ \\
+    \hline
+    $0$ & $12.7\pm0.1$ & & & \\
+        & $ ?  \pm ? $ & & & $?$ \\
+    \hline[dashed]
+    $1,3:1$ & $35.6\pm0.1$ & & $25.0\pm0.1$ & \\
+        & $ ?  \pm ? $ & & $?\pm?$ & $?$ \\
+    \hline
+\end{tblr}
+\end{center}
+
+Di seguito riportiamo massa, diametro e momento d'inerzia\footnote{
+    Il momento d'inerzia è stato calcolato
+    attorno ad un asse verticale passante per il loro centro:
+    \[I_i = \frac{1}{2} m_i \left(\frac{d_i}{2}\right)^2 = \frac{1}{8}m_i d_i^2\]
+} dei tre cilindretti:
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c| }
+    \hline
+    $i$ & $m_i\;\;(\unit{g})$ & $d_i\;\;(\unit{cm})$ & $I_i\;\;(10^{-4}\,\unit{kg\,m^2})$ \\
+    \hline
+    A & $344.07 \pm 0.01$ & $9.045 \pm 0.005$ & $3.519 \pm 0.004$ \\
+    B & $429.65 \pm 0.01$ & $5.985 \pm 0.005$ & $1.924 \pm 0.003$ \\
+    C & $473.02 \pm 0.01$ & $5.200 \pm 0.005$ & $1.599 \pm 0.003$ \\
+    % \hline[dashed]
+    % 0 & $134.92 \pm 0.01$ & $9.845 \pm 0.005$ & $1.6346\pm0.0018$ \\
+    \hline
+\end{tblr}
+\end{center}
+
+Fissiamo un sistema di riferimento inerziale, solidale all'apparato,
+a coordinate cilindriche\footnote{
+    Le coordinate di un punto $P$ in questo sistema di riferimento sono
+    definite come segue: detta $\vec{r}$ la proiezione di $\overrightarrow{OP}$
+    sul piano per $O$ normale a $\hat{z}$,
+    $\theta$ è l'angolo piano orientato fra $\hat{x}$ e $\vec{r}$,
+    $r$ è la norma di $\vec{r}$ e
+    $h$ è la posizione lungo $\hat{z}$ della proiezione di $P$ su
+    $\hat{z}$ stesso.
+} $(\theta, r, h)$, con versore $\hat{z}$ giacente
+lungo l'asse di rotazione del filo (antiparallelo a $\vec{g}$),
+origine $O$ e versore $\hat{x}$ contenuti nel piano sul quale vengono appoggiati
+i cilindri. Sia inoltre $P$ un punto materiale qualunque solidale all'estremità
+superiore del filo (e quindi anche ai cilindretti) che, con il filo a riposo,
+si trovi sul piano $xOz$.
+Allora, \emph{trascurando gli attriti}, il moto di $P$ è caratterizzato da:
+\[\theta(t) = \theta_0 \cos(\omega t)\]
+La pulsazione $\omega$ di questo moto armonico dipende dal momento d'inerzia
+complessivo $I_\text{tot}$ dei corpi solidali all'estremità mobile del filo,
+nonché dalle caratteristiche del filo stesso. Queste ultime vengono riassunte
+nella \emph{costante torsionale} $C$. In particolare:
+\[ C = I_\text{tot}\,\omega^2 \]
+Detto $T = 2\pi / \omega$ il periodo del moto armonico, si ottiene:
+\[ I_\text{tot} = \frac{C}{4\pi^2}\,T^2 \]
+Detto $I_0$ il momento d'inerzia che rimane costante\footnote{
+    $I_0$ include, ad esempio, il momento d'inerzia del disco su cui
+    era possibile appoggiare i cilindretti, nonché quello della parte mobile
+    del sensore di rotazione.
+},
+al variare dei cilindretti ($\text{Cil}$) posizionati sopra al filo, si ha:
+\[ \sum_{i\,\in\,\text{Cil}}\!\!I_i = \frac{C}{4\pi^2}\,T^2 - I_0 \]
+Da questa relazione, tramite una regressione lineare (pesata\footnote{
+    Gli errori assoluti su $I$ variano da punto a punto.
+}), è possibile
+ottenere una stima piuttosto precisa dei valori di $C$ e $I_0$.
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg1.jpg}
+        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg2.jpg}
+        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg3.jpg}
+        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg4.jpg}
+        \caption{\emph{
+            I dati raccolti, assieme alle rette di regressione lineare
+            (in rosa, le regioni di incertezza).
+        }}
+    \end{figure}
+\end{center}
+
+Riportiamo di seguito i risultati delle regressioni lineari,
+dove $\xi=\frac{C}{4\pi^2}$ è il coefficiente angolare.
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c| }
+    \hline
+    $j$ & $I_0$ ($10^{-4}\,\unit{kg\,m^2}$) & $\xi$ ($10^{-4}\,\unit{J}$) & $C$ ($\unit{mJ}$) \\
+    \hline
+    1 & $1.620\pm0.006$ & $2.015\pm0.002$ & $7.956\pm0.010$ \\
+    2 & $1.581\pm0.006$ & $9.587\pm0.012$ & $37.85\pm0.05$  \\
+    3 & $1.582\pm0.006$ & $28.56\pm0.03$  & $112.75\pm0.14$ \\
+    4 & $1.587\pm0.006$ & $39.86\pm0.05$  & $157.38\pm0.20$ \\
+    \hline
+\end{tblr}
+\end{center}
+
+La costante torsionale $C$ dipende da alcune caratteristiche del filo,
+come la lunghezza $l$ e il diametro $d$. In particolare, vale:
+\[
+C = \frac{\pi}{2 l}\!\left(\frac{d}{2}\right)^{\!\!4}\!G = \frac{\pi d^4}{32 l} G
+\]
+dove la grandezza $G$ (dimensionalmente, una pressione) è detta
+“modulo di scorrimento” del materiale di cui è composto il filo. Allora:
+\[G = \frac{32 l}{\pi d^4} C\]
+Di seguito riportiamo, in una tabella, le misure di $l$ e $d$ dei vari fili e i
+corrispondenti valori della costante di scorrimento.
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    $j$ & $l$ ($\unit{cm}$) & $d$ ($\unit{mm}$) & $C$ ($\unit{mJ}$) & $G$ ($\unit{GPa}$) \\
+    \hline
+    1 & $43.3\pm0.1$ & $0.81\pm0.01$ & $7.956\pm0.010$ & $82\pm4$ \\
+    2 & $43.1\pm0.1$ & $1.20\pm0.01$ & $37.85\pm0.05$  & $80\pm3$ \\
+    3 & $43.0\pm0.1$ & $1.57\pm0.01$ & $112.75\pm0.14$ & $81\pm2$ \\
+    4 & $42.7\pm0.1$ & $1.97\pm0.01$ & $157.38\pm0.20$ & $45.4\pm1.1$ \\
+    \hline
+\end{tblr}
+\end{center}
+
+Per valutare numericamente la consistenza dei risultati ottenuti con i valori
+$G$ riportati in letteratura ($G_l$),
+abbiamo calcolato, per ogni filo $j$, il seguente valore (numero puro):
+\[\varepsilon = \frac{{G_j}_\text{best} - {G_l}_\text{best}}
+                     {\delta G_j + \delta G_l}\]
+Allora $G_j$ è consistente con $G_l$ se e solo se $\left|\varepsilon\right|\le 1$.
+
+\begin{center}
+\begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    $j$ & $G_i$ ($\unit{GPa}$) & Materiale & $G_l$ ($\unit{GPa}$) & $\varepsilon$ \\
+    \hline
+    1 & $82\pm4$ &         &          & $-0.468$ \\
+    2 & $80\pm3$ & Acciaio & $84\pm1$ & $-0.978$ \\
+    3 & $81\pm2$ &         &          & $-0.809$ \\
+    \hline[dashed]
+    4 & $45.4\pm1.1$ & Rame& $43\pm1$ & $+1.174$ \\
+    \hline
+\end{tblr}
+\end{center}
+
+L'inconsistenza non trascurabile tra i valori di $G$ per il filo di
+rame potrebbe essere dovuta alle cattive condizioni del filo stesso.
+
+Infatti, il gruppo di lavoro lo ha reciso da una bobina, per poi
+srotolarlo: queste operazioni hanno lasciato imperfezioni visibili
+ad occhio nudo sul filo, come, ad esempio, piccole piegature.
+
+Riteniamo che queste imperfezioni potrebbero avere influenzato
+le nostre misure in maniera non trascurabile.
+
+\pagebreak
+\subsection{Attrito}
+
+Il moto del pendolo di torsione è condizionato dalla presenza
+di attriti, che ne modificano ampiezza e periodo.
+In particolare, il modello matematico di riferimento è descritto da:
+\[\theta(t) = \theta_0\cos(\omega t)\,e^{-\lambda t}\]
+dove $\lambda$ è un parametro costante legato allo smorzamento
+del moto.
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        % \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp1.jpg}
+        \caption[]{\emph{
+            I dati di un'acquisizione di $\theta(t)$,
+            come raccolti dal sensore di rotazione,
+            riportati su una larga scala temporale.
+            Si può chiaramente notare lo smorzamento del moto.
+        }}
+    \end{figure}
+\end{center}
+
+Per stimare $\lambda$, il gruppo di lavoro ha proceduto
+sull'acquisizione in \emph{Figura 2} come segue:
+\begin{enumerate}
+    \item
+        Per prima cosa, abbiamo calcolato $\left|\theta(t)\right|$.
+        Ciò ci ha permesso di trattare massimi e minimi “insieme”,
+        evitando di ripetere l'analisi.
+    \item
+        Poi, abbiamo individuato i picchi dei nostri dati, ovvero
+        gli insiemi di punti della forma
+        $\left\{t_i,t_{i+1},\dots,t_j\right\}\times\left\{\left|\theta_k\right|\right\}$
+        tali che $\left|\theta_{i-1}\right| < \left|\theta_k\right| > \left|\theta_{j+1}\right|$.
+    \item
+        Per ogni picco, ne abbiamo calcolato il punto medio,
+        prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(t_j - t_i) + \delta t$.
+    \item
+        Infine, abbiamo graficato i punti così trovati
+        su scala logaritmica e
+        abbiamo effettuato una regressione lineare (pesata\footnote{
+            $\delta\!\ln{\left|\theta\right|}$, infatti, varia molto,
+            nonostante $\delta\!\left|\theta\right|$ sia costante:
+            ciò è conseguenza della propagazione degli errori.
+            È inoltre possibile osservarlo nella \emph{Figura 3}.
+        })
+        sulle nuove ordinate.
+\end{enumerate}
+
+\begin{center}
+    \begin{figure}[H]
+        % trim={< v > ^}
+        % \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp4.jpg}
+        \caption[]{\emph{
+            $\left|\theta(t)\right|$, su scala logaritmica.
+            Sono riportate anche le barre di errore.
+            In blu, una retta di regressione lineare
+            sull'intervallo di dati in nero.
+        }}
+    \end{figure}
+\end{center}
+
+Dai risultati della regressione lineare emerge che
+\[\lambda = \left(46.67\pm0.11\right)\unit{mHz}\]
+
+Abbiamo infine valutato il contributo dell'attrito sul periodo
+dell'oscillazione. Vale infatti:
+\[\omega_0^2 = \omega^2 + \lambda^2\]
+dove $\omega=\frac{2\pi}{T}$ è la pulsazione misurata
+mentre $\omega_0$ è la pulsazione in assenza di attrito.
+
+Si ottiene allora:
+\[T_0 = \sqrt{\frac{1}{\frac{1}{T^2} + \left(\frac{\lambda}{2\pi}\right)^2}}\]
+dove $T$ è il periodo misurato mentre
+$T_0=\frac{2\pi}{\omega_0}$ è il periodo in assenza di attrito.
+
+Per questa acquisizione:
+\[T = \left(409.96\pm0.04\right)\unit{ms}\]
+
+da cui segue:
+\[T_0=\left(409.95\pm0.04\right)\unit{ms}\]
+
+In conclusione, possiamo affermare ragionevolmente che,
+rispetto alla sensibilità degli strumenti di misura,
+il contributo dell'attrito è trascurabile.
+
+\end{document}
