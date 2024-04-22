@@ -8,25 +8,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compile r4-random
+      # - name: Compile r4-random
+      #   uses: dante-ev/latex-action@latest
+      #   with:
+      #     root_file: relazione.tex
+      #     working_directory: lab1/r4-random
+      #     compiler: latexmk
+      #     args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=.
+      # - name: Compile r5-torsione
+      #   uses: dante-ev/latex-action@latest
+      #   with:
+      #     root_file: lab1/r5-torsione/relazione.tex
+      #     compiler: latexmk
+      #     args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r5-torsione/
+      # - name: Compile r6-calorimetro
+      #   uses: dante-ev/latex-action@latest
+      #   with:
+      #     root_file: lab1/r6-calorimetro/relazione.tex
+      #     compiler: latexmk
+      #     args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r6-calorimetro/
+      - name: Compile r7-pendulum
         uses: dante-ev/latex-action@latest
         with:
-          root_file: relazione.tex
-          working_directory: lab1/r4-random
+          root_file: lab1/r7-pendulum/relazione.tex
           compiler: latexmk
-          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=.
-      - name: Compile r5-torsione
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: lab1/r5-torsione/relazione.tex
-          compiler: latexmk
-          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r5-torsione/
-      - name: Compile r6-calorimetro
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: lab1/r6-calorimetro/relazione.tex
-          compiler: latexmk
-          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r6-calorimetro/
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r7-pendulum/
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
