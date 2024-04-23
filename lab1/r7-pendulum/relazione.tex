@@ -92,7 +92,7 @@
             Ruotando l'asta di un angolo prefissato $\theta_0$,
             sufficientemente piccolo\footnote{
                 Questa condizione sull'angolo $\theta_0$ ci permette di
-                approssimare $\sin(x) ~ x$. %TODO: fix bisciolino
+                approssimare $\sin(x) \sim x$. %TODO: fix bisciolino
             },
             diamo inizio al moto armonico del pendolo.
             Acquisiamo dati fino all'arresto del moto.
@@ -116,6 +116,7 @@ Di seguito riportiamo i momenti d'inerzia costanti per tutto l'esperimento:
         Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
         \hline
         Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
+        \hline[dashed]
         Rotore & N./A. & $13.41\pm0.01$ & $22.4\pm0.1^*$ & $0.058\pm0.001^*$ \\
         \hline
     \end{tblr}
@@ -131,16 +132,18 @@ Di seguito riportiamo massa, diametri (interni ed esterni) e altezza dei tre cil
     $i$ & $m_i\;\;(\unit{g})$ & $d_i^\text{ext}\;\;(\unit{mm})$ & $d_i^\text{int}\;\;(\unit{mm})$ & $h_i\;\;(\unit{mm})$ \\
     \hline
     A & $115.95 \pm 0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.93 \pm 0.01$ \\
+    \hline[dashed]
     B & $115.86 \pm 0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.89 \pm 0.01$ \\
+    \hline[dashed]
     C & $71.46 \pm 0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $12.08 \pm 0.01$ \\
     \hline
 \end{tblr}
 \end{center}
 
 Sappiamo che il moto armonico del pendolo segue la legge $\sum \tau^\text{ext} = I\alpha$ in quanto compie una rotazione.
-Detta $D$ la posizione del centro di massa rispetto all'asse di rotazione, possiamo scrivere $-Mgsin(\theta)D = I\alpha$.
+Detta $D$ la posizione del centro di massa rispetto all'asse di rotazione, possiamo scrivere $-Mg\sin(\theta)D = I\alpha$.
 Approssimando $sin(\theta)$ a $\theta$ ed esprimendo l'accelerazione angolare come derivata seconda dello spostamento angolare:
-\[ \frac{d^2\theta}{dt^2} = \frac{-MgD}{I}\,\theta \] da cui \[ (\frac{2\pi}{T})^2 = \frac{MDg}{I} \].
+\[ \frac{d^2\theta}{dt^2} = -\frac{MgD}{I}\,\theta \] da cui \[ \left(\frac{2\pi}{T}\right)^2 = \frac{MDg}{I} \].
 
 
 Fissiamo un sistema di riferimento inerziale, solidale all'apparato,
