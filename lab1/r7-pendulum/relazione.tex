@@ -140,101 +140,15 @@ Di seguito riportiamo massa, diametri (interni ed esterni) e altezza dei tre cil
 \end{tblr}
 \end{center}
 
-Sappiamo che il moto armonico del pendolo segue la legge $\sum \tau^\text{ext} = I\alpha$ in quanto compie una rotazione.
-Detta $D$ la posizione del centro di massa rispetto all'asse di rotazione, possiamo scrivere $-Mg\sin(\theta)D = I\alpha$.
+Sappiamo che il moto armonico del pendolo segue la legge $\sum \tau^\text{ext} = I\alpha$ in quanto compie una rotazione. \\
+Detta $D$ la posizione del centro di massa rispetto all'asse di rotazione, possiamo scrivere $-Mg\sin(\theta)D = I\alpha$. \\
 Approssimando $\sin(\theta)$ a $\theta$ ed esprimendo l'accelerazione angolare come derivata seconda dello spostamento angolare:
-\[ \frac{d^2\theta}{dt^2} = -\frac{MgD}{I}\,\theta \] da cui \[ \left(\frac{2\pi}{T}\right)^2 = \frac{MDg}{I} \].
+\[ \frac{d^2\theta}{dt^2} = -\frac{MgD}{I}\,\theta \] 
+da cui ricaviamo l'equazione della retta di regressione, il cui grafico verrà riportato in seguito.
+\[ \left(\frac{2\pi}{T}\right)^2 = \frac{MDg}{I} \]
 
+%TODO: AGGIUNGERE GRAFICO DELLA REGRESSIONE
 
-Fissiamo un sistema di riferimento inerziale, solidale all'apparato,
-a coordinate cilindriche\footnote{
-    Le coordinate di un punto $P$ in questo sistema di riferimento sono
-    definite come segue: detta $\vec{r}$ la proiezione di $\overrightarrow{OP}$
-    sul piano per $O$ normale a $\hat{z}$,
-    $\theta$ è l'angolo piano orientato fra $\hat{x}$ e $\vec{r}$,
-    $r$ è la norma di $\vec{r}$ e
-    $h$ è la posizione lungo $\hat{z}$ della proiezione di $P$ su
-    $\hat{z}$ stesso.
-} $(\theta, r, h)$, con versore $\hat{z}$ giacente
-lungo l'asse di rotazione del filo (antiparallelo a $\vec{g}$),
-origine $O$ e versore $\hat{x}$ contenuti nel piano sul quale vengono appoggiati
-i cilindri. Sia inoltre $P$ un punto materiale qualunque solidale all'estremità
-superiore del filo (e quindi anche ai cilindretti) che, con il filo a riposo,
-si trovi sul piano $xOz$.
-Allora, \emph{trascurando gli attriti}, il moto di $P$ è caratterizzato da:
-\[\theta(t) = \theta_0 \cos(\omega t)\]
-La pulsazione $\omega$ di questo moto armonico dipende dal momento d'inerzia
-complessivo $I_\text{tot}$ dei corpi solidali all'estremità mobile del filo,
-nonché dalle caratteristiche del filo stesso. Queste ultime vengono riassunte
-nella \emph{costante torsionale} $C$. In particolare:
-\[ C = I_\text{tot}\,\omega^2 \]
-Detto $T = 2\pi / \omega$ il periodo del moto armonico, si ottiene:
-\[ I_\text{tot} = \frac{C}{4\pi^2}\,T^2 \]
-Detto $I_0$ il momento d'inerzia che rimane costante\footnote{
-    $I_0$ include, ad esempio, il momento d'inerzia del disco su cui
-    era possibile appoggiare i cilindretti, nonché quello della parte mobile
-    del sensore di rotazione.
-},
-al variare dei cilindretti ($\text{Cil}$) posizionati sopra al filo, si ha:
-\[ \sum_{i\,\in\,\text{Cil}}\!\!I_i = \frac{C}{4\pi^2}\,T^2 - I_0 \]
-Da questa relazione, tramite una regressione lineare (pesata\footnote{
-    Gli errori assoluti su $I$ variano da punto a punto.
-}), è possibile
-ottenere una stima piuttosto precisa dei valori di $C$ e $I_0$.
-
-\begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg1.jpg}
-        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg2.jpg}
-        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg3.jpg}
-        % \includegraphics[trim={1.4cm .5cm 3.1cm 2.1cm},clip,width=.5\textwidth]{img/Reg4.jpg}
-        \caption{\emph{
-            I dati raccolti, assieme alle rette di regressione lineare
-            (in rosa, le regioni di incertezza).
-        }}
-    \end{figure}
-\end{center}
-
-Riportiamo di seguito i risultati delle regressioni lineari,
-dove $\xi=\frac{C}{4\pi^2}$ è il coefficiente angolare.
-
-\begin{center}
-\begin{tblr}{ |c|c|c|c| }
-    \hline
-    $j$ & $I_0$ ($10^{-4}\,\unit{kg\,m^2}$) & $\xi$ ($10^{-4}\,\unit{J}$) & $C$ ($\unit{mJ}$) \\
-    \hline
-    1 & $1.620\pm0.006$ & $2.015\pm0.002$ & $7.956\pm0.010$ \\
-    2 & $1.581\pm0.006$ & $9.587\pm0.012$ & $37.85\pm0.05$  \\
-    3 & $1.582\pm0.006$ & $28.56\pm0.03$  & $112.75\pm0.14$ \\
-    4 & $1.587\pm0.006$ & $39.86\pm0.05$  & $157.38\pm0.20$ \\
-    \hline
-\end{tblr}
-\end{center}
-
-La costante torsionale $C$ dipende da alcune caratteristiche del filo,
-come la lunghezza $l$ e il diametro $d$. In particolare, vale:
-\[
-C = \frac{\pi}{2 l}\!\left(\frac{d}{2}\right)^{\!\!4}\!G = \frac{\pi d^4}{32 l} G
-\]
-dove la grandezza $G$ (dimensionalmente, una pressione) è detta
-“modulo di scorrimento” del materiale di cui è composto il filo. Allora:
-\[G = \frac{32 l}{\pi d^4} C\]
-Di seguito riportiamo, in una tabella, le misure di $l$ e $d$ dei vari fili e i
-corrispondenti valori della costante di scorrimento.
-
-\begin{center}
-\begin{tblr}{ |c|c|c|c|c| }
-    \hline
-    $j$ & $l$ ($\unit{cm}$) & $d$ ($\unit{mm}$) & $C$ ($\unit{mJ}$) & $G$ ($\unit{GPa}$) \\
-    \hline
-    1 & $43.3\pm0.1$ & $0.81\pm0.01$ & $7.956\pm0.010$ & $82\pm4$ \\
-    2 & $43.1\pm0.1$ & $1.20\pm0.01$ & $37.85\pm0.05$  & $80\pm3$ \\
-    3 & $43.0\pm0.1$ & $1.57\pm0.01$ & $112.75\pm0.14$ & $81\pm2$ \\
-    4 & $42.7\pm0.1$ & $1.97\pm0.01$ & $157.38\pm0.20$ & $45.4\pm1.1$ \\
-    \hline
-\end{tblr}
-\end{center}
 
 Per valutare numericamente la consistenza dei risultati ottenuti con i valori
 $G$ riportati in letteratura ($G_l$),
@@ -268,9 +182,9 @@ Riteniamo che queste imperfezioni potrebbero avere influenzato
 le nostre misure in maniera non trascurabile.
 
 \pagebreak
-\subsection{Attrito}
+\subsection{Misura dello smorzamento}
 
-Il moto del pendolo di torsione è condizionato dalla presenza
+Il moto del pendolo fisico è condizionato dalla presenza
 di attriti, che ne modificano ampiezza e periodo.
 In particolare, il modello matematico di riferimento è descritto da:
 \[\theta(t) = \theta_0\cos(\omega t)\,e^{-\lambda t}\]
