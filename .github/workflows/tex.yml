@@ -33,6 +33,12 @@ jobs:
           root_file: lab1/r7-pendulum/relazione.tex
           compiler: latexmk
           args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r7-pendulum/
+      - name: Compile r8-rotolamento
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: lab1/r8-rotolamento/relazione.tex
+          compiler: latexmk
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r8-rotolamento/
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
