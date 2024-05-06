@@ -68,11 +68,12 @@
             tra i fototraguardi
         } \\
         \hline[dashed]
-        Cellulare & \SetCell[c=3]{1} {
+        Cellulare & \SetCell[c=3]{l} {
             Necessario per rilevare \\
             l'angolo di inclinazione
         } \\
-        Un campione & \SetCell[c=3]{l} {Corpo rigido e simmetrico} \\
+        Un campione & \SetCell[c=3]{l} {
+        Corpo rigido e simmetrico} \\
         \hline
     \end{tblr}
 \end{center}
@@ -105,26 +106,20 @@
 
 \subsection{Analisi dei dati raccolti e conclusioni}
 Fissato un sistema di riferimento solidale all'apparato di misura,
-con origine nel punto di partenza del campione, consosciamo la 
-forza e il momento risultanti sul corpo\footnote{con R indichiamo
-la distanza tra il suo centro di massa e il punto di contatto}:
-$Mgsin(\theta) - F_s = Ma_{cm}$
-$F_s R = I_{cm} \frac{a-{cm}}{R} $
-
-
-
+con origine nel punto di partenza del campione, possiamo scrivere 
+la legge del moto del campione, indicando con $l$ la distanza tra
+i due fototraguardi:
+$l = \frac{1}{2} a_{cm} t^2$
+Ma noi conosciamo anche la forza ed il momento risultanti sul
+corpo\footnote{con $R$ indichiamo la distanza tra il suo centro di
+massa e il punto di contatto}:
+$M g sin(\theta) - F_s = Ma_{cm}$
+$F_s R = I_{cm} \frac{a-{cm}}{R}$
+$M g R^2 sin(\theta) = (I_{cm} + MR^2) a_{cm}$
 La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
-\begin{equation}\label{eq:1}
-    g_s = \frac{2d_0 - \diam_i}{\left(\overline{t_s}\right)^2}
-    % \best{g} = \frac{2\best{\left(d_0\right)} - \bestp{\diam_i}}
-    %                 {\bestp{\overline{t_i}}^2}
-    % \qquad\wedge\qquad
-    % \errrel{g} = \frac{2\left(\delta d_0\right) - \delta \diam_i}
-    %                   {2\best{\left(d_0\right)} - \bestp{\diam_i}}
-    %            + 2\frac{\sigma_{\overline{t_i}}}{\overline{t_i}}
-\end{equation}
-dove l'errore su $g_s$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
-$\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti).
+$\frac{2 l}{t^2} = \frac{M g R^2 sin(\theta)}{(I_{cm} + MR^2}$
+dove l'errore su $g$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
+$\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti). %SCRIVERE DA COSA SEGUE L'ERRORE
 
 Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
 Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso
