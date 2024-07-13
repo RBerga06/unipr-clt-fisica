@@ -97,7 +97,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytz-2024.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyzmq-26.0.3-py312ha04878a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/qhull-2020.2-h3c5361c_4.conda
-      - conda: https://repo.prefix.dev/rberga06/noarch/rberga06-phylab-0.0.1.dev0-pyh4616a5c_0.conda
+      - conda: https://repo.prefix.dev/rberga06/noarch/rberga06-phylab-0.0.1.dev1-pyh4616a5c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/readline-8.2-h9e318b2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
@@ -1730,20 +1730,20 @@ packages:
   timestamp: 1720778882120
 - kind: conda
   name: rberga06-phylab
-  version: 0.0.1.dev0
+  version: 0.0.1.dev1
   build: pyh4616a5c_0
   subdir: noarch
   noarch: python
-  url: https://repo.prefix.dev/rberga06/noarch/rberga06-phylab-0.0.1.dev0-pyh4616a5c_0.conda
-  sha256: 848b589e5f277fa414c33358b72c1edb95fb97a4c0e3426238cdf338eec5ed6f
+  url: https://repo.prefix.dev/rberga06/noarch/rberga06-phylab-0.0.1.dev1-pyh4616a5c_0.conda
+  sha256: cf20d06014e6649b797a887ab4115790c2918d51637020f05dd39356514e98ad
   depends:
   - python >=3.12
   - sympy
   - python
   license: AGPL-3.0-only
   purls: []
-  size: 83171213
-  timestamp: 1720809795197
+  size: 166375642
+  timestamp: 1720852846287
 - kind: conda
   name: readline
   version: '8.2'

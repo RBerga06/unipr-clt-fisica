@@ -2,6 +2,7 @@
     "recommendations": [
         "remisa.mathover",
         "ms-python.python",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "streetsidesoftware.code-spell-checker-italian"
     ]
 }

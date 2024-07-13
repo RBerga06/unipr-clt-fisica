@@ -59,21 +59,33 @@
         Calibro ventesimale & \qty{0.05}{mm} & \qty{150.00}{mm} & \qty{0.05}{mm} \\
         \hline[dashed]
         Bilancia di precisione & \qty{0.01}{g} & \qty{4200.00}{g} & \qty{0.01}{g} \\
+        \hline[dashed]
+        Cellulare come goniometro & \qty{0.1}{\degree} & \qty{45.0}{\degree} & \qty{0.1}{\degree} \\
         \hline
         \hline
         \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
         \hline
+        Piano inclinato & \SetCell[c=3]{l} {
+            Costituito da guide che permettono al \\
+            campione di cadere da un fototraguardo \\
+            all'altro con un moto di rotolamento puro.
+        } \\
+        \hline[dashed]
+        Campione & \SetCell[c=3]{l} {
+            Corpo rigido con simmetria assiale, \\
+            assimilabile a una combinazione di \\
+            cilindri e tronchi di cono.
+        } \\
+        \hline[dashed]
         Brugola & \SetCell[c=3]{l} {
             Utile per cambiare la distanza \\
             tra i fototraguardi
         } \\
         \hline[dashed]
-        Cellulare & \SetCell[c=3]{l} {
-            Necessario per rilevare \\
-            l'angolo di inclinazione
+        Lucidi & \SetCell[c=3]{l} {
+            Utili per cambiare l'angolo di \\
+            inclinazione delle guide
         } \\
-        Un campione & \SetCell[c=3]{l} {
-        Corpo rigido e simmetrico} \\
         \hline
     \end{tblr}
 \end{center}
@@ -81,16 +93,19 @@
 \section{Esperienza e procedimento di misura}
 \begin{enumerate}
     \item
-        Pesiamo il corpo con la bilancia di precisione per ottenerne la massa.
+        Misuriamo la massa del campione con la bilancia di precisione
+        e, con il calibro ventesimale, tutti i diametri e le altezze
+        necessarie al calcolo del suo momento d'inerzia.
     \item
-        Considerando il campione come una composizione di forme solide note
-        di cui misuriamo tutti i diametri e le altezze necessarie al calcolo
-        del suo momento d'inerzia con il calibro ventesimale.
+        Fissiamo la distanza $L$ tra i due fototraguardi
+        e l'angolo $\theta$ di inclinazione delle guide
+        rispetto a un piano normale a $\vec{g}$.
+        Allora, acceso e impostato adeguatamente il contatore di impulsi,
+        misuriamo 50 volte il tempo di caduta del campione.
     \item
-        Acceso e impostato adeguatamente il contatore di impulsi,
-        misuriamo 50 volte il tempo di caduta del campione
-        variando l'angolo e le distanze tra i fototraguardi.
-        
+        Ripetiamo il punto precedente per svariate combinazioni
+        di $L$ e $\theta$.
+
 \end{enumerate}
 
 \emph{
@@ -105,21 +120,23 @@
 }
 
 \subsection{Analisi dei dati raccolti e conclusioni}
-Per calcolare I_{cm} abbiamo %SPIEGARE COME
+Essendo il momento d'inerzia additivo, abbiamo calcolato
+$I_\text{CM}$ sommando i momenti d'inerzia rispetto all'asse
+di simmetria
 
 Fissato un sistema di riferimento solidale all'apparato di misura,
-con origine nel punto di partenza del campione, possiamo scrivere 
+con origine nel punto di partenza del campione, possiamo scrivere
 la legge del moto del campione, indicando con $l$ la distanza tra
 i due fototraguardi:
-$l = \frac{1}{2} a_{cm} t^2$
+\[l = \frac{1}{2} a_\text{cm} t^2\]
 Ma noi conosciamo anche la forza ed il momento risultanti sul
 corpo\footnote{con $R$ indichiamo la distanza tra il suo centro di
 massa e il punto di contatto}:
-$M g sin(\theta) - F_s = Ma_{cm}$
-$F_s R = I_{cm} \frac{a-{cm}}{R}$
-$M g R^2 sin(\theta) = (I_{cm} + MR^2) a_{cm}$
+\[M g sin(\theta) - F_s = Ma_\text{cm}\]
+\[F_s R = I_\text{cm} \frac{a_\text{cm}}{R}\]
+\[M g R^2 sin(\theta) = (I_\text{cm} + MR^2) a_{cm}\]
 La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
-$\frac{2 l}{t^2} = \frac{M g R^2 sin(\theta)}{(I_{cm} + MR^2}$
+\[\frac{2 l}{t^2} = \frac{M g R^2 sin(\theta)}{I_\text{cm} + MR^2}\]
 dove l'errore su $g$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
 $\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti). %SCRIVERE DA COSA SEGUE L'ERRORE
 
