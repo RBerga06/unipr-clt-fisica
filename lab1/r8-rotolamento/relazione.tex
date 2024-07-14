@@ -121,14 +121,38 @@
 
 \subsection{Analisi dei dati raccolti e conclusioni}
 Essendo il momento d'inerzia additivo, abbiamo calcolato
-$I_\text{CM}$ sommando i momenti d'inerzia rispetto all'asse
-di simmetria
+$I_\text{CM}$ sommando i singoli momenti d'inerzia (rispetto all'asse
+di simmetria) dei cilindri e dei tronchi di cono che compongono il
+campione. La massa di ciascuno di essi è stata facilmente
+calcolata assumendo la densità del campione uniforme.
+
+\begin{center}
+    \begin{tblr}{ |c|c|c|c|c|c|c| }
+        \hline
+        &Forma&$h\;(\unit{mm})$&\SetCell[c=2]{c}$d_{1,2}$&$V$&$m$&$I$\\
+        \hline
+        1  & C & $30.45\pm0.05$ & $0\pm$ & \\
+        2  & T & $ 5.95\pm0.10$ & $0\pm$ & \\
+        3  & C & $ 9.20\pm0.10$ & $0\pm$ & \\
+        4  & C & $10.80\pm0.05$ & $0\pm$ & \\
+        5  & T & $ 4.25\pm0.05$ & $0\pm$ & \\
+        6  & C & $52.95\pm0.05$ & $0\pm$ & \\
+        7  & T & $ 4.25\pm0.05$ & $0\pm$ & \\
+        8  & C & $10.80\pm0.05$ & $0\pm$ & \\
+        9  & C & $ 9.25\pm0.10$ & $0\pm$ & \\
+        10 & T & $ 5.95\pm0.10$ & $0\pm$ & \\
+        11 & C & $30.40\pm0.05$ & $0\pm$ & \\
+        \hline
+    \end{tblr}
+
+    \emph{\textbf{Nota.} “C” sta per “Cilindro”, “T” per “Tronco di cono”}
+\end{center}
 
 Fissato un sistema di riferimento solidale all'apparato di misura,
 con origine nel punto di partenza del campione, possiamo scrivere
-la legge del moto del campione, indicando con $l$ la distanza tra
+la legge del moto del campione, indicando con $L$ la distanza tra
 i due fototraguardi:
-\[l = \frac{1}{2} a_\text{cm} t^2\]
+\[L = \frac{1}{2} a_\text{cm} t^2\]
 Ma noi conosciamo anche la forza ed il momento risultanti sul
 corpo\footnote{con $R$ indichiamo la distanza tra il suo centro di
 massa e il punto di contatto}:
@@ -136,56 +160,8 @@ massa e il punto di contatto}:
 \[F_s R = I_\text{cm} \frac{a_\text{cm}}{R}\]
 \[M g R^2 sin(\theta) = (I_\text{cm} + MR^2) a_{cm}\]
 La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
-\[\frac{2 l}{t^2} = \frac{M g R^2 sin(\theta)}{I_\text{cm} + MR^2}\]
+\[\frac{2 L}{t^2} = \frac{M g R^2 sin(\theta)}{I_\text{cm} + MR^2}\]
 dove l'errore su $g$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
 $\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti). %SCRIVERE DA COSA SEGUE L'ERRORE
 
-
-Di seguito riportiamo gli istogrammi dei tempi e i valori di $g$ così ottenuti.
-Per confrontare queste misure indirette ($g_A$ e $g_B$) con il valore atteso
-($g_\text{attesa}=\qty{9.806}{m\per s^2}$), valutiamo, per ogni sferetta $s$, la seguente quantità
-(adimensionale):\[\varepsilon_s = \frac{\bestp{g_s} - g_\text{attesa}}{\delta g_s}
-\] Allora la misura $g_s$ da noi ottenuta è compatibile con $g_\text{attesa}$ se e solo se
-$\left|\varepsilon_s\right|\le1$; inoltre, dal segno di $\varepsilon_s$ è possibile
-determinare se $g_s$ misurata è una sovrastima ($\varepsilon_s>0$) o una sottostima
-($\varepsilon_s<0$) del valore atteso.
-
-\begin{figure}[H]
-    % trim={< v > ^}
-    %\includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/TempiA.jpg}
-    %\includegraphics[trim={2cm .5cm 2.4cm 2.1cm},clip,width=.5\textwidth]{img/TempiB.jpg}
-    \caption{Istogrammi dei dati raccolti ($t_A$ e $t_B$)}
-\end{figure}
-\vspace{.5cm}
-\begin{center}
-    \begin{tblr}{ |Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
-        \hline
-            $s$ &
-            $\diam_s\:(\unit{mm})$ &
-            $\overline{t_s}\:(\unit{ms})$ &
-            $g_s\:(\unit{m\per s^2})$ &
-            $\varepsilon_s$ \\
-        \hline
-        A & $24.62\pm0.01$ & $503.63\pm0.02$ & $9.82\pm0.02$ & $+0.67$ \\
-        \hline[dashed]
-        B & $22.23\pm0.01$ & $503.93\pm0.02$ & $9.82\pm0.02$ & $+0.57$ \\
-        \hline
-    \end{tblr}
-\end{center}
-
-Le misure di $g$ ottenute sono pertanto ampiamente consistenti con il valore atteso.
-
-\emph{
-    \textbf{Osservazione.} Dai valori di $\varepsilon$ non emerge una differenza
-    significativa fra le due sferette. In particolare, sembra che l'attrito viscoso
-    dell'aria abbia agito in maniera trascurabile (come ci aspettavamo).\\
-    Tuttavia, dopo una più attenta analisi, è comunque possibile notare una tendenza:
-    in media, la sferetta con raggio maggiore ha percorso la stessa distanza in un
-    tempo leggermente minore.
-    Pertanto, ciò potrebbe suggerire un effetto molto ridotto dell'attrito dell'aria;
-    questa tendenza però non è rispecchiata dai valore di $\varepsilon$,
-    probabilmente a causa di una sovrastima della distanza $d_0$. Si noti infatti che,
-    dal segno degli $\varepsilon$, entrambe le misure di $g$ sono risultate sovrastime,
-    mentre, nell'equazione (\ref{eq:1}), $d_0$ è al numeratore.
-}
 \end{document}
