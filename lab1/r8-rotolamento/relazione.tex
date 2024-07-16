@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{xfrac}
+\usepackage{caption}    % for \caption*{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -74,17 +75,13 @@
         Campione & \SetCell[c=3]{l} {
             Corpo rigido con simmetria assiale, \\
             assimilabile a una combinazione di \\
-            cilindri e tronchi di cono.
+            cilindri e tronchi di cono coassiali.
         } \\
         \hline[dashed]
-        Brugola & \SetCell[c=3]{l} {
-            Utile per cambiare la distanza \\
-            tra i fototraguardi
-        } \\
-        \hline[dashed]
-        Lucidi & \SetCell[c=3]{l} {
-            Utili per cambiare l'angolo di \\
-            inclinazione delle guide
+        Brugola e Lucidi & \SetCell[c=3]{l} {
+            Utili per cambiare, rispettivamente, \\
+            la distanza tra i fototraguardi e l'angolo \\
+            di inclinazione delle guide.
         } \\
         \hline
     \end{tblr}
@@ -109,50 +106,66 @@
 \end{enumerate}
 
 \emph{
-    \textbf{Notazione.} Indicheremo con $\left(t_s\right)_i$
+    \textbf{Notazione.} Fissati $L$ e $\theta$,
+    indicheremo con $\left(t_{L,\theta}\right)_i$
     ogni $i$-esima misura del tempo di caduta
     $\left(i\in\left[0;50\right)\cap\mathbb{N}\right)$,
-    mentre con $\overline{t_s}$ il tempo di caduta medio.
-    In particolare:\[
-        \delta\!\left(\overline{t_s}\right) = \sigma_{\overline{t_s}} =
-        \frac{\sigma_{t_s}}{\sqrt{100}}   = \frac{\sigma_{t_s}}{10}.
+    mentre con $\overline{t}_{L,\theta}$ il tempo di caduta medio.
+    Calcoloremo l'errore su $\overline{t}_{L,\theta}$ in questo modo:\[
+        \delta\!\left(\overline{t}_{L,\theta}\right) =
+        \sigma_{\overline{t}_{L,\theta}} =
+        \frac{\sigma_{t_{L,\theta}}}{\sqrt{50}}.
     \]
 }
 
 \subsection{Analisi dei dati raccolti e conclusioni}
 Essendo il momento d'inerzia additivo, abbiamo calcolato
-$I_\text{CM}$ sommando i singoli momenti d'inerzia (rispetto all'asse
-di simmetria) dei cilindri e dei tronchi di cono che compongono il
-campione. La massa di ciascuno di essi è stata facilmente
+$I_\text{CM}$ sommando i singoli momenti d'inerzia rispetto al comune
+asse di simmetria dei cilindri e dei tronchi di cono che compongono il
+campione, dove la massa di ciascuno di essi è stata facilmente
 calcolata assumendo la densità del campione uniforme.
+Di seguito riportiamo tali misure:
 
-\begin{center}
-    \begin{tblr}{ |c|c|c|c|c|c|c| }
-        \hline
-        &Forma&$h\;(\unit{mm})$&\SetCell[c=2]{c}$d_{1,2}$&$V$&$m$&$I$\\
-        \hline
-        1  & C & $30.45\pm0.05$ & $0\pm$ & \\
-        2  & T & $ 5.95\pm0.10$ & $0\pm$ & \\
-        3  & C & $ 9.20\pm0.10$ & $0\pm$ & \\
-        4  & C & $10.80\pm0.05$ & $0\pm$ & \\
-        5  & T & $ 4.25\pm0.05$ & $0\pm$ & \\
-        6  & C & $52.95\pm0.05$ & $0\pm$ & \\
-        7  & T & $ 4.25\pm0.05$ & $0\pm$ & \\
-        8  & C & $10.80\pm0.05$ & $0\pm$ & \\
-        9  & C & $ 9.25\pm0.10$ & $0\pm$ & \\
-        10 & T & $ 5.95\pm0.10$ & $0\pm$ & \\
-        11 & C & $30.40\pm0.05$ & $0\pm$ & \\
-        \hline
+\begin{itemize}
+    \item Massa totale: $M=(2214.57\pm0.01)\;\unit{g}$
+    \item Volume totale: $V=(2.654\pm0.017)\cdot10^{-4}\;\unit{m^3}$
+    \item Densità media: $\rho=(8.34\pm0.05)\cdot10^{-3}\;\unit{kg \per m^3}$
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+
+    \begin{tblr}{
+        vlines = {},
+        hline{1,2,17} = {},
+        hline{3,5-7,9,10,12-14,16} = {dashed},
+        cell{1,2,5,6,9,12,13,16}{1-5} = {c,m},
+        cell{3,7,10,14}{1-3,5} = {r=2}{c,m},
+    }
+        $\#$&\emph{Forma}&$h\;(\unit{mm})$&$d_{1,2}\;(\unit{mm})$&$I\;(\unit{mg\,m^2})$\\
+        1  & Cilindro          & $30.45\pm0.05$ & $49.90\pm0.05$ & $154.6 \pm1.8 $ \\
+        2  & {Tronco\\di cono} & $ 5.95\pm0.10$ & $49.90\pm0.05$ & $ 13.7 \pm0.5 $ \\
+           &                   &                & $29.40\pm0.05$ &                 \\
+        3  & Cilindro          & $ 9.20\pm0.10$ & $25.85\pm0.05$ & $  3.36\pm0.08$ \\
+        4  & Cilindro          & $10.80\pm0.05$ & $18.65\pm0.05$ & $  1.07\pm0.02$ \\
+        5  & {Tronco\\di cono} & $ 4.25\pm0.05$ & $34.55\pm0.05$ & $ 11.8 \pm0.4 $ \\
+           &                   &                & $49.90\pm0.05$ &                 \\
+        6  & Cilindro          & $52.95\pm0.05$ & $49.90\pm0.05$ & $269   \pm3   $ \\
+        7  & {Tronco\\di cono} & $ 4.25\pm0.05$ & $49.90\pm0.05$ & $ 12.6 \pm0.4 $ \\
+           &                   &                & $36.35\pm0.05$ &                 \\
+        8  & Cilindro          & $10.80\pm0.05$ & $18.75\pm0.05$ & $  1.09\pm0.02$ \\
+        9  & Cilindro          & $ 9.25\pm0.10$ & $25.90\pm0.05$ & $  3.41\pm0.08$ \\
+        10 & {Tronco\\di cono} & $ 5.95\pm0.10$ & $29.10\pm0.05$ & $ 13.5 \pm0.5 $ \\
+           &                   &                & $49.90\pm0.05$ &                 \\
+        11 & Cilindro          & $30.40\pm0.05$ & $49.90\pm0.05$ & $154.4 \pm1.8 $ \\
     \end{tblr}
+\end{table}
 
-    \emph{\textbf{Nota.} “C” sta per “Cilindro”, “T” per “Tronco di cono”}
-\end{center}
-
-Fissato un sistema di riferimento solidale all'apparato di misura,
-con origine nel punto di partenza del campione, possiamo scrivere
-la legge del moto del campione, indicando con $L$ la distanza tra
-i due fototraguardi:
-\[L = \frac{1}{2} a_\text{cm} t^2\]
+Fissato un sistema di riferimento cartesiano ortogonale solidale
+al piano inclinato, con origine nel punto di partenza del campione,
+possiamo scrivere la legge del moto del centro di massa e le
+equazioni cardinali del corpo rigido:
+\[x = \frac{1}{2} a_\text{CM} t^2\]
 Ma noi conosciamo anche la forza ed il momento risultanti sul
 corpo\footnote{con $R$ indichiamo la distanza tra il suo centro di
 massa e il punto di contatto}:
@@ -160,7 +173,7 @@ massa e il punto di contatto}:
 \[F_s R = I_\text{cm} \frac{a_\text{cm}}{R}\]
 \[M g R^2 sin(\theta) = (I_\text{cm} + MR^2) a_{cm}\]
 La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
-\[\frac{2 L}{t^2} = \frac{M g R^2 sin(\theta)}{I_\text{cm} + MR^2}\]
+\[\frac{2 L}{t^2} = \frac{M g R^2 \sin(\theta)}{I_\text{cm} + MR^2}\]
 dove l'errore su $g$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
 $\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti). %SCRIVERE DA COSA SEGUE L'ERRORE
 
