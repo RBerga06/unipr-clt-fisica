@@ -53,8 +53,7 @@
         \hline
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        {Due fototraguardi con \\ contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
-            % TODO: Sono proprio fototraguardi?
+        {Sistema a contatti elettrici \\ con contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
         \hline[dashed]
         Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
         \hline[dashed]
@@ -69,7 +68,7 @@
         \hline
         Piano inclinato & \SetCell[c=3]{l} {
             Costituito da guide che permettono al \\
-            campione di cadere da un fototraguardo \\
+            campione di cadere da un contatto elettrico \\
             all'altro con un moto di rotolamento puro.
         } \\
         \hline[dashed]
@@ -79,9 +78,14 @@
             cilindri e tronchi di cono coassiali.
         } \\
         \hline[dashed]
+        Cuscinetto & \SetCell[c=3]{l} {
+            Posto a coprire il secondo contatto elettrico,
+            attutisce l'impatto del campione contro di esso.
+        } \\
+        \hline[dashed]
         Brugola e Lucidi & \SetCell[c=3]{l} {
             Utili per cambiare, rispettivamente, \\
-            la distanza tra i fototraguardi e l'angolo \\
+            la distanza tra i contatti e l'angolo \\
             di inclinazione delle guide.
         } \\
         \hline
@@ -95,29 +99,17 @@
         e, con il calibro ventesimale, tutti i diametri e le altezze
         necessarie al calcolo del suo momento d'inerzia.
     \item
-        Fissiamo la distanza $L$ tra i due fototraguardi
+        Fissiamo la distanza $L$ tra i due contatti elettrici
         e l'angolo $\theta$ di inclinazione delle guide
         rispetto a un piano normale a $\vec{g}$.
-        Allora, acceso e impostato adeguatamente il contatore di impulsi,
-        misuriamo 50 volte il tempo di caduta del campione.
+        Allora, acceso e impostato adeguatamente il contatore
+        di impulsi, misuriamo 50 volte il tempo di caduta del
+        campione $t_{L,\theta}$.
     \item
         Ripetiamo il punto precedente per svariate combinazioni
         di $L$ e $\theta$.
 
 \end{enumerate}
-
-\emph{
-    \textbf{Notazione.} Fissati $L$ e $\theta$,
-    indicheremo con $\left(t_{L,\theta}\right)_i$
-    ogni $i$-esima misura del tempo di caduta
-    $\left(i\in\left[0;50\right)\cap\mathbb{N}\right)$,
-    mentre con $\overline{t}_{L,\theta}$ il tempo di caduta medio.
-    Calcoloremo l'errore su $\overline{t}_{L,\theta}$ in questo modo:\[
-        \delta\!\left(\overline{t}_{L,\theta}\right) =
-        \sigma_{\overline{t}_{L,\theta}} =
-        \frac{\sigma_{t_{L,\theta}}}{\sqrt{50}}.
-    \]
-}
 
 \subsection{Analisi dei dati raccolti e conclusioni}
 Essendo il momento d'inerzia additivo, abbiamo calcolato
@@ -164,7 +156,7 @@ Di seguito riportiamo tali misure:
 
 Fissato un sistema di riferimento cartesiano ortogonale solidale
 al piano inclinato, con origine nel punto di partenza del campione,
-asse $x$ parallelo alle guide e asse y entrante nel piano inclinato,
+asse $x$ parallelo alle guide e asse $y$ entrante nel piano inclinato,
 possiamo scrivere la legge del moto del centro di massa e le
 equazioni cardinali della dinamica del corpo rigido:
 \[x(t) = \frac{1}{2} a_\text{CM} t^2\]
@@ -190,7 +182,7 @@ Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
 \end{aligned}\right.\]
 Ricordando ora che $L = x(t_{L,\theta}) + D + S$, dove $D$ è il diametro
 più esterno del campione e $S$ è lo spessore del cuscinetto posto contro
-il secondo fototraguardo, possiamo ricavare:
+il secondo contatto elettrico, possiamo ricavare:
 \[
     \frac{2 L}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g t^2_{L,\theta}
 \]
