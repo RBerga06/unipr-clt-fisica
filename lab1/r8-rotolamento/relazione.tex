@@ -54,6 +54,7 @@
         \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
         {Due fototraguardi con \\ contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
+            % TODO: Sono proprio fototraguardi?
         \hline[dashed]
         Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
         \hline[dashed]
@@ -163,15 +164,38 @@ Di seguito riportiamo tali misure:
 
 Fissato un sistema di riferimento cartesiano ortogonale solidale
 al piano inclinato, con origine nel punto di partenza del campione,
+asse $x$ parallelo alle guide e asse y entrante nel piano inclinato,
 possiamo scrivere la legge del moto del centro di massa e le
-equazioni cardinali del corpo rigido:
-\[x = \frac{1}{2} a_\text{CM} t^2\]
-Ma noi conosciamo anche la forza ed il momento risultanti sul
-corpo\footnote{con $R$ indichiamo la distanza tra il suo centro di
-massa e il punto di contatto}:
-\[M g sin(\theta) - F_s = Ma_\text{cm}\]
-\[F_s R = I_\text{cm} \frac{a_\text{cm}}{R}\]
-\[M g R^2 sin(\theta) = (I_\text{cm} + MR^2) a_{cm}\]
+equazioni cardinali della dinamica del corpo rigido:
+\[x(t) = \frac{1}{2} a_\text{CM} t^2\]
+\[\left\{\begin{aligned}
+    &M g \sin\theta - F_s = M a_\text{CM} \\
+    &M g \cos\theta - F_n = 0 \\
+    &R M g \sin\theta = \left(I_\text{CM} + M R^2\right) \alpha
+\end{aligned}\right.\]
+dove $R$ è il raggio di contatto, $F_s$ è la forza di attrito statico
+tra il campione e le guide, mentre $F_n$ è la reazione vincolare delle
+guide, normale al piano.
+Per poter descrivere il moto del campione come di rotolamento puro,
+dobbiamo assicurarci che $F_s \le \mu_s F_n$, con $\mu_s$ il
+coefficiente di attrito statico tra il corpo rigido e le guide.
+Se questa condizione è verificata, possiamo utilizzare la relazione:
+\[\alpha = \frac{a_\text{CM}}{R}\]
+Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
+\[\left\{\begin{aligned}
+    &a_\text{CM} = \frac{M R^2}{I_\text{CM} + M R^2} g\sin\theta \\
+    &F_n = M g \cos\theta \\
+    &F_s = \frac{I}{I + M R^2} M g \sin\theta \\
+    & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I} + 1\right)\right) \\
+\end{aligned}\right.\]
+Ricordando ora che $L = x(t_{L,\theta}) + D + S$, dove $D$ è il diametro
+più esterno del campione e $S$ è lo spessore del cuscinetto posto contro
+il secondo fototraguardo, possiamo ricavare:
+\[
+    \frac{2 L}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right)
+\]
+
+%%% Vecchie cose %%%
 La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
 \[\frac{2 L}{t^2} = \frac{M g R^2 \sin(\theta)}{I_\text{cm} + MR^2}\]
 dove l'errore su $g$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
