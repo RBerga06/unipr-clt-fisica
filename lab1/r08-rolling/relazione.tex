@@ -146,7 +146,7 @@ Di seguito riportiamo tali misure:
         cell{1,2,5,6,9,12,13,16}{1-5} = {c,m},
         cell{3,7,10,14}{1-3,5} = {r=2}{c,m},
     }
-        $\#$&\emph{Forma}&$h\;(\unit{mm})$&$d_{1,2}\;(\unit{mm})$&$I\;(\unit{mg\,m^2})$\\
+        $\#$&\emph{Forma}&$h\;(\unit{mm})$&$d_{1,2}\;(\unit{mm})$&$I\;(10^{-6}\;\unit{kg\,m^2})$\\
         1  & Cilindro          & $30.45\pm0.05$ & $49.90\pm0.05$ & $154.6 \pm1.8 $ \\
         2  & {Tronco\\di cono} & $ 5.95\pm0.10$ & $49.90\pm0.05$ & $ 13.7 \pm0.5 $ \\
            &                   &                & $29.40\pm0.05$ &                 \\
@@ -189,19 +189,15 @@ Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
     &a_\text{CM} = \frac{M R^2}{I_\text{CM} + M R^2} g\sin\theta \\
     &F_n = M g \cos\theta \\
     &F_s = \frac{I}{I + M R^2} M g \sin\theta \\
-    & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I} + 1\right)\right) \\
+    & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I_\text{CM}} + 1\right)\right) \\
 \end{aligned}\right.\]
-Ricordando ora che $L = x(t_{L,\theta}) + D + S$, dove $D$ è il diametro
-più esterno del campione e $S$ è lo spessore del cuscinetto posto contro
-il secondo contatto elettrico, possiamo ricavare:
+Ricordando ora che $L = x(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
+più esterno del campione e $S$ è lo spessore del cuscinetto, possiamo ricavare:
 \[
-    \frac{2 L}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g t^2_{L,\theta}
+    \frac{2(L-D-S)}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g \bar{t}^2_{L,\theta}
 \]
 
-%%% Vecchie cose %%%
-La norma di $\vec{g}$ misurata indirettamente è allora ricavabile da:
-\[\frac{2 L}{t^2} = \frac{M g R^2 \sin(\theta)}{I_\text{cm} + MR^2}\]
-dove l'errore su $g$ segue dalla propagazione degli errori su $d_0,\diam_s$ e
-$\overline{t_s}$ (supponendo gli errori piccoli, casuali e indipendenti). %SCRIVERE DA COSA SEGUE L'ERRORE
+Possiamo pertanto determinare il modulo di $\vec{g}$ mediante una regressione
+lineare pesata:
 
 \end{document}
