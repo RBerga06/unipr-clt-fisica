@@ -49,11 +49,15 @@
 \setcounter{section}{-1}  % Count sections starting from 0
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
-    \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+    \begin{tblr}{
+        width=\textwidth,
+        colspec={ X[2,m,j]X[m,c]X[m,c]X[m,c] },
+        vlines,
+    }
         \hline
-        \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
+        \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
         \hline
-        {Sistema a contatti elettrici \\ con contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
+        {Sistema a contatti elettrici con contatore di impulsi} & \qty{1}{\micro s} & \qty{99999999}{\micro s} & \qty{1}{\micro s} \\
         \hline[dashed]
         Metro a nastro & \qty{0.1}{cm} & \qty{300.0}{cm} & \qty{0.1}{cm} \\
         \hline[dashed]
@@ -63,29 +67,36 @@
         \hline[dashed]
         Cellulare come goniometro & \qty{0.1}{\degree} & \qty{45.0}{\degree} & \qty{0.1}{\degree} \\
         \hline
+    \end{tblr}
+    \begin{tblr}{
+        width=\textwidth,
+        colspec={ X[m,j]X[3,m,j] },
+        vlines,
+    }
         \hline
-        \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
+        \textbf{Altro} & \textbf{Descrizione/Note} \\
         \hline
-        Piano inclinato & \SetCell[c=3]{l} {
-            Costituito da guide che permettono al \\
-            campione di cadere da un contatto elettrico \\
+        Piano inclinato & {
+            Costituito da guide che permettono al
+            campione di cadere da un contatto elettrico
             all'altro con un moto di rotolamento puro.
         } \\
         \hline[dashed]
-        Campione & \SetCell[c=3]{l} {
-            Corpo rigido con simmetria assiale, \\
-            assimilabile a una combinazione di \\
+        Campione & {
+            Corpo rigido con simmetria assiale,
+            assimilabile a una combinazione di
             cilindri e tronchi di cono coassiali.
         } \\
         \hline[dashed]
-        Cuscinetto & \SetCell[c=3]{l} {
-            Posto a coprire il secondo contatto elettrico,
-            attutisce l'impatto del campione contro di esso.
+        Cuscinetto & {
+            Posto a coprire il secondo contatto
+            elettrico, attutisce l'impatto del campione
+            contro di esso.
         } \\
         \hline[dashed]
-        Brugola e Lucidi & \SetCell[c=3]{l} {
-            Utili per cambiare, rispettivamente, \\
-            la distanza tra i contatti e l'angolo \\
+        Brugola e Lucidi & {
+            Utili per cambiare, rispettivamente,
+            la distanza tra i contatti e l'angolo
             di inclinazione delle guide.
         } \\
         \hline

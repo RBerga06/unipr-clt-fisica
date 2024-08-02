@@ -161,6 +161,7 @@
     },
     "python.terminal.activateEnvironment": false,
     "cSpell.words": [
-        "ventesimale"
+        "ventesimale",
+        "vlines"
     ]
 }
