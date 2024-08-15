@@ -202,11 +202,14 @@ Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
 Ricordando ora che $L = x_\text{CM}(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
 più esterno del campione e $S$ è lo spessore del cuscinetto, possiamo ricavare:
 \[
-    \frac{2(L-D-S)}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g \bar{t}^2_{L,\theta}
+    \frac{2(L-D-S)}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g \cdot \bar{t}_{L,\theta}^2
 \]
 
 Possiamo pertanto determinare il modulo di $\vec{g}$ mediante una regressione
-lineare pesata:
+lineare pesata\footnote{
+    La scelta di una regressione lineare \emph{pesata} è giustificata dal fatto
+    che gli errori sull'ascissa, per quanto ridotti, sono diversi fra di loro.
+}:
 \begin{figure}[H]
     % <v>^
     \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=\textwidth]{img/Graph2.jpg}
@@ -216,5 +219,11 @@ lineare pesata:
         dimensioni, non sono visibili.
     }}
 \end{figure}
+
+Di seguito riportiamo i risultati della regressione lineare:
+\begin{itemize}
+    \item Coefficiente angolare ($g$) $= $
+    \item Intercetta $= $
+\end{itemize}
 
 \end{document}
