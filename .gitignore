@@ -173,6 +173,7 @@ cython_debug/
 *.fdb_latexmk
 *.fls
 # *.pdf
+*.synctex(busy)
 *.synctex.gz
 *.ind
 *.ilg
