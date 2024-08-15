@@ -175,14 +175,14 @@ al piano inclinato, con origine nel punto di partenza del campione,
 asse $x$ parallelo alle guide e asse $y$ entrante nel piano inclinato,
 possiamo scrivere la legge del moto del centro di massa e le
 equazioni cardinali della dinamica del corpo rigido:
-\[x(t) = \frac{1}{2} a_\text{CM} t^2\]
+\[x_\text{CM}(t) = \frac{1}{2} a_\text{CM} t^2\]
 \[\left\{\begin{aligned}
     &M g \sin\theta - F_s = M a_\text{CM} \\
     &M g \cos\theta - F_n = 0 \\
     &R M g \sin\theta = \left(I_\text{CM} + M R^2\right) \alpha
 \end{aligned}\right.\]
-dove $R$ è il raggio di contatto, $F_s$ è la forza di attrito statico
-tra il campione e le guide, mentre $F_n$ è la reazione vincolare delle
+dove $R$ è il raggio di contatto, $\vec{F_s}$ è la forza di attrito statico
+tra il campione e le guide, mentre $\vec{F_n}$ è la reazione vincolare delle
 guide, normale al piano.
 
 Per poter descrivere il moto del campione come di rotolamento puro,
@@ -199,7 +199,7 @@ Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
     & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I_\text{CM}} + 1\right)\right) \\
 \end{aligned}\right.\]
 
-Ricordando ora che $L = x(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
+Ricordando ora che $L = x_\text{CM}(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
 più esterno del campione e $S$ è lo spessore del cuscinetto, possiamo ricavare:
 \[
     \frac{2(L-D-S)}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g \bar{t}^2_{L,\theta}
