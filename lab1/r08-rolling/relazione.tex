@@ -123,6 +123,8 @@
 \end{enumerate}
 
 \section{Analisi dei dati raccolti e conclusioni}
+\subsection{Calcolo del momento d'inerzia del campione}
+
 Essendo il momento d'inerzia additivo, abbiamo calcolato
 $I_\text{CM}$ sommando i singoli momenti d'inerzia rispetto al comune
 asse di simmetria dei cilindri e dei tronchi di cono che compongono il
@@ -163,7 +165,10 @@ Di seguito riportiamo tali misure:
     \item Massa totale: $M=(2214.57\pm0.01)\;\unit{g}$
     \item Volume totale: $V=(2.654\pm0.017)\cdot10^{-4}\;\unit{m^3}$
     \item Densità media: $\rho=(8.34\pm0.05)\cdot10^{-3}\;\unit{kg \per m^3}$
+    \item Momento d'inerzia totale: $I_\text{CM}=(6.38\pm0.09)\cdot10^{-4}\;\unit{kg\,m^2}$
 \end{itemize}
+
+\subsection{Calcolo di $g$ mediante la dinamica del corpo rigido}
 
 Fissato un sistema di riferimento cartesiano ortogonale solidale
 al piano inclinato, con origine nel punto di partenza del campione,
@@ -179,11 +184,13 @@ equazioni cardinali della dinamica del corpo rigido:
 dove $R$ è il raggio di contatto, $F_s$ è la forza di attrito statico
 tra il campione e le guide, mentre $F_n$ è la reazione vincolare delle
 guide, normale al piano.
+
 Per poter descrivere il moto del campione come di rotolamento puro,
 dobbiamo assicurarci che $F_s \le \mu_s F_n$, con $\mu_s$ il
 coefficiente di attrito statico tra il corpo rigido e le guide.
 Se questa condizione è verificata, possiamo utilizzare la relazione:
 \[\alpha = \frac{a_\text{CM}}{R}\]
+
 Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
 \[\left\{\begin{aligned}
     &a_\text{CM} = \frac{M R^2}{I_\text{CM} + M R^2} g\sin\theta \\
@@ -191,6 +198,7 @@ Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
     &F_s = \frac{I}{I + M R^2} M g \sin\theta \\
     & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I_\text{CM}} + 1\right)\right) \\
 \end{aligned}\right.\]
+
 Ricordando ora che $L = x(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
 più esterno del campione e $S$ è lo spessore del cuscinetto, possiamo ricavare:
 \[
