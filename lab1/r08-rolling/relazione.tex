@@ -124,7 +124,7 @@
 
 \end{enumerate}
 
-\section{Analisi dei dati raccolti e conclusioni}
+\section{Analisi dei dati raccolti}
 \subsection{Calcolo del momento d'inerzia del campione}
 
 Essendo il momento d'inerzia additivo, abbiamo calcolato
@@ -226,6 +226,12 @@ accompagnati alle relative misure di $L$ e $\theta$.
     ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G8.jpg}}\hfil
 \end{figure}
 
+Come è possibile osservare dai grafici qui riportati, le distribuzioni dei tempi di caduta
+sono abbastanza assimilabili a distribuzioni gaussiane.
+Questo ci permette di utilizzare nei calcoli successivi la media aritmetica $\bar{t}_{L,\theta}$
+di ciascun set di dati, indicando come errore:
+\[\sigma_{\bar{t}_{L,\theta}} = \frac{\sigma_{t_{L,\theta}}}{\sqrt{50}}\]
+
 \subsection{Calcolo di $g$ mediante la dinamica del corpo rigido}
 
 Fissato un sistema di riferimento cartesiano ortogonale solidale
@@ -273,15 +279,21 @@ lineare pesata\footnote{
     \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=\textwidth]{img/regressione.jpg}
     \caption*{\emph{
         In rosso la retta di regressione, in rosa la sua regione di incertezza. \\
-        Nel grafico principale, le barre di errore lungo l'ascissa, date le loro
-        dimensioni, non sono visibili.
+        Le barre di errore lungo l'ascissa, date le loro dimensioni, non sono visibili.
     }}
 \end{figure}
 
 Di seguito riportiamo i risultati della regressione lineare:
 \begin{itemize}
-    \item Coefficiente angolare ($g$) $=(9.9\pm0.5)\;\unit{m \per s^2}$
     \item Intercetta $=(0\pm3)\;\unit{m}$ (compatibile con $0$, come ci si aspettava)
+    \item Coefficiente angolare ($g$) $=(9.9\pm0.5)\;\unit{m \per s^2}$
 \end{itemize}
+
+Precisiamo che gli errori su tutte le misure indirette utilizzate nella regressione lineare
+sono stati calcolati mediante l'usuale metodo di propagazione degli errori: li abbiamo
+infatti valutati piccoli, casuali e indipendenti.
+
+\section{Conclusioni}
+
 
 \end{document}
