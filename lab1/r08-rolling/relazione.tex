@@ -124,7 +124,7 @@
 
 \end{enumerate}
 
-\section{Analisi dei dati raccolti}
+\section{Analisi dei dati raccolti e conclusioni}
 \subsection{Calcolo del momento d'inerzia del campione}
 
 Essendo il momento d'inerzia additivo, abbiamo calcolato
@@ -285,7 +285,7 @@ lineare pesata\footnote{
 
 Di seguito riportiamo i risultati della regressione lineare:
 \begin{itemize}
-    \item Intercetta $=(0\pm3)\;\unit{m}$ (compatibile con $0$, come ci si aspettava)
+    \item Intercetta $=(0\pm3)\;\unit{m}$
     \item Coefficiente angolare ($g$) $=(9.9\pm0.5)\;\unit{m \per s^2}$
 \end{itemize}
 
@@ -293,7 +293,25 @@ Precisiamo che gli errori su tutte le misure indirette utilizzate nella regressi
 sono stati calcolati mediante l'usuale metodo di propagazione degli errori: li abbiamo
 infatti valutati piccoli, casuali e indipendenti.
 
-\section{Conclusioni}
+\subsection{Conclusioni}
+I risultati della regressione lineare sono chiaramente compatibili
+con i valori attesi. Infatti:
+\begin{itemize}
+    \item Secondo il modello fisico utilizzato, l'intercetta dovrebbe essere nulla;
+          in effetti, $(0\pm3)\;\unit{m}$ è compatibile con $\qty{0}{m}$.
+    \item Il valore di $g$ atteso è $\qty{9.806}{m\per s^2}$; si può osservare
+          facilmente che il valore misurato, $(9.9\pm0.5)\;\unit{m \per s^2}$, è
+          compatibile con quello atteso.
+\end{itemize}
 
+Possiamo pertanto concludere che l'esperienza ha avuto successo: mediante l'apparato
+sperimentale siamo riusciti ad ottenere una misura di $g$ compatibile con quella attesa.
+
+Precisiamo che non è certo da escludere la presenza di errori sistematici: si può infatti
+osservare come le distribuzioni dei tempi di caduta tendano ad essere un po' asimmetriche,
+in particolare “più spostate” verso tempi più bassi.
+
+Tuttavia, alla luce dei risultati della regressione lineare, il gruppo di lavoro ritiene
+che, comunque, questi errori non siano significativi.
 
 \end{document}
