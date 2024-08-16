@@ -9,6 +9,8 @@
 \usepackage{float}
 \usepackage{xfrac}
 \usepackage{caption}    % for \caption*{}
+\usepackage[labelformat=simple, justification=centering]{subfig}
+\renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -173,9 +175,56 @@ Di seguito riportiamo tali misure:
 Riportiamo di seguito i grafici della distribuzione dei tempi di caduta $t_{L,\theta}$,
 accompagnati alle relative misure di $L$ e $\theta$.
 
-\begin{center}
-    %
-\end{center}
+\begin{figure}[H]
+    \centering
+    \subfloat[][
+        $L=(55.6\pm0.1)\;\unit{cm}$
+
+        $\theta=(3.8\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G0.jpg}}\hfil
+    \subfloat[][
+        $L=(70.5\pm0.1)\;\unit{cm}$
+
+        $\theta=(3.8\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G1.jpg}}\hfil
+    \subfloat[][
+        $L=(85.4\pm0.1)\;\unit{cm}$
+
+        $\theta=(3.8\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G2.jpg}}\hfil
+    \subfloat[][
+        $L=(100.2\pm0.1)\;\unit{cm}$
+
+        $\theta=(3.8\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G3.jpg}}\hfil
+\end{figure}\begin{figure}[H]
+    \centering
+    \subfloat[][
+        $L=(70.5\pm0.1)\;\unit{cm}$
+
+        $\theta=(2.9\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G4.jpg}}\hfil
+    \subfloat[][
+        $L=(85.4\pm0.1)\;\unit{cm}$
+
+        $\theta=(2.9\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G5.jpg}}
+    \subfloat[][
+        $L=(100.2\pm0.1)\;\unit{cm}$
+
+        $\theta=(2.9\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G6.jpg}}\hfil
+    \subfloat[][
+        $L=(55.6\pm0.1)\;\unit{cm}$
+
+        $\theta=(2.1\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G7.jpg}}\hfil
+    \subfloat[][
+        $L=(85.4\pm0.1)\;\unit{cm}$
+
+        $\theta=(2.1\pm0.1)\unit{\degree}$
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G8.jpg}}\hfil
+\end{figure}
 
 \subsection{Calcolo di $g$ mediante la dinamica del corpo rigido}
 
