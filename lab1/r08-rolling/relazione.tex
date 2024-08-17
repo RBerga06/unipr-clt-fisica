@@ -9,6 +9,7 @@
 \usepackage{float}
 \usepackage{xfrac}
 \usepackage{caption}    % for \caption*{}
+\usepackage[bottom]{footmisc}  % forza le note a pié di pagina in basso
 \usepackage[labelformat=simple, justification=centering]{subfig}
 \renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
@@ -96,7 +97,7 @@
             contro di esso.
         } \\
         \hline[dashed]
-        Brugola e Lucidi & {
+        Brugola e lucidi & {
             Utili per cambiare, rispettivamente,
             la distanza tra i contatti e l'angolo
             di inclinazione delle guide.
@@ -124,15 +125,24 @@
 
 \end{enumerate}
 
-\section{Analisi dei dati raccolti e conclusioni}
+\section{Analisi dei dati raccolti}
+
+\emph{
+    \textbf{Nota.} In tutta questa sezione, le incertezze su tutte le misure
+    indirette sono state calcolate mediante l'usuale propagazione degli
+    errori.
+}
+
 \subsection{Calcolo del momento d'inerzia del campione}
 
-Essendo il momento d'inerzia additivo, abbiamo calcolato
-$I_\text{CM}$ sommando i singoli momenti d'inerzia rispetto al comune
-asse di simmetria dei cilindri e dei tronchi di cono che compongono il
-campione, dove la massa di ciascuno di essi è stata facilmente
-calcolata assumendo la densità del campione uniforme.
-Di seguito riportiamo tali misure:
+Essendo additivo, abbiamo calcolato $I_\text{CM}$ sommando
+i singoli momenti d'inerzia\footnotemark[1] (rispetto al comune
+asse di simmetria) dei segmenti % cilindri e dei tronchi di cono
+che compongono il campione,
+la cui massa % dove la massa di ciascuno di essi
+è stata facilmente calcolata assumendo $\rho$ uniforme:
+
+% Qui riportiamo i risultati delle misure di cui sopra (dirette e indirette):
 
 \begin{table}[H]
     \centering
@@ -164,15 +174,26 @@ Di seguito riportiamo tali misure:
 \end{table}
 
 \begin{itemize}
-    \item Massa totale: $M=(2214.57\pm0.01)\;\unit{g}$
+    \item Massa totale (misurata direttamente): $M=(2214.57\pm0.01)\;\unit{g}$
     \item Volume totale: $V=(2.654\pm0.017)\cdot10^{-4}\;\unit{m^3}$
     \item Densità media: $\rho=(8.34\pm0.05)\cdot10^{-3}\;\unit{kg \per m^3}$
     \item Momento d'inerzia totale: $I_\text{CM}=(6.38\pm0.09)\cdot10^{-4}\;\unit{kg\,m^2}$
 \end{itemize}
 
+\footnotetext[1]{
+    Per calcolare i volumi e i momenti d'inerzia abbiamo utilizzato le seguenti formule
+    (dove $r_{1,2} = \frac{1}{2} d_{1,2}$ sono i rispettivi raggi):
+    \[\begin{aligned}
+        &V_\text{cilindro} = \pi h r^2 \qquad
+        &V_\text{tronco di cono} = \frac{\pi}{3} h \frac{r_1^3 - r_2^3}{r_1 - r_2} \\
+        &I_\text{cilindro} = \frac{\pi}{2} \rho h r^4 \qquad
+        &I_\text{tronco di cono} = \frac{\pi}{10} \rho h \frac{r_1^5 - r_2^5}{r_1 - r_2}
+    \end{aligned}\]
+}
+
 \subsection{Distribuzione dei tempi di caduta}
 
-Riportiamo di seguito i grafici della distribuzione dei tempi di caduta $t_{L,\theta}$,
+Questi sono i grafici della distribuzione dei tempi di caduta $t_{L,\theta}$,
 accompagnati alle relative misure di $L$ e $\theta$.
 
 \begin{figure}[H]
@@ -181,52 +202,52 @@ accompagnati alle relative misure di $L$ e $\theta$.
         $L=(55.6\pm0.1)\;\unit{cm}$
 
         $\theta=(3.8\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G0.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G0.jpg}}\hfil
     \subfloat[][
         $L=(70.5\pm0.1)\;\unit{cm}$
 
         $\theta=(3.8\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G1.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G1.jpg}}\hfil
     \subfloat[][
         $L=(85.4\pm0.1)\;\unit{cm}$
 
         $\theta=(3.8\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G2.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G2.jpg}}\hfil
     \subfloat[][
         $L=(100.2\pm0.1)\;\unit{cm}$
 
         $\theta=(3.8\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G3.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G3.jpg}}\hfil
 \end{figure}\begin{figure}[H]
     \centering
     \subfloat[][
         $L=(70.5\pm0.1)\;\unit{cm}$
 
         $\theta=(2.9\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G4.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G4.jpg}}\hfil
     \subfloat[][
         $L=(85.4\pm0.1)\;\unit{cm}$
 
         $\theta=(2.9\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G5.jpg}}
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G5.jpg}}
     \subfloat[][
         $L=(100.2\pm0.1)\;\unit{cm}$
 
         $\theta=(2.9\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G6.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G6.jpg}}\hfil
     \subfloat[][
         $L=(55.6\pm0.1)\;\unit{cm}$
 
         $\theta=(2.1\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G7.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G7.jpg}}\hfil
     \subfloat[][
         $L=(85.4\pm0.1)\;\unit{cm}$
 
         $\theta=(2.1\pm0.1)\unit{\degree}$
-    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 1cm},clip,width=0.47\textwidth]{img/G8.jpg}}\hfil
+    ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/G8.jpg}}\hfil
 \end{figure}
 
-Come è possibile osservare dai grafici qui riportati, le distribuzioni dei tempi di caduta
+Come è possibile osservare da questi grafici, le distribuzioni dei tempi di caduta
 sono abbastanza assimilabili a distribuzioni gaussiane.
 Questo ci permette di utilizzare nei calcoli successivi la media aritmetica $\bar{t}_{L,\theta}$
 di ciascun set di dati, indicando come errore:
@@ -245,8 +266,10 @@ equazioni cardinali della dinamica del corpo rigido:
     &M g \cos\theta - F_n = 0 \\
     &R M g \sin\theta = \left(I_\text{CM} + M R^2\right) \alpha
 \end{aligned}\right.\]
-dove $R$ è il raggio di contatto, $\vec{F}_s$ è la forza di attrito statico
-tra il campione e le guide, mentre $\vec{F}_n$ è la reazione vincolare delle
+dove $\alpha$ è l'accelerazione angolare,
+$R = \frac{1}{2}(25.88\pm0.05)\;\unit{mm} = (12.94\pm0.03)\;\unit{mm}$
+è il raggio di contatto, $\vec{F}_s$ è la forza di attrito statico
+tra il campione e le guide e $\vec{F}_n$ è la reazione vincolare delle
 guide, normale al piano.
 
 Per poter descrivere il moto del campione come di rotolamento puro,
@@ -260,17 +283,26 @@ Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
     &a_\text{CM} = \frac{M R^2}{I_\text{CM} + M R^2} g\sin\theta \\
     &F_n = M g \cos\theta \\
     &F_s = \frac{I}{I + M R^2} M g \sin\theta \\
-    & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I_\text{CM}} + 1\right)\right) \\
+    & 0 \le \theta \le \arctan\left(\mu_s \left(\frac{MR^2}{I_\text{CM}} + 1\right)\right) \\
 \end{aligned}\right.\]
 
-Ricordando ora che $L = x_\text{CM}(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
-più esterno del campione e $S$ è lo spessore del cuscinetto, possiamo ricavare:
+\emph{\textbf{Osservazione.}
+    Stimando il coefficiente di attrito statico $\mu_s = 0.3\pm0.1$,
+    la disequazione diventa $0 \le \theta \le (25 \pm 8)\unit{\degree}$.
+    È immediato notare che tutti i valori di $\theta$ che abbiamo utilizzato
+    soddisfano questa condizione, permettendoci di applicare questo
+    modello fisico al moto del corpo.
+}
+
+Ricordando ora che $L = x_\text{CM}(\bar{t}_{L,\theta}) + D + S$,
+dove $D = (49.90\pm0.05)\;\unit{mm}$ è il diametro più esterno del campione e
+$S = (0.6\pm0.1)\;\unit{cm}$ è lo spessore del cuscinetto, possiamo ricavare:
 \[
     \frac{2(L-D-S)}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g \cdot \bar{t}_{L,\theta}^2
 \]
 
 Possiamo pertanto determinare il modulo di $\vec{g}$ mediante una regressione
-lineare pesata\footnote{
+lineare pesata\footnote[2]{
     La scelta di una regressione lineare \emph{pesata} è giustificata dal fatto
     che gli errori sull'ascissa, per quanto ridotti, sono diversi fra di loro.
 }:
@@ -289,11 +321,7 @@ Di seguito riportiamo i risultati della regressione lineare:
     \item Coefficiente angolare ($g$) $=(9.9\pm0.5)\;\unit{m \per s^2}$
 \end{itemize}
 
-Precisiamo che gli errori su tutte le misure indirette utilizzate nella regressione lineare
-sono stati calcolati mediante l'usuale metodo di propagazione degli errori: li abbiamo
-infatti valutati piccoli, casuali e indipendenti.
-
-\subsection{Conclusioni}
+\section{Conclusioni}
 I risultati della regressione lineare sono chiaramente compatibili
 con i valori attesi. Infatti:
 \begin{itemize}
