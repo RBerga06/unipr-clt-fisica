@@ -17,8 +17,8 @@
 \newcommand*{\pbestp}[1]{\left({\left(#1\right)}_\text{best}\right)}
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
-    Laboratorio di Fisica 1\\
-    R7: Misura di $\left|\vec{g}\right|$ mediante pendolo fisico
+  Laboratorio di Fisica 1\\
+  R7: Misura di $\left|\vec{g}\right|$ mediante pendolo fisico
 }
 \author{Gruppo 15: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
 \date{05/03/2024 – 12/03/2024}
@@ -28,75 +28,98 @@
 \maketitle
 
 \begin{abstract}
-    Il gruppo di lavoro ha misurato il modulo del campo gravitazionale locale
-    ($g$) studiando il moto oscillatorio di un pendolo fisico.
+  Il gruppo di lavoro ha misurato il modulo del campo gravitazionale locale
+  ($g$) studiando il moto oscillatorio di un pendolo fisico.
 \end{abstract}
 
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
-    \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
-        \hline
-        \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
-        \hline
-        Sensore di rotazione & $\qty{0.002}{rad}$ & N./A. & $\qty{0.002}{rad}$ \\
-        \hline[dashed]
-        Cronometro & $\qty{0.001}{s}$ & N./A. & $\qty{0.001}{s}$ \\
-        \hline[dashed]
-        Micrometro ad asta filettata & $\qty{0.01}{mm}$ & $\qty{25.00}{mm}$ & $\qty{0.01}{mm}$ \\
-        \hline[dashed]
-        Calibro ventesimale & $\qty{0.05}{mm}$ & $\qty{150.00}{mm}$ & $\qty{0.05}{mm}$ \\
-        \hline[dashed]
-        Metro & $\qty{0.1}{cm}$ & $\qty{300.0}{cm}$ & $\qty{0.1}{cm}$ \\
-        \hline[dashed]
-        Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
-        \hline
-        \hline
-        \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
-        \hline
-        {Rotore e asta} & \SetCell[c=3]{l} {
-            % "L'ASTA È IL SOGGETTO DEL PENDOLO"
-            L'asta, fissata ortogonalmente al rotore ad un \\
-            estremo, è libera di ruotare grazie ad esso.
-        } \\
-        \hline[dashed]
-        {Tre cilindri \\ (con masse e raggi distinti)} & \SetCell[c=3]{l} {
-            Presentano un foro centrale lungo l'asse di \\
-            simmetria. Indicheremo con $A,B,C$ i tre cilindri \\
-            e con $0$, $A+B$, $A+C$, $B+C$ e $A+B+C$ \\
-            le loro combinazioni.
-            } \\
-        \hline
-    \end{tblr}
+  \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+    \hline
+    \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
+    \hline
+    Sensore di rotazione & $\qty{0.002}{rad}$ & N./A. & $\qty{0.002}{rad}$ \\
+    \hline[dashed]
+    Cronometro & $\qty{0.001}{s}$ & N./A. & $\qty{0.001}{s}$ \\
+    % TODO: Se nel rotolamento abbiamo messo che il “goniometro” era nel cellulare,
+    %   qua il cronometro è nel computer: ha senso indicarlo?
+    \hline[dashed]
+    Micrometro ad asta filettata & $\qty{0.01}{mm}$ & $\qty{25.00}{mm}$ & $\qty{0.01}{mm}$ \\
+    \hline[dashed]
+    Calibro ventesimale & $\qty{0.05}{mm}$ & $\qty{150.00}{mm}$ & $\qty{0.05}{mm}$ \\
+    \hline[dashed]
+    Metro & $\qty{0.1}{cm}$ & $\qty{300.0}{cm}$ & $\qty{0.1}{cm}$ \\
+    \hline[dashed]
+    Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
+    \hline
+    \hline
+    \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
+    \hline
+    {Asta e rotore} & \SetCell[c=3]{l} {
+      L'asta, fissata ortogonalmente al rotore, \\
+      è libera di ruotare attorno ad un suo estremo. \\
+      Il rotore è invece innestato del sensore di rotazione.
+      % TODO: è parte del sensore di rotazione?
+    } \\
+    \hline[dashed]
+    {Tre cilindri \\ (con masse e raggi distinti)} & \SetCell[c=3]{l} {
+      Presentano un foro centrale lungo l'asse di \\
+      simmetria. Li indicheremo con $A$, $B$ e $C$.
+      % Indicheremo con $A,B,C$ i tre cilindri \\
+      % e con $0$, $A+B$, $A+C$, $B+C$ e $A+B+C$ \\
+      % le loro combinazioni.
+      } \\
+    \hline
+  \end{tblr}
 \end{center}
 
 \section{Esperienza e procedimento di misura}
 
+\emph{
+  \textbf{Definizione.} Con il termine “\emph{configurazione}”
+  indicheremo d'ora in poi l'insieme delle posizioni di una
+  qualunque combinazione di cilindri lungo l'asta, misurate
+  rispetto all'estremo fissato al rotore.
+}
+
 \begin{enumerate}
+  \item
+      Misuriamo le masse dei cilindri con la bilancia di precisione,
+      i rispettivi diametri (interni ed esterni) con il calibro ventesimale
+      e le altezze con il micrometro ad asta filettata.
+  \item
+      Mediante il metro a nastro misuriamo la lunghezza dell'asta e,
+      servendoci del micrometro, i diametri di asta e rotore.
+  \item
+      % TODO: 12?
+      Ripetiamo 12 volte i seguenti passi:
+  \begin{enumerate}
     \item
-        Misuriamo le masse dei cilindri con la bilancia di precisione,
-        i rispettivi diametri (interni ed esterni) con il calibro ventesimale
-        e le altezze con il micrometro ad asta filettata.
+      Scelta arbitrariamente una configurazione,
+      fissiamo all'asta i cilindri coinvolti,
+      servendoci del foro centrale.
+      Misuriamo poi, mediante il metro a nastro,
+      le posizioni dei cilindri lungo l'asta
+      rispetto al suo estremo libero.
     \item
-        Con il metro a nastro misuriamo la lunghezza dell'asta e con il
-        micrometro il suo diametro, nonché il diametro del rotore.
+      Servendoci dell'apposito programma, avviamo
+      l'acquisizione dell'angolo in funzione del tempo
+      ($\theta(t)$, lo definiremo formalmente più avanti).
     \item
-        Per ogni configurazione di cilindri:  % TODO: Riformulare
-    \begin{enumerate}
-        \item
-            Fissiamo i cilindri scelti all'asta attraverso il foro centrale
-            e ne misuriamo la distanza dal rotore.
-        \item
-            Avviamo l'acquisizione dell'angolo in funzione del tempo
-            ($\theta(t)$, lo definiremo formalmente più avanti).
-        \item
-            Ruotando l'asta di un angolo prefissato $\theta_0$,
-            sufficientemente piccolo\footnote{
+      Inclinando l'asta rispetto alla sua posizione di equilibrio
+      di un angolo prefissato $\theta_0$,
+      sufficientemente piccolo\footnote{
 Questa condizione sull'angolo $\theta_0$ ci permette di approssimare
 $\sin(\theta) \sim \theta\quad\forall \theta \in [-\theta_0, \theta_0]$.
-            },
-            diamo inizio al moto armonico del pendolo.
-            Acquisiamo dati fino all'arresto del moto.
-    \end{enumerate}
+      }, diamo inizio al moto del pendolo.
+      Acquisiamo dati fino all'arresto del moto.\footnote{
+Abbiamo operato questa scelta perché, come verrà spiegato
+successivamente, l'angolo misurato dallo strumento quando
+il moto ha ampiezza minore della sensibilità dello strumento
+offre al gruppo di lavoro informazioni importanti relativamente
+alla bontà della misura.
+      }
+  \end{enumerate}
 \end{enumerate}
 
 \section{Analisi dei dati raccolti e conclusioni}
@@ -108,12 +131,122 @@ abbiamo utilizzato la tradizionale propagazione degli errori.
 
 \subsection{Misura di $\left|\vec{g}\right|$}
 
-Di seguito riportiamo i momenti d'inerzia costanti per tutto l'esperimento:
+% TODO: cambiamo in SdR polare piano, dove D diventa r_\text{CM}
+%   e \vec{D} diventa (r_\text{CM}; \theta).
+%   Questo semplificherebbe un pochino la notazione.
+Scegliamo un sistema di riferimento cartesiano ortogonale fisso, con
+versore $\hat{\imath}$ giacente sul piano di oscillazione del centro di
+massa del pendolo, versore $\hat{\jmath}$ parallelo a $\vec{g}$ e
+versore $\hat{k}$ diretto lungo l'asse di rotazione del sistema.
+
+Allora, detto $\theta$ lo spostamento angolare del centro di massa
+rispetto alla sua posizione di equilibrio,
+vale la seconda equazione cardinale della dinamica:
+\[\sum\tau^\text{ext}_z = \frac{d}{dt} L_z = I_z^\text{tot} \ddot{\theta}\]
+
+\vspace{2mm}
+\emph{
+  \textbf{Nota.} In questa sezione abbiamo trascurato la presenza di
+  attriti, ma chiaramente gli attriti ci sono e il moto è smorzato.
+  Nella sezione successiva tratteremo proprio questo fenomeno,
+  determinando, alla luce dei dati raccolti, quanto influisca
+  sul valore di $g$.
+}
+\vspace{2mm}
+
+Poiché l'unica forza esterna al sistema che compie un momento lungo
+$\hat{k}$ è la forza peso, si ha:
+\[
+  \sum\vec{\tau}^\text{\,ext}_z =
+  \vec{D}\times M\vec{g} = -MDg\sin(\theta)\hat{k}.
+\]
+dove $\vec{D}$ è la posizione del centro di massa rispetto
+all'asse di rotazione.
+
+L'equazione differenziale che descrive il moto del centro di massa
+del pendolo fisico sarà allora:
+\[ \ddot{\theta} = -\frac{MDg}{I_z^\text{tot}}\sin(\theta) \]
+
+\subsubsection{L'approssimazione $\sin(\theta)\simeq\theta$}
+
+Poiché $\sin(x) \sim x$ per $x\rightarrow 0$, come accennato in
+precedenza possiamo semplificare il modello fisico approssimando
+$\sin(\theta)$ a $\theta$. Questa operazione è valida solo
+se $\theta-\sin(\theta) < \delta\theta$, ma, essendo chiaramente\footnote{
+  Lo si può osservare facilmente mediante la conservazione dell'energia
+  meccanica totale: se per $t=0$ si ha $\theta=\theta_0$ ed
+  $E(0)=U_g=-MgD\cos(\theta_0)$, in ogni altro istante di tempo si avrà
+  $E(t)=K-MgD\cos(\theta)\le E(0)=-MgD\cos(\theta_0)$, da cui
+  $\cos(\theta)\ge\cos(\theta_0)$ ovvero $0\le\theta\le\theta_0$
+  (poiché $0\le\theta<\pi$, intervallo in cui la funzione
+  coseno è strettamente decrescente).
+} $\theta(t)\le\theta_0\quad\forall t\in[0,+\infty)$,
+la condizione è soddisfatta per ogni $\theta$ se è soddisfatta per
+$\theta_0$.
+
+Essendo, nel nostro caso, $\delta\theta=\qty{0.02}{rad}$, possiamo
+utilizzare $\theta_0^\text{max} = \qty{0.49}{rad}$, in quanto:
+\[
+  \qty{0.49}{rad} - \sin(\qty{0.49}{rad}) \simeq \qty{0.019}{rad}
+  \qquad
+  \qty{0.50}{rad} - \sin(\qty{0.50}{rad}) \simeq \qty{0.021}{rad}
+\]
+
+In conclusione, l'approssimazione $\sin(\theta)\simeq\theta$ può essere
+utilizzata \emph{sic} nel modello fisico con la cautela di verificare
+che $\theta_0\le\qty{0.49}{rad}$. Posta dunque questa condizione,
+possiamo risolvere:
+\[ \ddot{\theta} = -\frac{MDg}{I_z^\text{tot}} \theta \]
+Questa equazione descrive un moto armonico. Le soluzioni sono infatti
+del tipo:
+\[
+  \theta(t) = \theta_0\cos(\omega t)
+  \quad\text{dove}\quad
+  \omega = \sqrt{\frac{MDg}{I_z^\text{tot}}}\quad\text{è detta “pulsazione”}.
+\]
+Possiamo tuttavia facilmente esprimere $\omega$ in funzione del periodo
+$T$ del moto oscillatorio, più semplice da calcolare dai dati acquisiti.
+Vale infatti:
+\[
+  \omega = \frac{2\pi}{T}
+  \qquad\text{e quindi}\qquad
+  \frac{I_z^\text{tot}}{MD} = g \frac{T^2}{4\pi^2}
+\]
+
+
+\subsubsection{Il calcolo di $I_z^\text{tot}$ e $Mr_\text{CM}$}
+
+% TODO: Definire $Gamma$
+La formula utilizzata per il calcolo di $I_z^\text{tot}$ riflette la composizione
+del sistema, sfruttando la proprietà additiva del momento d'inerzia:
+\[I_z^\text{tot} = I_{z,\text{rotore}} + I_{z,\text{asta}} + \sum_{\gamma\in\Gamma} I_{z,\gamma}\]
+
+Chiaramente, per calcolare i momenti d'inerzia rispetto all'asse di
+rotazione è necessario applicare il teorema di Huygens-Steiner
+a quelli calcolati sui rispettivi centri di massa:
+\[  % TODO: Non dovrebbe essere - anziché + dentro alle (...)² ?
+  I_{z,\text{asta}} = I_\text{CM,asta} + m_\text{asta}\left(\frac{L_\text{asta} + \diam_\text{rotore}}{2}\right)^2
+\]\[
+  I_{z,(i,d)} = I_{\text{CM},i} + m_i\left(d + \frac{h_i - \diam_\text{rotore}}{2}\right)^2\qquad\forall(i,d)\in\Gamma
+\]
+
+Per calcolare il termine $M r_\text{CM}$, si osservi che, per la
+definizione di posizione del centro di massa, la massa totale si
+semplifica:
+\[\begin{aligned}
+  Mr_\text{CM} &= M\cdot \frac{1}{M}\left(
+    m_\text{rotore}\cdot 0 + m_\text{asta} r_\text{CM,asta} +
+    \sum_{(i,d)\in\Gamma}{m_i r_{\text{CM},i}}
+  \right) \\&= m_\text{asta}\left(\frac{L_\text{asta} + \diam_\text{rotore}}{2}\right) +
+    \sum_{(i,d)\in\Gamma}{m_i \left(d + \frac{h_i - \diam_\text{rotore}}{2}\right)}
+\end{aligned}\]
+
+Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo dei momenti d'inerzia:
 
 \begin{center}
     \begin{tblr}{ |c|c|c|c|c| }
         \hline
-        Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
+        Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
         \hline
         Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
         \hline[dashed]
@@ -124,62 +257,40 @@ Di seguito riportiamo i momenti d'inerzia costanti per tutto l'esperimento:
 
 \emph{$[^*]$ Valori dati}
 
-Di seguito riportiamo massa, diametri (interni ed esterni) e altezza dei tre cilindri.
-
 \begin{center}
-\begin{tblr}{ |c|c|c|c|c| }
+\begin{tblr}{ |c|c|c|c|c|c| }
     \hline
-    $i$ & $m_i\;\;(\unit{g})$ & $d_i^\text{ext}\;\;(\unit{mm})$ & $d_i^\text{int}\;\;(\unit{mm})$ & $h_i\;\;(\unit{mm})$ \\
+    $i$ & $m_i\;\;(\unit{g})$ & $d_i^\text{\,ext}\;\;(\unit{mm})$ & $d_i^\text{\,int}\;\;(\unit{mm})$ & $h_i\;\;(\unit{mm})$ & $I_{\text{CM},i}\;(\unit{mg\,m^2})$ \\
     \hline
-    A & $115.95 \pm 0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.93 \pm 0.01$ \\
+    A & $115.95\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.93 \pm 0.01$ & $10.62\pm0.03$ \\
     \hline[dashed]
-    B & $115.86 \pm 0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.89 \pm 0.01$ \\
+    B & $115.86\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.89 \pm 0.01$ & $10.59\pm0.03$\\
     \hline[dashed]
-    C & $71.46 \pm 0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $12.08 \pm 0.01$ \\
+    C & $71.46\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $12.08 \pm 0.01$ & $5.047\pm0.018$\\
     \hline
-\end{tblr}
+\end{tblr}  % TODO: Tabella troppo larga
 \end{center}
 
-Sappiamo che il moto armonico del pendolo segue la legge $\sum \tau^\text{ext} = I\alpha$ in quanto compie una rotazione. \\
-Detta $D$ la posizione del centro di massa rispetto all'asse di rotazione, possiamo scrivere $-Mg\sin(\theta)D = I\alpha$. \\
-Approssimando $\sin(\theta)$ a $\theta$ ed esprimendo l'accelerazione angolare come derivata seconda dello spostamento angolare:
-\[ \frac{d^2\theta}{dt^2} = -\frac{MgD}{I}\,\theta \]
-da cui ricaviamo l'equazione della retta di regressione, il cui grafico verrà riportato in seguito.
-\[ \left(\frac{2\pi}{T}\right)^2 = \frac{MDg}{I} \]
+\subsubsection{Il calcolo di $g$}
 
-%TODO: AGGIUNGERE GRAFICO DELLA REGRESSIONE
+Utilizzando le formule di cui sopra, il gruppo di lavoro ha calcolato,
+per ogni configurazione $\Gamma$, i valori di $\frac{I_z^\text{tot}}{MD}$
+e $\frac{T^2}{4\pi^2}$, riportati nel grafico seguente.
 
+Come è possibile osservare dalla relazione che le lega, la dipendenza
+tra queste due grandezze è lineare: questo ci permette di determinare
+il valore di $g$ come coefficiente angolare di una retta di regressione.
 
-Per valutare numericamente la consistenza dei risultati ottenuti con i valori
-$G$ riportati in letteratura ($G_l$),
-abbiamo calcolato, per ogni filo $j$, il seguente valore (numero puro):
-\[\varepsilon = \frac{{G_j}_\text{best} - {G_l}_\text{best}}
-                     {\delta G_j + \delta G_l}\]
-Allora $G_j$ è consistente con $G_l$ se e solo se $\left|\varepsilon\right|\le 1$.
+\begin{figure}[H]
+  \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione.png}
+\end{figure}
 
-\begin{center}
-\begin{tblr}{ |c|c|c|c|c| }
-    \hline
-    $j$ & $G_i$ ($\unit{GPa}$) & Materiale & $G_l$ ($\unit{GPa}$) & $\varepsilon$ \\
-    \hline
-    1 & $82\pm4$ &         &          & $-0.468$ \\
-    2 & $80\pm3$ & Acciaio & $84\pm1$ & $-0.978$ \\
-    3 & $81\pm2$ &         &          & $-0.809$ \\
-    \hline[dashed]
-    4 & $45.4\pm1.1$ & Rame& $43\pm1$ & $+1.174$ \\
-    \hline
-\end{tblr}
-\end{center}
-
-L'inconsistenza non trascurabile tra i valori di $G$ per il filo di
-rame potrebbe essere dovuta alle cattive condizioni del filo stesso.
-
-Infatti, il gruppo di lavoro lo ha reciso da una bobina, per poi
-srotolarlo: queste operazioni hanno lasciato imperfezioni visibili
-ad occhio nudo sul filo, come, ad esempio, piccole piegature.
-
-Riteniamo che queste imperfezioni potrebbero avere influenzato
-le nostre misure in maniera non trascurabile.
+I risultati della regressione lineare sono i seguenti:
+\begin{enumerate}
+  \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$ (compatibile con $0$)
+  \item Coefficiente angolare $g = (9.68 \pm 0.13)\;\unit{m\per s^2}$
+    (compatibile con $g_\text{atteso} = \qty{9.805}{m\per s^2}$)
+\end{enumerate}
 
 \pagebreak
 \subsection{Misura dello smorzamento}
