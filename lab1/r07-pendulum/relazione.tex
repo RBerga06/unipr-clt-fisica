@@ -91,11 +91,10 @@
       Mediante il metro a nastro misuriamo la lunghezza dell'asta e,
       servendoci del micrometro, i diametri di asta e rotore.
   \item
-      % TODO: 12?
-      Ripetiamo 12 volte i seguenti passi:
+      Ripetiamo 9 volte i seguenti passi:
   \begin{enumerate}
     \item
-      Scelta arbitrariamente una configurazione,
+      Scelta arbitrariamente una configurazione $\Gamma$,
       fissiamo all'asta i cilindri coinvolti,
       servendoci del foro centrale.
       Misuriamo poi, mediante il metro a nastro,
@@ -297,83 +296,128 @@ I risultati della regressione lineare sono i seguenti:
 
 Il moto del pendolo fisico è condizionato dalla presenza
 di attriti, che ne modificano ampiezza e periodo.
-In particolare, il modello matematico di riferimento è descritto da:
+
+\vspace{2mm}
+\emph{
+In questa sezione, illustreremo come il gruppo di lavoro abbia
+valutato lo smorzamento del moto e quanto questo sia significativo,
+prendendo come esempio la configurazione $\Gamma=\left\{\right\}$,
+dove il pendolo fisico è composto solamente da asta e rotore, senza
+l'aggiunta di cilindri.
+Il gruppo di lavoro ha effettuato gli stessi passaggi per tutte le
+altre configurazioni: i risultati saranno messi in evidenza alla
+fine della sezione.
+}
+\vspace{2mm}
+
+Sempre applicando la seconda equazione cardinale della dinamica,
+è facile ricavare l'equazione differenziale che caratterizza il moto
+del sistema sotto l'effetto delle forze di attrito.
+Approssimando, come prima, $\sin(\theta)\simeq\theta$, si ottiene:
+\[ \ddot{\theta} = -\lambda\dot{\theta} -\frac{MDg}{I_z^\text{\,tot}} \theta \]
+
+dove $\lambda$ è una costante legata allo smorzamento del moto.
+Le soluzioni di questa equazione differenziale sono infatti della forma:
 \[\theta(t) = \theta_0\cos(\omega t)\,e^{-\lambda t}\]
-dove $\lambda$ è un parametro costante legato allo smorzamento
-del moto.
+
+dove la pulsazione del moto, $\omega$, è data da:
+\[
+  \omega^2 = \omega_0^2 - \lambda^2
+  \qquad\text{con}\qquad
+  \omega_0 = \sqrt{\frac{MDg}{I_z^\text{\,tot}}}.
+\]
 
 \begin{center}
     \begin{figure}[H]
         % trim={< v > ^}
-        % \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp1.jpg}
+        \includegraphics[trim={2cm .5cm 2cm .5cm},clip,width=\textwidth]{img/Graph1.png}
         \caption[]{\emph{
-            I dati di un'acquisizione di $\theta(t)$,
+            Parte dei dati di un'acquisizione di $\theta(t)$
+            con $\Gamma=\left\{\right\}$,
             come raccolti dal sensore di rotazione,
             riportati su una larga scala temporale.
-            Si può chiaramente notare lo smorzamento del moto.
+            Si può chiaramente notare lo smorzamento
+            del moto.
         }}
     \end{figure}
 \end{center}
 
-Per stimare $\lambda$, il gruppo di lavoro ha proceduto
-sull'acquisizione in \emph{Figura 2} come segue:
+Per stimare $\lambda$, il gruppo di lavoro ha proceduto come segue:
 \begin{enumerate}
-    \item
-        Per prima cosa, abbiamo calcolato $\left|\theta(t)\right|$.
-        Ciò ci ha permesso di trattare massimi e minimi “insieme”,
-        evitando di ripetere l'analisi.
-    \item
-        Poi, abbiamo individuato i picchi dei nostri dati, ovvero
-        gli insiemi di punti della forma
-        $\left\{t_i,t_{i+1},\dots,t_j\right\}\times\left\{\left|\theta_k\right|\right\}$
-        tali che $\left|\theta_{i-1}\right| < \left|\theta_k\right| > \left|\theta_{j+1}\right|$.
-    \item
-        Per ogni picco, ne abbiamo calcolato il punto medio,
-        prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(t_j - t_i) + \delta t$.
-    \item
-        Infine, abbiamo graficato i punti così trovati
-        su scala logaritmica e
-        abbiamo effettuato una regressione lineare (pesata\footnote{
-            $\delta\!\ln{\left|\theta\right|}$, infatti, varia molto,
-            nonostante $\delta\!\left|\theta\right|$ sia costante:
-            ciò è conseguenza della propagazione degli errori.
-            È inoltre possibile osservarlo nella \emph{Figura 3}.
-        })
-        sulle nuove ordinate.
+  \item
+    Per prima cosa, abbiamo individuato i massimi dei nostri dati,
+    ovvero gli insiemi di punti della forma
+    $\left\{t_i,t_{i+1},\dots,t_j\right\}\times\left\{\theta_k\right\}$
+    tali che $\theta(t_{i-1}) < \theta_k > \theta(t_{j+1})$.
+  \item
+    Per ogni massimo, ne abbiamo calcolato il punto medio,
+    prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(t_j - t_i) + \delta t$.
+  \item
+    Infine, abbiamo graficato i punti così trovati
+    su scala logaritmica e
+    abbiamo effettuato una regressione lineare (pesata\footnote{
+      $\delta\!\ln{\left|\theta\right|}$, infatti, varia molto,
+      nonostante $\delta\!\left|\theta\right|$ sia costante:
+      ciò è conseguenza della propagazione degli errori.
+      È inoltre possibile osservarlo nella \emph{Figura 2}.
+    })
+    sulle nuove ordinate. Il coefficiente angolare di tale
+    regressione dovrebbe essere proprio $-\lambda$.
+  \item
+    Abbiamo ripetuto i tre punti precedenti sugli stessi dati,
+    con $\theta$ cambiato di segno: così facendo, ai massimi
+    si sostituiscono i minimi e tutto il resto dell'analisi
+    è analoga. Per ogni configurazione abbiamo pertanto ottenuto
+    due diversi valori di $\lambda$: $\lambda_\text{min}$ e
+    $\lambda_\text{max}$. Abbiamo scelto di porre
+    $\lambda=\frac{1}{2}(\lambda_\text{min}+\lambda_\text{max})$.
 \end{enumerate}
 
 \begin{center}
     \begin{figure}[H]
         % trim={< v > ^}
-        % \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/Exp4.jpg}
+        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/0max-exp.png}
         \caption[]{\emph{
-            $\left|\theta(t)\right|$, su scala logaritmica.
+            $\ln{\theta(t_\text{massimi})}$, su scala logaritmica.
             Sono riportate anche le barre di errore.
-            In blu, una retta di regressione lineare
-            sull'intervallo di dati in nero.
+            In rosso, la retta di regressione lineare
+            e in rosa la sua regione di incertezza.
         }}
     \end{figure}
 \end{center}
 
-Dai risultati della regressione lineare emerge che
-\[\lambda = \left(46.67\pm0.11\right)\unit{mHz}\]
+Poiché l'obiettivo è calcolare $g$, la correzione da effettuare
+sul periodo, per tenere conto dell'attrito, è la seguente:
+\[
+  T_0^2 = \frac{4\pi^2}{\omega_0^2}
+    = \frac{4\pi^2}{\omega^2 + \lambda^2}
+    = \frac{4\pi^2}{\frac{4\pi^2}{T^2} + \lambda^2}
+    = \frac{1}{\frac{1}{T^2} + \frac{\lambda^2}{4\pi^2}}
+\]
 
-Abbiamo infine valutato il contributo dell'attrito sul periodo
-dell'oscillazione. Vale infatti:
-\[\omega_0^2 = \omega^2 + \lambda^2\]
-dove $\omega=\frac{2\pi}{T}$ è la pulsazione misurata
-mentre $\omega_0$ è la pulsazione in assenza di attrito.
+Effettuata questa correzione per ogni configurazione $\Gamma$,
+si può allora costruire nuovamente una retta di regressione,
+analogamente a quanto fatto nella sezione precedente.
+La relazione fra le grandezze misurate, ricordiamo, è lineare:
+\[ \frac{I_z^\text{\,tot}}{MD} = g \frac{T_0^2}{4\pi^2} \]
 
-Si ottiene allora:
-\[T_0 = \sqrt{\frac{1}{\frac{1}{T^2} + \left(\frac{\lambda}{2\pi}\right)^2}}\]
-dove $T$ è il periodo misurato mentre
-$T_0=\frac{2\pi}{\omega_0}$ è il periodo in assenza di attrito.
+Riportiamo di seguito il grafico della nuova regressione,
+unitamente ai risultati ottenuti.
 
-Per questa acquisizione:
-\[T = \left(409.96\pm0.04\right)\unit{ms}\]
+\begin{figure}[H]
+  \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione-2.png}
+\end{figure}
 
-da cui segue:
-\[T_0=\left(409.95\pm0.04\right)\unit{ms}\]
+I risultati della regressione lineare sono i seguenti:
+\begin{enumerate}
+  \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$ (compatibile con $0$)
+  \item Coefficiente angolare $g = (9.68 \pm 0.13)\;\unit{m\per s^2}$
+    (compatibile con $g_\text{atteso} = \qty{9.805}{m\per s^2}$)
+\end{enumerate}
+
+Come è possibile osservare comparando questi risultati a
+quelli precedentemente ottenuti, il valore di $g$ risultante
+è rimasto essenzialmente invariato (al netto della sua incertezza).
 
 In conclusione, possiamo affermare ragionevolmente che,
 rispetto alla sensibilità degli strumenti di misura,
