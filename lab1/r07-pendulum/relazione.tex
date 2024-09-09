@@ -217,7 +217,18 @@ del sistema, sfruttando la proprietà additiva del momento d'inerzia:
 
 Chiaramente, per calcolare i momenti d'inerzia rispetto all'asse di
 rotazione è necessario applicare il teorema di Huygens-Steiner
-a quelli calcolati sui rispettivi centri di massa:
+a quelli calcolati sui rispettivi centri di massa\footnote{
+  Questi ultimi sono stati calcolati mediante le seguenti formule:
+  \[
+    I_\text{CM,asta} = \frac{1}{12} m_\text{asta} L_\text{asta}^2
+    \qquad\quad
+    I_{\text{CM},i} =
+      \frac{1}{4}m_i\left(
+        (r_i^\text{ext})^2 + (r_i^\text{int})^2
+      \right) + \frac{1}{12} m_i h_i^2
+    \quad\forall i \in \left\{A,B,C\right\}
+  \]
+}:
 \[
   I_{z,\text{asta}} = I_\text{CM,asta} + m_\text{asta}\left(\frac{L_\text{asta} + \diam_\text{rotore}}{2}\right)^2
 \]\[
@@ -235,12 +246,15 @@ semplifica:
     \sum_{(i,d)\in\Gamma}{m_i \left(d + \frac{h_i - \diam_\text{rotore}}{2}\right)}
 \end{aligned}\]
 
-Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo dei momenti d'inerzia:
+Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo dei momenti d'inerzia\footnote{
+  $L_\text{asta}$ è la lunghezza della parte dell'asta che sporge
+  all'esterno del rotore.
+}:
 
 \begin{center}
   \begin{tblr}{ |c|c|c|c|c| }
     \hline
-    Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
+    Oggetto & $L\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
     \hline
     Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
     \hline[dashed]
