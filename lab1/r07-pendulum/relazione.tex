@@ -291,17 +291,26 @@ il valore di $g$ come coefficiente angolare di una retta di regressione.
   \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione.png}
 \end{figure}
 
-I risultati della regressione lineare sono i seguenti:
 \begin{itemize}
   \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$
-    (compatibile con $0$)
   \item Coefficiente angolare $g = (9.68 \pm 0.13)\;\unit{m\per s^2}$
 \end{itemize}
-Ricordando che $g_\text{atteso} = \qty{9.805}{m\per s^2}$,
-possiamo affermare che $g_\text{misurato}$ risulta compatibile con
-il valore atteso e, di conseguenza, l'esperienza ha avuto successo.
-
 \pagebreak
+I risultati della regressione lineare sono chiaramente compatibili
+con i valori attesi. Infatti:
+\begin{itemize}
+  \item Secondo il modello fisico utilizzato, l'intercetta dovrebbe
+  essere nulla; in effetti, $(0.003\pm0.005)\;\unit{m}$ è compatibile
+  con $\qty{0}{m}$.
+  \item Il valore di $g$ atteso è $\qty{9.806}{m\per s^2}$; si può
+  osservare facilmente che il valore misurato,
+  $(9.9\pm0.5)\;\unit{m \per s^2}$, è compatibile con esso.
+\end{itemize}
+
+Possiamo pertanto concludere che l'esperienza ha avuto successo:
+mediante l'apparato sperimentale abbiamo ottenuto una misura di $g$
+compatibile con quella attesa.
+
 \subsection{Misura dello smorzamento}
 
 \emph{
@@ -351,7 +360,6 @@ dove la pulsazione del moto, $\omega$, è data da:
     \end{figure}
 \end{center}
 
-\pagebreak
 Per stimare $\lambda$, il gruppo di lavoro ha proceduto come segue:
 \begin{enumerate}
   \item
