@@ -45,8 +45,6 @@
     Sensore di rotazione & $\qty{0.002}{rad}$ & N./A. & $\qty{0.002}{rad}$ \\
     \hline[dashed]
     Cronometro & $\qty{0.001}{s}$ & N./A. & $\qty{0.001}{s}$ \\
-    % TODO: Se nel rotolamento abbiamo messo che il “goniometro” era nel cellulare,
-    %   qua il cronometro è nel computer: ha senso indicarlo?
     \hline[dashed]
     Micrometro ad asta filettata & $\qty{0.01}{mm}$ & $\qty{25.00}{mm}$ & $\qty{0.01}{mm}$ \\
     \hline[dashed]
@@ -87,19 +85,27 @@
   \textbf{Definizione.} Con il termine “\emph{configurazione}”
   indicheremo d'ora in poi l'insieme delle posizioni di una
   qualunque combinazione di cilindri lungo l'asta, misurate
-  rispetto all'estremo fissato al rotore.
+  rispetto all'estremo fissato al rotore.\footnote{
+    Più formalmente, diremo “configurazione” un insieme $\Gamma$
+    di coppie ordinate $\gamma$ della forma
+    $(i,d)$, dove $i\in\left\{A,B,C\right\}$
+    è un cilindro e $d$ è la sua distanza dall'estremo fissato
+    al rotore. Ovviamente non è possibile ripetere $i$ in elementi
+    distinti della configurazione, perché ciò non avrebbe
+    significato fisico.
+  }
 }
 
 \begin{enumerate}
   \item
-      Misuriamo le masse dei cilindri con la bilancia di precisione,
-      i rispettivi diametri (interni ed esterni) con il calibro ventesimale
-      e le altezze con il micrometro ad asta filettata.
+    Misuriamo le masse dei cilindri con la bilancia di precisione,
+    i rispettivi diametri (interni ed esterni) con il calibro
+    ventesimale e le altezze con il micrometro ad asta filettata.
   \item
-      Mediante il metro a nastro misuriamo la lunghezza dell'asta e,
-      servendoci del micrometro, i diametri di asta e rotore.
+    Mediante il metro a nastro misuriamo la lunghezza dell'asta e,
+    servendoci del micrometro, i diametri di asta e rotore.
   \item
-      Ripetiamo 9 volte i seguenti passi:
+    Ripetiamo 9 volte i seguenti passi:
   \begin{enumerate}
     \item
       Scelta arbitrariamente una configurazione $\Gamma$,
@@ -119,13 +125,7 @@
 Questa condizione sull'angolo $\theta_0$ ci permette di approssimare
 $\sin(\theta) \sim \theta\quad\forall \theta \in [-\theta_0, \theta_0]$.
       }, diamo inizio al moto del pendolo.
-      Acquisiamo dati fino all'arresto del moto.\footnote{
-Abbiamo operato questa scelta perché, come verrà spiegato
-successivamente, l'angolo misurato dallo strumento quando
-il moto ha ampiezza minore della sensibilità dello strumento
-offre al gruppo di lavoro informazioni importanti relativamente
-alla bontà della misura.
-      }
+      Acquisiamo dati fino all'arresto del moto.
   \end{enumerate}
 \end{enumerate}
 
@@ -138,17 +138,17 @@ abbiamo utilizzato la tradizionale propagazione degli errori.
 
 \subsection{Misura di $\left|\vec{g}\right|$}
 
-% TODO: cambiamo in SdR polare piano, dove D diventa r_\text{CM}
-%   e \vec{D} diventa (r_\text{CM}; \theta).
-%   Questo semplificherebbe un pochino la notazione.
-Scegliamo un sistema di riferimento cartesiano ortogonale fisso, con
-versore $\hat{\imath}$ giacente sul piano di oscillazione del centro di
-massa del pendolo, versore $\hat{\jmath}$ parallelo a $\vec{g}$ e
-versore $\hat{k}$ diretto lungo l'asse di rotazione del sistema.
+Scegliamo un sistema di riferimento cilindrico, con
+origine all'intersezione fra l'asse di rotazione e il piano,
+ad esso perpendicolare, contenente il centro di massa, versore $\hat{r}$
+parallelo a $\vec{g}$ e versore $\hat{k}$ diretto lungo l'asse di
+rotazione del sistema.
 
-Allora, detto $\theta$ lo spostamento angolare del centro di massa
-rispetto alla sua posizione di equilibrio,
-vale la seconda equazione cardinale della dinamica:
+La posizione del centro di massa del pendolo fisico sarà allora descritta
+da $\vec{r}_\text{CM} = (r_\text{CM},\theta,z)$ con $z=0$, dove $\theta$
+è lo spostamento angolare rispetto alla posizione di equilibrio.
+
+Vale la seconda equazione cardinale della dinamica:
 \[\sum\tau^\text{ext}_z = \dot{L}_z = I_z^\text{\,tot} \ddot{\theta}\]
 
 \vspace{2mm}
@@ -165,14 +165,12 @@ Poiché l'unica forza esterna al sistema che compie un momento lungo
 $\hat{k}$ è la forza peso, si ha:
 \[
   \sum\vec{\tau}^\text{\,ext}_z =
-  \vec{D}\times M\vec{g} = -MDg\sin(\theta)\hat{k}.
+  \vec{r}_\text{CM}\times M\vec{g} = -Mg\,r_\text{CM}\sin(\theta)\hat{k}.
 \]
-dove $\vec{D}$ è la posizione del centro di massa rispetto
-all'asse di rotazione.
 
 L'equazione differenziale che descrive il moto del centro di massa
 del pendolo fisico sarà allora:
-\[ \ddot{\theta} = -\frac{MDg}{I_z^\text{tot}}\sin(\theta) \]
+\[ \ddot{\theta} = -\frac{Mg\,r_\text{CM}}{I_z^\text{tot}}\sin(\theta) \]
 
 \subsubsection{L'approssimazione $\sin(\theta)\simeq\theta$}
 
@@ -180,15 +178,6 @@ Poiché $\sin(x) \sim x$ per $x\rightarrow 0$, come accennato in
 precedenza possiamo semplificare il modello fisico approssimando
 $\sin(\theta)$ a $\theta$. Questa operazione è valida solo
 se $\theta-\sin(\theta) < \delta\theta$, ma, essendo chiaramente
-%\footnote{
-%  Lo si può osservare facilmente mediante la conservazione dell'energia
-%  meccanica totale: se per $t=0$ si ha $\theta=\theta_0$ ed
-%  $E(0)=U_g=-MgD\cos(\theta_0)$, in ogni altro istante di tempo si avrà
-%  $E(t)=K-MgD\cos(\theta)\le E(0)=-MgD\cos(\theta_0)$, da cui
-%  $\cos(\theta)\ge\cos(\theta_0)$ ovvero $0\le\theta\le\theta_0$
-%  (poiché $0\le\theta<\pi$, intervallo in cui la funzione
-%  coseno è strettamente decrescente).
-%}
 $\theta(t)\le\theta_0\quad\forall t\in[0,+\infty)$,
 la condizione è soddisfatta per ogni $\theta$ se è soddisfatta per
 $\theta_0$.
@@ -205,13 +194,13 @@ In conclusione, l'approssimazione $\sin(\theta)\simeq\theta$ può essere
 utilizzata \emph{sic} nel modello fisico con la cautela di verificare
 che $\theta_0\le\qty{0.49}{rad}$. Posta dunque questa condizione,
 possiamo risolvere:
-\[ \ddot{\theta} = -\frac{MDg}{I_z^\text{tot}} \theta \]
+\[ \ddot{\theta} = -\frac{Mg\,r_\text{CM}}{I_z^\text{tot}} \theta \]
 Questa equazione descrive un moto armonico. Le soluzioni sono infatti
 del tipo:
 \[
   \theta(t) = \theta_0\cos(\omega t)
   \quad\text{dove}\quad
-  \omega = \sqrt{\frac{MDg}{I_z^\text{tot}}}\quad\text{è detta “pulsazione”}.
+  \omega = \sqrt{\frac{Mg\,r_\text{CM}}{I_z^\text{tot}}}\quad\text{è detta “pulsazione”}.
 \]
 Possiamo tuttavia facilmente esprimere $\omega$ in funzione del periodo
 $T$ del moto oscillatorio, più semplice da calcolare dai dati acquisiti.
@@ -219,13 +208,12 @@ Vale infatti:
 \[
   \omega = \frac{2\pi}{T}
   \qquad\text{e quindi}\qquad
-  \frac{I_z^\text{tot}}{MD} = g \frac{T^2}{4\pi^2}
+  \frac{I_z^\text{tot}}{Mr_\text{CM}} = g \frac{T^2}{4\pi^2}
 \]
 
 
 \subsubsection{Il calcolo di $I_z^\text{tot}$ e $Mr_\text{CM}$}
 
-% TODO: Definire $Gamma$
 La formula utilizzata per il calcolo di $I_z^\text{tot}$ riflette la composizione
 del sistema, sfruttando la proprietà additiva del momento d'inerzia:
 \[I_z^\text{tot} = I_{z,\text{rotore}} + I_{z,\text{asta}} + \sum_{\gamma\in\Gamma} I_{z,\gamma}\]
@@ -283,7 +271,7 @@ Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo 
 \subsubsection{Il calcolo di $g$}
 
 Utilizzando le formule di cui sopra, il gruppo di lavoro ha calcolato,
-per ogni configurazione $\Gamma$, i valori di $\frac{I_z^\text{tot}}{MD}$
+per ogni configurazione $\Gamma$, i valori di $\frac{I_z^\text{tot}}{Mr_\text{CM}}$
 e $\frac{T^2}{4\pi^2}$, riportati nel grafico seguente.
 
 Come è possibile osservare dalla relazione che le lega, la dipendenza
@@ -323,7 +311,7 @@ Sempre applicando la seconda equazione cardinale della dinamica,
 è facile ricavare l'equazione differenziale che caratterizza il moto
 del sistema sotto l'effetto delle forze di attrito.
 Approssimando, come prima, $\sin(\theta)\simeq\theta$, si ottiene:
-\[ \ddot{\theta} = -\lambda\dot{\theta} -\frac{MDg}{I_z^\text{\,tot}} \theta \]
+\[ \ddot{\theta} = -\lambda\dot{\theta} -\frac{Mg\,r_\text{CM}}{I_z^\text{\,tot}} \theta \]
 
 dove $\lambda$ è una costante legata allo smorzamento del moto.
 Le soluzioni di questa equazione differenziale sono infatti della forma:
@@ -333,7 +321,7 @@ dove la pulsazione del moto, $\omega$, è data da:
 \[
   \omega^2 = \omega_0^2 - \lambda^2
   \qquad\text{con}\qquad
-  \omega_0 = \sqrt{\frac{MDg}{I_z^\text{\,tot}}}.
+  \omega_0 = \sqrt{\frac{Mg\,r_\text{CM}}{I_z^\text{\,tot}}}.
 \]
 
 \begin{center}
@@ -408,7 +396,7 @@ Effettuata questa correzione per ogni configurazione $\Gamma$,
 si può allora costruire nuovamente una retta di regressione,
 analogamente a quanto fatto nella sezione precedente.
 La relazione fra le grandezze misurate, ricordiamo, è lineare:
-\[ \frac{I_z^\text{\,tot}}{MD} = g \frac{T_0^2}{4\pi^2} \]
+\[ \frac{I_z^\text{\,tot}}{Mr_\text{CM}} = g \frac{T_0^2}{4\pi^2} \]
 
 Riportiamo di seguito il grafico della nuova regressione,
 unitamente ai risultati ottenuti.
