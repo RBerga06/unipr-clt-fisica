@@ -32,6 +32,7 @@
   ($g$) studiando il moto oscillatorio di un pendolo fisico.
 \end{abstract}
 
+\setcounter{section}{-1}
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
   \begin{tblr}{
@@ -172,29 +173,26 @@ L'equazione differenziale che descrive il moto del centro di massa
 del pendolo fisico sarà allora:
 \[ \ddot{\theta} = -\frac{Mg\,r_\text{CM}}{I_z^\text{tot}}\sin(\theta) \]
 
-\subsubsection{L'approssimazione $\sin(\theta)\simeq\theta$}
+È possibile semplificare il modello fisico approssimando
+$\sin(\theta)\simeq\theta$. Il gruppo di lavoro ha ritenuto
+valida questa operazione solo quando
+\[\left|\theta_0-\sin(\theta_0)\right| < \delta\theta\]
 
-Poiché $\sin(x) \sim x$ per $x\rightarrow 0$, come accennato in
-precedenza possiamo semplificare il modello fisico approssimando
-$\sin(\theta)$ a $\theta$. Questa operazione è valida solo
-se $\theta-\sin(\theta) < \delta\theta$, ma, essendo chiaramente
-$\theta(t)\le\theta_0\quad\forall t\in[0,+\infty)$,
-la condizione è soddisfatta per ogni $\theta$ se è soddisfatta per
-$\theta_0$.
-
-Essendo, nel nostro caso, $\delta\theta=\qty{0.02}{rad}$, possiamo
-utilizzare $\theta_0^\text{max} = \qty{0.49}{rad}$, in quanto:
+Essendo, nel nostro caso, $\delta\theta=\qty{0.02}{rad}$, abbiamo scelto
+$\theta_0^\text{max} = \qty{0.49}{rad}$. Infatti:
 \[
   \qty{0.49}{rad} - \sin(\qty{0.49}{rad}) \simeq \qty{0.019}{rad}
   \qquad
   \qty{0.50}{rad} - \sin(\qty{0.50}{rad}) \simeq \qty{0.021}{rad}
 \]
 
-In conclusione, l'approssimazione $\sin(\theta)\simeq\theta$ può essere
-utilizzata \emph{sic} nel modello fisico con la cautela di verificare
-che $\theta_0\le\qty{0.49}{rad}$. Posta dunque questa condizione,
-possiamo risolvere:
+Prima di prendere ogni misura, il gruppo di lavoro si è assicurato
+che $\theta_0$ soddisfacesse abbondantemente la condizione
+$\theta_0<\theta_0^\text{max}$.
+
+L'equazione differenziale semplificata è allora:
 \[ \ddot{\theta} = -\frac{Mg\,r_\text{CM}}{I_z^\text{tot}} \theta \]
+
 Questa equazione descrive un moto armonico. Le soluzioni sono infatti
 del tipo:
 \[
@@ -202,6 +200,7 @@ del tipo:
   \quad\text{dove}\quad
   \omega = \sqrt{\frac{Mg\,r_\text{CM}}{I_z^\text{tot}}}\quad\text{è detta “pulsazione”}.
 \]
+
 Possiamo tuttavia facilmente esprimere $\omega$ in funzione del periodo
 $T$ del moto oscillatorio, più semplice da calcolare dai dati acquisiti.
 Vale infatti:
