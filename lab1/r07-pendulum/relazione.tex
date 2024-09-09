@@ -210,9 +210,7 @@ Vale infatti:
   \frac{I_z^\text{tot}}{Mr_\text{CM}} = g \frac{T^2}{4\pi^2}
 \]
 
-
-\subsubsection{Il calcolo di $I_z^\text{tot}$ e $Mr_\text{CM}$}
-
+%\subsubsection{Il calcolo di $I_z^\text{tot}$ e $Mr_\text{CM}$}
 La formula utilizzata per il calcolo di $I_z^\text{tot}$ riflette la composizione
 del sistema, sfruttando la proprietà additiva del momento d'inerzia:
 \[I_z^\text{tot} = I_{z,\text{rotore}} + I_{z,\text{asta}} + \sum_{\gamma\in\Gamma} I_{z,\gamma}\]
@@ -240,21 +238,17 @@ semplifica:
 Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo dei momenti d'inerzia:
 
 \begin{center}
-    \begin{tblr}{ |c|c|c|c|c| }
-        \hline
-        Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
-        \hline
-        Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
-        \hline[dashed]
-        Rotore & N./A. & $13.41\pm0.01$ & $22.4\pm0.1^*$ & $0.058\pm0.001^*$ \\
-        \hline
-    \end{tblr}
-\end{center}
-
-\emph{$[^*]$ Valori dati}
-
-\begin{center}
-\begin{tblr}{ |c|c|c|c|c|c| }
+  \begin{tblr}{ |c|c|c|c|c| }
+    \hline
+    Oggetto & $l\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
+    \hline
+    Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
+    \hline[dashed]
+    Rotore & N./A. & $13.41\pm0.01$ & $22.4\pm0.1^*$ & $0.058\pm0.001^*$ \\
+    \hline
+  \end{tblr}
+\end{center}\begin{center}
+  \begin{tblr}{ |c|c|c|c|c|c| }
     \hline
     $i$ & $m_i\;\;(\unit{g})$ & $d_i^\text{\,ext}\;\;(\unit{mm})$ & $d_i^\text{\,int}\;\;(\unit{mm})$ & $h_i\;\;(\unit{mm})$ & $I_{\text{CM},i}\;(\unit{mg\,m^2})$ \\
     \hline
@@ -267,23 +261,26 @@ Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo 
 \end{tblr}
 \end{center}
 
+\emph{$[^*]$ Valori dati}
+
 \pagebreak
-\subsubsection{La misura di $T$}
+%\subsubsection{La misura di $T$}
 Il periodo dell'oscillazione è stato misurato individuando $N+1$ zeri
 consecutivi di $\theta(t)$, diciamo $\left\{t_0,t_1,\dots,t_N\right\}$.
 Allora, poiché tra uno zero e l'altro corre metà periodo, è possibile
-calcolare $T$ in questo modo:
-\[ T = 2 \frac{t_N - t_0}{N} \]
+calcolare $T$ in questo modo: $T = \frac{2}{N}(t_N - t_0)$
 
 Il gruppo di lavoro ha scelto $N$ di volta in volta, in modo tale che
 fosse proporzionale al numero di oscillazioni compiute dal pendolo
 prima di fermarsi. Complessivamente, $N$ ha assunto valori da $30$ a
 $180$.
 
-\subsubsection{Il calcolo di $g$}
+\vspace{2mm}
+%\subsubsection{Il calcolo di $g$}
 
-Utilizzando le formule di cui sopra, il gruppo di lavoro ha calcolato,
-per ogni configurazione $\Gamma$, i valori di $\frac{I_z^\text{tot}}{Mr_\text{CM}}$
+Come descritto sopra, il gruppo di lavoro ha calcolato, per ogni
+configurazione $\Gamma$,
+i valori di $\frac{I_z^\text{tot}}{Mr_\text{CM}}$
 e $\frac{T^2}{4\pi^2}$, riportati nel grafico seguente.
 
 Come è possibile osservare dalla relazione che le lega, la dipendenza
@@ -295,11 +292,14 @@ il valore di $g$ come coefficiente angolare di una retta di regressione.
 \end{figure}
 
 I risultati della regressione lineare sono i seguenti:
-\begin{enumerate}
-  \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$ (compatibile con $0$)
+\begin{itemize}
+  \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$
+    (compatibile con $0$)
   \item Coefficiente angolare $g = (9.68 \pm 0.13)\;\unit{m\per s^2}$
-    (compatibile con $g_\text{atteso} = \qty{9.805}{m\per s^2}$)
-\end{enumerate}
+\end{itemize}
+Ricordando che $g_\text{atteso} = \qty{9.805}{m\per s^2}$,
+possiamo affermare che $g_\text{misurato}$ risulta compatibile con
+il valore atteso e, di conseguenza, l'esperienza ha avuto successo.
 
 \pagebreak
 \subsection{Misura dello smorzamento}
