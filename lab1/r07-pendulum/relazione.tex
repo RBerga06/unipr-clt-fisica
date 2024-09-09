@@ -34,9 +34,13 @@
 
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
-  \begin{tblr}{ |Q[l,m]|Q[c,m]|Q[c,m]|Q[c,m]| }
+  \begin{tblr}{
+    width=\textwidth,
+    colspec={ X[2,m,j]X[1,m,c]X[1,m,c]X[1,m,c] },
+    vlines,
+}
     \hline
-    \textbf{Strumento di misura} & \textbf{\:\:\:\:\:Soglia\:\:\:\:\:} & \textbf{Portata} & \textbf{Sensibilità} \\
+    \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
     \hline
     Sensore di rotazione & $\qty{0.002}{rad}$ & N./A. & $\qty{0.002}{rad}$ \\
     \hline[dashed]
@@ -52,27 +56,31 @@
     \hline[dashed]
     Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
     \hline
+  \end{tblr}
+  \begin{tblr}{
+    width=\textwidth,
+    colspec={ X[m,j]X[3,m,j] },
+    vlines,
+  }
     \hline
-    \textbf{Altro} & \SetCell[c=3]{l} \textbf{Descrizione/Note} \\
+    \textbf{Altro} & \textbf{Descrizione/Note} \\
     \hline
-    {Asta e rotore} & \SetCell[c=3]{l} {
-      L'asta, fissata ortogonalmente al rotore, \\
-      è libera di ruotare attorno ad un suo estremo. \\
+    Asta e rotore & {
+      L'asta, fissata ortogonalmente al rotore,
+      è libera di ruotare attorno ad un suo estremo.
       Il rotore è invece innestato del sensore di rotazione.
-      % TODO: è parte del sensore di rotazione?
     } \\
     \hline[dashed]
-    {Tre cilindri \\ (con masse e raggi distinti)} & \SetCell[c=3]{l} {
-      Presentano un foro centrale lungo l'asse di \\
-      simmetria. Li indicheremo con $A$, $B$ e $C$.
-      % Indicheremo con $A,B,C$ i tre cilindri \\
-      % e con $0$, $A+B$, $A+C$, $B+C$ e $A+B+C$ \\
-      % le loro combinazioni.
+    {Tre cilindri \\ (con masse e raggi distinti)} & {
+      Di masse e raggi distinti,
+      presentano un foro centrale lungo l'asse di
+      simmetria. \\ Li indicheremo con $A$, $B$ e $C$.
       } \\
     \hline
   \end{tblr}
 \end{center}
 
+\pagebreak
 \section{Esperienza e procedimento di misura}
 
 \emph{
@@ -99,7 +107,7 @@
       servendoci del foro centrale.
       Misuriamo poi, mediante il metro a nastro,
       le posizioni dei cilindri lungo l'asta
-      rispetto al suo estremo libero.
+      rispetto al suo estremo fisso.
     \item
       Servendoci dell'apposito programma, avviamo
       l'acquisizione dell'angolo in funzione del tempo
@@ -141,7 +149,7 @@ versore $\hat{k}$ diretto lungo l'asse di rotazione del sistema.
 Allora, detto $\theta$ lo spostamento angolare del centro di massa
 rispetto alla sua posizione di equilibrio,
 vale la seconda equazione cardinale della dinamica:
-\[\sum\tau^\text{ext}_z = \frac{d}{dt} L_z = I_z^\text{tot} \ddot{\theta}\]
+\[\sum\tau^\text{ext}_z = \dot{L}_z = I_z^\text{\,tot} \ddot{\theta}\]
 
 \vspace{2mm}
 \emph{
@@ -171,15 +179,17 @@ del pendolo fisico sarà allora:
 Poiché $\sin(x) \sim x$ per $x\rightarrow 0$, come accennato in
 precedenza possiamo semplificare il modello fisico approssimando
 $\sin(\theta)$ a $\theta$. Questa operazione è valida solo
-se $\theta-\sin(\theta) < \delta\theta$, ma, essendo chiaramente\footnote{
-  Lo si può osservare facilmente mediante la conservazione dell'energia
-  meccanica totale: se per $t=0$ si ha $\theta=\theta_0$ ed
-  $E(0)=U_g=-MgD\cos(\theta_0)$, in ogni altro istante di tempo si avrà
-  $E(t)=K-MgD\cos(\theta)\le E(0)=-MgD\cos(\theta_0)$, da cui
-  $\cos(\theta)\ge\cos(\theta_0)$ ovvero $0\le\theta\le\theta_0$
-  (poiché $0\le\theta<\pi$, intervallo in cui la funzione
-  coseno è strettamente decrescente).
-} $\theta(t)\le\theta_0\quad\forall t\in[0,+\infty)$,
+se $\theta-\sin(\theta) < \delta\theta$, ma, essendo chiaramente
+%\footnote{
+%  Lo si può osservare facilmente mediante la conservazione dell'energia
+%  meccanica totale: se per $t=0$ si ha $\theta=\theta_0$ ed
+%  $E(0)=U_g=-MgD\cos(\theta_0)$, in ogni altro istante di tempo si avrà
+%  $E(t)=K-MgD\cos(\theta)\le E(0)=-MgD\cos(\theta_0)$, da cui
+%  $\cos(\theta)\ge\cos(\theta_0)$ ovvero $0\le\theta\le\theta_0$
+%  (poiché $0\le\theta<\pi$, intervallo in cui la funzione
+%  coseno è strettamente decrescente).
+%}
+$\theta(t)\le\theta_0\quad\forall t\in[0,+\infty)$,
 la condizione è soddisfatta per ogni $\theta$ se è soddisfatta per
 $\theta_0$.
 
@@ -223,7 +233,7 @@ del sistema, sfruttando la proprietà additiva del momento d'inerzia:
 Chiaramente, per calcolare i momenti d'inerzia rispetto all'asse di
 rotazione è necessario applicare il teorema di Huygens-Steiner
 a quelli calcolati sui rispettivi centri di massa:
-\[  % TODO: Non dovrebbe essere - anziché + dentro alle (...)² ?
+\[
   I_{z,\text{asta}} = I_\text{CM,asta} + m_\text{asta}\left(\frac{L_\text{asta} + \diam_\text{rotore}}{2}\right)^2
 \]\[
   I_{z,(i,d)} = I_{\text{CM},i} + m_i\left(d + \frac{h_i - \diam_\text{rotore}}{2}\right)^2\qquad\forall(i,d)\in\Gamma
@@ -267,7 +277,7 @@ Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo 
     \hline[dashed]
     C & $71.46\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $12.08 \pm 0.01$ & $5.047\pm0.018$\\
     \hline
-\end{tblr}  % TODO: Tabella troppo larga
+\end{tblr}
 \end{center}
 
 \subsubsection{Il calcolo di $g$}
@@ -294,19 +304,18 @@ I risultati della regressione lineare sono i seguenti:
 \pagebreak
 \subsection{Misura dello smorzamento}
 
-Il moto del pendolo fisico è condizionato dalla presenza
-di attriti, che ne modificano ampiezza e periodo.
-
-\vspace{2mm}
 \emph{
-In questa sezione, illustreremo come il gruppo di lavoro abbia
-valutato lo smorzamento del moto e quanto questo sia significativo,
-prendendo come esempio la configurazione $\Gamma=\left\{\right\}$,
-dove il pendolo fisico è composto solamente da asta e rotore, senza
-l'aggiunta di cilindri.
-Il gruppo di lavoro ha effettuato gli stessi passaggi per tutte le
-altre configurazioni: i risultati saranno messi in evidenza alla
-fine della sezione.
+  In questa sezione, illustreremo come il gruppo di lavoro abbia
+  valutato lo smorzamento del moto e quanto questo sia significativo,
+  prendendo come esempio la configurazione $\Gamma=\left\{\right\}$,
+  dove il pendolo fisico è composto solamente da asta e rotore, senza
+  l'aggiunta di cilindri.
+}
+
+\emph{
+  Il gruppo di lavoro ha effettuato gli stessi passaggi per tutte le
+  altre configurazioni: i risultati saranno messi in evidenza alla
+  fine della sezione.
 }
 \vspace{2mm}
 
