@@ -287,9 +287,17 @@ Come è possibile osservare dalla relazione che le lega, la dipendenza
 tra queste due grandezze è lineare: questo ci permette di determinare
 il valore di $g$ come coefficiente angolare di una retta di regressione.
 
+\begin{center}
 \begin{figure}[H]
   \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione.png}
+  \caption[]{\emph{
+    In rosso, la retta di regressione lineare e in rosa,
+    appena visibile, la sua regione di incertezza.
+    (le barre di errore sull'ascissa sono così ridotte
+    da risultare invisibili)
+  }}
 \end{figure}
+\end{center}
 
 \begin{itemize}
   \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$
@@ -311,6 +319,7 @@ Possiamo pertanto concludere che l'esperienza ha avuto successo:
 mediante l'apparato sperimentale abbiamo ottenuto una misura di $g$
 compatibile con quella attesa.
 
+\pagebreak
 \subsection{Misura dello smorzamento}
 
 \emph{
@@ -346,18 +355,18 @@ dove la pulsazione del moto, $\omega$, è data da:
 \]
 
 \begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm .5cm 2cm .5cm},clip,width=\textwidth]{img/Graph1.png}
-        \caption[]{\emph{
-            Parte dei dati di un'acquisizione di $\theta(t)$
-            con $\Gamma=\left\{\right\}$,
-            come raccolti dal sensore di rotazione,
-            riportati su una larga scala temporale.
-            Si può chiaramente notare lo smorzamento
-            del moto.
-        }}
-    \end{figure}
+  \begin{figure}[H]
+    % trim={< v > ^}
+    \includegraphics[trim={2cm .5cm 2cm .5cm},clip,width=\textwidth]{img/Graph1.png}
+    \caption[]{\emph{
+      Parte dei dati di un'acquisizione di $\theta(t)$
+      con $\Gamma=\left\{\right\}$,
+      come raccolti dal sensore di rotazione,
+      riportati su una larga scala temporale.
+      Si può chiaramente notare lo smorzamento
+      del moto.
+    }}
+  \end{figure}
 \end{center}
 
 Per stimare $\lambda$, il gruppo di lavoro ha proceduto come segue:
@@ -392,16 +401,18 @@ Per stimare $\lambda$, il gruppo di lavoro ha proceduto come segue:
 \end{enumerate}
 
 \begin{center}
-    \begin{figure}[H]
-        % trim={< v > ^}
-        \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/0max-exp.png}
-        \caption[]{\emph{
-            $\ln{\theta(t_\text{massimi})}$, su scala logaritmica.
-            Sono riportate anche le barre di errore.
-            In rosso, la retta di regressione lineare
-            e in rosa la sua regione di incertezza.
-        }}
-    \end{figure}
+  \begin{figure}[H]
+    % trim={< v > ^}
+    \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=.5\textwidth]{img/0max-exp.png}
+    \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=.5\textwidth]{img/0max-exp.png}
+    \caption[]{\emph{
+      $\ln{\theta(t)}$ di massimi e minimi,
+      su scala logaritmica (per $\Gamma=\left\{\right\}$).
+      Sono riportate anche le barre di errore.
+      In rosso, la retta di regressione lineare
+      e in rosa la sua regione di incertezza.
+    }}
+  \end{figure}
 \end{center}
 
 Poiché l'obiettivo è calcolare $g$, la correzione da effettuare
@@ -424,6 +435,12 @@ unitamente ai risultati ottenuti.
 
 \begin{figure}[H]
   \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione-2.png}
+  \caption[]{\emph{
+    In rosso, la retta di regressione lineare e in rosa,
+    appena visibile, la sua regione di incertezza.
+    (le barre di errore sull'ascissa sono così ridotte
+    da risultare invisibili)
+  }}
 \end{figure}
 
 I risultati della regressione lineare sono i seguenti:
