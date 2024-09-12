@@ -27,18 +27,30 @@ jobs:
       #     root_file: lab1/r6-calorimetro/relazione.tex
       #     compiler: latexmk
       #     args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r6-calorimetro/
-      - name: Compile r7-pendulum
+      # - name: Compile r7-pendulum
+      #   uses: dante-ev/latex-action@latest
+      #   with:
+      #     root_file: lab1/r7-pendulum/relazione.tex
+      #     compiler: latexmk
+      #     args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r7-pendulum/
+      # - name: Compile r8-rotolamento
+      #   uses: dante-ev/latex-action@latest
+      #   with:
+      #     root_file: lab1/r8-rotolamento/relazione.tex
+      #     compiler: latexmk
+      #     args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r8-rotolamento/
+      - name: Compile r9-glicerine
         uses: dante-ev/latex-action@latest
         with:
-          root_file: lab1/r7-pendulum/relazione.tex
+          root_file: lab1/r9-glicerine/relazione.tex
           compiler: latexmk
-          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r7-pendulum/
-      - name: Compile r8-rotolamento
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r9-glicerine/
+      - name: Compile r10-thermocouple
         uses: dante-ev/latex-action@latest
         with:
-          root_file: lab1/r8-rotolamento/relazione.tex
+          root_file: lab1/r10-thermocouple/relazione.tex
           compiler: latexmk
-          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r8-rotolamento/
+          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r10-thermocouple/
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
