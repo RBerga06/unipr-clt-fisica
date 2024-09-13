@@ -31,10 +31,10 @@
 %}
 %% </custom footnotes>
 \title{
-    Laboratorio di Fisica 1\\
-    R8: Taratura di una termocoppia
+  Laboratorio di Fisica 1\\
+  R8: Taratura di una termocoppia
 }
-\author{Gruppo 15: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
+\author{Gruppo 15: Bergamaschi Riccardo, Moglia Simone, Graiani Elia}
 \date{30/04/2024 – 07/05/2024}
 \makeindex
 \begin{document}
@@ -42,93 +42,134 @@
 \maketitle
 
 \begin{abstract}
-    Il gruppo di lavoro ha determinato la curva di calibrazione una termocoppia sfruttando
-    punti fissi, ovvero temperature note, di alcune sostanze chimiche.
+  Il gruppo di lavoro ha determinato la curva di calibrazione di una
+  termocoppia sfruttando punti fissi, ovvero temperature note,
+  di svariate sostanze chimiche.
 \end{abstract}
 
 \setcounter{section}{-1}  % Count sections starting from 0
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
-    \begin{tblr}{
-        width=\textwidth,
-        colspec={ X[2,m,j]X[m,c]X[m,c]X[m,c] },
-        vlines,
-    }
-        \hline
-        \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
-        \hline
-        Termocoppia (tipo K) & \qty{1}{mV}? & \qty{99999999}{mV}? & \qty{1}{mV} \\
-        \hline
-    \end{tblr}
-    \begin{tblr}{
-        width=\textwidth,
-        colspec={ X[m,j]X[3,m,j] },
-        vlines,
-    }
-        \hline
-        \textbf{Altro} & \textbf{Descrizione/Note} \\
-        \hline
-        Sostanze chimiche & {
-            Azoto, etanolo, ghiaccio,
-            gallio, acqua e indio.
-        } \\
-        \hline[dashed]
-        Fornelletto e pentolino & {
-            Per scaldare i composti.
-        } \\
-        \hline[dashed]
-        Guanto da forno, pinzette,
-        presine e contenitori isolanti & { 
-            Per maneggiare oggetti 
-            con temperature elevate
-            o molto basse.
-        } \\
-        \hline[dashed]
-        Cacciavite & {
-        Utilizzato per aprire/chiudere
-        il crogiolo contenente l'indio.
-        } \\
-        \hline[dashed]
-        Amplificatore & {
-        Amplifica di un fattore 100
-        il voltaggio rilevato dalla
-        termocoppia.
-        } \\
-        \hline
-    \end{tblr}
+  \begin{tblr}{
+    width=\textwidth,
+    colspec={ X[2,m,j]X[m,c]X[m,c]X[m,c] },
+    vlines,
+  }
+    \hline
+    \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
+    \hline
+    Termocoppia (tipo K) & \qty{-6.03}{mV} & \qty{50.64}{mV} & \qty{0.01}{mV} \\
+    \hline[dashed]
+    Cronometro & \qty{0.01}{s} & N./A. & \qty{0.01}{s} \\
+    \hline[dashed]
+    Termometro ambientale & \qty{-10.0}{\degree C}? & \qty{50.64}{\degree C}? & \qty{0.5}{\degree C} \\
+    \hline
+  \end{tblr}
+  \begin{tblr}{
+    width=\textwidth,
+    colspec={ X[2,m,j]X[3,m,j] },
+    vlines,
+  }
+    \hline
+    \textbf{Altro} & \textbf{Descrizione/Note} \\
+    \hline
+    Campioni di sostanze chimiche & {
+      Azoto liquido, acqua distillata,
+      etanolo, gallio, e indio.
+    } \\
+    \hline[dashed]
+    Amplificatore di voltaggio & {
+      Amplifica di un fattore 100 il voltaggio rilevato dalla
+      termocoppia, rendendo possibile l'acquisizione dati.
+    } \\
+    \hline[dashed]
+    Fornelletto e pentolino & Per scaldare i campioni. \\
+    \hline[dashed]
+    Cacciavite & Utilizzato per collegare la termocoppia all'interfaccia. \\
+    \hline[dashed]
+    { Guanto da forno, pinzette, presine e contenitori isolanti } & {
+      Per maneggiare i campioni in sicurezza.
+    } \\
+    \hline
+  \end{tblr}
 \end{center}
 
+\pagebreak
 \section{Esperienza e procedimento di misura}
-\begin{enumerate}
-    \item
-        Immergiamo anche la seconda giunzione nel bagno
-        di acqua e ghiaccio e leggiamo la ddp prodotta.
-    \item
-        Inseriamo la giunzione nel contenitore dell'azoto
-        liquido ed osserviamo la ddp prodotta.
-    \item
-        Versiamo acqua distillata in un pentolino e la
-        facciamo bollire; una volta raggiunto il bollore,
-        inseriamo la giunzione nell'acqua per ricavare la ddp prodotta.
-    \item
-        Inseriamo nell'azoto liquido una provetta contenente
-        etanolo liquido in modo da farlo solidificare:
-        estratta la provetta, rileviamo la ddp quando
-        l'etanolo fonde.
-    \item
-        Mettiamo il crogiolo di indio a scaldare a bagnomaria
-        nel pentolino; una volta fuso vi inseriamo la giunzione
-        ed lo facciamo raffreddare "naturalmente?", misurando
-        la ddp durante la solidificazione.
-    \item
-        Facciamo fondere il gallio nel pentolino, per poi
-        immergerlo nell'azoto liquido e scaldarlo nuovamente
-        nel pentolino, leggendo la ddp durante la fusione.
-    %facciamo questo perché:
-    % -la temperatura di fusione del Ga è intorno ai 30°C, dunque esso si trovava spesso in uno stato intermedio tra due fasi
-    % -bisogna evitare il fenomeno del sottoraffreddamento
 
+\begin{enumerate}
+  \item[0.]
+    Posizioniamo una giunzione della termocoppia (che d'ora in poi indicheremo
+    come “giunzione fissa”) in un miscuglio %eterogeneo
+    di acqua distillata (solida e liquida) alla temperatura
+    costante di $(273.1\pm0.1)\,\unit{K}$.
+  \item
+    Per ogni punto fisso, individuiamo il voltaggio $\Delta V$ misurato dalla
+    termocoppia, con la giunzione libera immersa nel campione,
+    quando quest'ultimo effettua la transizione
+    di fase. Tale fenomeno è individuabile nel grafico di $\Delta V$ in funzione
+    del tempo in quanto si presenta come un plateau: la temperatura è infatti
+    costante fino al termine della transizione di fase.
+  \item
+    Dopo ogni acquisizione, misuriamo la temperatura ambiente con il termometro
+    ambientale, per assicurarci che non sia variata (al netto della sensibilità
+    dello strumento). Per tutte le acquisizioni, abbiamo rilevato
+    $(21.0\pm0.5)\,\unit{\degree C} = (294.1\pm0.5)\,\unit{K}$
 \end{enumerate}
+Di seguito indichiamo i passaggi necessari, caso per caso,
+al raggiungimento dei diversi punti fissi, unitamente alle
+rispettive temperature (note a priori).
+
+\subsection*{Acqua (fusione) e azoto (ebollizione)}
+\textbf{Temperature}: rispettivamente, $(273.1\pm0.1)\,\unit{K}$ e $(77.3\pm0.1)\,\unit{K}$
+\vspace{1mm}
+
+Data la considerevole quantità di ghiaccio e azoto liquido ed essendo
+entrambe le temperature di transizione di fase minori della temperatura
+ambiente, i passaggi di stato avvengono spontaneamente e per lungo tempo.
+
+Questo ha permesso al gruppo di lavoro, in entrambi i casi,
+di inserire direttamente la giunzione nella miscela tra le due fasi,
+senza la necessità di svolgere passaggi ulteriori.
+
+\subsection*{Acqua (ebollizione)}
+\textbf{Temperatura}: $(373.1\pm0.1)\,\unit{K}$
+\vspace{1mm}
+
+L'unica differenza con il caso precedente è la spontaneità
+della transizione di fase:
+il gruppo di lavoro ha pertanto, preliminarmente, portato
+a bollore una considerevole quantità d'acqua distillata,
+scaldandola nel pentolino.
+
+È stato poi sufficiente immergere la giunzione nell'acqua
+in ebollizione.
+
+\subsection*{Etanolo, indio e gallio (fusione)}
+\textbf{Temperature}: rispettivamente, $(158.8\pm0.1)\,\unit{K}$,
+$(302.9\pm0.1)\,\unit{K}$ e $(429.7\pm0.1)\,\unit{K}$
+\vspace{1mm}
+
+A differenza dei precedenti, in questi casi i campioni
+hanno massa relativamente ridotta, per cui la transizione
+di fase è breve. È necessario dunque svolgere i seguenti passaggi:
+\begin{enumerate}
+  \item
+\end{enumerate}
+
+\subsection{Indio}
+Mettiamo il crogiolo di indio a scaldare a bagnomaria
+nel pentolino; una volta fuso vi inseriamo la giunzione
+ed lo facciamo raffreddare "naturalmente?", misurando
+la ddp durante la solidificazione.
+
+\subsection{Gallio}
+Facciamo fondere il gallio nel pentolino, per poi
+immergerlo nell'azoto liquido e scaldarlo nuovamente
+nel pentolino, leggendo la ddp durante la fusione.
+%facciamo questo perché:
+% -la temperatura di fusione del Ga è intorno ai 30°C, dunque esso si trovava spesso in uno stato intermedio tra due fasi
+% -bisogna evitare il fenomeno del sottoraffreddamento
 
 \section{Analisi dei dati raccolti e conclusioni}
 \subsection{Calcolo del momento d'inerzia del campione}
