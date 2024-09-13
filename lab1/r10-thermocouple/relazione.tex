@@ -183,7 +183,30 @@ lasciandolo riposare a temperatura ambiente.
 % preso dati direttamente durante il congelamento).
 
 \section{Analisi dei dati raccolti}
+Di seguito riportiamo, per ogni punto fisso, il relativo
+grafico dei dati raccolti $\Delta V(t)$.
 
+A causa della presenza di rumore, abbiamo scelto di
+considerare come variazione di potenziale associata
+ad ogni punto fisso la media di tutti i punti che
+compongono il rispettivo plateau.\footnote{
+  L'errore sulla media è stato pertanto calcolato
+  come di consueto:
+  \[
+    \sigma_{\overline{\Delta V}} =
+    \frac{\sigma_{\Delta V}}{\sqrt{N}}
+  \]
+}
+
+\begin{figure}[H]
+  % <v>^
+  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/acqua-fus.png}
+  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/azoto.png}
+  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/acqua-eb.png}
+  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/etanolo.png}
+  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/indio.png}
+  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/gallio.png}
+\end{figure}
 
 \subsection{Distribuzione dei tempi di caduta}
 
@@ -237,8 +260,6 @@ lineare pesata\footnote{
     che gli errori sull'ascissa, per quanto ridotti, sono diversi fra di loro.
 }:
 \begin{figure}[H]
-    % <v>^
-    % \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=\textwidth]{img/regressione.jpg}
     \caption*{\emph{
         In rosso la retta di regressione, in rosa la sua regione di incertezza. \\
         Nel grafico principale, le barre di errore lungo l'ascissa, date le loro
