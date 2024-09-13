@@ -9,6 +9,9 @@
 \usepackage{float}
 \usepackage{xfrac}
 \usepackage{caption}    % for \caption*{}
+\usepackage[bottom]{footmisc}
+\usepackage[labelformat=simple, justification=centering]{subfig}
+\renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -200,23 +203,40 @@ compongono il rispettivo plateau.\footnote{
 
 \begin{figure}[H]
   % <v>^
-  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/acqua-fus.png}
-  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/azoto.png}
-  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/acqua-eb.png}
-  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/etanolo.png}
-  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/indio.png}
-  \includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/gallio.png}
+  \centering
+  \subfloat[][
+    Acqua (fusione)
+
+    $\Delta V=(0.032\pm0.007)\,\unit{mV}$
+  ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/acqua-fus.png}}\hfil
+  \subfloat[][
+    Azoto (ebollizione)
+
+    $\Delta V=(-5.652\pm0.013)\,\unit{mV}$
+  ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/azoto.png}}\hfil
+  \subfloat[][
+    Acqua (ebollizione)
+
+    $\Delta V=(3.967\pm0.010)\,\unit{mV}$
+  ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/acqua-eb}}\hfil
+  \subfloat[][
+    Etanolo (fusione)
+
+    $\Delta V=(-3.94\pm0.07)\,\unit{mV}$
+  ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/etanolo.png}}\hfil
+  \subfloat[][
+    Indio (fusione)
+
+    $\Delta V=(6.214\pm0.017)\,\unit{mV}$
+  ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/indio.png}}\hfil
+  \subfloat[][
+    Gallio (fusione)
+
+    $\Delta V=(1.00\pm0.03)\,\unit{mV}$
+  ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/gallio.png}}
 \end{figure}
 
-\subsection{Distribuzione dei tempi di caduta}
-
-Riportiamo di seguito i grafici della distribuzione dei tempi di caduta $t_{L,\theta}$,
-accompagnati alle relative misure di $L$ e $\theta$.
-
-\begin{center}
-    %
-\end{center}
-
+\pagebreak
 \subsection{Calcolo di $g$ mediante la dinamica del corpo rigido}
 
 Fissato un sistema di riferimento cartesiano ortogonale solidale
