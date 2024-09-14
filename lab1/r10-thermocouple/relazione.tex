@@ -182,8 +182,13 @@ L'etanolo, al contrario, essendo liquido a $(294.1\pm0.5)\,\unit{K}$,
 è stato raffreddato immergendolo nell'azoto liquido e riscaldato
 estraendolo da quest'ultimo.
 
-% TODO: Parlare del sottoraffreddamento (motivo per cui non abbiamo
-% preso dati direttamente durante il congelamento).
+\vspace{2mm}
+\emph{\textbf{Nota}. Il gruppo di lavoro ha acquisito dati durante la
+fusione, e non direttamente durante il congelamento, per evitare di
+incorrere nel fenomeno del sottoraffreddamento: sostanze come
+l'etanolo e il gallio, infatti, possono raffreddarsi al di sotto del
+punto di fusione senza cambiare fase, per poi solidificare velocemente
+se perturbati.}
 
 \section{Analisi dei dati raccolti}
 \subsection{$\Delta V$ dei punti fissi}
@@ -393,9 +398,38 @@ Stima della precisione (errore relativo):
 
 Osservando i valori di $\varepsilon$ risulta ben chiaro che
 $T_\text{lineare}$ non è affatto compatibile con $T_\text{misurata}$:
-il modello linare, infatti, non si adatta bene ai dati da noi raccolti.
+possiamo dedurne che il modello linare non si adatta bene ai dati da noi
+raccolti.\footnote{
+  A dire il vero $\varepsilon_\text{lineare} < -1$ non ne è l'unico indizio:
+  anche solo l'errore sui parametri della regressione, o la distribuzione dei
+  punti nel grafico, suggeriscono un chiaro andamento (perlomeno) quadratico.
+}
+
+\vspace{3mm}
 
 Al contrario, sia il modello quadratico che quello cubico ci hanno
 permesso di interpolare la temperatura ambiente con successo.
+Si osservi che $|\varepsilon_\text{cubica}| < |\varepsilon_\text{quadratica}|$:
+ciò suggerisce una maggiore accuratezza del modello cubico rispetto a quello
+quadratico.
+
+\vspace{3mm}
+
+Tuttavia, è semplice notare che l'errore relativo su $T_\text{cubica}$ è
+nettamente superiore a quello di $T_\text{quadratica}$: il gruppo di lavoro
+ritiene che il motivo principale di questa differenza sia la complessità
+della funzione risolutiva utilizzata per calcolare
+$T_\text{ambiente,interpolata}$ e della sua derivata, utilizzata nel
+calcolo dell'errore.
+
+Ricordiamo, inoltre, che nel modello cubico è presente,
+naturalmente, un parametro in più rispetto al modello quadratico; parametro
+a cui è associato un errore che contribuisce ulteriormente all'incertezza su
+$T_\text{ambiente,interpolata}$.
+
+\vspace{3mm}
+
+In conclusione, il gruppo di lavoro ha ritenuto l'esperienza avvenuta con
+successo.
 
 \end{document}
