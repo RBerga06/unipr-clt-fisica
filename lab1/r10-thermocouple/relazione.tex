@@ -246,79 +246,6 @@ tre regressioni polinomiali, con polinomi di primo, secondo e terzo grado.
 Abbiamo considerato come variabile indipendente la temperatura (in $\unit{K}$)
 e come variabile dipendente la differenza di potenziale (in $\unit{mV}$).
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione1.png}
-  \caption*{\emph{
-    In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
-  }}
-\end{figure}
-
-Equazione della curva di regressione:
-\[\begin{aligned}\Delta V_\text{lineare}(T)
-  &= (3.337\pm0.005)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
-  &+ (-8.735\pm0.015)\,\unit{mV}
-\end{aligned}\]
-
-Soluzione di $
-  \Delta V_\text{lineare}(T_\text{ambiente}) -
-  \Delta V_\text{ambiente} = \qty{0}{mV}$:
-\[T_\text{ambiente}
-  = (287.29\pm1.17)\,\unit{K}
-  = (14.14\pm1.17)\,\unit{\degree C}
-\]
-
-\pagebreak
-\begin{figure}[H]
-  \centering
-  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione2.png}
-  \caption*{\emph{
-    In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
-  }}
-\end{figure}
-
-Equazione della curva di regressione:
-\[\begin{aligned}\Delta V_\text{quadratica}(T)
-  &= (3.13\pm0.04)\cdot10^{-5}\,\unit{mV\,K^{-2}}\cdot T^2 \\
-  &+ (1.82\pm0.02)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
-  &+ (-7.26\pm0.02)\,\unit{mV}
-\end{aligned}\]
-
-Soluzione (accettabile) di $
-  \Delta V_\text{quadratica}(T_\text{ambiente}) -
-  \Delta V_\text{ambiente} = \qty{0}{mV}$:
-\[T_\text{ambiente}
-  = (295.6\pm2.1)\,\unit{K}
-  = (22.4\pm2.1)\,\unit{\degree C}
-\]
-
-\pagebreak
-\begin{figure}[H]
-  \centering
-  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione3.png}
-  \caption*{\emph{
-    In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
-  }}
-\end{figure}
-
-Equazione della curva di regressione:
-\[\begin{aligned}\Delta V_\text{cubica}(T)
-  &= (-9.4\pm0.8)\cdot10^{-8}\,\unit{mV\,K^{-3}}\cdot T^3 \\
-  &+ (10.3\pm0.6)\cdot10^{-5}\,\unit{mV\,K^{-2}}\cdot T^2 \\
-  &+ (0.23\pm0.14)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
-  &+ (-6.41\pm0.08)\,\unit{mV}
-\end{aligned}\]
-
-Soluzione (accettabile) di $
-  \Delta V_\text{cubica}(T_\text{ambiente}) -
-  \Delta V_\text{ambiente} = \qty{0}{mV}$:
-\[T_\text{ambiente}
-  = (294.8\pm18.2)\,\unit{K}
-  = (21.6\pm18.2)\,\unit{\degree C}
-\]
-
-\pagebreak
-\subsection{Interpolazione della temperatura ambiente}
 In alcune misurazioni di $\Delta V(t)$ abbiamo iniziato
 ad acquisire dati a temperatura ambiente: questo ci ha
 permesso di effettuare una valutazione dell'accuratezza
@@ -345,5 +272,88 @@ inoltre, più $\varepsilon$ è vicino a $0$, più accurata è l'interpolazione
 
 Per calcolare $T_\text{ambiente,interpolata}$ abbiamo determinato le radici di
 \[ \Delta V(T) - \Delta V_\text{ambiente} \]
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione1.png}
+  \caption*{\emph{
+    In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
+  }}
+\end{figure}
+
+Equazione della curva di regressione:
+\[\begin{aligned}\Delta V_\text{lineare}(T)
+  &= (3.337\pm0.005)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
+  &+ (-8.735\pm0.015)\,\unit{mV}
+\end{aligned}\]
+
+Soluzione di $
+  \Delta V_\text{lineare}(T_\text{ambiente}) -
+  \Delta V_\text{ambiente} = \qty{0}{mV}$:
+\[T_\text{ambiente}
+  = (287.3\pm0.9)\,\unit{K}
+  = (14.1\pm0.9)\,\unit{\degree C}
+\]
+
+Stima dell'accuratezza rispetto a $T_\text{ambiente,misurata}$:
+\[ \varepsilon_\text{lineare} \simeq -5.021 \]
+
+\pagebreak
+\begin{figure}[H]
+  \centering
+  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione2.png}
+  \caption*{\emph{
+    In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
+  }}
+\end{figure}
+
+Equazione della curva di regressione:
+\[\begin{aligned}\Delta V_\text{quadratica}(T)
+  &= (3.13\pm0.04)\cdot10^{-5}\,\unit{mV\,K^{-2}}\cdot T^2 \\
+  &+ (1.82\pm0.02)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
+  &+ (-7.26\pm0.02)\,\unit{mV}
+\end{aligned}\]
+
+Soluzione (accettabile) di $
+  \Delta V_\text{quadratica}(T_\text{ambiente}) -
+  \Delta V_\text{ambiente} = \qty{0}{mV}$:
+\[T_\text{ambiente}
+  = (295.6\pm2.1)\,\unit{K}
+  = (22.4\pm2.1)\,\unit{\degree C}
+\]
+
+Stima dell'accuratezza rispetto a $T_\text{ambiente,misurata}$:
+\[ \varepsilon_\text{quadratica} \simeq 0.558 \]
+
+\pagebreak
+\begin{figure}[H]
+  \centering
+  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione3.png}
+  \caption*{\emph{
+    In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
+  }}
+\end{figure}
+
+Equazione della curva di regressione:
+\[\begin{aligned}\Delta V_\text{cubica}(T)
+  &= (-9.4\pm0.8)\cdot10^{-8}\,\unit{mV\,K^{-3}}\cdot T^3 \\
+  &+ (10.3\pm0.6)\cdot10^{-5}\,\unit{mV\,K^{-2}}\cdot T^2 \\
+  &+ (0.23\pm0.14)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
+  &+ (-6.41\pm0.08)\,\unit{mV}
+\end{aligned}\]
+
+Soluzione (accettabile) di $
+  \Delta V_\text{cubica}(T_\text{ambiente}) -
+  \Delta V_\text{ambiente} = \qty{0}{mV}$:
+\[T_\text{ambiente}
+  = (294.8\pm18.2)\,\unit{K}
+  = (21.6\pm18.2)\,\unit{\degree C}
+\]
+
+Stima dell'accuratezza rispetto a $T_\text{ambiente,misurata}$:
+\[ \varepsilon_\text{cubica} \simeq 0.037 \]
+
+\pagebreak
+\subsection{Conclusioni}
 
 \end{document}
