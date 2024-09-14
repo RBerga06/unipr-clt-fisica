@@ -246,18 +246,31 @@ tre regressioni polinomiali, con polinomi di primo, secondo e terzo grado.
 Abbiamo considerato come variabile indipendente la temperatura (in $\unit{K}$)
 e come variabile dipendente la differenza di potenziale (in $\unit{mV}$).
 
-In alcune misurazioni di $\Delta V(t)$ abbiamo iniziato
+\vspace{3mm}
+
+In alcune misurazioni di $\Delta V(t)$ (in particolare:
+ebollizione e fusione dell'acqua, ebollizione dell'azoto e
+fusione del gallio) avevamo iniziato
 ad acquisire dati a temperatura ambiente: questo ci ha
 permesso di effettuare una valutazione dell'accuratezza
-delle curve ottenute determinando $T_\text{ambiente}$
+delle curve ottenute, determinando $T_\text{ambiente}$
 per interpolazione.
 
-In particolare, abbiamo utilizzato
-$\Delta V_\text{ambiente} = (0.85\pm0.01)\,\unit{mV}$,
+Quest'ultima è stata effettuata determinando, in tutti e tre i casi,
+l'unica soluzione accettabile dell'equazione (in $T_\text{ambiente,interpolata}$):
+\[
+  \Delta V_\text{regressione}(T_\text{ambiente,interpolata})
+  - \Delta V_\text{ambiente}
+\]
+con $\Delta V_\text{ambiente} = (0.85\pm0.01)\,\unit{mV}$,
 media delle differenze di potenziale registrate a temperatura
 ambiente.
+L'errore su $T_\text{ambiente,interpolata}$ è stato allora calcolato
+mediante la tradizionale propagazione degli errori.
 
-Per valutare numericamente l'accuratezza di ogni curva
+\vspace{3mm}
+
+Infine, per valutare numericamente l'accuratezza di ogni curva,
 abbiamo calcolato, per ciascuna, il seguente valore (numero puro):
 \[
   \varepsilon = \frac{
@@ -265,14 +278,27 @@ abbiamo calcolato, per ciascuna, il seguente valore (numero puro):
     \left(T_\text{ambiente,misurata}\right)_\text{best}
   }{\delta T_\text{ambiente,interpolata} + \delta T_\text{ambiente,misurata}}
 \]
-Allora $T_\text{ambiente,interpolata}$ è consistente con
-$T_\text{ambiente,misurata}$ se e solo se $\left|\varepsilon\right|\le 1$;
-inoltre, più $\varepsilon$ è vicino a $0$, più accurata è l'interpolazione
-(e, di conseguenza, anche la stima della curva).
+Questo indice gode delle seguenti proprietà:
+\begin{itemize}
+  \item $T_\text{ambiente,interpolata}$ è consistente con
+    $T_\text{ambiente,misurata}$ se e solo se $\left|\varepsilon\right|\le 1$.
+  \item Se $\varepsilon>0$, allora $T_\text{ambiente,interpolata}$ è una
+    sovrastima di $T_\text{ambiente,misurata}$; viceversa, se $\varepsilon<0$,
+    allora si tratta di una sottostima.
+  \item Più $\varepsilon$ è vicino a $0$, più accurata è la stima di
+    $T_\text{ambiente}$ ottenuta mediante interpolazione (e, di conseguenza,
+    anche la stima della curva).
+\end{itemize}
 
-Per calcolare $T_\text{ambiente,interpolata}$ abbiamo determinato le radici di
-\[ \Delta V(T) - \Delta V_\text{ambiente} \]
+\vspace{3mm}
 
+Di seguito riportiamo i grafici di tutte e tre le curve, accompagnati dalle
+rispettive equazioni e dai valori di $T_\text{ambiente,interpolata}$ e
+$\varepsilon$. Esplicitiamo, inoltre, l'errore relativo su
+$T_\text{ambiente,interpolata}$, in quanto indice della \emph{precisione}
+dell'interpolazione — contrapposto al sopra citato $\varepsilon$.
+
+\pagebreak
 \begin{figure}[H]
   \centering
   \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione1.png}
@@ -297,6 +323,9 @@ Soluzione di $
 
 Stima dell'accuratezza rispetto a $T_\text{ambiente,misurata}$:
 \[ \varepsilon_\text{lineare} \simeq -5.021 \]
+
+Stima della precisione (errore relativo):
+\[ \frac{\delta T_\text{lineare}}{T_\text{lineare}} \simeq 0.30\% \]
 
 \pagebreak
 \begin{figure}[H]
@@ -324,6 +353,9 @@ Soluzione (accettabile) di $
 
 Stima dell'accuratezza rispetto a $T_\text{ambiente,misurata}$:
 \[ \varepsilon_\text{quadratica} \simeq 0.558 \]
+
+Stima della precisione (errore relativo):
+\[ \frac{\delta T_\text{quadratica}}{T_\text{quadratica}} \simeq 0.72\% \]
 
 \pagebreak
 \begin{figure}[H]
@@ -353,7 +385,17 @@ Soluzione (accettabile) di $
 Stima dell'accuratezza rispetto a $T_\text{ambiente,misurata}$:
 \[ \varepsilon_\text{cubica} \simeq 0.037 \]
 
+Stima della precisione (errore relativo):
+\[ \frac{\delta T_\text{cubica}}{T_\text{cubica}} \simeq 6.18\% \]
+
 \pagebreak
-\subsection{Conclusioni}
+\section{Conclusioni}
+
+Osservando i valori di $\varepsilon$ risulta ben chiaro che
+$T_\text{lineare}$ non è affatto compatibile con $T_\text{misurata}$:
+il modello linare, infatti, non si adatta bene ai dati da noi raccolti.
+
+Al contrario, sia il modello quadratico che quello cubico ci hanno
+permesso di interpolare la temperatura ambiente con successo.
 
 \end{document}
