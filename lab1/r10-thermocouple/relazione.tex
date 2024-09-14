@@ -8,7 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{xfrac}
-\usepackage{caption}    % for \caption*{}
+\usepackage[justification=centering]{caption}    % for \caption*{}
 \usepackage[bottom]{footmisc}
 \usepackage[labelformat=simple, justification=centering]{subfig}
 \renewcommand{\thesubfigure}{}
@@ -101,7 +101,7 @@
 \section{Esperienza e procedimento di misura}
 
 \begin{enumerate}
-  \item[0.]
+  \item
     Posizioniamo una giunzione della termocoppia (che d'ora in poi indicheremo
     come “giunzione fissa”) in un miscuglio %eterogeneo
     di acqua distillata (solida e liquida) alla temperatura
@@ -180,12 +180,13 @@ lasciandoli riposare a temperatura ambiente.
 
 L'etanolo, al contrario, essendo liquido a $(294.1\pm0.5)\,\unit{K}$,
 è stato raffreddato immergendolo nell'azoto liquido e riscaldato
-lasciandolo riposare a temperatura ambiente.
+estraendolo da quest'ultimo.
 
 % TODO: Parlare del sottoraffreddamento (motivo per cui non abbiamo
 % preso dati direttamente durante il congelamento).
 
 \section{Analisi dei dati raccolti}
+\subsection{$\Delta V$ dei punti fissi}
 Di seguito riportiamo, per ogni punto fisso, il relativo
 grafico dei dati raccolti $\Delta V(t)$.
 
@@ -237,60 +238,50 @@ compongono il rispettivo plateau.\footnote{
 \end{figure}
 
 \pagebreak
-\subsection{Calcolo di $g$ mediante la dinamica del corpo rigido}
+\subsection{Curva caratteristica della termocoppia}
 
-Fissato un sistema di riferimento cartesiano ortogonale solidale
-al piano inclinato, con origine nel punto di partenza del campione,
-asse $x$ parallelo alle guide e asse $y$ entrante nel piano inclinato,
-possiamo scrivere la legge del moto del centro di massa e le
-equazioni cardinali della dinamica del corpo rigido:
-\[x_\text{CM}(t) = \frac{1}{2} a_\text{CM} t^2\]
-\[\left\{\begin{aligned}
-    &M g \sin\theta - F_s = M a_\text{CM} \\
-    &M g \cos\theta - F_n = 0 \\
-    &R M g \sin\theta = \left(I_\text{CM} + M R^2\right) \alpha
-\end{aligned}\right.\]
-dove $R$ è il raggio di contatto, $\vec{F}_s$ è la forza di attrito statico
-tra il campione e le guide, mentre $\vec{F}_n$ è la reazione vincolare delle
-guide, normale al piano.
+Per determinare la curva di calibrazione il gruppo di lavoro ha effettuato
+tre regressioni polinomiali, con polinomi di primo, secondo e terzo grado.
 
-Per poter descrivere il moto del campione come di rotolamento puro,
-dobbiamo assicurarci che $F_s \le \mu_s F_n$, con $\mu_s$ il
-coefficiente di attrito statico tra il corpo rigido e le guide.
-Se questa condizione è verificata, possiamo utilizzare la relazione:
-\[\alpha = \frac{a_\text{CM}}{R}\]
+Abbiamo considerato come variabile indipendente la temperatura (in $\unit{K}$)
+e come variabile dipendente la differenza di potenziale (in $\unit{mV}$).
 
-Risolvendo il sistema lineare e la disequazione di cui sopra si ottiene:
-\[\left\{\begin{aligned}
-    &a_\text{CM} = \frac{M R^2}{I_\text{CM} + M R^2} g\sin\theta \\
-    &F_n = M g \cos\theta \\
-    &F_s = \frac{I}{I + M R^2} M g \sin\theta \\
-    & 0 \le \alpha \le \arctan\left(\mu_s \left(\frac{MR^2}{I_\text{CM}} + 1\right)\right) \\
-\end{aligned}\right.\]
-
-Ricordando ora che $L = x_\text{CM}(\bar{t}_{L,\theta}) + D + S$, dove $D$ è il diametro
-più esterno del campione e $S$ è lo spessore del cuscinetto, possiamo ricavare:
-\[
-    \frac{2(L-D-S)}{\sin\theta}\left(\frac{I_\text{CM}}{M R^2} + 1\right) = g \cdot \bar{t}_{L,\theta}^2
-\]
-
-Possiamo pertanto determinare il modulo di $\vec{g}$ mediante una regressione
-lineare pesata\footnote{
-    La scelta di una regressione lineare \emph{pesata} è giustificata dal fatto
-    che gli errori sull'ascissa, per quanto ridotti, sono diversi fra di loro.
-}:
 \begin{figure}[H]
-    \caption*{\emph{
-        In rosso la retta di regressione, in rosa la sua regione di incertezza. \\
-        Nel grafico principale, le barre di errore lungo l'ascissa, date le loro
-        dimensioni, non sono visibili.
-    }}
+  \centering
+  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione1.png}
+  \caption*{In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
+
+    $\begin{aligned}\Delta V
+      &= (3.337\pm0.005)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
+      &+ (-8.735\pm0.015)\,\unit{mV}
+    \end{aligned}$
+  }
+\end{figure}\begin{figure}[H]
+  \centering
+  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione2.png}
+  \caption*{In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
+
+    $\begin{aligned}\Delta V
+      &= (3.13\pm0.04)\cdot10^{-5}\,\unit{mV\,K^{-2}}\cdot T^2 \\
+      &+ (1.82\pm0.02)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
+      &+ (-7.26\pm0.02)\,\unit{mV}
+    \end{aligned}$
+  }
+\end{figure}\begin{figure}[H]
+  \centering
+  \includegraphics[trim={2cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/regressione3.png}
+  \caption*{In rosso, la curva di regressione; in rosa, la sua regione di incertezza.
+
+    $\begin{aligned}\Delta V
+      &= (-9.4\pm0.8)\cdot10^{-8}\,\unit{mV\,K^{-3}}\cdot T^3 \\
+      &+ (10.3\pm0.6)\cdot10^{-5}\,\unit{mV\,K^{-2}}\cdot T^2 \\
+      &+ (0.23\pm0.14)\cdot10^{-2}\,\unit{mV\,K^{-1}}\cdot T \\
+      &+ (-6.41\pm0.08)\,\unit{mV}
+    \end{aligned}$
+  }
 \end{figure}
 
-Di seguito riportiamo i risultati della regressione lineare:
-\begin{itemize}
-    \item Coefficiente angolare ($g$) $=(9.9\pm0.5)\;\unit{m \per s^2}$
-    \item Intercetta $=(0\pm3)\;\unit{m}$ (compatibile con $0$, come ci si aspettava)
-\end{itemize}
+\pagebreak
+\subsection{Interpolazione della temperatura ambiente}
 
 \end{document}
