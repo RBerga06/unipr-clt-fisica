@@ -66,7 +66,10 @@
     Telecamera & Utilizzata per acquisire fotogrammi del sistema
       a intervalli regolari. \\
     \hline[dashed]
-    Cilindro finito & Utilizzato per contenere la glicerina. \\
+    Cilindro finito & {
+      Utilizzato per contenere la glicerina. Su di esso sono indicati,
+      con nastro adesivo nero, due traguardi.
+    } \\
     \hline[dashed]
     Sferette & {
       %TODO:trovare un nome alternativo per le sferette
@@ -89,6 +92,8 @@
 \begin{enumerate}
   \item Misuriamo la temperatura ambiente $T_\text{amb}$ per assicurarci
     che non sia cambiata significativamente dall'acquisizione precedente.
+  \item Misuriamo la distanza tra i due traguardi $L = (18.0\pm0.1)\,\unit{cm}$
+    con il metro a nastro.
   \item Per ogni classe $k$ di sferette:
   \begin{enumerate}
     \item
@@ -108,7 +113,7 @@
         per il diametro medio di tutte le sferette, anche considerato
         il fatto che i tre valori, in tutte le misurazioni, erano
         compatibili fra loro.
-      } di tutte e $N_k$ le sferette.
+      } $\overline{d}_k$ di tutte e $N_k$ le sferette.
     \item Per ogni sferetta $i$:
     \begin{enumerate}
       \item
@@ -126,8 +131,8 @@
 \end{enumerate}
 
 L'esperienza è stata ripetuta completamente in due giornate differenti,
-con $T_{\text{amb},1} = (24.6\pm0.2)\unit{\degree C}$
-e $T_{\text{amb},2} = (19.4\pm0.2)\unit{\degree C}$.
+con $T_{\text{amb},1} = (24.6\pm0.2)\,\unit{\degree C}$
+e $T_{\text{amb},2} = (19.4\pm0.2)\,\unit{\degree C}$.
 Ciò si è rivelato molto utile per poter valutare la
 coerenza dei risultati ottenuti, anche alla luce della
 notevole differenza tra le due temperature.
@@ -140,7 +145,43 @@ come piccoli, casuali e indipendenti, per svolgere ogni calcolo
 abbiamo utilizzato la tradizionale propagazione degli errori.
 }
 
-\subsection{Misura di $\left|\vec{g}\right|$}
+\subsection{Il modello fisico}
+
+Scelta arbitrariamente una sferetta $i$ appartenente alla classe $k$,
+fissiamo un sistema di riferimento cartesiano ortogonale, con asse
+$z\parallel\vec{g}$ e origine nel punto in cui la sferetta viene rilasciata.
+
+Possiamo allora studiare il moto del corpo.
+Per semplificare la trattazione, assumeremo:
+\begin{enumerate}
+  \item Che la traiettoria sia rettilinea, parallela a $\vec{g}$:
+    allora, poiché $\vec{r}\parallel\hat{z}$, indicheremo
+    direttamente con $z_i(t)$ la posizione del centro di massa
+    della sferetta\footnote{
+      Da qui in avanti, utilizzeremo la notazione di Newton per indicare
+      tutte le derivate rispetto al tempo: in particolare, velocità e
+      accelerazione istantanee del centro di massa della sferetta
+      saranno allora $\dot{z}_i(t)$ e $\ddot{z}_i(t)$.
+    } rispetto all'origine del sistema di riferimento.
+  \item Che il moto avvenga in regime laminare
+    (ovvero $\text{Re}=\frac{\rho\diam}{\eta}|\dot{z}| \ll 1200$,
+     dove $\diam$ è il diametro del recipiente e $\rho$ la densità
+     della soluzione).
+  \item Che, rispetto alla sferetta, il recipiente possa essere
+    considerato di dimensione indefinita: che si possano, cioè,
+    trascurare gli effetti di bordo.
+  \item Che $d_z$ non superi, in ordine di grandezza,
+    $10^{-3}\,\unit{m}$.
+\end{enumerate}
+Valuteremo più avanti, alla luce dei dati raccolti e dei risultati ottenuti,
+se queste condizioni sono state verificate.
+
+\vspace{2mm}
+
+Le uniche forze applicate alla sferetta sono le seguenti:
+\begin{itemize}
+  \item Forza peso: $\vec{F_p}=m_i \vec{g}$
+\end{itemize}
 
 Scegliamo un sistema di riferimento cilindrico, con
 origine all'intersezione fra l'asse di rotazione e il piano,
