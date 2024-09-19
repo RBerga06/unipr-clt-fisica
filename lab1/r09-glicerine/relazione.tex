@@ -18,18 +18,19 @@
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
 \title{
   Laboratorio di Fisica 1\\
-  R7: Misura della viscosità della glicerina
+  R9: Misura della viscosità della glicerina
 }
 \author{Gruppo 15: Bergamaschi Riccardo, Graiani Elia, Moglia Simone}
-\date{05/03/2024 – 12/03/2024}
+\date{16/04/2024 – 23/04/2024}
 \makeindex
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-  Il gruppo di lavoro ha misurato il valore del coefficiente di
-  viscosità ($\eta$) studiando la caduta di alcune sferette.
+  Il gruppo di lavoro ha misurato la concentrazione e il coefficiente di
+  viscosità di una soluzione acquosa di glicerina, studiando il moto di
+  caduta di svariate sferette all'interno di essa.
 \end{abstract}
 
 \setcounter{section}{-1}
@@ -43,13 +44,15 @@
     \hline
     \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
     \hline
-    Telecamera & $\qty{0.001}{s}$ & N./A. & $\qty{0.001}{s}$ \\  %TODO:verificare i valori
+    Cronometro & $\qty{0.033}{s}$ & N./A. & $\qty{0.033}{s}$ \\
     \hline[dashed]
     Micrometro ad asta filettata & $\qty{0.01}{mm}$ & $\qty{25.00}{mm}$ & $\qty{0.01}{mm}$ \\
     \hline[dashed]
     Metro a nastro & $\qty{0.1}{cm}$ & $\qty{300.0}{cm}$ & $\qty{0.1}{cm}$ \\
     \hline[dashed]
     Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
+    \hline[dashed]
+    Termometro ambientale & ? & ? & $\qty{0.2}{\degree C}$ \\
     \hline
   \end{tblr}
   \begin{tblr}{
@@ -60,20 +63,22 @@
     \hline
     \textbf{Altro} & \textbf{Descrizione/Note} \\
     \hline
-    Becher graduato & {
-      Sarà utilizzato per contenere la glicerina.
+    Telecamera & Utilizzata per acquisire fotogrammi del sistema
+      a intervalli regolari. \\
+    \hline[dashed]
+    Cilindro finito & Utilizzato per contenere la glicerina. \\
+    \hline[dashed]
+    Sferette & {
+      %TODO:trovare un nome alternativo per le sferette
+      Distribuibili in tre classi (“piccole”, “medie” o “grandi”)
+      sulla base di diametro e massa.
     } \\
     \hline[dashed]
-    Tracker & {
-      Un programma che ci permetterà di
-      conoscere la posizione delle sferette
-      nei diversi istanti della discesa.
-      } \\
-    {Sferette \\ (con masse e raggi distinti)} & { %TODO:trovare un nome alternativo per le sferette
-      Raggruppabili in tre diversi insiemi,
-      ognuno dei quali ha palline di un certo
-      raggio e di una certa massa.
-      } \\
+    Pinzetta & Per maneggiare le sferette. \\
+    \hline[dashed]
+    Tappo del cilindro & {
+      Per contenere le sferette durante la misurazione della massa.
+    } \\
     \hline
   \end{tblr}
 \end{center}
@@ -81,24 +86,36 @@
 \pagebreak
 \section{Esperienza e procedimento di misura}
 
-Ripetiamo 3 volte, ovvero per ogni gruppo di sferette, i seguenti passi:
 \begin{enumerate}
-  \item
-    Misuriamo la massa di tre sferette con la bilancia di precisione,
-    e da questi tre valori troviamo una massa media per il gruppo,
-    non essendo le palline esattamente identiche.
-  \item
-    Per lo stesso motivo, misuriamo i diametri di tre sferette con il
-    micrometro ad asta filettata, ricavandone uno medio per il gruppo.
-    (Questi primi due processi servono per conoscere la densità delle palline)
-  \item
-    RIasciamo le sferette una ad una nel becher contenente la glicerina,
-    realizzando un video della loro discesa.
-  \item
-    Avvalendoci dell'apposito programma, analizziamo la posizione delle
-    sferette in funzione del tempo durante la loro caduta.
-
+  \item Misuriamo la temperatura ambiente $T_\text{amb}$ per assicurarci
+    che non sia cambiata significativamente dall'acquisizione precedente
+  \item Per ogni classe $k$ di sferette:
+  \begin{enumerate}
+    \item
+      Contiamo le sferette della classe $k$ (indicheremo questo numero
+      con $n_k$).
+    \item
+      Misuriamo la massa totale $M^\text{tot}_k$ delle sferette
+      con la bilancia di precisione e il diametro medio $\bar{d}_k$ con
+      il micrometro ad asta filettata.
+      % TODO: Spiegare che le masse e i diametri sono tutti molto simili
+    \item Per ogni sferetta $i$:
+    \begin{enumerate}
+      \item
+        Avviamo l'acquisizione del filmato sulla videocamera.
+      \item
+        Rilasciamo $i$ da ferma, poco sopra la superficie della soluzione,
+        nel contenitore della glicerina, assicurandoci che la sua traiettoria
+        non si avvicini alle pareti del recipiente.
+      \item
+        Al termine del moto della sferetta, interrompiamo la registrazione.
+    \end{enumerate}
+  \end{enumerate}
 \end{enumerate}
+
+L'esperienza è stata ripetuta in due giornate differenti,
+per poter valutare la coerenza dei risultati ottenuti.
+
 
 \section{Analisi dei dati raccolti e conclusioni}
 \emph{\textbf{Nota.}
