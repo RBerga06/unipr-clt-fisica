@@ -40,7 +40,7 @@
     width=\textwidth,
     colspec={ X[2,m,j]X[1,m,c]X[1,m,c]X[1,m,c] },
     vlines,
-}
+  }
     \hline
     \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
     \hline
@@ -88,17 +88,27 @@
 
 \begin{enumerate}
   \item Misuriamo la temperatura ambiente $T_\text{amb}$ per assicurarci
-    che non sia cambiata significativamente dall'acquisizione precedente
+    che non sia cambiata significativamente dall'acquisizione precedente.
   \item Per ogni classe $k$ di sferette:
   \begin{enumerate}
     \item
       Contiamo le sferette della classe $k$ (indicheremo questo numero
-      con $n_k$).
+      con $N_k$).
     \item
-      Misuriamo la massa totale $M^\text{tot}_k$ delle sferette
-      con la bilancia di precisione e il diametro medio $\bar{d}_k$ con
-      il micrometro ad asta filettata.
-      % TODO: Spiegare che le masse e i diametri sono tutti molto simili
+      Misuriamo la massa media\footnote{
+        Abbiamo misurato direttamente la massa totale $m_k^\text{tot}$
+        mediante la bilancia di precisione, per poi calcolare
+        $\overline{m}_k = \frac{1}{N_k} m_k^\text{tot}$,
+        assumendo tutte le sferette di ugual massa.
+      } $\overline{m}_k$ e il diametro medio\footnote{
+        Essendo le sferette essenzialmente indistinguibili, abbiamo
+        misurato direttamente, per ogni classe $k$, tre diametri con
+        il micrometro ad asta filettata, per poi calcolarne la media.
+        Il gruppo di lavoro ritiene che si tratti di una buona stima
+        per il diametro medio di tutte le sferette, anche considerato
+        il fatto che i tre valori, in tutte le misurazioni, erano
+        compatibili fra loro.
+      } di tutte e $N_k$ le sferette.
     \item Per ogni sferetta $i$:
     \begin{enumerate}
       \item
@@ -106,15 +116,21 @@
       \item
         Rilasciamo $i$ da ferma, poco sopra la superficie della soluzione,
         nel contenitore della glicerina, assicurandoci che la sua traiettoria
-        non si avvicini alle pareti del recipiente.
+        non si avvicini alle pareti del recipiente\footnote{
+          Quest'ultima richiesta sarà chiarita nella sezione 2.
+        }.
       \item
         Al termine del moto della sferetta, interrompiamo la registrazione.
     \end{enumerate}
   \end{enumerate}
 \end{enumerate}
 
-L'esperienza è stata ripetuta in due giornate differenti,
-per poter valutare la coerenza dei risultati ottenuti.
+L'esperienza è stata ripetuta completamente in due giornate differenti,
+con $T_{\text{amb},1} = (24.6\pm0.2)\unit{\degree C}$
+e $T_{\text{amb},2} = (19.4\pm0.2)\unit{\degree C}$.
+Ciò si è rivelato molto utile per poter valutare la
+coerenza dei risultati ottenuti, anche alla luce della
+notevole differenza tra le due temperature.
 
 
 \section{Analisi dei dati raccolti e conclusioni}
