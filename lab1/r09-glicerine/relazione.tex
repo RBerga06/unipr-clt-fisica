@@ -143,7 +143,7 @@ coerenza dei risultati ottenuti, anche alla luce della
 notevole differenza tra le due temperature.
 
 
-\section{Analisi dei dati raccolti e conclusioni}
+\section{Analisi dei dati raccolti}
 \emph{\textbf{Nota.}
 Avendo valutato gli errori sulle grandezze misurate direttamente
 come piccoli, casuali e indipendenti, per svolgere ogni calcolo
@@ -224,17 +224,16 @@ La densità media delle sferette è risultata essere,
 in entrambi i giorni, $(7.713\pm0.045)\,\unit{kg \per dm^3}$.
 
 \subsection{Misura e distribuzioni delle velocità}
-Per determinare la velocità limite di ogni sferetta, il gruppo di
-lavoro ha tracciato la quota di quest'ultima rispetto al secondo traguardo
-in ogni fotogramma del relativo filmato.
-Poiché ciascun fotogramma corrisponde a un istante
-di tempo, è stato possibile ottenere così un grafico della quota in funzione
-del tempo.
+Per ogni sferetta, il gruppo di lavoro ne ha tracciato la quota
+rispetto al secondo traguardo in ogni fotogramma del relativo filmato.
+Poiché ciascun fotogramma corrisponde ad un istante di tempo,
+è stato possibile ottenere in questo modo un grafico della quota
+in funzione del tempo.
 
 Il gruppo di lavoro ha poi eseguito una regressione lineare sui dati così
 raccolti, per determinare la velocità media della relativa sferetta.
 
-Riportiamo qui soltanto uno dei 131 grafici così ottenuti
+Riportiamo qui soltanto uno dei grafici ottenuti
 (sferetta $1$, piccola, primo giorno):
 \begin{figure}[H]
   \centering
@@ -243,6 +242,18 @@ Riportiamo qui soltanto uno dei 131 grafici così ottenuti
     In rosso la retta di regressione, in rosa la sua regione di incertezza.
   }}
 \end{figure}
+
+\emph{
+  \textbf{Osservazione.} Come si può notare, l'andamento dei dati mostrati qui
+  è ben descritto dalla retta: riteniamo che quindi, in questo caso, la sferetta
+  abbia raggiunto la velocità limite prima di oltrepassare il primo traguardo.
+}
+
+\emph{
+  Il gruppo di lavoro ha verificato in questo modo l'ipotesi (1.), osservando
+  attentamente la distribuzione dei punti in ogni grafico: nessuno di questi
+  ha mai mostrato una deviazione significativa dal modello lineare.
+}
 
 \pagebreak
 Di seguito riportiamo le distribuzioni delle velocità per ogni classe
@@ -285,8 +296,40 @@ di sferette, di entrambi i giorni:
   \end{figure}
 \end{center}
 
-\vspace{2mm}
 \pagebreak
+\subsection{Misura di $\eta$}
+Ricordiamo la relazione tra $\overline{v}_k$ e $\overline{r}_k^2$:
+\[
+  \overline{v}_k = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta}
+  \overline{r}_k^2
+\]
+Trattandosi di una relazione lineare, è possibile determinare una
+retta di regressione, nella quale, poiché il modello lo richiedeva,
+abbiamo fissato l'intercetta a 0.
+Chiaramente, i dati dei due giorni devono essere trattati separatamente,
+poiché $\rho_\text{sol}$ ed $\eta$ dipendono dalla temperatura ambiente.
+
+Di seguito riportiamo i due grafici così ottenuti:
+
+\begin{figure}[H]
+
+  \centering
+  \subfloat[][
+    Primo giorno
+
+    $\xi=(8.738\pm0.016)\cdot10^{-2}\,\unit{m\per s}$
+  ]{\includegraphics[trim={0.6cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/reg1.png}}
+  \hfil\subfloat[][
+    Secondo giorno
+
+    $\xi=(5.65\pm0.02)\cdot10^{-2}\,\unit{m\per s}$
+  ]{\includegraphics[trim={0.6cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/reg2.png}}
+\end{figure}
+
+\subsection{Concentrazione della glicerina}
+
+\subsection{Ricalcolo della densità per una migliore stima}
+
 \emph{
   \textbf{Nota.} In questa sezione abbiamo trascurato la presenza di
   attriti, ma chiaramente gli attriti ci sono e il moto è smorzato.
