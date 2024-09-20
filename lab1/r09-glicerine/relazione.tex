@@ -9,7 +9,10 @@
 \usepackage{float}
 % \usepackage{minted}
 \usepackage[bottom]{footmisc}
+\usepackage[justification=centering]{caption}    % for \caption*{}
+\usepackage[labelformat=simple, justification=centering]{subfig}
 \usepackage[page]{appendix}
+\renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -226,10 +229,42 @@ in entrambi i giorni, $(7.713\pm0.045)\,\unit{kg \per dm^3}$.
 \subsection{Distribuzioni delle velocità}
 Di seguito riportiamo le distribuzioni delle velocità per ogni classe
 di sferette, di entrambi i giorni:
+\vspace{-5mm}
 \begin{center}
-  Primo giorno: $T_\text{amb}=(24.6\pm0.2)\,\unit{\degree C}$
+  \begin{figure}[H]
+    % <v>^
+    \centering
+    \subfloat[][
+      Primo giorno: Piccole ($N=12$)
 
-  Secondo giorno: $T_\text{amb}=(19.4\pm0.2)\,\unit{\degree C}$
+      $\overline{v}=(8.738\pm0.016)\cdot10^{-2}\,\unit{m\per s}$
+    ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/p1.png}}
+    \hfil\subfloat[][
+      Secondo giorno: Piccole ($N=13$)
+
+      $\overline{v}=(5.65\pm0.02)\cdot10^{-2}\,\unit{m\per s}$
+    ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/p2.png}}
+    \hfil\subfloat[][
+      Primo giorno: Medie ($N=23$)
+
+      $\overline{v}=(12.97\pm0.03)\cdot10^{-2}\,\unit{m\per s}$
+    ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/m1.png}}
+    \hfil\subfloat[][
+      Secondo giorno: Medie ($N=23$)
+
+      $\overline{v}=(8.61\pm0.04)\cdot10^{-2}\,\unit{m\per s}$
+    ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/m2.png}}
+    \hfil\subfloat[][
+      Primo giorno: Grandi ($N=32$)
+
+      $\overline{v}=(19.58\pm0.05)\cdot10^{-2}\,\unit{m\per s}$
+    ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/g1.png}}
+    \hfil\subfloat[][
+      Secondo giorno: Grandi ($N=28$)
+
+      $\overline{v}=(14.48\pm0.06)\cdot10^{-2}\,\unit{m\per s}$
+    ]{\includegraphics[trim={1cm 0.6cm 1cm 1cm},clip,width=.49\textwidth]{img/g2.png}}
+  \end{figure}
 \end{center}
 
 \vspace{2mm}
