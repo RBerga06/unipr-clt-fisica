@@ -297,11 +297,29 @@ di sferette, di entrambi i giorni:
 \end{center}
 
 \pagebreak
+\subsection{Modello di $\rho(T)$ ed $\eta(T)$ per i liquidi puri}
+Poiché la densità e la viscosità di un fluido reale dipendono
+dalla temperatura, il gruppo di lavoro ha ottenuto opportuno
+applicare un modello empirico.
+% TODO: Citare le fonti
+\[\begin{aligned}
+  \eta_\text{acqua}(T\,\,\unit{\degree C}) &= 1.79\cdot\exp{\!\left(
+    \frac{-(1230 + T)\cdot T}{36100 + 360\,T}
+  \right)}\,\unit{mPa\,s} \\
+  \eta_\text{glicerina}(T\,\,\unit{\degree C}) &= 12100\cdot\exp{\!\left(
+    \frac{-(1233 + T)\cdot T}{9900 + 70\,T}\right)}\,\unit{mPa\,s} \\
+  \rho_\text{acqua}(T\,\,\unit{\degree C}) &= 1000 \left(
+    1 - \left|\frac{T - 3.98}{615}\right|^{1.71} \right)\,\unit{kg \per m^3} \\
+  \rho_\text{glicerina}(T\,\,\unit{\degree C}) &= \left(
+    1273 - 0.612\,T \right)\,\unit{kg \per m^3}
+\end{aligned}\]
+
 \subsection{Misura di $\eta$}
 Ricordiamo la relazione tra $\overline{v}_k$ e $\overline{r}_k^2$:
 \[
-  \overline{v}_k = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta}
-  \overline{r}_k^2
+  \overline{v}_k = \xi\cdot\overline{r}_k^2
+  \qquad\qquad\text{avendo posto}\qquad
+  \xi = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta}
 \]
 Trattandosi di una relazione lineare, è possibile determinare una
 retta di regressione, nella quale, poiché il modello lo richiedeva,
@@ -324,7 +342,17 @@ Di seguito riportiamo i due grafici così ottenuti:
 
     $\xi=(5.65\pm0.02)\cdot10^{-2}\,\unit{m\per s}$
   ]{\includegraphics[trim={2.5cm 0.6cm 3cm 2.5cm},clip,width=.49\textwidth]{img/reg2.png}}
+  \caption*{\emph{
+    In rosso le rette di regressione, in rosa le rispettive
+    regioni di incertezza.
+    Le barre di errore in entrambe le direzioni sono riportate,
+    ma sono troppo ridotte per poter essere apprezzate
+    immediatamente.
+  }}
 \end{figure}
+
+Per calcolare una prima stima di $\eta$ è possibile approssimare
+$\rho_\text{sol}\simeq\rho_\text{glicerina}$.
 
 \subsection{Concentrazione della glicerina}
 
