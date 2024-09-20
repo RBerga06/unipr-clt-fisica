@@ -150,27 +150,28 @@ abbiamo utilizzato la tradizionale propagazione degli errori.
 Scelta arbitrariamente una sferetta $i$ appartenente alla classe $k$,
 fissiamo un sistema di riferimento cartesiano ortogonale, con asse
 $z\parallel\vec{g}$ e origine nel punto in cui la sferetta viene rilasciata.
+% TODO: L'origine va bene?
 
-Possiamo allora studiare il moto del corpo.
-Per semplificare la trattazione, assumeremo:
+\vspace{2mm}
+\emph{
+  \textbf{Notazione.} Indicheremo con $\rho_\text{\emph{sf}}$ e
+  $\rho_\text{\emph{sol}}$ le densità, rispettivamente, delle sferette
+  e della soluzione e con $\eta$ la viscosità di quest'ultima.
+}
+\vspace{2mm}
+
+Possiamo ora studiare la dinamica del corpo tra i due traguardi.
+Per semplificare la discussione, assumeremo:
 \begin{enumerate}
-  \item Che la traiettoria sia rettilinea, parallela a $\vec{g}$:
-    allora, poiché $\vec{r}\parallel\hat{z}$, indicheremo
-    direttamente con $z_i(t)\hat{z}$ la posizione del centro di massa
-    della sferetta\footnote{
-      Da qui in avanti, utilizzeremo la notazione di Newton per indicare
-      tutte le derivate rispetto al tempo: in particolare, velocità e
-      accelerazione istantanee del centro di massa della sferetta
-      saranno allora $\dot{z}_i(t)\hat{z}$ e $\ddot{z}_i(t)\hat{z}$.
-    } rispetto all'origine del sistema di riferimento.
+  \item Che il moto del centro di massa sia rettilineo uniforme con velocità
+    $\vec{v}_i\parallel\vec{g}$;
   \item Che il moto avvenga in regime laminare
-    (ovvero $\text{Re}=\frac{\rho\diam}{\eta}|\dot{z}| \ll 1200$,
-     dove $\diam$ è il diametro del recipiente e $\rho$ la densità
-     della soluzione).
+    (ovvero $\text{Re}=\frac{1}{\eta}\rho_\text{sol}\diam v_i \ll 1200$,
+     dove $\diam$ è il diametro del recipiente);
   \item Che, rispetto alla sferetta, il recipiente possa essere
     considerato di dimensione indefinita: che si possano, cioè,
     trascurare gli effetti di bordo.
-  \item Che $d_z$ non superi, in ordine di grandezza,
+  \item Che $\overline{d}_k$ non superi, in ordine di grandezza,
     $10^{-3}\,\unit{m}$.
 \end{enumerate}
 Valuteremo più avanti, alla luce dei dati raccolti e dei risultati ottenuti,
@@ -178,14 +179,27 @@ se queste condizioni sono state verificate.
 
 \vspace{2mm}
 
-Le uniche forze applicate alla sferetta sono la forza peso
-$\frac{4}{3}\pi g\overline{r}_k^2 \overline{\rho}_k \hat{z}$,
-la forza di Archimede
-$-\frac{4}{3}\pi g\overline{r}_k^2 \rho_\text{sol} \hat{z}$
-e la forza d'attrito viscoso del fluido $\vec{F}_\eta$.
-Quest'ultima, sotto le ipotesi (2.), (3.) e (4.),
-è della forma:
-\[\vec{F}_\eta = -6\pi\eta \overline{r}_k \dot{z}\hat{z}\]
+Le forze applicate alla sferetta sono la forza peso, la spinta di Archimede
+e la forza di attrito viscoso $\vec{F}_\eta$.
+Sotto le ipotesi (2.), (3.) e (4.), $\vec{F}_\eta$ può essere espressa come
+$\vec{F}_\eta = -6\pi\eta \overline{r}_k v_i\hat{z}$.
+
+Allora, dalla prima legge di Newton:
+\[
+  \frac{4}{3}\pi g\overline{r}_k^3 (\rho_\text{sf} - \rho_\text{sol}) \hat{z}
+  -6\pi\eta \overline{r}_k v_i\hat{z} = 0
+\]
+ovvero:
+\[
+  v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta} \overline{r}_k^2
+\]
+
+Si noti che entrambe le forze hanno direzione parallela a $\hat{z}$:
+ciò è coerente con l'ipotesi (1.).
+
+\vspace{2mm}
+
+Dalla seconda legge di Newton
 
 Scegliamo un sistema di riferimento cilindrico, con
 origine all'intersezione fra l'asse di rotazione e il piano,
