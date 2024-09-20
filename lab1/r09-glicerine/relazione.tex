@@ -105,15 +105,17 @@
         mediante la bilancia di precisione, per poi calcolare
         $\overline{m}_k = \frac{1}{N_k} m_k^\text{tot}$,
         assumendo tutte le sferette di ugual massa.
-      } $\overline{m}_k$ e il diametro medio\footnote{
+      } $\overline{m}_k$ e il raggio medio\footnote{
         Essendo le sferette essenzialmente indistinguibili, abbiamo
         misurato direttamente, per ogni classe $k$, tre diametri con
-        il micrometro ad asta filettata, per poi calcolarne la media.
+        il micrometro ad asta filettata, per poi calcolarne la media
+        $\overline{d}_k$ e ottenere il raggio con la semplice
+        $\overline{r}_k = \frac{1}{2} \overline{d}_k$.
         Il gruppo di lavoro ritiene che si tratti di una buona stima
         per il diametro medio di tutte le sferette, anche considerato
         il fatto che i tre valori, in tutte le misurazioni, erano
         compatibili fra loro.
-      } $\overline{d}_k$ di tutte e $N_k$ le sferette.
+      } $\overline{r}_k$ di tutte e $N_k$ le sferette.
     \item Per ogni sferetta $i$:
     \begin{enumerate}
       \item
@@ -170,8 +172,8 @@ Per semplificare la discussione, assumeremo:
      dove $\diam$ è il diametro del recipiente);
   \item Che, rispetto alla sferetta, il recipiente possa essere
     considerato di dimensione indefinita: che si possano, cioè,
-    trascurare gli effetti di bordo.
-  \item Che $\overline{d}_k$ non superi, in ordine di grandezza,
+    trascurare gli effetti di bordo;
+  \item Che il diametro $2r_i$ non superi, in ordine di grandezza,
     $10^{-3}\,\unit{m}$.
 \end{enumerate}
 Valuteremo più avanti, alla luce dei dati raccolti e dei risultati ottenuti,
@@ -182,25 +184,31 @@ se queste condizioni sono state verificate.
 Le forze applicate alla sferetta sono la forza peso, la spinta di Archimede
 e la forza di attrito viscoso $\vec{F}_\eta$.
 Sotto le ipotesi (2.), (3.) e (4.), $\vec{F}_\eta$ può essere espressa come
-$\vec{F}_\eta = -6\pi\eta \overline{r}_k v_i\hat{z}$.
+$\vec{F}_\eta = -6\pi\eta r_i v_i\hat{z}$.
 
 Allora, dalla prima legge di Newton:
 \[
-  \frac{4}{3}\pi g\overline{r}_k^3 (\rho_\text{sf} - \rho_\text{sol}) \hat{z}
-  -6\pi\eta \overline{r}_k v_i\hat{z} = 0
+  \frac{4}{3}\pi g r_i^3 (\rho_\text{sf} - \rho_\text{sol}) \hat{z}
+  -6\pi\eta r_i v_i\hat{z} = 0
 \]
 ovvero:
 \[
-  v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta} \overline{r}_k^2
+  v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta} r_i^2
+\]
+Per semplificare i calcoli, il gruppo di lavoro ha assunto tutte le sferette
+della stessa classe essenzialmente indistinguibili. Sono stati perciò messi
+in relazione i valori medi per ogni classe: \[
+  \overline{v}_k = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta}
+  \overline{r}_k^2
 \]
 
 \vspace{2mm}
 
-\subsection{Misura di $\rho_\text{sf}$}
+\subsection{Misura della densità media di tutte le sferette}
 Per calcolare $\rho_\text{sf}$, il gruppo di lavoro ha scelto di
 effettuare una media ponderata delle densità medie delle tre classi:
 \[
-  \rho_\text{sf} = \frac{1}{\sum_k N_k} \sum_k \rho_k N_k
+  \rho_\text{sf} = \frac{1}{\sum_k N_k} \sum_k \overline{\rho}_k N_k
     = \frac{1}{\sum_k N_k} \sum_k \frac{\overline{m}_k}{
       \frac{4}{3}\pi \overline{r}_k^3} N_k
     = \frac{3}{4\pi} \frac{1}{\sum_k N_k} \sum_k \frac{\overline{m}_k}{
@@ -211,6 +219,12 @@ effettuare una media ponderata delle densità medie delle tre classi:
   %   \rho_\text{grandi} N_\text{grandi}}
   %   {N_\text{piccole} + N_\text{medie} + N_\text{grandi}}
 \]
+La densità media delle sferette è risultata essere,
+in entrambi i giorni, $(7.713\pm0.045)\,\unit{kg \per dm^3}$.
+
+\pagebreak
+\subsection{Distribuzioni delle velocità}
+
 
 \vspace{2mm}
 \pagebreak
