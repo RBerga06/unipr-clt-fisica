@@ -7,7 +7,6 @@
 \usepackage{tabularray}
 \usepackage{graphicx}
 \usepackage{float}
-% \usepackage{minted}
 \usepackage[bottom]{footmisc}
 \usepackage[justification=centering]{caption}    % for \caption*{}
 \usepackage[labelformat=simple, justification=centering]{subfig}
@@ -96,6 +95,7 @@
   \item Misuriamo la temperatura ambiente $T_\text{amb}$ per assicurarci
     che non sia cambiata significativamente dall'acquisizione precedente.
   \item Misuriamo la distanza tra i due traguardi $L = (18.0\pm0.1)\,\unit{cm}$
+    e il diametro del contenitore $\diam = (8.0\pm0.1)\,\unit{cm}$
     con il metro a nastro.
   \item Per ogni classe $k$ di sferette:
   \begin{enumerate}
@@ -161,7 +161,7 @@ $z\parallel\vec{g}$ e origine nel punto in cui la sferetta viene rilasciata.
 \emph{
   \textbf{Notazione.} Indicheremo con $\rho_\text{\emph{sf}}$ e
   $\rho_\text{\emph{sol}}$ le densità, rispettivamente, delle sferette
-  e della soluzione e con $\eta$ la viscosità di quest'ultima.
+  e della soluzione e con $\eta_\text{sol}$ la viscosità di quest'ultima.
 }
 \vspace{2mm}
 
@@ -171,8 +171,7 @@ Per semplificare la discussione, assumeremo:
   \item Che il moto del centro di massa sia rettilineo uniforme con velocità
     $\vec{v}_i\parallel\vec{g}$;
   \item Che il moto avvenga in regime laminare
-    (ovvero $\text{Re}=\frac{1}{\eta}\rho_\text{sol}\diam v_i \ll 1200$,
-     dove $\diam$ è il diametro del recipiente);
+    (ovvero $\text{Re}=\frac{1}{\eta_\text{sol}}\rho_\text{sol}\diam v_i \ll 1200$);
   \item Che, rispetto alla sferetta, il recipiente possa essere
     considerato di dimensione indefinita: che si possano, cioè,
     trascurare gli effetti di bordo;
@@ -187,22 +186,22 @@ se queste condizioni sono state verificate.
 Le forze applicate alla sferetta sono la forza peso, la spinta di Archimede
 e la forza di attrito viscoso $\vec{F}_\eta$.
 Sotto le ipotesi (2.), (3.) e (4.), $\vec{F}_\eta$ può essere espressa come
-$\vec{F}_\eta = -6\pi\eta r_i v_i\hat{z}$.
+$\vec{F}_\eta = -6\pi\eta_\text{sol} r_i v_i\hat{z}$.
 
 Allora, dalla prima legge di Newton:
 \[
   \frac{4}{3}\pi g r_i^3 (\rho_\text{sf} - \rho_\text{sol}) \hat{z}
-  -6\pi\eta r_i v_i\hat{z} = 0
+  -6\pi\eta_\text{sol} r_i v_i\hat{z} = 0
 \]
 dove, per noi, $g = (9.806\pm0.001)\,\unit{m\per s^2}$.
 Riarrangiando i termini:
 \[
-  v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta} r_i^2
+  v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta_\text{sol}} r_i^2
 \]
 Per semplificare i calcoli, il gruppo di lavoro ha assunto tutte le sferette
 della stessa classe essenzialmente indistinguibili. Sono stati perciò messi
 in relazione i valori medi per ogni classe: \[
-  \overline{v}_k = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta}
+  \overline{v}_k = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta_\text{sol}}
   \overline{r}_k^2
 \]
 
@@ -343,18 +342,19 @@ due temperature $T_{\text{amb},1}$ e $T_{\text{amb},2}$:
 \end{tblr}
 \end{center}
 
-\subsection{Misura di $\eta$}
+\subsection{Misura di $\eta_\text{sol}$}
 Ricordiamo la relazione tra $\overline{v}_k$ e $\overline{r}_k^2$:
 \[
   \overline{v}_k = \xi\cdot\overline{r}_k^2
   \qquad\qquad\text{avendo posto}\qquad
-  \xi = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta}
+  \xi = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta_\text{sol}}
 \]
 Trattandosi di una relazione lineare, è possibile determinare una
 retta di regressione, nella quale, poiché il modello lo richiedeva,
 abbiamo fissato l'intercetta a 0.
 Chiaramente, i dati dei due giorni devono essere trattati separatamente,
-poiché $\rho_\text{sol}$ ed $\eta$ dipendono dalla temperatura ambiente.
+poiché $\rho_\text{sol}$ ed $\eta_\text{sol}$ dipendono dalla temperatura
+ambiente.
 
 Di seguito riportiamo i due grafici così ottenuti:
 
@@ -380,7 +380,7 @@ Di seguito riportiamo i due grafici così ottenuti:
   }}
 \end{figure}
 
-Per calcolare una prima stima di $\eta$ è possibile approssimare
+Per calcolare una prima stima di $\eta_\text{sol}$ è possibile approssimare
 $\rho_\text{sol}\simeq\rho_\text{glicerina}$, calcolata in base
 a $T_\text{amb}$ secondo il modello sopra citato:
 \[
@@ -388,9 +388,12 @@ a $T_\text{amb}$ secondo il modello sopra citato:
   \simeq \frac{2g(\rho_\text{sf} -
     \rho_\text{glicerina}(T_\text{amb}))}{9\xi}
 \]
-I valori di $\eta$ calcolati sulla base dei dati raccolti nelle
+I valori di $\eta_\text{sol}$ calcolati sulla base dei dati raccolti nelle
 due giornate sono:
-\[\eta_1=(256\pm3)\,\unit{mPa\,s}\qquad\qquad\eta_2=(371\pm4)\,\unit{mPa\,s}\]
+\[
+  \eta_{\text{sol},1}=(256\pm3)\,\unit{mPa\,s}
+  \qquad\qquad
+  \eta_{\text{sol},2}=(371\pm4)\,\unit{mPa\,s}\]
 
 \subsection{Concentrazione della glicerina}
 
@@ -428,7 +431,7 @@ con $
 2\alpha a^2 - 2\alpha a b^2 + 2\alpha ab + a^2 b^2 + 2a^2 b + a^2$.
 
 \vspace{2mm}
-I valori di $\alpha$ e $c_\text{m}$ calcolati a partire da $\eta$ e
+I valori di $\alpha$ e $c_\text{m}$ calcolati a partire da $\eta_\text{sol}$ e
 $T_\text{amb}$ per entrambi i giorni sono:
 \[
 \begin{aligned}
@@ -540,7 +543,7 @@ di seguito riportiamo i risultati delle prime iterazioni.
 \end{center}
 
 \section{Conclusioni}
-
+% TODO!
 
 
 \pagebreak
@@ -559,7 +562,6 @@ Possiamo pertanto concludere che l'esperienza ha avuto successo:
 mediante l'apparato sperimentale abbiamo ottenuto una misura di $g$
 compatibile con quella attesa.
 
-\pagebreak
 Come è possibile osservare comparando questi risultati a
 quelli precedentemente ottenuti, il valore di $g$ risultante
 è rimasto essenzialmente invariato (al netto della sua incertezza).
