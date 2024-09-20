@@ -302,6 +302,7 @@ Poiché la densità e la viscosità di un fluido reale dipendono
 dalla temperatura, il gruppo di lavoro ha ottenuto opportuno
 applicare un modello empirico.
 % TODO: Citare le fonti
+% TODO: Citare i limiti del modello
 \[\begin{aligned}
   \eta_\text{acqua}(T\,\,\unit{\degree C}) &= 1.79\cdot\exp{\!\left(
     \frac{-(1230 + T)\cdot T}{36100 + 360\,T}
@@ -313,6 +314,36 @@ applicare un modello empirico.
   \rho_\text{glicerina}(T\,\,\unit{\degree C}) &= \left(
     1273 - 0.612\,T \right)\,\unit{kg \per m^3}
 \end{aligned}\]
+
+Di seguito riportiamo i valori di queste grandezze, calcolati alle
+due temperature $T_{\text{amb},1}$ e $T_{\text{amb},2}$:
+\begin{center}
+\begin{tblr}{
+  colspec={ |c|c|c| },
+}
+  \hline
+  $T_{\text{amb}}$
+    & $(24.6\pm0.2)\,\unit{\degree C}$
+    & $(19.4\pm0.2)\,\unit{\degree C}$ \\
+  \hline
+  $\eta_\text{acqua}$
+    & $(0.901\pm0.006)\,\unit{mPa\,s}$
+    & $(1.020\pm0.007)\,\unit{mPa\,s}$ \\
+  \hline[dashed]
+  $\eta_\text{glicerina}$
+    & $(845\pm21)\,\unit{mPa\,s}$
+    & $(1398\pm35)\,\unit{mPa\,s}$ \\
+  \hline[dashed]
+  $\rho_\text{acqua}$
+    & $(996.99\pm0.05)\,\unit{kg \per m^3}$
+    & $(998.17\pm0.04)\,\unit{kg \per m^3}$ \\
+  \hline[dashed]
+  $\rho_\text{glicerina}$
+    & $(1257.94\pm0.12)\,\unit{kg \per m^3}$
+    & $(1261.13\pm0.12)\,\unit{kg \per m^3}$ \\
+  \hline
+\end{tblr}
+\end{center}
 
 \subsection{Misura di $\eta$}
 Ricordiamo la relazione tra $\overline{v}_k$ e $\overline{r}_k^2$:
@@ -352,7 +383,8 @@ Di seguito riportiamo i due grafici così ottenuti:
 \end{figure}
 
 Per calcolare una prima stima di $\eta$ è possibile approssimare
-$\rho_\text{sol}\simeq\rho_\text{glicerina}$.
+$\rho_\text{sol}\simeq\rho_\text{glicerina}$, calcolata in base
+a $T_\text{amb}$ secondo il modello sopra citato.
 
 \subsection{Concentrazione della glicerina}
 
