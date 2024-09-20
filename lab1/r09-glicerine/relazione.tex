@@ -194,7 +194,8 @@ Allora, dalla prima legge di Newton:
   \frac{4}{3}\pi g r_i^3 (\rho_\text{sf} - \rho_\text{sol}) \hat{z}
   -6\pi\eta r_i v_i\hat{z} = 0
 \]
-ovvero:
+dove, per noi, $g = (9.806\pm0.001)\,\unit{m\per s^2}$.
+Riarrangiando i termini:
 \[
   v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta} r_i^2
 \]
@@ -221,7 +222,8 @@ effettuare una media ponderata delle densità medie delle tre classi:
   %   {N_\text{piccole} + N_\text{medie} + N_\text{grandi}}
 \]
 La densità media delle sferette è risultata essere,
-in entrambi i giorni, $(7.713\pm0.045)\,\unit{kg \per dm^3}$.
+in entrambi i giorni:
+\[\rho_\text{sf} = (7.713\pm0.045)\cdot10^3\,\unit{kg \per m^3}.\]
 
 \subsection{Misura e distribuzioni delle velocità}
 Per ogni sferetta, il gruppo di lavoro ne ha tracciato la quota
@@ -362,12 +364,12 @@ Di seguito riportiamo i due grafici così ottenuti:
   \subfloat[][
     Primo giorno
 
-    $\xi=(8.738\pm0.016)\cdot10^{-2}\,\unit{m\per s}$
+    $\xi=(8.738\pm0.016)\cdot10^{-2}\,\unit{m\cdot s}$
   ]{\includegraphics[trim={2.5cm 0.6cm 2.5cm 2.5cm},clip,width=.49\textwidth]{img/reg1.png}}
   \hfil\subfloat[][
     Secondo giorno
 
-    $\xi=(5.65\pm0.02)\cdot10^{-2}\,\unit{m\per s}$
+    $\xi=(5.65\pm0.02)\cdot10^{-2}\,\unit{m\cdot s}$
   ]{\includegraphics[trim={2.5cm 0.6cm 3cm 2.5cm},clip,width=.49\textwidth]{img/reg2.png}}
   \caption*{\emph{
     In rosso le rette di regressione, in rosa le rispettive
@@ -380,9 +382,69 @@ Di seguito riportiamo i due grafici così ottenuti:
 
 Per calcolare una prima stima di $\eta$ è possibile approssimare
 $\rho_\text{sol}\simeq\rho_\text{glicerina}$, calcolata in base
-a $T_\text{amb}$ secondo il modello sopra citato.
+a $T_\text{amb}$ secondo il modello sopra citato:
+\[
+  \eta = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\xi}
+  \simeq \frac{2g(\rho_\text{sf} -
+    \rho_\text{glicerina}(T_\text{amb}))}{9\xi}
+\]
+I valori di $\eta$ calcolati sulla base dei dati raccolti nelle
+due giornate sono:
+\[\eta_1=(256\pm3)\,\unit{mPa\,s}\qquad\qquad\eta_2=(371\pm4)\,\unit{mPa\,s}\]
 
 \subsection{Concentrazione della glicerina}
+
+Il modello empirico della viscosità di una soluzione acquosa di
+glicerina è descritto dalla seguente equazione:
+\[
+  \eta_\text{sol} =
+    \eta_\text{acqua}^\alpha \eta_\text{glicerina}^{1-\alpha}
+\]
+al variare di un parametro $\alpha\in[0,1]$ legato alla
+concentrazione dell'acqua. Risolvendo l'equazione in $\alpha$ si
+ottiene:
+\[
+  \alpha = \frac{\ln{\eta_\text{sol}} - \ln{\eta_\text{glicerina}}}
+    {\ln{\eta_\text{acqua}} - \ln{\eta_\text{glicerina}}}
+\]
+La relazione tra $\alpha$ e la concentrazione in massa $c_\text{m}$
+della \emph{glicerina} in soluzione è la seguente:
+\[
+  \alpha = 1 - c_\text{m} + \frac{a b\,c_\text{m} (1 - c_\text{m})}
+    {a\,c_\text{m} + b (1 - c_\text{m})}
+  \qquad\text{con}\quad
+  \begin{array}{l}
+    a = 0.705 - 0.0017\,T_\text{amb} \\
+    b = (4.9 + 0.036\,T_\text{amb})\,a^{2.5}
+  \end{array}
+\]
+Risolvendo l'equazione in $c_\text{m}$ si ottiene:
+\[
+  c_\text{m} = \frac{
+    -\alpha a + \alpha b + ab + a - 2b - \sqrt{\Delta}}{2(ab + a - b)}
+\]
+con $
+\Delta = \alpha^2 a^2 - 2\alpha^2 ab + \alpha^2 b^2 - 2\alpha a^2 b -
+2\alpha a^2 - 2\alpha a b^2 + 2\alpha ab + a^2 b^2 + 2a^2 b + a^2$.
+
+\vspace{2mm}
+I valori di $\alpha$ e $c_\text{m}$ calcolati a partire da $\eta$ e
+$T_\text{amb}$ per entrambi i giorni sono:
+\[
+\begin{aligned}
+  \alpha_1 &= 0.174\pm0.006
+  \qquad\qquad
+  c_{\text{m},1} &= (93.6\pm0.3)\%\,\text{m}/\text{m}\\
+  \alpha_2 &= 0.184\pm0.006
+  \qquad\qquad
+  c_{\text{m},2} &= (93.2\pm0.3)\%\,\text{m}/\text{m}\\
+\end{aligned}
+\]
+
+% --- g1 ---
+%  -> ⍴ = 1241.53018353832 ± 1.20820559239222 kg/m³
+% --- g2 ---
+% -> ⍴ = 1243.72560825954 ± 1.16558273120656 kg/m³
 
 \subsection{Ricalcolo della densità per una migliore stima}
 
