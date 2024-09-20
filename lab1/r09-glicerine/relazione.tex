@@ -194,27 +194,26 @@ ovvero:
   v_i = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta} \overline{r}_k^2
 \]
 
-Si noti che entrambe le forze hanno direzione parallela a $\hat{z}$:
-ciò è coerente con l'ipotesi (1.).
-
 \vspace{2mm}
 
-Dalla seconda legge di Newton
-
-Scegliamo un sistema di riferimento cilindrico, con
-origine all'intersezione fra l'asse di rotazione e il piano,
-ad esso perpendicolare, contenente il centro di massa, versore $\hat{r}$
-parallelo a $\vec{g}$ e versore $\hat{k}$ diretto lungo l'asse di
-rotazione del sistema.
-
-La posizione del centro di massa del pendolo fisico sarà allora descritta
-da $\vec{r}_\text{CM} = (r_\text{CM},\theta,z)$ con $z=0$, dove $\theta$
-è lo spostamento angolare rispetto alla posizione di equilibrio.
-
-Vale la seconda equazione cardinale della dinamica:
-\[\sum\tau^\text{ext}_z = \dot{L}_z = I_z^\text{\,tot} \ddot{\theta}\]
+\subsection{Misura di $\rho_\text{sf}$}
+Per calcolare $\rho_\text{sf}$, il gruppo di lavoro ha scelto di
+effettuare una media ponderata delle densità medie delle tre classi:
+\[
+  \rho_\text{sf} = \frac{1}{\sum_k N_k} \sum_k \rho_k N_k
+    = \frac{1}{\sum_k N_k} \sum_k \frac{\overline{m}_k}{
+      \frac{4}{3}\pi \overline{r}_k^3} N_k
+    = \frac{3}{4\pi} \frac{1}{\sum_k N_k} \sum_k \frac{\overline{m}_k}{
+      \overline{r}_k^3} N_k
+  % \frac{
+  %   \rho_\text{piccole} N_\text{piccole} +
+  %   \rho_\text{medie} N_\text{medie} +
+  %   \rho_\text{grandi} N_\text{grandi}}
+  %   {N_\text{piccole} + N_\text{medie} + N_\text{grandi}}
+\]
 
 \vspace{2mm}
+\pagebreak
 \emph{
   \textbf{Nota.} In questa sezione abbiamo trascurato la presenza di
   attriti, ma chiaramente gli attriti ci sono e il moto è smorzato.
