@@ -55,7 +55,7 @@
     \hline[dashed]
     Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
     \hline[dashed]
-    Termometro ambientale & ? & ? & $\qty{0.2}{\degree C}$ \\
+    Termometro ambientale & $\qty{-20.0}{\degree C}$ & $\qty{50.0}{\degree C}$ & $\qty{0.2}{\degree C}$ \\
     \hline
   \end{tblr}
   \begin{tblr}{
@@ -408,7 +408,7 @@ ottiene:
     {\ln{\eta_\text{acqua}} - \ln{\eta_\text{glicerina}}}
 \]
 La relazione tra $\alpha$ e la concentrazione in massa $c_\text{m}$
-della \emph{glicerina} in soluzione è la seguente:
+della \emph{glicerina} in soluzione è invece la seguente:
 \[
   \alpha = 1 - c_\text{m} + \frac{a b\,c_\text{m} (1 - c_\text{m})}
     {a\,c_\text{m} + b (1 - c_\text{m})}
@@ -441,13 +441,39 @@ $T_\text{amb}$ per entrambi i giorni sono:
 \end{aligned}
 \]
 
-% --- g1 ---
-%  -> ⍴ = 1241.53018353832 ± 1.20820559239222 kg/m³
-% --- g2 ---
-% -> ⍴ = 1243.72560825954 ± 1.16558273120656 kg/m³
-
 \subsection{Ricalcolo della densità per una migliore stima}
+Nota la concentrazione di glicerina, è ora possibile
+calcolare una stima della densità della soluzione, facendo
+ancora una volta affidamento ad un modello empirico:
+\[
+  \rho_\text{sol} = \kappa(T,c_\text{m}) \left(
+  \rho_\text{acqua}(T) + \frac{
+    \rho_\text{glicerina}(T) - \rho_\text{acqua}(T)
+  }{1 + \frac{\rho_\text{glicerina}(T)}{\rho_\text{acqua}(T)}
+    \left(\frac{1}{c_\text{m}} - 1\right)}
+  \right)
+\]
+dove $
+  \kappa(T,c_\text{m}) = 1 + \left(
+    1.78\cdot10^{-6}\,T^2 - 1.82\cdot10^{-4}\,T + 1.41\cdot10^{-2}
+  \right)\sin{\!\left(c_\text{m}^{1.31} \pi\right)}^{0.81}
+$ è il coefficiente di espansione volumica.
+% TODO: Spiegare chi è \kappa correttamente
 
+Applicando questa formula ai valori di $T$ e $c_\text{m}$ di cui
+sopra, otteniamo:
+\[
+  \rho_{\text{sol},1} = (1241.5\pm1.2)\,\unit{kg \per m^2}
+  \qquad\qquad
+  \rho_{\text{sol},2} = (1243.7\pm1.2)\,\unit{kg \per m^2}
+\]
+
+Possiamo osservare facilmente che queste misure non sono compatibili
+con i rispettivi valori di $\rho_\text{glicerina}$: l'approssimazione
+$\rho_\text{soluzione} \simeq \rho_\text{glicerina}$ non è quindi
+giustificata.
+
+\pagebreak
 \emph{
   \textbf{Nota.} In questa sezione abbiamo trascurato la presenza di
   attriti, ma chiaramente gli attriti ci sono e il moto è smorzato.
