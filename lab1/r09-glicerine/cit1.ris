@@ -1,0 +1,16 @@
+TY  - JOUR
+AU  - Volk, Andreas
+AU  - Kähler, Christian J.
+PY  - 2018
+DA  - 2018/04/03
+TI  - Density model for aqueous glycerol solutions
+JO  - Experiments in Fluids
+SP  - 75
+VL  - 59
+IS  - 5
+AB  - Glycerol is used in many applications of science and daily life as it is cheap and biologically non-invasive. In science, aqueous solutions of glycerol are commonly used for experimental investigations as their density can be adapted by changing the glycerol content in the solution. Although the density of aqueous glycerol solutions has been measured precisely since more than a century, current models show a deviation from measured data of up to $$2\%$$. In this work we present an analytical expression to accurately calculate the density of aqueous glycerol solutions. The presented empirical model is validated in the range between 15 and $$30\,^\circ {\text {C}}$$and has a maximum deviation of less than $$0.07\%$$with respect to measured data. This improves the accuracy of current models by more than one order of magnitude. By knowing the temperature and glycerol content of the solution, its density can be simply calculated with the presented model. A Matlab function is provided in the supplementary material to allow a simple implementation in other scientific work.
+SN  - 1432-1114
+UR  - https://doi.org/10.1007/s00348-018-2527-y
+DO  - 10.1007/s00348-018-2527-y
+ID  - Volk2018
+ER  - 

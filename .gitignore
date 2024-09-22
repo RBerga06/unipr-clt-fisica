@@ -172,7 +172,10 @@ cython_debug/
 *.aux
 *.fdb_latexmk
 *.fls
+*.run.xml
 # *.pdf
+*.bcf
+*.bbl
 *.synctex(busy)
 *.synctex.gz
 *.ind

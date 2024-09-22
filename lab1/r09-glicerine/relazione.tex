@@ -11,6 +11,8 @@
 \usepackage[justification=centering]{caption}    % for \caption*{}
 \usepackage[labelformat=simple, justification=centering]{subfig}
 \usepackage[page]{appendix}
+\usepackage{csquotes}  % context sensitive quotes, for BibLaTeX
+\usepackage[backend=biber]{biblatex}  % for citations
 \renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
@@ -18,6 +20,7 @@
 \newcommand*{\pbest}[1]{\left({#1}_\text{best}\right)}
 \newcommand*{\pbestp}[1]{\left({\left(#1\right)}_\text{best}\right)}
 \newcommand*{\errrel}[1]{\frac{\delta #1}{{#1}_\text{best}}}
+\addbibresource{relazione.bib}
 \title{
   Laboratorio di Fisica 1\\
   R9: Misura della viscosità della glicerina
@@ -74,7 +77,6 @@
     } \\
     \hline[dashed]
     Sferette & {
-      %TODO:trovare un nome alternativo per le sferette
       Distribuibili in tre classi (“piccole”, “medie” o “grandi”)
       sulla base di diametro e massa.
     } \\
@@ -298,12 +300,24 @@ di sferette, di entrambi i giorni:
 \end{center}
 
 \pagebreak
+\textbf{Nota}.
+Poiché la densità e la viscosità della soluzione,
+ma in generale di un fluido reale, dipendono dalla temperatura,
+il gruppo di lavoro ha ritenuto opportuno
+applicare un modello empirico, in particolare quello sviluppato
+da N.S.Cheng\cite{Cheng2008} nel 2008 e da A. Volk e C. J.
+K\"ahler\cite{Volk2018} nel 2018.
+
+Si noti che questo modello è applicabile, come specificato dagli
+autori, a temperature nell'intervallo
+$\left(\qty{0}{\degree C},\qty{100}{\degree C}\right)$,
+nel quale le temperature ambientali misurate ($T_\text{amb}$)
+rientrano abbondantemente.
+
 \subsection{Modello di $\rho(T)$ ed $\eta(T)$ per i liquidi puri}
-Poiché la densità e la viscosità di un fluido reale dipendono
-dalla temperatura, il gruppo di lavoro ha ritenuto opportuno
-applicare un modello empirico.
-% TODO: Citare le fonti
-% TODO: Citare i limiti del modello
+Il modello di cui sopra descrive molto bene densità e viscosità
+di acqua e glicerina (pure), in funzione della temperatura,
+mediante queste relazioni:
 \[\begin{aligned}
   \eta_\text{acqua}(T\,\,\unit{\degree C}) &= 1.79\cdot\exp{\!\left(
     \frac{-(1230 + T)\cdot T}{36100 + 360\,T}
@@ -398,7 +412,7 @@ due giornate sono:
 \subsection{Concentrazione della glicerina}
 
 Il modello empirico della viscosità di una soluzione acquosa di
-glicerina è descritto dalla seguente equazione:
+glicerina\cite{Cheng2008} è descritto dalla seguente equazione:
 \[
   \eta_\text{sol} =
     \eta_\text{acqua}^\alpha \eta_\text{glicerina}^{1-\alpha}
@@ -447,7 +461,7 @@ $T_\text{amb}$ per entrambi i giorni sono:
 \subsection{Ricalcolo della densità per una migliore stima}
 Nota la concentrazione di glicerina, è ora possibile
 calcolare una stima della densità della soluzione, facendo
-ancora una volta affidamento ad un modello empirico:
+ancora una volta affidamento al modello empirico\cite{Volk2018}:
 \[
   \rho_\text{sol} = \kappa(T,c_\text{m}) \left(
   \rho_\text{acqua}(T) + \frac{
@@ -460,8 +474,9 @@ dove $
   \kappa(T,c_\text{m}) = 1 + \left(
     1.78\cdot10^{-6}\,T^2 - 1.82\cdot10^{-4}\,T + 1.41\cdot10^{-2}
   \right)\sin{\!\left(c_\text{m}^{1.31} \pi\right)}^{0.81}
-$ è il coefficiente di espansione volumica.
-% TODO: Spiegare chi è \kappa correttamente
+$ è un coefficiente legato alla contrazione volumica, un fenomeno
+osservabile sperimentalmente nella maggior parte delle miscele
+liquide.
 
 Applicando questa formula ai valori di $T$ e $c_\text{m}$ di cui
 sopra, otteniamo:
@@ -569,5 +584,8 @@ quelli precedentemente ottenuti, il valore di $g$ risultante
 In conclusione, possiamo affermare ragionevolmente che,
 rispetto alla sensibilità degli strumenti di misura,
 il contributo dell'attrito è trascurabile.
+
+\pagebreak
+\printbibliography
 
 \end{document}
