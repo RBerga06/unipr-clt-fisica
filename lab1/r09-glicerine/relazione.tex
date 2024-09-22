@@ -336,16 +336,15 @@ due temperature $T_{\text{amb},1}$ e $T_{\text{amb},2}$:
 \begin{tblr}{
   colspec={ |cc|c|c| },
 }
-  % TODO: Ricalcolare gli errori con la formula giusta
   \hline
   $T_{\text{amb}}$ & $(\unit{\degree C})$
     & $24.6\pm0.2$ & $19.4\pm0.2$ \\
   \hline
   $\eta_\text{acqua}$ & $(\unit{mPa\,s})$
-    & $0.901\pm0.006$ & $1.020\pm0.007$ \\
+    & $0.901\pm0.004$ & $1.020\pm0.005$ \\
   \hline[dashed]
   $\eta_\text{glicerina}$ & $(\unit{mPa\,s})$
-    & $845\pm21$ & $1398\pm35$ \\
+    & $845\pm16$ & $1398\pm28$ \\
   \hline[dashed]
   $\rho_\text{acqua}$ & $(\unit{kg \per m^3})$
     & $996.99\pm0.05$ & $998.17\pm0.04$ \\
@@ -494,19 +493,22 @@ giustificata.
 Tuttavia, è evidente che:
 \[(\rho_\text{sol})_\text{best} < (\rho_\text{glicerina})_\text{best}\]
 
-Possiamo dunque immaginare che il $\rho_\text{sol}$ così determinato
-approssimi il valore vero \emph{meglio} di $\rho_\text{glicerina}$.
-
-Il gruppo di lavoro ha quindi deciso di ricalcolare la densità della
-soluzione come appena mostrato, utilizzando stavolta la nuova stima di
-$\rho_\text{sol}$.
+Si può allora immaginare che il $\rho_\text{sol}$ così determinato
+approssimi il valore vero \emph{meglio} di $\rho_\text{glicerina}$:
+il gruppo di lavoro ha quindi deciso di ricalcolare la densità della
+soluzione come appena mostrato, utilizzando stavolta la nuova stima
+di $\rho_\text{sol}$.
 
 \vspace{2mm}
 
 Reiterando questo processo più volte, le stime di
 $\rho_\text{sol}$, $c_\text{m}$ ed $\eta_\text{sol}$ si sono
 velocemente stabilizzate attorno a valori ben definiti:
-di seguito riportiamo i risultati delle prime iterazioni.
+di seguito riportiamo i risultati delle prime iterazioni.\footnote{
+  Il gruppo di lavoro ha in realtà effettuato sei iterazioni:
+  sono riportate soltanto le prime quattro, in quanto le
+  differenze tra le successive si sono rivelate inapprezzabili.
+}
 
 \begin{center}\begin{tblr}{
   colspec={ |c|c|c|c|c| }
@@ -558,34 +560,38 @@ di seguito riportiamo i risultati delle prime iterazioni.
 \end{center}
 
 \section{Conclusioni}
-% TODO!
 
+Sulla base dei dati acquisiti durante l'esperienza,
+il gruppo di lavoro è riuscito a determinare la viscosità
+e la concentrazione di una soluzione di acqua e glicerina.
 
-\pagebreak
-I risultati della regressione lineare sono chiaramente compatibili
-con i valori attesi. Infatti:
-\begin{itemize}
-  \item Secondo il modello fisico utilizzato, l'intercetta dovrebbe
-  essere nulla; in effetti, $(0.003\pm0.005)\;\unit{m}$ è compatibile
-  con $\qty{0}{m}$.
-  \item Il valore di $g$ atteso è $\qty{9.806}{m\per s^2}$; si può
-  osservare facilmente che il valore misurato,
-  $(9.68\pm0.13)\;\unit{m \per s^2}$, è compatibile con esso.
-\end{itemize}
+Per valutare numericamente la compatibilità tra
+$\eta_{\text{sol},1}$ ed $\eta_{\text{sol},2}$ (e tra
+$c_{\text{m},1}$ e $c_{\text{m},2}$),
+abbiamo calcolato i seguenti valore (numeri puri):
+\[
+  \varepsilon_\eta = \frac{
+    \left|\left(\eta_{\text{sol},1}\right)_\text{best} -
+    \left(\eta_{\text{sol},2}\right)_\text{best}\right|
+  }{\delta\eta_{\text{sol},1} + \delta\eta_{\text{sol},2}}
+\]\[
+  \varepsilon_c = \frac{
+    \left|\left(\eta_{\text{sol},1}\right)_\text{best} -
+    \left(\eta_{\text{sol},2}\right)_\text{best}\right|
+  }{\delta\eta_{\text{sol},1} + \delta\eta_{\text{sol},2}}
+\]
+Allora le due misure di $\eta_\text{sol}$ da noi ottenute
+sono compatibili fra loro se e solo se $\varepsilon_\eta\le1$;
+similmente, le due misure di $c_\text{m}$ sono compatibili
+fra loro se e solo se $\varepsilon_c\le1$.
 
-Possiamo pertanto concludere che l'esperienza ha avuto successo:
-mediante l'apparato sperimentale abbiamo ottenuto una misura di $g$
-compatibile con quella attesa.
+Nel nostro caso, $\varepsilon_\eta \simeq 0.923$
+e $\varepsilon_c \simeq 0.758$: le due misure sono
+dunque compatibili.
 
-Come è possibile osservare comparando questi risultati a
-quelli precedentemente ottenuti, il valore di $g$ risultante
-è rimasto essenzialmente invariato (al netto della sua incertezza).
+Possiamo pertanto affermare che l'esperienza si è
+conclusa con successo.
 
-In conclusione, possiamo affermare ragionevolmente che,
-rispetto alla sensibilità degli strumenti di misura,
-il contributo dell'attrito è trascurabile.
-
-\pagebreak
 \printbibliography
 
 \end{document}
