@@ -169,11 +169,13 @@ Per semplificare la discussione, assumeremo:
   \item Che il moto del centro di massa sia rettilineo uniforme con velocità
     $\vec{v}_i\parallel\vec{g}$;
   \item Che il moto avvenga in regime laminare
-    (ovvero $\text{Re}_i \ll 1200$);
+    (ovvero $\text{Re}_i \ll 1200$, dove $\text{Re}_i$ è il numero di
+    Reynolds, calcolato assumendo il fluido in quiete rispetto al
+    sistema di riferimento);
   \item Che, rispetto alla sferetta, il recipiente possa essere
     considerato di dimensione indefinita, per poter trascurare gli effetti
     di bordo (condizione già verificata mediante l'accortezza esposta
-    al punto 1.2.c.ii);
+    al punto 1.2.c.ii.);
   \item Che il diametro $2r_i$ non superi, in ordine di grandezza,
     $10^{-3}\,\unit{m}$ - nel nostro caso, il diametro più grande misurato
     è stato $(3.96\pm0.01)\,\unit{mm}$, che verifica questa condizione.
@@ -205,7 +207,7 @@ in relazione i valori medi per ogni classe: \[
   \overline{r}_k^2
   \qquad\qquad
   \text{Re}_k = \frac{
-    \rho_\text{sol}\cdot\diam\cdot\overline{v}_i}{\eta_\text{sol}}
+    \rho_\text{sol}\cdot\diam\cdot\overline{v}_k}{\eta_\text{sol}}
 \]
 
 \subsection{Misura della densità media di tutte le sferette}
@@ -560,10 +562,25 @@ di seguito riportiamo i risultati delle prime iterazioni.\footnote{
   }
 \end{center}
 
-\textbf{Osservazione}. Ricordiamo il numero di Reynolds:
-\[
-  \text{Re} = \frac{\rho_\text{sol}\cdot\diam\cdot \overline{v}_k}{\eta_\text{sol}}
-\]
+\textbf{Osservazione}. Possiamo ora calcolare il numero di Reynolds
+(adimensionale) per ogni classe di sferette, alle due diverse temperature:
+
+\begin{center}\begin{tblr}{ |c|c|c| }
+  \hline
+  Classe $k$ & $\text{Re}_k$, giorno 1 & $\text{Re}_k$, giorno 2 \\
+  \hline
+  Piccole & $33.8\pm0.9$ & $15.1\pm0.4$ \\
+  \hline[dashed]
+  Medie & $50.1\pm1.4$ & $23.0\pm0.7$ \\
+  \hline[dashed]
+  Grandi & $75.7\pm2.1$ & $38.8\pm1.1$ \\
+  \hline
+\end{tblr}\end{center}
+
+È immediato osservare che tutti i valori di $\text{Re}_k$
+calcolati soddisfano abbondantemente la condizione (2.1.2.):
+l'applicazione di quel modello a questa esperienza è ora
+pienamente giustificata.
 
 \section{Conclusioni}
 
@@ -574,7 +591,7 @@ e la concentrazione di una soluzione di acqua e glicerina.
 Per valutare numericamente la compatibilità tra
 $\eta_{\text{sol},1}$ ed $\eta_{\text{sol},2}$ (e tra
 $c_{\text{m},1}$ e $c_{\text{m},2}$),
-abbiamo calcolato i seguenti valore (numeri puri):
+abbiamo calcolato i seguenti valori (numeri puri):
 \[
   \varepsilon_\eta = \frac{
     \left|\left(\eta_{\text{sol},1}\right)_\text{best} -
