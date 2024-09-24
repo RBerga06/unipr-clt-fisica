@@ -74,7 +74,7 @@
     } \\
     \hline[dashed]
     Generatore & {
-      Per mandare una corrente verso la resistenza presente
+      Per mandare una corrente attraverso la resistenza presente
       nel tappo del calorimetro.
       } \\
     \hline
@@ -88,27 +88,40 @@
 
 \begin{enumerate}
   \item
-    Posto il calorimetro sopra alla bilancia, avviamo la cattura del filmato.
+    Posto il calorimetro sopra alla bilancia di precisione, avviamo la cattura del filmato.
   \item
     Dopo circa una decina di secondi (non è rilevante per la riuscita dell'esperienza),
-    tramite il generatore forniamo calore all'azoto per mezzo della resistenza.
+    accendiamo il generatore in modo da fornire calore all'azoto per mezzo della resistenza.
   \item
-    Aspettato ... interrompiamo il flusso di calore e dopo 
-    un'altra decina di secondi terminiamo la registrazione video.
+    Passato un tempo sufficiente, spegniamo la resistenza e %TODO: scrivere quanto bisogna aspettare
+    dopo un'altra decina di secondi terminiamo la registrazione video.
 \end{enumerate}
     
-\subsection{Analisi dei dati raccolti e conclusioni}
+\subsection{Analisi dei dati raccolti e conclusioni} %TODO: cambiare i pedici
+  Prima di tutto, definiamo il calore assorbito dall'azoto liquido come
+  il prodotto tra il calore latente di vaporizzazione e la variazione di massa:
+  $Q = \lambda_{vap} \Delta m$.
+
+  Essendo note (oltre all'intervallo di tempo) tensione ed intensità della corrente,
+  possiamo esprimere il calore fornito anche come: $Q = I \Delta V \Delta t$.
+
+  Eguagliando queste ultime due relazioni, ricaviamo che il calore latente dell'azoto liquido sarà:
+  $\lambda_{vap} = \frac{I \Delta V \Delta t}{\Delta m}$. 
+  
+  Ponendo $\gamma = \frac{\Delta m}{\Delta t}$, possiamo riscrivere la precedente espressione come:
+  $\lambda_{vap} = \frac{I \Delta V}{|\gamma|}$.
+
   Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
   e, successivamente, costruire tre distinte rette di regressione.
-  .
-  .
-  .
-  
-  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
-  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
 
   Il calore latente dell'azoto liquido sarà:
 
+
+
+
+\section{Misurazione dei calori specifici dei campioni}
+
+\subsection{Esperienza e procedimento di misura}
 
   \item
     Ripetiamo 9 volte i seguenti passi:
@@ -134,7 +147,7 @@ $\sin(\theta) \sim \theta\quad\forall \theta \in [-\theta_0, \theta_0]$.
       Acquisiamo dati fino all'arresto del moto.
   \end{enumerate}
 
-\section{Analisi dei dati raccolti e conclusioni}
+\subsection{Analisi dei dati raccolti e conclusioni}
 \emph{\textbf{Nota.}
 Avendo valutato gli errori sulle grandezze misurate direttamente
 come piccoli, casuali e indipendenti, per svolgere ogni calcolo
