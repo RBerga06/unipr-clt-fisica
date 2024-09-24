@@ -169,7 +169,7 @@ Per semplificare la discussione, assumeremo:
   \item Che il moto del centro di massa sia rettilineo uniforme con velocità
     $\vec{v}_i\parallel\vec{g}$;
   \item Che il moto avvenga in regime laminare
-    (ovvero $\text{Re}=\frac{1}{\eta_\text{sol}}\rho_\text{sol}\diam v_i \ll 1200$);
+    (ovvero $\text{Re}_i \ll 1200$);
   \item Che, rispetto alla sferetta, il recipiente possa essere
     considerato di dimensione indefinita, per poter trascurare gli effetti
     di bordo (condizione già verificata mediante l'accortezza esposta
@@ -203,6 +203,9 @@ della stessa classe essenzialmente indistinguibili. Sono stati perciò messi
 in relazione i valori medi per ogni classe: \[
   \overline{v}_k = \frac{2g(\rho_\text{sf} - \rho_\text{sol})}{9\eta_\text{sol}}
   \overline{r}_k^2
+  \qquad\qquad
+  \text{Re}_k = \frac{
+    \rho_\text{sol}\cdot\diam\cdot\overline{v}_i}{\eta_\text{sol}}
 \]
 
 \subsection{Misura della densità media di tutte le sferette}
@@ -556,6 +559,11 @@ di seguito riportiamo i risultati delle prime iterazioni.\footnote{
     le prime iterazioni.
   }
 \end{center}
+
+\textbf{Osservazione}. Ricordiamo il numero di Reynolds:
+\[
+  \text{Re} = \frac{\rho_\text{sol}\cdot\diam\cdot \overline{v}_k}{\eta_\text{sol}}
+\]
 
 \section{Conclusioni}
 
