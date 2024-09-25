@@ -117,18 +117,24 @@
 \end{enumerate}
 
 \subsection{Analisi dei dati raccolti e conclusioni} %TODO: cambiare i pedici
-  Prima di tutto, definiamo il calore assorbito dall'azoto liquido come
-  il prodotto tra il calore latente di vaporizzazione e la variazione di massa:
-  $Q = \lambda_{vap} \Delta m$.
+  Essendo l'azoto a temperatura di ebollizione, possiamo esprimere la
+  quantità di calore assorbito ($\delta Q$) in un intervallo di tempo
+  $\Delta t$ in funzione della massa di azoto evaporata ($-\Delta m$):
+  \[\delta Q = - \lambda_\text{vap} \Delta m\] dove la costante
+  $\lambda_\text{vap}$ è detta “calore latente di vaporizzazione”.
 
-  Essendo note (oltre all'intervallo di tempo) tensione ed intensità della corrente,
-  possiamo esprimere il calore fornito anche come: $Q = I \Delta V \Delta t$.
+  Tuttavia, possiamo assumere che $\delta Q$ sia pari al calore sviluppato
+  dalla resistenza per effetto Joule. Assumendo le dispersioni di energia
+  trascurabili, vale:
+  \[ \delta Q = P = i\cdot\Delta V \]  % TODO: `P` va in corsivissimo
 
-  Eguagliando queste ultime due relazioni, ricaviamo che il calore latente dell'azoto liquido sarà:
-  $\lambda_{vap} = \frac{I \Delta V \Delta t}{\Delta m}$.
-
-  Ponendo $\gamma = \frac{\Delta m}{\Delta t}$, possiamo riscrivere la precedente espressione come:
-  $\lambda_{vap} = \frac{I \Delta V}{|\gamma|}$.
+  Si avrà allora:
+  \[
+    \lambda_{vap} = \frac{i\cdot\Delta V\cdot\Delta t}{-\Delta m}
+      = \frac{i\cdot\Delta V}{-\gamma}
+    \qquad \text{con} \quad
+    \gamma = \frac{\Delta m}{\Delta t}.
+  \]
 
   Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
   e, successivamente, costruire tre distinte rette di regressione.
