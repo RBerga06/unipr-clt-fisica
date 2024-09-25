@@ -29,56 +29,66 @@
 
 \begin{abstract}
   Mediante un calorimetro ad azoto liquido, il gruppo di lavoro
-  ha misurato i calori specifici di quattro campioni per risalirne
-  alla natura; per fare ciò è stato necessario determinare il
+  ha misurato i calori specifici di quattro campioni;
+  preliminarmente, è stato necessario determinare il
   calore latente di vaporizzazione dell'azoto.
-
 \end{abstract}
 
 \setcounter{section}{-1}
 \section{Materiali e strumenti di misura utilizzati}
 \begin{center}
-  \begin{tblr}{
-    width=\textwidth,
-    colspec={ X[2,m,j]X[1,m,c]X[1,m,c]X[1,m,c] },
-    vlines,
+\begin{tblr}{
+  width=\textwidth,
+  colspec={ X[2,m,j]X[1,m,c]X[1,m,c]X[1,m,c] },
+  vlines,
 }
-    \hline
-    \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
-    \hline
-    Amperometro & $\qty{0.001}{A}$ & N./A. & $\qty{0.001}{A}$ \\
-    \hline[dashed]
-    Voltmetro & $\qty{0.01}{V}$ & N./A. & $\qty{0.01}{V}$ \\
-    \hline[dashed]
-    Cronometro & $\qty{0.01}{s}$ & $\qty{99.99}{s}$ & $\qty{0.01}{s}$ \\
-    \hline[dashed]
-    Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{4000.00}{g}$ & $\qty{0.01}{g}$ \\
-    \hline
-  \end{tblr}
-  \begin{tblr}{
-    width=\textwidth,
-    colspec={ X[m,j]X[3,m,j] },
-    vlines,
-  }
-    \hline
-    \textbf{Altro} & \textbf{Descrizione/Note} \\
-    \hline
-    Calorimetro & {
-      Dotato di un tappo con un foro centrale per potervi immergere
-      i materiali e permettere la fuoriuscita dell'azoto gassoso.
-    } \\
-    \hline[dashed]
-    Videocamera & {
-      Utilizzata per osservare a posteriori i rilevamenti
-      del cronometro e della bilancia di precisione.
-    } \\
-    \hline[dashed]
-    Generatore & {
-      Per mandare una corrente attraverso la resistenza presente
-      nel tappo del calorimetro.
-      } \\
-    \hline
-  \end{tblr}
+  \hline
+  \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
+  \hline
+  Amperometro & $\qty{0.001}{A}$ & N./A. & $\qty{0.001}{A}$ \\
+  \hline[dashed]
+  Voltmetro & $\qty{0.01}{V}$ & N./A. & $\qty{0.01}{V}$ \\
+  \hline[dashed]
+  Cronometro & $\qty{0.01}{s}$ & $\qty{99.99}{s}$ & $\qty{0.01}{s}$ \\
+  \hline[dashed]
+  Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{4000.00}{g}$ & $\qty{0.01}{g}$ \\
+  \hline
+\end{tblr}
+\begin{tblr}{
+  width=\textwidth,
+  colspec={ X[m,j]X[3,m,j] },
+  vlines,
+}
+  \hline
+  \textbf{Altro} & \textbf{Descrizione/Note} \\
+  \hline
+  Calorimetro & {
+    Quasi adiabatico,
+    dotato di un tappo con un foro centrale per potervi immergere
+    i materiali e permettere la fuoriuscita dell'azoto gassoso.
+  } \\
+  \hline[dashed]
+  Azoto liquido & Contenuto nel calorimetro \\
+  \hline[dashed]
+  Resistenza & {
+    Fissata all'interno del tappo, fornisce calore all'azoto liquido.
+  } \\
+  \hline[dashed]
+  Videocamera & {
+    Utilizzata per acquisire i dati mostrati dal
+    cronometro e della bilancia di precisione
+    contemporaneamente.
+  } \\
+  \hline[dashed]
+  Generatore & {
+    Fornisce corrente elettrica al circuito, composto dall'amperometro
+    (collegato in serie) e da voltmetro e resistenza (collegati in
+    parallelo).
+  } \\
+  \hline[dashed]
+  Quattro campioni metallici & { Li chiameremo $\Xi,\Delta,\aleph,\nabla$. } \\
+  \hline
+\end{tblr}
 \end{center}
 
 \pagebreak
@@ -90,19 +100,22 @@
 
 \begin{enumerate}
   \item
-    Posto il calorimetro sopra alla bilancia di precisione, avviamo la cattura del filmato.
+    Posto il calorimetro sopra alla bilancia di precisione, avviamo
+    l'acquisizione del filmato.
   \item
-    Dopo circa una decina di secondi (non è rilevante per la riuscita dell'esperienza),
-    accendiamo il generatore in modo da fornire calore all'azoto per mezzo della resistenza.
+    Dopo almeno una decina di secondi, accendiamo il generatore
+    in modo da fornire calore all'azoto per mezzo della resistenza.
   \item
-    Passato un tempo sufficiente, spegniamo la resistenza e %TODO: scrivere quanto bisogna aspettare
-    dopo un'altra decina di secondi terminiamo la registrazione video.
+    Passato circa un minuto, spegniamo il generatore per interrompere
+    lo scambio di calore e
+    dopo almeno un'altra decina di secondi terminiamo la registrazione
+    del filmato.
   \item
-    Ripetiamo lo stesso procedimento, ma insererndo un tappo non ermetico
-    nel foro centrale del tappo del calorimetro, in modo da evitare la 
+    Ripetiamo lo stesso procedimento, ma inserendo un tappo non ermetico
+    nel foro centrale del tappo del calorimetro, in modo da evitare la
     fuoriuscita di azoto gassoso.
 \end{enumerate}
-    
+
 \subsection{Analisi dei dati raccolti e conclusioni} %TODO: cambiare i pedici
   Prima di tutto, definiamo il calore assorbito dall'azoto liquido come
   il prodotto tra il calore latente di vaporizzazione e la variazione di massa:
@@ -112,8 +125,8 @@
   possiamo esprimere il calore fornito anche come: $Q = I \Delta V \Delta t$.
 
   Eguagliando queste ultime due relazioni, ricaviamo che il calore latente dell'azoto liquido sarà:
-  $\lambda_{vap} = \frac{I \Delta V \Delta t}{\Delta m}$. 
-  
+  $\lambda_{vap} = \frac{I \Delta V \Delta t}{\Delta m}$.
+
   Ponendo $\gamma = \frac{\Delta m}{\Delta t}$, possiamo riscrivere la precedente espressione come:
   $\lambda_{vap} = \frac{I \Delta V}{|\gamma|}$.
 
@@ -136,7 +149,7 @@
     dopo un'altra decina di secondi terminiamo la registrazione video.
   \item
     Ripetiamo lo stesso procedimento, ma insererndo un tappo non ermetico
-    nel foro centrale del tappo del calorimetro, in modo da evitare la 
+    nel foro centrale del tappo del calorimetro, in modo da evitare la
     fuoriuscita di azoto gassoso.
 \end{enumerate}
 
