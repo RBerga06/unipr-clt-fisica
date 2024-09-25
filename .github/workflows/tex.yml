@@ -14,12 +14,12 @@ jobs:
           root_file: lab1/r11-nitrogen/relazione.tex
           compiler: latexmk
           args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r11-nitrogen/
-      - name: Compile r12-sound
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: lab1/r12-sound/relazione.tex
-          compiler: latexmk
-          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r12-sound/
+#      - name: Compile r12-sound
+#        uses: dante-ev/latex-action@latest
+#        with:
+#          root_file: lab1/r12-sound/relazione.tex
+#          compiler: latexmk
+#          args: -interaction=nonstopmode -shell-escape -file-line-error -pdf -outdir=lab1/r12-sound/
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
