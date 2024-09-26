@@ -10,6 +10,7 @@
 % \usepackage{minted}
 \usepackage[bottom]{footmisc}
 \usepackage[page]{appendix}
+\usepackage[mathscr]{euscript}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -116,7 +117,7 @@
     fuoriuscita di azoto gassoso.
 \end{enumerate}
 
-\subsection{Analisi dei dati raccolti e conclusioni} %TODO: cambiare i pedici
+\subsection{Analisi dei dati raccolti e conclusioni}
   Essendo l'azoto a temperatura di ebollizione, possiamo esprimere la
   quantità di calore assorbito ($\delta Q$) in un intervallo di tempo
   $\Delta t$ in funzione della massa di azoto evaporata ($-\Delta m$):
@@ -126,7 +127,7 @@
   Tuttavia, possiamo assumere che $\delta Q$ sia pari al calore sviluppato
   dalla resistenza per effetto Joule. Assumendo le dispersioni di energia
   trascurabili, vale:
-  \[ \delta Q = P = i\cdot\Delta V \]  % TODO: `P` va in corsivissimo
+  \[ \delta Q = \mathscr{P}\cdot\Delta t = i\cdot\Delta V\cdot\Delta t\]
 
   Si avrà allora:
   \[
