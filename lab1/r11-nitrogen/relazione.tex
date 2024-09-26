@@ -7,10 +7,11 @@
 \usepackage{tabularray}
 \usepackage{graphicx}
 \usepackage{float}
-% \usepackage{minted}
 \usepackage[bottom]{footmisc}
 \usepackage[page]{appendix}
-\usepackage[mathscr]{euscript}
+\usepackage[mathscr]{euscript}  % per il corsivo
+\usepackage[labelformat=simple, justification=centering]{subfig}
+\renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -52,9 +53,14 @@
   \hline[dashed]
   Cronometro & $\qty{0.01}{s}$ & $\qty{99.99}{s}$ & $\qty{0.01}{s}$ \\
   \hline[dashed]
-  Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{4000.00}{g}$ & $\qty{0.01}{g}$ \\
+  Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{4000.0}{g}$ &
+    $\qty{0.01}{g}$\footnotemark[1] \\
   \hline
 \end{tblr}
+\footnotetext[1]{
+  Per misure superiori a $\qty{2000.00}{g}$, la sensibilità
+  è $\qty{0.1}{g}$
+}
 \begin{tblr}{
   width=\textwidth,
   colspec={ X[m,j]X[3,m,j] },
@@ -65,14 +71,14 @@
   \hline
   Calorimetro & {
     Quasi adiabatico,
-    dotato di un tappo con un foro centrale per potervi immergere
+    dotato di un coperchio con un foro centrale per potervi immergere
     i materiali e permettere la fuoriuscita dell'azoto gassoso.
   } \\
   \hline[dashed]
   Azoto liquido & Contenuto nel calorimetro \\
   \hline[dashed]
   Resistenza & {
-    Fissata all'interno del tappo, fornisce calore all'azoto liquido.
+    Fissata all'interno del coperchio, fornisce calore all'azoto liquido.
   } \\
   \hline[dashed]
   Videocamera & {
@@ -108,54 +114,60 @@
     in modo da fornire calore all'azoto per mezzo della resistenza.
   \item
     Passato circa un minuto, spegniamo il generatore per interrompere
-    lo scambio di calore e
-    dopo almeno un'altra decina di secondi terminiamo la registrazione
-    del filmato.
-  \item
-    Ripetiamo lo stesso procedimento, ma inserendo un tappo in plastica
-    nel foro centrale del tappo del calorimetro, in modo da evitare la
-    fuoriuscita di azoto gassoso.
+    lo scambio di calore e, dopo almeno un'altra decina di secondi,
+    terminiamo la registrazione del filmato.
 \end{enumerate}
 
-\subsection{Analisi dei dati raccolti e conclusioni}
-  Essendo l'azoto a temperatura di ebollizione, possiamo esprimere la
-  quantità di calore assorbito ($\delta Q$) in un intervallo di tempo
-  $\Delta t$ in funzione della massa di azoto evaporata ($-\Delta m$):
-  \[\delta Q = - \lambda_\text{vap} \Delta m\] dove la costante
-  $\lambda_\text{vap}$ è detta “calore latente di vaporizzazione”.
+Il gruppo di lavoro ha effettuato questi passaggi due volte:
+la prima, chiudendo il foro del coperchio con un tappo;
+la seconda, lasciandolo aperto.
 
-  Tuttavia, possiamo assumere che $\delta Q$ sia pari al calore sviluppato
-  dalla resistenza per effetto Joule. Assumendo le dispersioni di energia
-  trascurabili, vale:
-  \[ \delta Q = \mathscr{P}\cdot\Delta t = i\cdot\Delta V\cdot\Delta t\]
+\subsection{Analisi dei dati raccolti}
 
-  Si avrà allora:
-  \[
-    \lambda_{vap} = \frac{i\cdot\Delta V\cdot\Delta t}{-\Delta m}
-      = \frac{i\cdot\Delta V}{-\gamma}
-    \qquad \text{con} \quad
-    \gamma = \frac{\Delta m}{\Delta t}.
-  \]
+Essendo l'azoto a temperatura di ebollizione, possiamo esprimere la
+quantità di calore assorbito ($\delta Q$) in un intervallo di tempo
+$\Delta t$ in funzione della massa di azoto evaporata ($-\Delta m$):
+\[\delta Q = - \lambda_\text{vap} \Delta m\] dove la costante
+$\lambda_\text{vap}$ è detta “calore latente di vaporizzazione”.
 
-  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
-  e, successivamente, costruire tre distinte rette di regressione.
+Assumendo le dispersioni di energia trascurabili, possiamo
+considerare $\delta Q$ pari al calore sviluppato dalla resistenza per
+effetto Joule. Vale allora:
+\[ \delta Q = \mathscr{P}\cdot\Delta t = i\cdot\Delta V\cdot\Delta t\]
 
-  \begin{figure}[H]
-    \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/g_azoto2.png}
-    \caption[]{\emph{
-      In rosso, la retta di regressione lineare e in rosa,
-      appena visibile, la sua regione di incertezza.
-      (le barre di errore sull'ascissa sono così ridotte
-      da risultare invisibili)
-    }}
-    \includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/g_azoto3.png}
-    \caption[]{\emph{
-      In rosso, la retta di regressione lineare e in rosa,
-      appena visibile, la sua regione di incertezza.
-      (le barre di errore sull'ascissa sono così ridotte
-      da risultare invisibili)
-    }}
-  \end{figure}
+da cui:
+\[
+  \lambda_{vap} = \frac{i\cdot\Delta V\cdot\Delta t}{-\Delta m}
+    = \frac{i\cdot\Delta V}{-\,\gamma}
+  \qquad \text{avendo posto} \quad
+  \gamma = \frac{\Delta m}{\Delta t}.
+\]
+
+Visionando il filmato, il gruppo di lavoro ha raccolto, a intervalli
+di tempo regolari, la misura della massa di azoto liquido indicata
+dalla bilancia.
+
+\vspace{2mm}
+Di seguito riportiamo, in grafico, i dati acquisiti.
+
+\begin{figure}[H]
+  \subfloat[][
+    Foro chiuso
+
+    $\Delta V=(0.032\pm0.007)\,\unit{mV}$
+  ]{\includegraphics[trim={2.5cm 0.6cm 3cm 1cm},clip,width=.49\textwidth]{img/g_azoto2.png}}\hfil
+  \subfloat[][
+    Foro aperto
+
+    $\Delta V=(0.032\pm0.007)\,\unit{mV}$
+  ]{\includegraphics[trim={2.5cm 0.6cm 3cm 1cm},clip,width=.49\textwidth]{img/g_azoto3.png}}\hfil
+  \caption[]{\emph{
+    In rosso, la retta di regressione lineare e in rosa,
+    appena visibile, la sua regione di incertezza.
+    (le barre di errore sull'ascissa sono così ridotte
+    da risultare invisibili)
+  }}
+\end{figure}
 
 \section{Misurazione dei calori specifici dei campioni}
 
