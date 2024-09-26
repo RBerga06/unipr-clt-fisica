@@ -259,62 +259,60 @@ avrebbe potuto contenere ben di più.
 Per ogni campione:
 \begin{enumerate}
   \item
-    Come prima, avviamo la cattura del filmato dopo aver posizionato il calorimetro
+    Avviamo l'acquisizione del filmato, dopo aver posizionato il calorimetro
     sopra alla bilancia di precisione.
   \item
-    Dopo circa una decina di secondi, lo inseriamo nel calorimetro, che poi andiamo
-    a chiudere tramite un tappo in plastica.
+    Dopo circa una decina di secondi, inseriamo il campione nel calorimetro
+    tramite il foro nel coperchio, fissandolo con il tappo.
   \item
-    Attesi uno o due minuti per assicurarci che lo scambio di calore con l'azoto
-    sia terminato, possiamo rimuovere il campione dal calorimetro e, successivamente,
-    interrompere la registrazione.
-
+    Attesi non meno di due minuti, per assicurarci che lo scambio di calore con
+    l'azoto sia terminato da almeno una decina di secondi, interrompiamo
+    la registrazione.
 \end{enumerate}
 
 \subsection{Analisi dei dati raccolti e conclusioni}
-  Analogamente a quanto detto prima, possiamo esprimere la quantità di calore
-  assorbito dall'azoto come: \[\delta Q = - \lambda_\text{vap} \Delta m\].
+Analogamente a quanto detto prima, possiamo esprimere la quantità di calore
+assorbito dall'azoto come:
+\[
+  \delta Q = - \lambda_\text{vap} \Delta m.
+\]
 
-  Considerando il calorimetro totalmente adiabatico, questa quantità di calore
-  è pari a quella ceduta dal campione. Possiamo quindi scrivere:
-  \[\delta Q = c m \Delta T\].
+Assumendo le dispersioni di energia trascurabili, possiamo
+considerare $\delta Q$ pari al calore ceduto dal campione, che
+passa da temperatura ambiente $T_\text{amb} = (25\pm1)\,\unit{\degree C}$
+ad una temperatura di equilibrio, che possiamo assumere
+$T_\text{eq}\simeq T_\text{eb,azoto} = (-196\pm1)\,\unit{\degree C}$.
+Vale allora\footnote{
+  In realtà il calore specifico $c(T)$ di un materiale dipende dalla temperatura,
+  mentre qua lo stiamo trattando come costante: in questa sede, con il simbolo $c$
+  indicheremo infatti una stima della “media” di $c(T)$ sull'intervallo di temperature
+  considerato ($[\qty{-196}{\degree C}, \qty{25}{\degree C}]$).
+}:
+\[\qquad
+  \delta Q = c\,\mu\,\Delta T \qquad\text{con}\quad
+  \Delta T = T_\text{amb} - T_\text{eb,azoto} = (221\pm2)\,\unit{K},
+\]
+dove $\mu$ è la massa del campione.
 
-  Da queste due relazioni è possibile ricavare un espressione per $c$:
-  \[
-    c = \frac{\lambda (-\gamma) \Delta t}{m \Delta T}
-     \qquad \text{con} \quad
-    \gamma = \frac{\Delta m}{\Delta t}.
-  \]
-  \emph{\textbf{Notazione.}
-  Con il simbolo $c$ non indichiamo direttamente il calore specifico, in quanto dipende dalla temperatura;
-  intendiamo, invece, una sua "media" tra $\qty{-196}{\degree C}$ e $\qty{25}{\degree C}$.
-  }
+Risolvendo in $c$ si ottiene:
+\[
+  c = -\frac{\lambda_\text{vap}\,\Delta m}{\mu\,\Delta T}
+    = -\frac{\lambda_\text{vap}\,\gamma\,\Delta t}{\mu\,\Delta T}
+  \qquad \text{avendo posto} \quad
+  \gamma = \frac{\Delta m}{\Delta t}.
+\]
 
-\begin{center}
-  \begin{tblr}{ |c|c|c|c|c| }
-    \hline
-    Oggetto & $L\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
-    \hline
-    Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
-    \hline[dashed]
-    Rotore & N./A. & $13.41\pm0.01$ & $22.4\pm0.1^*$ & $0.058\pm0.001^*$ \\
-    \hline
-  \end{tblr}
-\end{center}\begin{center}
-  \begin{tblr}{ |c|c|c|c|c|c| }
-    \hline
-    $i$ & $m_i\;\;(\unit{g})$ & $d_i^\text{\,ext}\;\;(\unit{mm})$ & $d_i^\text{\,int}\;\;(\unit{mm})$ & $h_i\;\;(\unit{mm})$ & $I_{\text{CM},i}\;(\unit{mg\,m^2})$ \\
-    \hline
-    A & $115.95\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.93 \pm 0.01$ & $10.62\pm0.03$ \\
-    \hline[dashed]
-    B & $115.86\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.89 \pm 0.01$ & $10.59\pm0.03$\\
-    \hline[dashed]
-    C & $71.46\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $12.08 \pm 0.01$ & $5.047\pm0.018$\\
-    \hline
-  \end{tblr}
-\end{center}
+Visionando il filmato, il gruppo di lavoro ha raccolto, a intervalli
+di tempo regolari, la misura della massa di azoto liquido indicata
+dalla bilancia.
 
-\emph{$[^*]$ Valori dati}
+Chiaramente, non essendo il calorimetro perfettamente adiabatico,
+la massa di azoto diminuisce anche quando la resistenza è spenta.
+Per tenere conto di questo errore sistematico, abbiamo effettuato
+tre regressioni lineari (con coefficienti angolari $\alpha_1,\beta,\alpha_2$)
+sui dati raccolti, rispettivamente prima,
+durante e dopo lo scambio di calore con la resistenza. Abbiamo quindi calcolato:
+\[\gamma = \beta - \frac{\alpha_1 + \alpha_2}{2}.\]
 
 \pagebreak
 %\subsubsection{La misura di $T$}
