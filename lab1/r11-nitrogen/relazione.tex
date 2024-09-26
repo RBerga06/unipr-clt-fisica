@@ -147,28 +147,51 @@ Visionando il filmato, il gruppo di lavoro ha raccolto, a intervalli
 di tempo regolari, la misura della massa di azoto liquido indicata
 dalla bilancia.
 
+Chiaramente, non essendo il calorimetro perfettamente adiabatico,
+la massa di azoto diminuisce anche quando la resistenza è spenta.
+Per tenere conto di questo errore sistematico, abbiamo effettuato
+tre regressioni lineari (con coefficienti angolari $\alpha_1,\beta,\alpha_2$)
+sui dati raccolti, rispettivamente prima,
+durante e dopo lo scambio di calore con la resistenza. Abbiamo quindi calcolato:
+\[\gamma = \beta - \frac{\alpha_1 + \alpha_2}{2}.\]
+
 \vspace{2mm}
-Di seguito riportiamo, in grafico, i dati acquisiti.
+Di seguito riportiamo graficamente i dati acquisiti, accompagnati dalle rette
+di regressione e dai valori di $\gamma$ e $\lambda_\text{vap}$ calcolati.
 
+\pagebreak
+\emph{
+  \textbf{Nota.} La struttura di entrambi i grafici è la seguente:
+  \begin{itemize}
+    \item in blu, i dati raccolti con la resistenza accesa e la
+      relativa retta di regressione (la cui zona di incertezza,
+      estremamente ridotta, è rappresentata in azzurro);
+    \item in rosso, i dati raccolti con la resistenza spenta e le
+      rispettive rette di regressione (le cui zone di incertezza
+      sono rappresentate in rosa);
+    \item sono inoltre riportate le barre di errore,
+      tuttavia così ridotte da risultare invisibili.
+  \end{itemize}
+}
+
+\subsubsection{Prima acquisizione: foro chiuso}
 \begin{figure}[H]
-  \subfloat[][
-    Foro chiuso
+  \includegraphics[trim={2.5cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/g_azoto2.png}
+\end{figure}
+\[
+  \gamma_\text{chiuso} = (-59.2\pm0.5)\cdot10^{-6}\,\unit{kg \per s}
+  \qquad
+  \lambda_\text{vap,chiuso} = (3.00\pm0.11)\cdot10^5\,\unit{J \per kg}
+  %235.3814740201078 ± 6.197978353189262 kJ/kg
+\]
 
-    $\Delta V=(0.032\pm0.007)\,\unit{mV}$
-  ]{\includegraphics[trim={2.5cm 0.6cm 3cm 1cm},clip,width=.49\textwidth]{img/g_azoto2.png}}\hfil
-  \subfloat[][
-    Foro aperto
-
-    $\Delta V=(0.032\pm0.007)\,\unit{mV}$
-  ]{\includegraphics[trim={2.5cm 0.6cm 3cm 1cm},clip,width=.49\textwidth]{img/g_azoto3.png}}\hfil
-  \caption[]{\emph{
-    In rosso, la retta di regressione lineare e in rosa,
-    appena visibile, la sua regione di incertezza.
-    (le barre di errore sull'ascissa sono così ridotte
-    da risultare invisibili)
-  }}
+\pagebreak
+\subsubsection{Seconda acquisizione: foro aperto}
+\begin{figure}[H]
+  \includegraphics[trim={2.5cm 0.6cm 3cm 1cm},clip,width=\textwidth]{img/g_azoto3.png}
 \end{figure}
 
+\pagebreak
 \section{Misurazione dei calori specifici dei campioni}
 
 \subsection{Esperienza e procedimento di misura}
