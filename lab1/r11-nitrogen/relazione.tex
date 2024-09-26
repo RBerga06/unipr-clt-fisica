@@ -87,7 +87,7 @@
     parallelo).
   } \\
   \hline[dashed]
-  Quattro campioni metallici & { Li chiameremo $\Xi,\Delta,\aleph,\nabla$. } \\
+  Quattro campioni metallici noti & { Li chiameremo $\Xi,\Delta,\aleph,\nabla$. } \\
   \hline
 \end{tblr}
 \end{center}
@@ -154,15 +154,30 @@ Per ogni campione:
     Dopo circa una decina di secondi, lo inseriamo nel calorimetro, che poi andiamo
     a chiudere tramite un tappo in plastica.
   \item
-    Passati uno o due minuti per assicurarci che lo scambio di calore tra azoto e campione
-    sia terminato, possiamo rimuovere il pesetto dal calorimetro e, successivamente,
+    Attesi uno o due minuti per assicurarci che lo scambio di calore con l'azoto
+    sia terminato, possiamo rimuovere il campione dal calorimetro e, successivamente,
     interrompere la registrazione.
     
 \end{enumerate}
 
 \subsection{Analisi dei dati raccolti e conclusioni}
+  Analogamente a quanto detto prima, possiamo esprimere la quantità di calore
+  assorbito dall'azoto come: \[\delta Q = - \lambda_\text{vap} \Delta m\].
 
+  Considerando il calorimetro totalmente adiabatico, questa quantità di calore
+  è pari a quella ceduta dal campione. Possiamo quindi scrivere:
+  \[\delta Q = c m \Delta T\].
 
+  Da queste due relazioni è possibile ricavare un espressione per $c$:
+  \[
+    c = \frac{\lambda (-\gamma) \Delta t}{m \Delta T}
+     \qquad \text{con} \quad
+    \gamma = \frac{\Delta m}{\Delta t}.
+  \]
+  \emph{\textbf{Notazione.}
+  Con il simbolo $c$ non indichiamo direttamente il calore specifico, in quanto dipende dalla temperatura;
+  intendiamo, invece, una sua "media" tra $\qty{-196}{\degree C}$ e $\qty{25}{\degree C}$.
+  }
 
 \begin{center}
   \begin{tblr}{ |c|c|c|c|c| }
