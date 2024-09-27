@@ -377,19 +377,27 @@ accompagnato dalla relativa massa ($\mu$), a confronto con quello atteso
 }
 
 \begin{center}
-\begin{tblr}{ |c|c|c|c|c| }
+\begin{tblr}{
+  colspec={ |cc|c|c|c|c| },
+  cell{1}{1} = {c=2}{c,m},
+  cell{1}{1-3} = {r=2}{c,m},
+}
   \hline
-    & Materiale & $\mu\;(\unit{g})$
-    & $c_\text{mis}\;(\unit{J\,kg^{-1}\,K^{-1}})$
-    & $c_\text{att}\;(\unit{J\,kg^{-1}\,K^{-1}})$ \\
+  \textbf{Campione} && $\mu\;(\unit{g})$
+    & $c_\text{mis,chiuso}$
+    & $c_\text{mis,aperto}$
+    & $c_\text{atteso}$ \\
+  &&& $(\unit{J\per kg\,K})$
+    & $(\unit{J\per kg\,K})$
+    & $(\unit{J\per kg\,K})$ \\
   \hline
-  $\Xi$ & Piombo & $15.55\pm0.01$ & $107\pm30$ & $130\pm1$ \\
+  $\Xi$ & (piombo) & $15.55\pm0.01$ & $107\pm30$ && $130\pm1$ \\
   \hline[dashed]
-  $\Delta$ & Ottone & $28.73\pm0.01$ & $391\pm53$ & $377\pm1$ \\
+  $\Delta$ & (ottone) & $28.73\pm0.01$ & $391\pm53$ && $377\pm1$ \\
   \hline[dashed]
-  $\aleph$ & Alluminio & $10.46\pm0.01$ & $876\pm62$ & $880\pm1$ \\
+  $\aleph$ & (alluminio) & $10.46\pm0.01$ & $876\pm62$ && $880\pm1$ \\
   \hline[dashed]
-  $\nabla$ & Rame & $27.25\pm0.01$ & $408\pm44$ & $385\pm1$ \\
+  $\nabla$ & (rame) & $27.25\pm0.01$ & $408\pm44$ && $385\pm1$ \\
   \hline
 \end{tblr}
 \end{center}
