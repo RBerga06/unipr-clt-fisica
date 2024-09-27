@@ -143,7 +143,7 @@ effetto Joule. Vale allora:
 
 da cui:
 \[
-  \lambda_{vap} = \frac{i\cdot\Delta V\cdot\Delta t}{-\Delta m}
+  \lambda_\text{vap} = \frac{i\cdot\Delta V\cdot\Delta t}{-\Delta m}
     = \frac{i\cdot\Delta V}{-\,\gamma}
   \qquad \text{avendo posto} \quad
   \gamma = \frac{\Delta m}{\Delta t}.
@@ -244,7 +244,7 @@ completamente immersa nell'azoto liquido: di conseguenza, parte
 del calore sviluppato per effetto Joule è stato disperso,
 probabilmente assorbito dall'azoto già in fase gassosa.
 Di conseguenza, nell'analisi di cui sopra il calore assorbito
-dall'azoto è stato sovrastimato – e, con esso, anche
+dall'azoto è stato sovrastimato e, con esso, anche
 $\lambda_\text{vap}$.
 
 Questa ipotesi è sostenuta dal fatto che, come è possibile
@@ -280,17 +280,17 @@ assorbito dall'azoto come:
 Assumendo le dispersioni di energia trascurabili, possiamo
 considerare $\delta Q$ pari al calore ceduto dal campione, che
 passa da temperatura ambiente $T_\text{amb} = (25\pm1)\,\unit{\degree C}$
-ad una temperatura di equilibrio, che possiamo assumere
-$T_\text{eq}\simeq T_\text{eb,azoto} = (-196\pm1)\,\unit{\degree C}$.
+alla temperatura di equilibrio
+$T_\text{eq} = T_\text{eb,azoto} = -\qty{195.80}{\degree C}$.
 Vale allora\footnote{
   In realtà il calore specifico $c(T)$ di un materiale dipende dalla temperatura,
   mentre qua lo stiamo trattando come costante: in questa sede, con il simbolo $c$
-  indicheremo infatti una stima della “media” di $c(T)$ sull'intervallo di temperature
-  considerato ($[\qty{-196}{\degree C}, \qty{25}{\degree C}]$).
+  indicheremo infatti una stima della “media” di $c(T)$ sull'intervallo di
+  temperature considerato $[T_\text{eb,azoto}, T_\text{amb}]$.
 }:
 \[\qquad
   \delta Q = c\,\mu\,\Delta T \qquad\text{con}\quad
-  \Delta T = T_\text{amb} - T_\text{eb,azoto} = (221\pm2)\,\unit{K},
+  \Delta T = T_\text{amb} - T_\text{eb,azoto} = (221\pm1)\,\unit{K},
 \]
 dove $\mu$ è la massa del campione.
 
@@ -311,7 +311,8 @@ dell'esperienza:
 \[\gamma = \beta - \frac{\alpha_1 + \alpha_2}{2}.\]
 
 % TODO: Considerare una nota a piè di pagina
-$\Delta t$ è stato invece calcolato come differenza fra i valori indicati
+$\Delta t$, l'intervallo di tempo dello scambio di calore,
+è stato invece calcolato come differenza fra i valori indicati
 dal cronometro nell'istante di termine dello scambio di calore
 (individuabile dal grafico) e il momento di immersione del campione
 nel calorimetro (stimabile, con un certo errore, sulla base del filmato).
@@ -379,13 +380,13 @@ $c$ calcolati
     & $c_\text{mis}\;(\unit{J\,kg^{-1}\,K^{-1}})$
     & $c_\text{att}\;(\unit{J\,kg^{-1}\,K^{-1}})$ \\
   \hline
-  $\Xi$ & piombo & $15.55\pm0.01$ & $107\pm30$ & $130\pm1$ \\
+  $\Xi$ & Piombo & $15.55\pm0.01$ & $107\pm30$ & $130\pm1$ \\
   \hline[dashed]
-  $\Delta$ & ottone & $28.73\pm0.01$ & $391\pm53$ & $377\pm1$ \\
+  $\Delta$ & Ottone & $28.73\pm0.01$ & $391\pm53$ & $377\pm1$ \\
   \hline[dashed]
-  $\aleph$ & alluminio & $10.46\pm0.01$ & $876\pm62$ & $880\pm1$ \\
+  $\aleph$ & Alluminio & $10.46\pm0.01$ & $876\pm62$ & $880\pm1$ \\
   \hline[dashed]
-  $\nabla$ & rame & $27.25\pm0.01$ & $408\pm44$ & $385\pm1$ \\
+  $\nabla$ & Rame & $27.25\pm0.01$ & $408\pm44$ & $385\pm1$ \\
   \hline
 \end{tblr}
 
