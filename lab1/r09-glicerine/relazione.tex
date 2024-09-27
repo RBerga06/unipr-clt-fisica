@@ -45,9 +45,11 @@
     width=\textwidth,
     colspec={ X[2,m,j]X[1,m,c]X[1,m,c]X[1,m,c] },
     vlines,
+    cell{6}{1}={r=2}{m,j},
+    cell{6}{2,4}={r=2}{m,c},
   }
     \hline
-    \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata} & \textbf{Sensibilità} \\
+    \textbf{Strumento di misura} & \textbf{Soglia} & \textbf{Portata}\footnotemark[1] & \textbf{Sensibilità} \\
     \hline
     Cronometro & $\qty{0.033}{s}$ & N./A. & $\qty{0.033}{s}$ \\
     \hline[dashed]
@@ -57,12 +59,17 @@
     \hline[dashed]
     Bilancia di precisione & $\qty{0.01}{g}$ & $\qty{6200.00}{g}$ & $\qty{0.01}{g}$ \\
     \hline[dashed]
-    Termometro ambientale & $\qty{-20.0}{\degree C}$ & $\qty{50.0}{\degree C}$ & $\qty{0.2}{\degree C}$ \\
+    Termometro ambientale & $\qty{0.1}{\degree C}$ & $\qty{+50.0}{\degree C}$ & $\qty{0.2}{\degree C}$ \\
+    && $\qty{-20.0}{\degree C}$ & \\
     \hline
   \end{tblr}
+  \footnotetext[1]{
+    Più precisamente, gli estremi dell'intervallo
+    di funzionamento (si veda, in particolare, il termometro).
+  }
   \begin{tblr}{
     width=\textwidth,
-    colspec={ X[m,j]X[3,m,j] },
+    colspec={ X[m,j]X[4,m,j] },
     vlines,
   }
     \hline
@@ -71,7 +78,7 @@
     Telecamera & Utilizzata per acquisire fotogrammi del sistema
       a intervalli regolari. \\
     \hline[dashed]
-    Contenitore cilindrico & {
+    {Contenitore \\ cilindrico} & {
       Utilizzato per contenere la glicerina. Su di esso sono indicati,
       con nastro adesivo nero, due traguardi.
     } \\
