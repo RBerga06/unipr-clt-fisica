@@ -76,12 +76,67 @@
     Microfono a condensatore & {
       Utilizzato per rilevare le onde.
       } \\
+    \hline[dashed]
+    Pistone & {
+      Finalizzato alla chiusura di un'estremità del tubo. 
+      } \\
     \hline
   \end{tblr}
 \end{center}
 
 \pagebreak
-\section{Misurazione del calore latente di vaporizzazione dell'azoto}
+\section{Misurazione delle frequenze di risonanza con tubo aperto}
+
+\subsection{Esperienza e procedimento di misura}
+
+\begin{enumerate}
+  \item
+    Con il metro a nastro misuriamo la lunghezza del tubo $L$, mentre con il
+    calibro ventesimale il suo diametro $d$. %TODO: interno o esterno?
+  \item
+    Inseriamo il microfono dentro al tubo in modo che riesca a rilevare le onde,
+    quindi assicurandoci che non si trovi in corrispondenza di un nodo.
+  \item
+    Accesi l'oscilloscopio e il generatore di forme d'onda, regoliamo
+    l'ampiezza in modo da poter percepire un suono.
+  \item
+    Aumentiamo la frequenza fino a trovare il primo massimo relativo nel
+    grafico riportato dall'oscilloscopio: questa sarà la prima frequenza
+    di risonanza, nonché l'armonica fondamentale del nostro tubo. 
+  \item
+    Ripetiamo più volte il passaggio precedente, in modo da ottenere almeno
+    cinque frequenze di risonanza.
+\end{enumerate} 
+Il gruppo di lavoro ha effettuato le stesse procedure, ma mantenendo una
+estremità del tubo chiusa tramite il pistone. In questo caso la lunghezza
+del tubo da considerare è quella che va dall'estremità aperta al pistone.
+
+\subsection{Analisi dei dati raccolti}
+\emph{\textbf{Nota.}
+Avendo valutato gli errori sulle grandezze misurate direttamente
+come piccoli, casuali e indipendenti, per svolgere ogni calcolo
+abbiamo utilizzato la tradizionale propagazione degli errori.
+}
+
+  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
+  e, successivamente, costruire tre distinte rette di regressione.
+
+  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
+  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
+
+  Il calore latente dell'azoto liquido sarà:
+
+\subsection{Conclusioni}
+
+Come è possibile osservare comparando questi risultati a
+quelli precedentemente ottenuti, il valore di $g$ risultante
+è rimasto essenzialmente invariato (al netto della sua incertezza).
+
+In conclusione, possiamo affermare ragionevolmente che,
+rispetto alla sensibilità degli strumenti di misura,
+il contributo dell'attrito è trascurabile.
+
+\section{Misurazione delle frequenze di risonanza con tubo aperto}
 
 \subsection{Esperienza e procedimento di misura}
 
@@ -96,375 +151,62 @@
     un'altra decina di secondi terminiamo la registrazione video.
 \end{enumerate}
 
-\subsection{Analisi dei dati raccolti e conclusioni}
-  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
-  e, successivamente, costruire tre distinte rette di regressione.
-  .
-  .
-  .
-
-  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
-  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
-
-  Il calore latente dell'azoto liquido sarà:
-
-
-  Ripetiamo 9 volte i seguenti passi:
-  \begin{enumerate}
-    \item
-      Scelta arbitrariamente una configurazione $\Gamma$,
-      fissiamo all'asta i cilindri coinvolti,
-      servendoci del foro centrale.
-      Misuriamo poi, mediante il metro a nastro,
-      le posizioni dei cilindri lungo l'asta
-      rispetto al suo estremo fisso.
-    \item
-      Servendoci dell'apposito programma, avviamo
-      l'acquisizione dell'angolo in funzione del tempo
-      ($\theta(t)$, lo definiremo formalmente più avanti).
-    \item
-      Inclinando l'asta rispetto alla sua posizione di equilibrio
-      di un angolo prefissato $\theta_0$,
-      sufficientemente piccolo\footnote{
-Questa condizione sull'angolo $\theta_0$ ci permette di approssimare
-$\sin(\theta) \sim \theta\quad\forall \theta \in [-\theta_0, \theta_0]$.
-      }, diamo inizio al moto del pendolo.
-      Acquisiamo dati fino all'arresto del moto.
-  \end{enumerate}
-
-\section{Analisi dei dati raccolti e conclusioni}
+\subsection{Analisi dei dati raccolti}
 \emph{\textbf{Nota.}
 Avendo valutato gli errori sulle grandezze misurate direttamente
 come piccoli, casuali e indipendenti, per svolgere ogni calcolo
 abbiamo utilizzato la tradizionale propagazione degli errori.
 }
 
-\subsection{Misura di $\left|\vec{g}\right|$}
+  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
+  e, successivamente, costruire tre distinte rette di regressione.
 
-Scegliamo un sistema di riferimento cilindrico, con
-origine all'intersezione fra l'asse di rotazione e il piano,
-ad esso perpendicolare, contenente il centro di massa, versore $\hat{r}$
-parallelo a $\vec{g}$ e versore $\hat{k}$ diretto lungo l'asse di
-rotazione del sistema.
+  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
+  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
 
-La posizione del centro di massa del pendolo fisico sarà allora descritta
-da $\vec{r}_\text{CM} = (r_\text{CM},\theta,z)$ con $z=0$, dove $\theta$
-è lo spostamento angolare rispetto alla posizione di equilibrio.
+  Il calore latente dell'azoto liquido sarà:
 
-Vale la seconda equazione cardinale della dinamica:
-\[\sum\tau^\text{ext}_z = \dot{L}_z = I_z^\text{\,tot} \ddot{\theta}\]
+\subsection{Conclusioni}
 
-\vspace{2mm}
-\emph{
-  \textbf{Nota.} In questa sezione abbiamo trascurato la presenza di
-  attriti, ma chiaramente gli attriti ci sono e il moto è smorzato.
-  Nella sezione successiva tratteremo proprio questo fenomeno,
-  determinando, alla luce dei dati raccolti, quanto influisca
-  sul valore di $g$.
-}
-\vspace{2mm}
+Come è possibile osservare comparando questi risultati a
+quelli precedentemente ottenuti, il valore di $g$ risultante
+è rimasto essenzialmente invariato (al netto della sua incertezza).
 
-Poiché l'unica forza esterna al sistema che compie un momento lungo
-$\hat{k}$ è la forza peso, si ha:
-\[
-  \sum\vec{\tau}^\text{\,ext}_z =
-  \vec{r}_\text{CM}\times M\vec{g} = -Mg\,r_\text{CM}\sin(\theta)\hat{k}.
-\]
+In conclusione, possiamo affermare ragionevolmente che,
+rispetto alla sensibilità degli strumenti di misura,
+il contributo dell'attrito è trascurabile.
 
-L'equazione differenziale che descrive il moto del centro di massa
-del pendolo fisico sarà allora:
-\[ \ddot{\theta} = -\frac{Mg\,r_\text{CM}}{I_z^\text{tot}}\sin(\theta) \]
+\section{Misurazione delle frequenze di risonanza con tubo aperto}
 
-È possibile semplificare il modello fisico approssimando
-$\sin(\theta)\simeq\theta$. Il gruppo di lavoro ha ritenuto
-valida questa operazione solo quando
-\[\left|\theta_0-\sin(\theta_0)\right| < \delta\theta\]
+\subsection{Esperienza e procedimento di misura}
 
-Essendo, nel nostro caso, $\delta\theta=\qty{0.02}{rad}$, abbiamo scelto
-$\theta_0^\text{max} = \qty{0.49}{rad}$. Infatti:
-\[
-  \qty{0.49}{rad} - \sin(\qty{0.49}{rad}) \simeq \qty{0.019}{rad}
-  \qquad
-  \qty{0.50}{rad} - \sin(\qty{0.50}{rad}) \simeq \qty{0.021}{rad}
-\]
-
-Prima di prendere ogni misura, il gruppo di lavoro si è assicurato
-che $\theta_0$ soddisfacesse abbondantemente la condizione
-$|\theta_0|<\left|\theta_0^\text{max}\right|$.
-
-L'equazione differenziale semplificata è allora:
-\[ \ddot{\theta} = -\frac{Mg\,r_\text{CM}}{I_z^\text{tot}} \theta \]
-
-Questa equazione descrive un moto armonico. Le soluzioni sono infatti
-del tipo:
-\[
-  \theta(t) = \theta_0\cos(\omega t)
-  \quad\text{dove}\quad
-  \omega = \sqrt{\frac{Mg\,r_\text{CM}}{I_z^\text{tot}}}\quad\text{è detta “pulsazione”}.
-\]
-
-Possiamo tuttavia facilmente esprimere $\omega$ in funzione del periodo
-$T$ del moto oscillatorio, più semplice da calcolare dai dati acquisiti.
-Vale infatti:
-\[
-  \omega = \frac{2\pi}{T}
-  \qquad\text{e quindi}\qquad
-  \frac{I_z^\text{tot}}{Mr_\text{CM}} = g \frac{T^2}{4\pi^2}
-\]
-
-%\subsubsection{Il calcolo di $I_z^\text{tot}$ e $Mr_\text{CM}$}
-La formula utilizzata per il calcolo di $I_z^\text{tot}$ riflette la composizione
-del sistema, sfruttando la proprietà additiva del momento d'inerzia:
-\[I_z^\text{tot} = I_{z,\text{rotore}} + I_{z,\text{asta}} + \sum_{\gamma\in\Gamma} I_{z,\gamma}\]
-
-Chiaramente, per calcolare i momenti d'inerzia rispetto all'asse di
-rotazione è necessario applicare il teorema di Huygens-Steiner
-a quelli calcolati sui rispettivi centri di massa\footnote{
-  Questi ultimi sono stati calcolati mediante le seguenti formule:
-  \[
-    I_\text{CM,asta} = \frac{1}{12} m_\text{asta} L_\text{asta}^2
-    \qquad\quad
-    I_{\text{CM},i} =
-      \frac{1}{16}m_i\left(
-        (d_i^\text{ext})^2 +
-        (d_i^\text{int})^2
-      \right) + \frac{1}{12} m_i h_i^2
-    \quad\forall i \in \left\{A,B,C\right\}
-  \]
-}:
-\[
-  I_{z,\text{asta}} = I_\text{CM,asta} + m_\text{asta}\left(\frac{L_\text{asta} + \diam_\text{rotore}}{2}\right)^2
-\]\[
-  I_{z,(i,d)} = I_{\text{CM},i} + m_i\left(d + \frac{h_i - \diam_\text{rotore}}{2}\right)^2\qquad\forall(i,d)\in\Gamma
-\]
-
-Per calcolare il termine $M r_\text{CM}$, si osservi che, per la
-definizione di posizione del centro di massa, la massa totale si
-semplifica:
-\[\begin{aligned}
-  Mr_\text{CM} &= M\cdot \frac{1}{M}\left(
-    m_\text{rotore}\cdot 0 + m_\text{asta} r_\text{CM,asta} +
-    \sum_{(i,d)\in\Gamma}{m_i r_{\text{CM},i}}
-  \right) \\&= m_\text{asta}\left(\frac{L_\text{asta} + \diam_\text{rotore}}{2}\right) +
-    \sum_{(i,d)\in\Gamma}{m_i \left(d + \frac{h_i - \diam_\text{rotore}}{2}\right)}
-\end{aligned}\]
-
-Di seguito riportiamo le misure, dirette e indirette, utilizzate per il calcolo dei momenti d'inerzia\footnote{
-  $L_\text{asta}$ è la lunghezza della parte dell'asta che sporge
-  all'esterno del rotore.
-}:
-
-\begin{center}
-  \begin{tblr}{ |c|c|c|c|c| }
-    \hline
-    Oggetto & $L\;\;(\unit{cm})$ & $\diam\;\;(\unit{mm})$ & $m\;\;(\unit{g})$ & $I_\text{CM}\;\;(10^{-5}\,\unit{kg\,m^2})$ \\
-    \hline
-    Asta & $60.0\pm0.1$ & $5.94\pm0.01$ & $45.82\pm0.01$ & $568.5\pm1.5$ \\
-    \hline[dashed]
-    Rotore & N./A. & $13.41\pm0.01$ & $22.4\pm0.1^*$ & $0.058\pm0.001^*$ \\
-    \hline
-  \end{tblr}
-\end{center}\begin{center}
-  \begin{tblr}{ |c|c|c|c|c|c| }
-    \hline
-    $i$ & $m_i\;\;(\unit{g})$ & $d_i^\text{\,ext}\;\;(\unit{mm})$ & $d_i^\text{\,int}\;\;(\unit{mm})$ & $h_i\;\;(\unit{mm})$ & $I_{\text{CM},i}\;(\unit{mg\,m^2})$ \\
-    \hline
-    A & $115.95\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.93 \pm 0.01$ & $10.62\pm0.03$ \\
-    \hline[dashed]
-    B & $115.86\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $19.89 \pm 0.01$ & $10.59\pm0.03$\\
-    \hline[dashed]
-    C & $71.46\pm0.01$ & $29.95 \pm 0.05$ & $6.20 \pm 0.05$ & $12.08 \pm 0.01$ & $5.047\pm0.018$\\
-    \hline
-  \end{tblr}
-\end{center}
-
-\emph{$[^*]$ Valori dati}
-
-\pagebreak
-%\subsubsection{La misura di $T$}
-Il periodo dell'oscillazione è stato misurato individuando $N+1$ zeri
-consecutivi di $\theta(t)$, diciamo $\left\{t_0,t_1,\dots,t_N\right\}$.
-Allora, poiché tra uno zero e l'altro corre metà periodo, è possibile
-calcolare $T$ in questo modo: $T = \frac{2}{N}(t_N - t_0)$
-
-Il gruppo di lavoro ha scelto $N$ di volta in volta, in modo tale che
-fosse proporzionale al numero di oscillazioni compiute dal pendolo
-prima di fermarsi. Complessivamente, $N$ ha assunto valori da $30$ a
-$180$.
-
-\vspace{2mm}
-%\subsubsection{Il calcolo di $g$}
-
-Come descritto sopra, il gruppo di lavoro ha calcolato, per ogni
-configurazione $\Gamma$,
-i valori di $\frac{I_z^\text{tot}}{Mr_\text{CM}}$
-e $\frac{T^2}{4\pi^2}$, riportati nel grafico seguente.
-
-Come è possibile osservare dalla relazione che le lega, la dipendenza
-tra queste due grandezze è lineare: questo ci permette di determinare
-il valore di $g$ come coefficiente angolare di una retta di regressione.
-
-\begin{center}
-\begin{figure}[H]
-  %\includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione.png}
-  \caption[]{\emph{
-    In rosso, la retta di regressione lineare e in rosa,
-    appena visibile, la sua regione di incertezza.
-    (le barre di errore sull'ascissa sono così ridotte
-    da risultare invisibili)
-  }}
-\end{figure}
-\end{center}
-
-\begin{itemize}
-  \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$
-  \item Coefficiente angolare $g = (9.68 \pm 0.13)\;\unit{m\per s^2}$
-\end{itemize}
-\pagebreak
-I risultati della regressione lineare sono chiaramente compatibili
-con i valori attesi. Infatti:
-\begin{itemize}
-  \item Secondo il modello fisico utilizzato, l'intercetta dovrebbe
-  essere nulla; in effetti, $(0.003\pm0.005)\;\unit{m}$ è compatibile
-  con $\qty{0}{m}$.
-  \item Il valore di $g$ atteso è $\qty{9.806}{m\per s^2}$; si può
-  osservare facilmente che il valore misurato,
-  $(9.68\pm0.13)\;\unit{m \per s^2}$, è compatibile con esso.
-\end{itemize}
-
-Possiamo pertanto concludere che l'esperienza ha avuto successo:
-mediante l'apparato sperimentale abbiamo ottenuto una misura di $g$
-compatibile con quella attesa.
-
-\pagebreak
-\subsection{Misura dello smorzamento}
-
-\emph{
-  In questa sezione, illustreremo come il gruppo di lavoro abbia
-  valutato lo smorzamento del moto e quanto questo sia significativo,
-  prendendo come esempio la configurazione $\Gamma=\left\{\right\}$,
-  dove il pendolo fisico è composto solamente da asta e rotore, senza
-  l'aggiunta di cilindri.
-}
-
-\emph{
-  Il gruppo di lavoro ha effettuato gli stessi passaggi per tutte le
-  altre configurazioni: i risultati saranno messi in evidenza alla
-  fine della sezione.
-}
-\vspace{2mm}
-
-Sempre applicando la seconda equazione cardinale della dinamica,
-è facile ricavare l'equazione differenziale che caratterizza il moto
-del sistema sotto l'effetto delle forze di attrito.
-Approssimando, come prima, $\sin(\theta)\simeq\theta$, si ottiene:
-\[ \ddot{\theta} = -2\lambda\dot{\theta} -\frac{Mg\,r_\text{CM}}{I_z^\text{\,tot}} \theta \]
-
-dove $\lambda$ è una costante legata allo smorzamento del moto.
-Le soluzioni di questa equazione differenziale sono infatti della forma:
-\[\theta(t) = \theta_0\cos(\omega t)\,e^{-\lambda t}\]
-
-dove la pulsazione del moto, $\omega$, è data da:
-\[
-  \omega^2 = \omega_0^2 - \lambda^2
-  \qquad\text{con}\qquad
-  \omega_0 = \sqrt{\frac{Mg\,r_\text{CM}}{I_z^\text{\,tot}}}.
-\]
-
-\begin{center}
-  \begin{figure}[H]
-    % trim={< v > ^}
-    %\includegraphics[trim={2cm .5cm 2cm .5cm},clip,width=\textwidth]{img/Graph1.png}
-    \caption[]{\emph{
-      Parte dei dati di un'acquisizione di $\theta(t)$
-      con $\Gamma=\left\{\right\}$,
-      come raccolti dal sensore di rotazione,
-      riportati su una larga scala temporale.
-      Si può chiaramente notare lo smorzamento
-      del moto.
-    }}
-  \end{figure}
-\end{center}
-
-Per stimare $\lambda$, il gruppo di lavoro ha proceduto come segue:
 \begin{enumerate}
   \item
-    Per prima cosa, abbiamo individuato i massimi dei nostri dati,
-    ovvero gli insiemi di punti della forma
-    $\left\{t_i,t_{i+1},\dots,t_j\right\}\times\left\{\theta_k\right\}$
-    tali che $\theta(t_{i-1}) < \theta_k > \theta(t_{j+1})$.
+    Posto il calorimetro sopra alla bilancia, avviamo la cattura del filmato.
   \item
-    Per ogni massimo, ne abbiamo calcolato il punto medio,
-    prendendo come $\delta t_\text{picco}$ la semidispersione $\frac{1}{2}(t_j - t_i) + \delta t$.
+    Dopo circa una decina di secondi (non è rilevante per la riuscita dell'esperienza),
+    tramite il generatore forniamo calore all'azoto per mezzo della resistenza.
   \item
-    Infine, abbiamo graficato i punti così trovati
-    su scala logaritmica e
-    abbiamo effettuato una regressione lineare (pesata\footnote{
-      $\delta\!\ln{\left|\theta\right|}$, infatti, varia molto,
-      nonostante $\delta\!\left|\theta\right|$ sia costante:
-      ciò è conseguenza della propagazione degli errori.
-      È inoltre possibile osservarlo nella \emph{Figura 2}.
-    })
-    sulle nuove ordinate. Il coefficiente angolare di tale
-    regressione dovrebbe essere proprio $-\lambda$.
-  \item
-    Abbiamo ripetuto i tre punti precedenti sugli stessi dati,
-    con $\theta$ cambiato di segno: così facendo, ai massimi
-    si sostituiscono i minimi e tutto il resto dell'analisi
-    è analoga. Per ogni configurazione abbiamo pertanto ottenuto
-    due diversi valori di $\lambda$: $\lambda_\text{min}$ e
-    $\lambda_\text{max}$. Abbiamo scelto di porre
-    $\lambda=\frac{1}{2}(\lambda_\text{min}+\lambda_\text{max})$.
+    Aspettato ... interrompiamo il flusso di calore e dopo
+    un'altra decina di secondi terminiamo la registrazione video.
 \end{enumerate}
 
-\begin{center}
-  \begin{figure}[H]
-    % trim={< v > ^}
-    %\includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=.5\textwidth]{img/0max-exp.png}
-    %\includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=.5\textwidth]{img/0min-exp.png}
-    \caption[]{\emph{
-      $\ln\left|\theta(t)\right|$ di massimi e minimi,
-      su scala logaritmica (per $\Gamma=\left\{\right\}$).
-      Sono riportate anche le barre di errore sull'ordinata.
-      In rosso, la retta di regressione lineare
-      e in rosa la sua regione di incertezza.
-    }}
-  \end{figure}
-\end{center}
+\subsection{Analisi dei dati raccolti}
+\emph{\textbf{Nota.}
+Avendo valutato gli errori sulle grandezze misurate direttamente
+come piccoli, casuali e indipendenti, per svolgere ogni calcolo
+abbiamo utilizzato la tradizionale propagazione degli errori.
+}
 
-Poiché l'obiettivo è calcolare $g$, la correzione da effettuare
-sul periodo, per tenere conto dell'attrito, è la seguente:
-\[
-  T_0^2 = \frac{4\pi^2}{\omega_0^2}
-    = \frac{4\pi^2}{\omega^2 + \lambda^2}
-    = \frac{4\pi^2}{\frac{4\pi^2}{T^2} + \lambda^2}
-    = \frac{1}{\frac{1}{T^2} + \frac{\lambda^2}{4\pi^2}}
-\]
+  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
+  e, successivamente, costruire tre distinte rette di regressione.
 
-Effettuata questa correzione per ogni configurazione $\Gamma$,
-si può allora costruire nuovamente una retta di regressione,
-analogamente a quanto fatto nella sezione precedente.
-La relazione fra le grandezze misurate, ricordiamo, è lineare:
-\[ \frac{I_z^\text{\,tot}}{Mr_\text{CM}} = g \frac{T_0^2}{4\pi^2} \]
+  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
+  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
 
-Riportiamo di seguito il grafico della nuova regressione,
-unitamente ai risultati ottenuti.
+  Il calore latente dell'azoto liquido sarà:
 
-\begin{figure}[H]
-  %\includegraphics[trim={2cm 1cm 2cm 2.1cm},clip,width=\textwidth]{img/regressione-2.png}
-  \caption[]{\emph{
-    In rosso, la retta di regressione lineare e in rosa,
-    appena visibile, la sua regione di incertezza.
-    (le barre di errore sull'ascissa sono così ridotte
-    da risultare invisibili)
-  }}
-\end{figure}
-
-I risultati della regressione lineare sono i seguenti:
-\begin{itemize}
-  \item Intercetta $= (0.003 \pm 0.005)\;\unit{m}$
-  \item Coefficiente angolare $g = (9.68 \pm 0.13)\;\unit{m\per s^2}$
-\end{itemize}
+\subsection{Conclusioni}
 
 Come è possibile osservare comparando questi risultati a
 quelli precedentemente ottenuti, il valore di $g$ risultante
