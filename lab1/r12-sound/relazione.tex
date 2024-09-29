@@ -325,7 +325,7 @@ angolare $\psi$ di una retta di regressione:
 \]
 
 Di seguito riportiamo i valori di $L_0$ e $\Delta t_0$ da noi ottenuti,
-accompagnati dai risultati della regressione lineare.
+accompagnati dai risultati della regressione lineare (pesata).
 
 \begin{figure}[H]
   \includegraphics[trim={2.5cm 0.7cm 3cm 2cm},clip,width=\textwidth]{img/Graph2.png}
@@ -337,20 +337,33 @@ accompagnati dai risultati della regressione lineare.
 \end{figure}
 
 \begin{itemize}
-  \item Intercetta $= (-0.75 \pm 2.63)\cdot 10^{-4}$
-  \item Coefficiente angolare $\psi = (3.0\pm0.3)\cdot 10^{-3}\,\unit{s\per m}$
+  \item Intercetta $= (-0.75 \pm 2.63)\cdot 10^{-4}\,\unit{s}$
+  \item Coefficiente angolare $\psi = (3.05\pm0.29)\cdot 10^{-3}\,\unit{s\per m}$
 \end{itemize}
 da cui:
 \[ v = (327 \pm 31)\,\unit{m \per s} \]
 
 \subsection{Conclusioni}
+\emph{
+  \textbf{Osservazione.}
+  L'intercetta di questa retta di regressione è
+  risultata compatibile con $0$, come ci si aspettava
+  dalla relazione $\delta t_0 = \psi L_0$.
+}
 
-Come è possibile osservare comparando questi risultati a
-quelli precedentemente ottenuti, il valore di $g$ risultante
-è rimasto essenzialmente invariato (al netto della sua incertezza).
+\vspace{2mm}
+Per valutare l'affidabilità della stima di $v$ misurata,
+possiamo confrontarla con un valore atteso $v_\text{att}$,
+calcolato sulla base di $T_\text{amb}$ come mostrato nella
+sezione precedente.
 
-In conclusione, possiamo affermare ragionevolmente che,
-rispetto alla sensibilità degli strumenti di misura,
-il contributo dell'attrito è trascurabile.
+In questo caso, $v_\text{att} = (347.0\pm0.3)\,\unit{m \per s}$:
+possiamo quindi affermare che la velocità del suono misurata
+è abbondantemente compatibile con il valore atteso.
+
+\vspace{5mm}
+Possiamo pertanto concludere che l'esperienza ha avuto successo:
+mediante l'apparato sperimentale il gruppo di lavoro ha ottenuto
+misure della velocità del suono compatibili con quelle attese.
 
 \end{document}
