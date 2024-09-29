@@ -10,6 +10,8 @@
 % \usepackage{minted}
 \usepackage[bottom]{footmisc}
 \usepackage[page]{appendix}
+\usepackage[labelformat=simple, justification=centering]{subfig}
+\renewcommand{\thesubfigure}{}
 \newcommand*{\diam}{\varnothing}
 \newcommand*{\best}[1]{{#1}_\text{best}}
 \newcommand*{\bestp}[1]{{\left(#1\right)}_\text{best}}
@@ -99,7 +101,7 @@
   \item
     Con il metro a nastro misuriamo la lunghezza del tubo $L$,
     mentre con il calibro ventesimale il suo diametro interno
-    $\diam$.
+    $\diam=(38.20\pm0.05)\,\unit{mm}$.
   \item
     Accesi l'oscilloscopio e il generatore di forme d'onda,
     regoliamo l'ampiezza in modo da poter percepire un suono.
@@ -145,8 +147,7 @@ all'interno di quest'ultimo si forma un'onda stazionaria. In tal caso:
 Tuttavia, non trattandosi di nodi e ventri ideali, è necessario effettuare
 una correzione empirica:
 
-\noindent
-\begin{tblr}{
+\begin{center}\begin{tblr}{
   colspec={ X[m,c,$$]X[m,c,$$] },
   width=\textwidth,
   hspan=even,
@@ -154,14 +155,13 @@ una correzione empirica:
   \lambda_n^\text{a} = \frac{2L + 1.6 \diam}{n},\quad n\in\mathbb{N};
   &
   \lambda_n^\text{c} = \frac{4L + 1.6 \diam}{n},\quad n\in\mathbb{N}\;\text{dispari}
-\end{tblr}
+\end{tblr}\end{center}
 Moltiplicando ambo i membri per la rispettiva frequenza di risonanza
 ($\nu_n^\text{a}$ o $\nu_n^\text{c}$)
 e ricordando che $\lambda_n^\text{a}\,\nu_n^\text{a} =
 \lambda_n^\text{c}\,\nu_n^\text{c} = v$, la velocità del suono:
 
-\noindent
-\begin{tblr}{
+\begin{center}\begin{tblr}{
   colspec={ X[m,c,$$]X[m,c,$$] },
   width=\textwidth,
   hspan=even,
@@ -169,11 +169,11 @@ e ricordando che $\lambda_n^\text{a}\,\nu_n^\text{a} =
   v = \frac{\nu_n^\text{a}}{n}(2L + 1.6 \diam),\quad n\in\mathbb{N};
   &
   v = \frac{\nu_n^\text{c}}{n}(4L + 1.6 \diam),\quad n\in\mathbb{N}\;\text{dispari}
-\end{tblr}
+\end{tblr}\end{center}
+
 Riarrangiando i termini, si ottiene:
 
-\noindent
-\begin{tblr}{
+\begin{center}\begin{tblr}{
   colspec={ X[m,c,$$]X[m,c,$$] },
   width=\textwidth,
   hspan=even,
@@ -181,11 +181,10 @@ Riarrangiando i termini, si ottiene:
   \nu_n^\text{a} = \xi^\text{a} n,\quad n\in\mathbb{N};
   &
   \nu_n^\text{c} = \xi^\text{c} n,\quad n\in\mathbb{N}\;\text{dispari}
-\end{tblr}
+\end{tblr}\end{center}
 avendo posto, rispettivamente:
 
-\noindent
-\begin{tblr}{
+\begin{center}\begin{tblr}{
   colspec={ X[m,c,$$]X[m,c,$$] },
   width=\textwidth,
   hspan=even,
@@ -193,8 +192,45 @@ avendo posto, rispettivamente:
   \xi^\text{a} = \frac{v}{2L + 1.6 \diam};
   &
   \xi^\text{c} = \frac{v}{4L + 1.6 \diam}
-\end{tblr}
+\end{tblr}\end{center}
 
+Poiché la dipendenza di $\nu_n$ da $n$ è, in entrambi i casi,
+di proporzionalità diretta, per determinare $\xi^\text{a}$
+e $\xi^\text{c}$ il gruppo di lavoro ha effettuato, per ogni
+valore di $L$, una regressione lineare.
+
+Di seguito riportiamo, in grafico, i dati raccolti, accompagnati
+dalle rispettive rette di regressione e dai valori di $L$,
+$\xi$ e $v$ ottenuti.
+
+\begin{figure}[H]
+  \centering
+  \subfloat[][
+    $L=(90.0\pm0.1)\;\unit{cm}$ \\
+    $\xi^\text{a}=(187.004\pm0.008)\unit{Hz}$ \\
+    $v=(348.0\pm0.5)\,\unit{m \per s}$
+  ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/l0r4.png}}\hfil
+  \subfloat[][
+    $L=(71.3\pm0.1)\;\unit{cm}$ \\
+    $\xi^\text{c}=(118.64\pm0.06)\unit{Hz}$ \\
+    $v=(345.6\pm0.6)\,\unit{m \per s}$
+  ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/l1.png}}\hfil
+  \subfloat[][
+    $L=(55.4\pm0.1)\;\unit{cm}$ \\
+    $\xi^\text{c}=(152.12\pm0.06)\unit{Hz}$ \\
+    $v=(346.4\pm0.7)\,\unit{m \per s}$
+  ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/l2.png}}\hfil
+  \subfloat[][
+    $L=(30.8\pm0.1)\;\unit{cm}$ \\
+    $\xi^\text{c}=(267.00\pm0.06)\unit{Hz}$ \\
+    $v=(345.3\pm1.1)\,\unit{m \per s}$
+  ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/l3.png}}\hfil
+  \subfloat[][
+    $L=(15.4\pm0.1)\;\unit{cm}$ \\
+    $\xi^\text{c}=(509.5\pm0.1)\unit{Hz}$ \\
+    $v=(345\pm2)\,\unit{m \per s}$
+  ]{\includegraphics[trim={2.1cm 0.7cm 2.1cm 2cm},clip,width=0.47\textwidth]{img/l4.png}}\hfil
+\end{figure}
 
 \subsection{Conclusioni}
 
