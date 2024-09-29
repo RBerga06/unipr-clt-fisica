@@ -135,12 +135,39 @@ all'interno di quest'ultimo si forma un'onda stazionaria. In tal caso:
   \item se il tubo è aperto a entrambi gli estremi,
     lì la pressione è costante (quella atmosferica) e si formano due nodi.
     La lunghezza d'onda sarà allora della forma:
-    \[ \lambda = \frac{L}{2n},\quad n\in\mathbb{N} \]
+    \[ \lambda_n = \frac{2L}{n},\quad n\in\mathbb{N} \]
   \item se invece il tubo è chiuso ad un estremo,
     lì si forma un ventre, mentre all'altro estremo (dove la pressione è
     quella atmosferica, costante) si forma un nodo:
-    \[ \lambda = \frac{L}{4n},\quad n\in\mathbb{N}\,\text{dispari} \]
+    \[ \lambda_n = \frac{4L}{n},\quad n\in\mathbb{N}\;\text{dispari} \]
 \end{itemize}
+
+Tuttavia, non trattandosi di nodi e ventri ideali, è necessario effettuare
+una correzione empirica:
+\[
+  \lambda_n = \frac{2L + 1.6 \diam}{n},\quad n\in\mathbb{N}
+  \qquad\text{e}\qquad
+  \lambda_n = \frac{4L + 1.6 \diam}{n},\quad n\in\mathbb{N}\;\text{dispari}
+\]
+Moltiplicando ambo i membri per la rispettiva frequenza di risonanza $\nu_n$
+e ricordando che $\lambda_n\,\nu_n = v$, la velocità del suono:
+\[
+  v = \frac{\nu_n}{n}(2L + 1.6 \diam),\quad n\in\mathbb{N}
+  \qquad\text{e}\qquad
+  v = \frac{\nu_n}{n}(4L + 1.6 \diam),\quad n\in\mathbb{N}\;\text{dispari}
+\]
+Riarrangiando i termini, si ottiene:
+\[
+  \nu_n = \xi n,\quad n\in\mathbb{N}
+  \qquad\text{e}\qquad
+  \nu_n = \xi n,\quad n\in\mathbb{N}\;\text{dispari}
+\]
+avendo posto, rispettivamente:
+\[
+  \xi = \frac{v}{2L + 1.6 \diam}
+  \qquad\text{e}\qquad
+  \xi = \frac{v}{4L + 1.6 \diam}
+\]
 
 
 \subsection{Conclusioni}
