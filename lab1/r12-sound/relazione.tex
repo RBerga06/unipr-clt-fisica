@@ -93,7 +93,7 @@
 \end{center}
 
 \pagebreak
-\section{Misurazione indiretta mediante le frequenze di risonanza}
+\section{Misura indiretta mediante le frequenze di risonanza}
 
 \subsection{Esperienza e procedimento di misura}
 
@@ -200,7 +200,7 @@ avendo posto, rispettivamente:
 Poiché la dipendenza di $\nu_n$ da $n$ è, in entrambi i casi,
 di proporzionalità diretta, per determinare $\xi^\text{a}$
 e $\xi^\text{c}$ il gruppo di lavoro ha effettuato, per ogni
-valore di $L$, una regressione lineare.
+valore di $L$, una regressione lineare, fissando l'intercetta a 0.
 
 Di seguito riportiamo, in grafico, i dati raccolti, accompagnati
 dalle rispettive rette di regressione e dai valori di $L$,
@@ -242,6 +242,14 @@ $\xi$ e $v$ ottenuti.
   }}
 \end{figure}
 
+\vspace{3mm}
+\emph{
+  \textbf{Osservazione.} È immediato notare, sulla base di questi grafici,
+  che le rette di regressione, passanti per l'origine, descrivono accuratamente
+  i dati raccolti: ciò suggerisce che la frequenza di risonanza più bassa da noi
+  misurata sia effettivamente la fondamentale.
+}
+
 \subsection{Conclusioni}
 
 Per valutare l'affidabilità delle misure di $v$ ottenute è
@@ -264,17 +272,22 @@ temperatura ambiente leggermente inferiore:
 $T_\text{amb}^\text{c} = (24.5\pm0.5)\,\unit{\degree C}$,
 da cui $v_\text{att}^\text{c} = (346.4\pm0.3)\,\unit{m\per s}$.
 
+\vspace{2mm}
 Come è possibile osservare comparando questi risultati a
 quelli sopra riportati, tutti i valori di $v$ ottenuti
 risultano compatibili con i rispettivi valori attesi.
 
-\section{Misurazione diretta mediante l'eco}
+\section{Misura diretta mediante l'eco}
 
 \subsection{Esperienza e procedimento di misura}
 
 \begin{enumerate}
   \item
-    Posto il calorimetro sopra alla bilancia, avviamo la cattura del filmato.
+    Mediante il termometro ambientale, misuriamo la temperatura ambiente
+    $T_\text{amb}$.
+  \item
+    Chiusa l'estremità opposta all'altoparlante tramite il pistone,
+    misuriamo la lunghezza $L$ della colonna d'aria all'interno del tubo.
   \item
     Dopo circa una decina di secondi (non è rilevante per la riuscita dell'esperienza),
     tramite il generatore forniamo calore all'azoto per mezzo della resistenza.
@@ -290,13 +303,17 @@ come piccoli, casuali e indipendenti, per svolgere ogni calcolo
 abbiamo utilizzato la tradizionale propagazione degli errori.
 }
 
-  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
-  e, successivamente, costruire tre distinte rette di regressione.
+% Intercetta: -7.5435353996e-5 \pm 2.6278434683e-4
+% Coeff ang: 0.003054964 \pm 2.8652288695e-4
+% v = 327.3360995415985 \pm 30.70061848310205
 
-  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
-  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
+Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
+e, successivamente, costruire tre distinte rette di regressione.
 
-  Il calore latente dell'azoto liquido sarà:
+Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
+è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
+
+Il calore latente dell'azoto liquido sarà:
 
 \subsection{Conclusioni}
 
