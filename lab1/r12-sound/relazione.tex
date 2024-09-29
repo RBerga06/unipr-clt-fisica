@@ -30,7 +30,6 @@
 \begin{abstract}
   Il gruppo di lavoro ha misurato la velocità del suono mediante
   lo studio di onde stazionarie in una colonna d'aria.
-
 \end{abstract}
 
 \setcounter{section}{-1}
@@ -48,9 +47,12 @@
   \hline[dashed]
   Calibro ventesimale & $\qty{0.05}{mm}$ & $\qty{150.00}{mm}$ & $\qty{0.05}{mm}$ \\
   \hline[dashed]
-  Oscilloscopio & $\qty{0.01}{s}$ & $\qty{99.99}{s}$ & $\qty{0.01}{s}$ \\
+  Oscilloscopio\footnotemark[1] & $\qty{2.5}{ms}$ & N./A. & $\qty{2.5}{ms}$ \\
   \hline
 \end{tblr}
+\footnotetext[1]{
+  % TODO
+}
 \begin{tblr}{
   width=\textwidth,
   colspec={ X[m,j]X[3,m,j] },
@@ -59,8 +61,8 @@
   \hline
   \textbf{Altro} & \textbf{Descrizione/Note} \\
   \hline
-  Tubo di Kundt & {
-    Un cilindro in plastica nel quale facciamo propagare le onde.
+  Tubo in plastica & {
+    Nel quale facciamo propagare le onde sonore.
   } \\
   \hline[dashed]
   Oscilloscopio & {
@@ -69,43 +71,50 @@
   } \\
   \hline[dashed]
   Generatore di funzioni d'onda & {
-    Da cui possiamo regolare frequenza, ampiezza,
-    e tipo delle onde generate.
+    Con cui possiamo regolare frequenza, ampiezza e
+    forma d'onda delle onde generate.
+  } \\
+  \hline[dashed]
+  Altoparlante & {
+    Utilizzato per emettere le onde sonore.
   } \\
   \hline[dashed]
   Microfono a condensatore & {
-    Utilizzato per rilevare le onde.
-    } \\
+    Utilizzato per rilevare le onde di pressione.
+  } \\
   \hline[dashed]
   Pistone & {
     Finalizzato alla chiusura di un'estremità del tubo.
-    } \\
+  } \\
   \hline
 \end{tblr}
 \end{center}
 
 \pagebreak
-\section{Misurazione delle frequenze di risonanza con tubo aperto}
+\section{Misurazione indiretta mediante le frequenze di risonanza}
 
 \subsection{Esperienza e procedimento di misura}
 
 \begin{enumerate}
   \item
-    Con il metro a nastro misuriamo la lunghezza del tubo $L$, mentre con il
-    calibro ventesimale il suo diametro $d$. %TODO: interno o esterno?
+    Con il metro a nastro misuriamo la lunghezza del tubo $L$,
+    mentre con il calibro ventesimale il suo diametro interno
+    $\diam$.
   \item
-    Inseriamo il microfono dentro al tubo in modo che riesca a rilevare le onde,
-    quindi assicurandoci che non si trovi in corrispondenza di un nodo.
+    Accesi l'oscilloscopio e il generatore di forme d'onda,
+    regoliamo l'ampiezza in modo da poter percepire un suono.
   \item
-    Accesi l'oscilloscopio e il generatore di forme d'onda, regoliamo
-    l'ampiezza in modo da poter percepire un suono.
+    Inseriamo il microfono dentro al tubo in modo che riesca a rilevare le onde
+    chiaramente, quindi assicurandoci che, in presenza di onde stazionarie,
+    non si trovi in corrispondenza di un nodo.
   \item
-    Aumentiamo la frequenza fino a trovare il primo massimo relativo nel
-    grafico riportato dall'oscilloscopio: questa sarà la prima frequenza
-    di risonanza, nonché l'armonica fondamentale del nostro tubo.
+    Aumentiamo la frequenza fino a trovare, mediante l'oscilloscopio,
+    il primo massimo relativo nell'ampiezza del segnale rilevato dal
+    microfono: questa sarà la prima frequenza di risonanza,
+    ovvero l'armonica fondamentale.
   \item
-    Ripetiamo più volte il passaggio precedente, in modo da ottenere almeno
-    cinque frequenze di risonanza.
+    Ripetiamo più volte il passaggio precedente, in modo da ottenere le prime
+    armoniche (multiple della fondamentale).
 \end{enumerate}
 Il gruppo di lavoro ha effettuato le stesse procedure, ma mantenendo una
 estremità del tubo chiusa tramite il pistone. In questo caso la lunghezza
@@ -136,47 +145,7 @@ In conclusione, possiamo affermare ragionevolmente che,
 rispetto alla sensibilità degli strumenti di misura,
 il contributo dell'attrito è trascurabile.
 
-\section{Misurazione delle frequenze di risonanza con tubo aperto}
-
-\subsection{Esperienza e procedimento di misura}
-
-\begin{enumerate}
-  \item
-    Posto il calorimetro sopra alla bilancia, avviamo la cattura del filmato.
-  \item
-    Dopo circa una decina di secondi (non è rilevante per la riuscita dell'esperienza),
-    tramite il generatore forniamo calore all'azoto per mezzo della resistenza.
-  \item
-    Aspettato ... interrompiamo il flusso di calore e dopo
-    un'altra decina di secondi terminiamo la registrazione video.
-\end{enumerate}
-
-\subsection{Analisi dei dati raccolti}
-\emph{\textbf{Nota.}
-Avendo valutato gli errori sulle grandezze misurate direttamente
-come piccoli, casuali e indipendenti, per svolgere ogni calcolo
-abbiamo utilizzato la tradizionale propagazione degli errori.
-}
-
-  Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
-  e, successivamente, costruire tre distinte rette di regressione.
-
-  Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
-  è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
-
-  Il calore latente dell'azoto liquido sarà:
-
-\subsection{Conclusioni}
-
-Come è possibile osservare comparando questi risultati a
-quelli precedentemente ottenuti, il valore di $g$ risultante
-è rimasto essenzialmente invariato (al netto della sua incertezza).
-
-In conclusione, possiamo affermare ragionevolmente che,
-rispetto alla sensibilità degli strumenti di misura,
-il contributo dell'attrito è trascurabile.
-
-\section{Misurazione delle frequenze di risonanza con tubo aperto}
+\section{Misurazione diretta mediante l'eco}
 
 \subsection{Esperienza e procedimento di misura}
 
