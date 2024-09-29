@@ -281,39 +281,67 @@ risultano compatibili con i rispettivi valori attesi.
 
 \subsection{Esperienza e procedimento di misura}
 
+Ripetiamo quattro volte i seguenti passaggi:
 \begin{enumerate}
   \item
     Mediante il termometro ambientale, misuriamo la temperatura ambiente
-    $T_\text{amb}$.
+    $T_\text{amb}$ (in questo caso, abbiamo ottenuto, per tutte le misure,
+    $T_\text{amb}=(25.5\pm0.5)\,\unit{\degree C}$).
   \item
-    Chiusa l'estremità opposta all'altoparlante tramite il pistone,
+    Chiusa l'estremità del tubo opposta all'altoparlante tramite il pistone,
     misuriamo la lunghezza $L$ della colonna d'aria all'interno del tubo.
   \item
-    Dopo circa una decina di secondi (non è rilevante per la riuscita dell'esperienza),
-    tramite il generatore forniamo calore all'azoto per mezzo della resistenza.
+    Accesi l'oscilloscopio e il generatore di onde, impostiamo una
+    forma d'onda quadra e una frequenza di $(10\pm1)\,\unit{Hz}$.
+    Regoliamo poi l'ampiezza fino a percepire un suono.
   \item
-    Aspettato ... interrompiamo il flusso di calore e dopo
-    un'altra decina di secondi terminiamo la registrazione video.
+    Fissiamo il microfono appena sotto all'altoparlante, rivolto verso
+    l'interno del tubo.
+  \item
+    Misuriamo, grazie all'oscilloscopio, un intervallo di tempo $\delta t$
+    immediatamente successivo all'emissione dell'onda,
+    in modo tale che i segnali delle eco siano chiaramente distinguibili.
+    Contiamo allora, in quell'intervallo di tempo, il numero di picchi
+    $N$ rilevati.
 \end{enumerate}
 
 \subsection{Analisi dei dati raccolti}
-\emph{\textbf{Nota.}
-Avendo valutato gli errori sulle grandezze misurate direttamente
-come piccoli, casuali e indipendenti, per svolgere ogni calcolo
-abbiamo utilizzato la tradizionale propagazione degli errori.
-}
 
-% Intercetta: -7.5435353996e-5 \pm 2.6278434683e-4
-% Coeff ang: 0.003054964 \pm 2.8652288695e-4
-% v = 327.3360995415985 \pm 30.70061848310205
+Sia $L_0$ la distanza percorsa dall'onda e sia $\Delta t_0$ il tempo
+impiegato. Allora, chiaramente,
+\[
+  L_0 = 2L,
+  \qquad
+  \Delta t_0 = \frac{\Delta t}{N}
+  \quad\text{e}\quad
+  v = \frac{L_0}{\Delta t_0}.
+\]
 
-Grazie al filmato possiamo graficare la variazione della massa in funzione del tempo
-e, successivamente, costruire tre distinte rette di regressione.
+È quindi possibile stimare $v$ come il reciproco del coefficiente
+angolare $\psi$ di una retta di regressione:
+\[
+  \Delta t_0 = \psi L_0
+  \qquad\text{per cui}\quad v = \frac{1}{\psi}
+\]
 
-Essendo note, oltre all'intervallo di tempo, tensione ed intensità della corrente,
-è nota anche la quantità di calore fornito: $Q = I \Delta V \Delta t$.
+Di seguito riportiamo i valori di $L_0$ e $\Delta t_0$ da noi ottenuti,
+accompagnati dai risultati della regressione lineare.
 
-Il calore latente dell'azoto liquido sarà:
+\begin{figure}[H]
+  \includegraphics[trim={2.5cm 0.7cm 3cm 2cm},clip,width=\textwidth]{img/Graph2.png}
+  \caption*{\emph{
+    In rosso la retta di regressione, in rosa la sua regione di incertezza.
+    Le barre di errore sull'ascissa, per quanto riportate nel grafico, non
+    sono di dimensioni apprezzabili.
+  }}
+\end{figure}
+
+\begin{itemize}
+  \item Intercetta $= (-0.75 \pm 2.63)\cdot 10^{-4}$
+  \item Coefficiente angolare $\psi = (3.0\pm0.3)\cdot 10^{-3}\,\unit{s\per m}$
+\end{itemize}
+da cui:
+\[ v = (327 \pm 31)\,\unit{m \per s} \]
 
 \subsection{Conclusioni}
 
