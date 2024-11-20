@@ -163,5 +163,10 @@
     "cSpell.words": [
         "ventesimale",
         "vlines"
-    ]
+    ],
+    "workbench.editorAssociations": {
+        "{hexdiff}:/**/*.*": "hexEditor.hexedit",
+        "*.ipynb": "jupyter-notebook",
+        "file:/**/*.csv": "jupyter-data-wrangler"
+    }
 }
