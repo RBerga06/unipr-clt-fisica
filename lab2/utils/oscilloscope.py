@@ -71,7 +71,7 @@ class Oscilloscope(Enum):
         match self:
             case Oscilloscope.LabDid:
                 t1, ch1 = self.load_channel(1, idx, dir, del_data=ch1_del_data)
-                t2, ch2 = self.load_channel(1, idx, dir, del_data=ch2_del_data)
+                t2, ch2 = self.load_channel(2, idx, dir, del_data=ch2_del_data)
                 assert np.array_equal(t1, t2, equal_nan=True)
                 if plot_dir is not None:
                     plot_data(t1, ch1, ch2, to_file=f"{plot_dir}/{idx}.png")
