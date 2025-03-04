@@ -46,7 +46,13 @@ class Oscilloscope(Enum):
                     plot_data(t, data, to_file=f"{plot_dir}/{idx}.png")
                 return t, data
             case Oscilloscope.Elettr:
-                raise NotImplementedError
+                idx = idx or 0
+                file = pd.read_csv(f"{dir}/TEK{idx:05}.CSV", skiprows=15)
+                t = file["TIME"].to_numpy(np.float64)
+                data = file[f"CH{ch}"].to_numpy(np.float64)
+                if plot_dir is not None:
+                    plot_data(t, data, to_file=f"{plot_dir}/{idx}.png")
+                return (t, data)
             case Oscilloscope.Coassiali:
                 raise NotImplementedError
 
@@ -77,7 +83,14 @@ class Oscilloscope(Enum):
                     plot_data(t1, ch1, ch2, to_file=f"{plot_dir}/{idx}.png")
                 return (t1, ch1, ch2)
             case Oscilloscope.Elettr:
-                raise NotImplementedError
+                idx = idx or 0
+                file = pd.read_csv(f"{dir}/TEK{idx:05}.CSV", skiprows=15)
+                t = file["TIME"].to_numpy(np.float64)
+                ch1 = file["CH1"].to_numpy(np.float64)
+                ch2 = file["CH2"].to_numpy(np.float64)
+                if plot_dir is not None:
+                    plot_data(t, ch1, ch2, to_file=f"{plot_dir}/{idx}.png")
+                return (t, ch1, ch2)
             case Oscilloscope.Coassiali:
                 raise NotImplementedError
 
