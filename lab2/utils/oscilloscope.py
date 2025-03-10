@@ -2,7 +2,7 @@ from enum import Enum, auto
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
-from typing import Literal
+from typing import Literal, Sequence
 
 
 class Oscilloscope(Enum):
@@ -22,6 +22,7 @@ class Oscilloscope(Enum):
         dir: str = ".",
         *,
         del_data: float | None = None,
+        del_data_slices: Sequence[slice] = (),
         plot_dir: str | None = None,
     ) -> tuple[np.ndarray, np.ndarray]:
         """
@@ -42,6 +43,8 @@ class Oscilloscope(Enum):
                 data = file[4].to_numpy(np.float64) / atten
                 if del_data is not None:
                     data[data == del_data] = np.nan
+                for del_data_slice in del_data_slices:
+                    data[del_data_slice] = np.nan
                 if plot_dir is not None:
                     plot_data(t, data, to_file=f"{plot_dir}/{idx}.png")
                 return t, data
@@ -50,6 +53,10 @@ class Oscilloscope(Enum):
                 file = pd.read_csv(f"{dir}/TEK{idx:05}.CSV", skiprows=15)
                 t = file["TIME"].to_numpy(np.float64)
                 data = file[f"CH{ch}"].to_numpy(np.float64)
+                if del_data is not None:
+                    data[data == del_data] = np.nan
+                for del_data_slice in del_data_slices:
+                    data[del_data_slice] = np.nan
                 if plot_dir is not None:
                     plot_data(t, data, to_file=f"{plot_dir}/{idx}.png")
                 return (t, data)
@@ -64,6 +71,7 @@ class Oscilloscope(Enum):
         # TODO: Find out automatically when data has to be removed.
         ch1_del_data: float | None = None,
         ch2_del_data: float | None = None,
+        del_data_slices: Sequence[slice] = (),
         plot_dir: str | None = None,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
@@ -76,8 +84,8 @@ class Oscilloscope(Enum):
         """
         match self:
             case Oscilloscope.LabDid:
-                t1, ch1 = self.load_channel(1, idx, dir, del_data=ch1_del_data)
-                t2, ch2 = self.load_channel(2, idx, dir, del_data=ch2_del_data)
+                t1, ch1 = self.load_channel(1, idx, dir, del_data=ch1_del_data, del_data_slices=del_data_slices)
+                t2, ch2 = self.load_channel(2, idx, dir, del_data=ch2_del_data, del_data_slices=del_data_slices)
                 assert np.array_equal(t1, t2, equal_nan=True)
                 if plot_dir is not None:
                     plot_data(t1, ch1, ch2, to_file=f"{plot_dir}/{idx}.png")
@@ -88,6 +96,13 @@ class Oscilloscope(Enum):
                 t = file["TIME"].to_numpy(np.float64)
                 ch1 = file["CH1"].to_numpy(np.float64)
                 ch2 = file["CH2"].to_numpy(np.float64)
+                if ch1_del_data is not None:
+                    ch1[ch1 == ch1_del_data] = np.nan
+                if ch2_del_data is not None:
+                    ch2[ch2 == ch2_del_data] = np.nan
+                for del_data_slice in del_data_slices:
+                    ch1[del_data_slice] = np.nan
+                    ch2[del_data_slice] = np.nan
                 if plot_dir is not None:
                     plot_data(t, ch1, ch2, to_file=f"{plot_dir}/{idx}.png")
                 return (t, ch1, ch2)
