@@ -1,6 +1,7 @@
 from enum import Enum, auto
 import pandas as pd
 import numpy as np
+from numpy import typing as npt
 from matplotlib import pyplot as plt
 from typing import Literal, Sequence
 
@@ -24,7 +25,7 @@ class Oscilloscope(Enum):
         del_data: float | None = None,
         del_data_slices: Sequence[slice] = (),
         plot_dir: str | None = None,
-    ) -> tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
         """
         Carica i dati di un solo canale, acquisiti con questo oscilloscopio.
 
@@ -73,7 +74,7 @@ class Oscilloscope(Enum):
         ch2_del_data: float | None = None,
         del_data_slices: Sequence[slice] = (),
         plot_dir: str | None = None,
-    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64], npt.NDArray[np.float64]]:
         """
         Carica i dati acquisiti con questo oscilloscopio.
 
@@ -110,7 +111,14 @@ class Oscilloscope(Enum):
                 raise NotImplementedError
 
 
-def plot_data(t: np.ndarray, ch1: np.ndarray, ch2: np.ndarray | None = None, /, *, to_file: str | None = None):
+def plot_data(
+    t: npt.NDArray[np.float64],
+    ch1: npt.NDArray[np.float64],
+    ch2: npt.NDArray[np.float64] | None = None,
+    /,
+    *,
+    to_file: str | None = None,
+):
     _, ax1 = plt.subplots()
     if ch2 is None:
         ax2 = ax1
