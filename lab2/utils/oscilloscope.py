@@ -3,7 +3,12 @@ import pandas as pd
 import numpy as np
 from numpy import typing as npt
 from matplotlib import pyplot as plt
-from typing import Literal, Sequence
+from typing import Literal, cast
+from collections.abc import Sequence
+
+
+def _pd2np(pd: pd.Series[float]) -> npt.NDArray[np.float64]:
+    return cast(npt.NDArray[np.float64], pd.to_numpy(np.float64))
 
 
 class Oscilloscope(Enum):
@@ -39,9 +44,9 @@ class Oscilloscope(Enum):
             case Oscilloscope.LabDid:
                 idx = idx or 0
                 file = pd.read_csv(f"{dir}/F{idx:04}CH{ch}.CSV", header=None)
-                atten = float(file.at[14, 1])
-                t = file[3].to_numpy(np.float64)
-                data = file[4].to_numpy(np.float64) / atten
+                atten = np.float64(file.at[14, 1])
+                t = _pd2np(file[3])
+                data = _pd2np(file[4]) / atten
                 if del_data is not None:
                     data[data == del_data] = np.nan
                 for del_data_slice in del_data_slices:
@@ -52,8 +57,8 @@ class Oscilloscope(Enum):
             case Oscilloscope.Elettr:
                 idx = idx or 0
                 file = pd.read_csv(f"{dir}/TEK{idx:05}.CSV", skiprows=15)
-                t = file["TIME"].to_numpy(np.float64)
-                data = file[f"CH{ch}"].to_numpy(np.float64)
+                t = _pd2np(file["TIME"])
+                data = _pd2np(file[f"CH{ch}"])
                 if del_data is not None:
                     data[data == del_data] = np.nan
                 for del_data_slice in del_data_slices:
@@ -94,9 +99,9 @@ class Oscilloscope(Enum):
             case Oscilloscope.Elettr:
                 idx = idx or 0
                 file = pd.read_csv(f"{dir}/TEK{idx:05}.CSV", skiprows=15)
-                t = file["TIME"].to_numpy(np.float64)
-                ch1 = file["CH1"].to_numpy(np.float64)
-                ch2 = file["CH2"].to_numpy(np.float64)
+                t = _pd2np(file["TIME"])
+                ch1 = _pd2np(file["CH1"])
+                ch2 = _pd2np(file["CH2"])
                 if ch1_del_data is not None:
                     ch1[ch1 == ch1_del_data] = np.nan
                 if ch2_del_data is not None:
@@ -118,15 +123,16 @@ def plot_data(
     /,
     *,
     to_file: str | None = None,
+    same_axis: bool = False,
 ):
     _, ax1 = plt.subplots()
-    if ch2 is None:
+    if ch2 is None or same_axis:
         ax2 = ax1
     else:
         ax2 = ax1.twinx()
-    ax1.plot(t, ch1, color="C0")
+    _ = ax1.plot(t, ch1, color="C0")
     if ch2 is not None:
-        ax2.plot(t, ch2, color="C1")
+        _ = ax2.plot(t, ch2, color="C1")
     if to_file is not None:
         plt.savefig(to_file)
         plt.close()
