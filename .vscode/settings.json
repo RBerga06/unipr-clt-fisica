@@ -160,13 +160,9 @@
         "editor.formatOnSave": true
     },
     "python.terminal.activateEnvironment": false,
+    "python.defaultInterpreterPath": "/Users/rberga06/.pixi/envs/ipython/bin/python3",
     "cSpell.words": [
         "ventesimale",
         "vlines"
     ],
-    "workbench.editorAssociations": {
-        "{hexdiff}:/**/*.*": "hexEditor.hexedit",
-        "*.ipynb": "jupyter-notebook",
-        "file:/**/*.csv": "jupyter-data-wrangler"
-    }
 }
