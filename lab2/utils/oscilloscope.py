@@ -7,7 +7,7 @@ from typing import Literal, cast
 from collections.abc import Sequence
 
 
-def _pd2np(pd: pd.Series[float]) -> npt.NDArray[np.float64]:
+def _pd2np(pd: "pd.Series[float]") -> npt.NDArray[np.float64]:
     return cast(npt.NDArray[np.float64], pd.to_numpy(np.float64))
 
 
